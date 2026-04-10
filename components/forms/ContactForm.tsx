@@ -9,7 +9,7 @@ type ContactFormProps = {
 };
 
 const inputClass =
-  "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-text-primary shadow-sm placeholder:text-text-muted outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20";
+  "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-text-primary shadow-sm placeholder:text-text-muted outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-600/25";
 
 export function ContactForm({ className, defaultProductRef = "" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sent">("idle");

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { productCategories } from "@/data/product-categories";
+import { productCategories } from "@/data/catalog";
 import { cn } from "@/lib/cn";
 import type { ProductCategorySlug } from "@/lib/types";
 
@@ -18,70 +18,56 @@ export function ProductCategoryNav({
 }: ProductCategoryNavProps) {
   const blurb =
     mode === "category"
-      ? "Switch between product families or return to the full range."
-      : "Each category opens its own page with an overview and full product listing.";
+      ? "Switch family or return to the full catalogue on one page."
+      : "Open a family for a focused list, or browse every SKU on this page.";
+
   return (
-    <section className={cn("relative", className)} aria-labelledby="product-categories-heading">
+    <nav
+      className={cn(
+        "relative overflow-hidden rounded-2xl border border-teal-200/70 bg-gradient-to-br from-white via-teal-50/25 to-violet-50/20 px-5 py-6 shadow-[0_8px_32px_-16px_rgba(15,118,110,0.12)] backdrop-blur-sm md:px-7 md:py-6",
+        className,
+      )}
+      aria-labelledby="product-categories-heading"
+    >
       <div
-        className="pointer-events-none absolute -inset-x-6 -inset-y-8 rounded-[2rem] opacity-80 blur-3xl"
+        className="pointer-events-none absolute -right-8 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full blur-2xl opacity-80"
         style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(14,165,233,0.1), transparent 70%)",
+          background: "radial-gradient(circle, rgba(91,33,182,0.12), transparent 70%)",
         }}
         aria-hidden
       />
 
-      <div
-        className={cn(
-          "relative overflow-hidden rounded-2xl border border-border-subtle",
-          "bg-gradient-to-br from-white via-bg-primary to-bg-secondary/50",
-          "shadow-[0_4px_24px_-6px_rgba(15,23,42,0.08)]",
-          "backdrop-blur-sm",
-        )}
-      >
-        <div
-          className="pointer-events-none absolute -right-12 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%)",
-          }}
-          aria-hidden
-        />
-
-        <div className="relative px-5 py-6 md:px-8 md:py-7">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <h2
-                id="product-categories-heading"
-                className="font-display text-lg font-semibold tracking-tight text-text-primary md:text-xl"
-              >
-                Categories
-              </h2>
-              <p className="mt-1 max-w-xl text-sm text-text-muted">{blurb}</p>
-            </div>
-            {mode === "category" ? (
-              <Link
-                href="/products"
-                className="shrink-0 text-sm font-semibold text-accent-primary transition hover:text-accent-deep"
-              >
-                ← Full catalogue
-              </Link>
-            ) : null}
-          </div>
-
-          <nav className="mt-6 flex flex-wrap gap-3" aria-label="Product categories">
-            <CategoryPill href="/products" active={activeSlug === "all"}>
-              All products
-            </CategoryPill>
-            {productCategories.map((c) => (
-              <CategoryPill key={c.slug} href={`/products/${c.slug}`} active={activeSlug === c.slug}>
-                {c.name}
-              </CategoryPill>
-            ))}
-          </nav>
+      <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h2
+            id="product-categories-heading"
+            className="font-display text-lg font-semibold tracking-tight text-slate-950 md:text-xl"
+          >
+            Browse by family
+          </h2>
+          <p className="mt-1 max-w-xl text-sm text-slate-600">{blurb}</p>
         </div>
+        {mode === "category" ? (
+          <Link
+            href="/products"
+            className="shrink-0 text-sm font-semibold text-teal-800 transition hover:text-teal-950 hover:underline"
+          >
+            ← Full catalogue
+          </Link>
+        ) : null}
       </div>
-    </section>
+
+      <div className="relative mt-5 flex flex-wrap gap-2.5">
+        <CategoryPill href="/products" active={activeSlug === "all"}>
+          All products
+        </CategoryPill>
+        {productCategories.map((c) => (
+          <CategoryPill key={c.slug} href={`/products/${c.slug}`} active={activeSlug === c.slug}>
+            {c.name}
+          </CategoryPill>
+        ))}
+      </div>
+    </nav>
   );
 }
 
@@ -98,17 +84,10 @@ function CategoryPill({
     <Link
       href={href}
       className={cn(
-        "inline-flex min-h-[3rem] items-center justify-center rounded-2xl border px-5 py-3 text-sm font-semibold tracking-tight transition-all duration-200 md:min-h-[3.25rem] md:px-7 md:text-[0.9375rem]",
+        "inline-flex min-h-[2.75rem] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold tracking-tight transition-all duration-200 md:min-h-[3rem] md:px-6",
         active
-          ? cn(
-              "border-accent-primary/40 bg-bg-secondary text-text-primary",
-              "shadow-[0_2px_12px_-2px_rgba(14,165,233,0.25),0_0_0_1px_rgba(14,165,233,0.12)]",
-            )
-          : cn(
-              "border-border-subtle bg-surface-glass-strong text-text-secondary shadow-sm",
-              "hover:border-accent-primary/25 hover:bg-bg-secondary/80 hover:text-text-primary",
-              "hover:shadow-md",
-            ),
+          ? "border-teal-500/55 bg-teal-700 text-white shadow-[0_8px_24px_-10px_rgba(15,118,110,0.35)]"
+          : "border-slate-200/90 bg-white/90 text-slate-700 shadow-sm hover:border-teal-400/50 hover:bg-teal-50/80 hover:text-teal-950",
       )}
     >
       {children}

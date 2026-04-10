@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PageBanner } from "@/components/ui/PageBanner";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 
 const VALID: ServiceSlug[] = [
   "custom-chemical-synthesis",
@@ -34,8 +35,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   if (!s) notFound();
 
   return (
-    <div className="px-4 pb-24 pt-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-12">
+    <div className="relative overflow-x-hidden px-4 pb-24 pt-10 sm:px-6 lg:px-8">
+      <PageAmbientGraphics variant="default" opacity="opacity-[0.18]" />
+      <div className="relative z-10 mx-auto max-w-6xl space-y-12">
         <nav className="text-xs text-text-muted">
           <Link href="/services" className="hover:text-text-primary">
             Services

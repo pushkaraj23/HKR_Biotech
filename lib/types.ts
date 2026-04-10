@@ -1,28 +1,15 @@
-export type ProductCategorySlug =
-  | "carbohydrates"
-  | "api-impurities"
-  | "nucleotides-linkers";
+/** Site-wide types. Product catalogue lives in `./types/catalog`. */
 
-export type ProductCategory = {
-  slug: ProductCategorySlug;
-  name: string;
-  tagline: string;
-  description: string;
-};
+export type {
+  BreadcrumbItem,
+  CatalogProduct,
+  ProductAvailability,
+  ProductCategory,
+  ProductCategorySlug,
+} from "./types/catalog";
 
-export type Product = {
-  id: string;
-  categorySlug: ProductCategorySlug;
-  chemicalName: string;
-  casNumber: string;
-  molecularFormula: string;
-  molecularWeight: string;
-  purity: string;
-  shortDescription: string;
-  storageConditions: string;
-  applications: string[];
-  datasheetUrl?: string;
-};
+/** @deprecated Prefer `CatalogProduct`; kept for gradual migration. */
+export type { CatalogProduct as Product } from "./types/catalog";
 
 export type ServiceSlug =
   | "custom-chemical-synthesis"

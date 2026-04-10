@@ -13,7 +13,7 @@ export function IndustryCard({ industry, className }: IndustryCardProps) {
   return (
     <GlassCard className={cn("flex h-full flex-col", className)}>
       <div
-        className="mb-6 h-36 rounded-2xl bg-gradient-to-br from-sky-100/90 via-bg-secondary to-indigo-100/70 ring-1 ring-border-subtle"
+        className="mb-6 h-36 rounded-2xl bg-gradient-to-br from-teal-100/95 via-bg-secondary to-violet-100/80 ring-1 ring-border-subtle"
         role="img"
         aria-label=""
       />

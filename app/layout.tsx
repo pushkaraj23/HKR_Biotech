@@ -48,7 +48,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-slate-100 font-sans text-text-primary">
         <AuraBackdrop />
         <SiteHeader />
-        <main className="relative flex-1">{children}</main>
+        <main className="relative flex-1 pt-[var(--site-header-offset)]">{children}</main>
         <Footer />
       </body>
     </html>

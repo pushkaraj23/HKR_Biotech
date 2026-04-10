@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PageBanner } from "@/components/ui/PageBanner";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -19,8 +20,9 @@ export default async function ContactPage({ searchParams }: PageProps) {
     typeof sp.product === "string" ? sp.product : Array.isArray(sp.product) ? sp.product[0] : "";
 
   return (
-    <div className="px-4 pb-24 pt-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-14">
+    <div className="relative overflow-x-hidden px-4 pb-24 pt-10 sm:px-6 lg:px-8">
+      <PageAmbientGraphics variant="right" opacity="opacity-[0.17]" />
+      <div className="relative z-10 mx-auto max-w-6xl space-y-14">
         <PageBanner
           title="Enquiries & RFQ"
           description="Share your target structure, quantity band, and analytical expectations — our team will respond with scientific questions, not just pricing."
@@ -75,3 +77,4 @@ export default async function ContactPage({ searchParams }: PageProps) {
     </div>
   );
 }
+

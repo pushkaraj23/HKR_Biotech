@@ -6,6 +6,7 @@ import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 
 export const metadata: Metadata = {
   title: "Industries",
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 
 export default function IndustriesPage() {
   return (
-    <div className="px-4 pb-24 pt-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-16">
+    <div className="relative overflow-x-hidden px-4 pb-24 pt-10 sm:px-6 lg:px-8">
+      <PageAmbientGraphics variant="default" />
+      <div className="relative z-10 mx-auto max-w-6xl space-y-16">
         <PageBanner
           title="Industries"
           description="We tune communication, documentation, and risk disclosure to the governance model of each sector — without diluting scientific standards."

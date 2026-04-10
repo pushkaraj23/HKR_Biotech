@@ -9,7 +9,7 @@ import { LandingWhy } from "@/components/landing/LandingWhy";
 
 export default function HomePage() {
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative -mt-[var(--site-header-offset)] overflow-x-hidden">
       <HomeAmbientMolecules />
       <div className="relative z-10">
         <LandingHero />

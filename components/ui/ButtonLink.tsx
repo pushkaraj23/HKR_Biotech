@@ -14,9 +14,9 @@ type ButtonLinkProps = {
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[linear-gradient(90deg,#0284c7,#1d4ed8)] text-white font-semibold shadow-[0_4px_14px_-2px_rgba(3,105,161,0.45)] hover:brightness-[1.03] hover:shadow-[0_6px_20px_-4px_rgba(29,78,216,0.35)]",
+    "bg-[linear-gradient(90deg,#115e59,#0f766e,#14b8a6)] text-white font-semibold shadow-[0_4px_16px_-2px_rgba(15,118,110,0.45)] hover:brightness-[1.04] hover:shadow-[0_8px_24px_-4px_rgba(91,33,182,0.22)]",
   secondary:
-    "border border-slate-300 bg-white text-slate-900 font-medium shadow-sm hover:border-sky-400/60 hover:bg-slate-50 hover:shadow-md",
+    "border border-slate-300 bg-white text-slate-900 font-medium shadow-sm hover:border-teal-500/55 hover:bg-teal-50/80 hover:shadow-md",
   ghost:
     "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
 };

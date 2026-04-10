@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 
 export const metadata: Metadata = {
   title: "Capabilities",
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 
 export default function CapabilitiesPage() {
   return (
-    <div className="px-4 pb-24 pt-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-16">
+    <div className="relative overflow-x-hidden px-4 pb-24 pt-10 sm:px-6 lg:px-8">
+      <PageAmbientGraphics variant="long" />
+      <div className="relative z-10 mx-auto max-w-6xl space-y-16">
         <PageBanner
           title="Capabilities"
           description="Quantified infrastructure, redundant characterization, and synthesis depth — presented as modular blocks you can map to your program milestones."

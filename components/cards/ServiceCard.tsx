@@ -1,0 +1,33 @@
+import Link from "next/link";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { cn } from "@/lib/cn";
+import type { Service } from "@/lib/types";
+
+type ServiceCardProps = {
+  service: Service;
+  className?: string;
+};
+
+export function ServiceCard({ service, className }: ServiceCardProps) {
+  return (
+    <Link href={`/services/${service.slug}`} className={cn("group block", className)}>
+      <GlassCard className="h-full">
+        <h3 className="font-display text-xl font-semibold text-text-primary group-hover:text-accent-primary transition-colors">
+          {service.title}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-text-secondary">{service.summary}</p>
+        <ul className="mt-5 space-y-2 text-sm text-text-secondary">
+          {service.benefits.slice(0, 3).map((b) => (
+            <li key={b} className="flex gap-2">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-secondary/80" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+        <span className="mt-6 inline-flex text-sm font-medium text-accent-primary">
+          View service →
+        </span>
+      </GlassCard>
+    </Link>
+  );
+}

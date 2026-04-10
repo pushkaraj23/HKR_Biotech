@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  /* Page: near-white / white — WCAG-friendly text on white */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #e4e4e7;
+  --surface-glass: rgba(255, 255, 255, 0.92);
+  --surface-glass-strong: #ffffff;
+  --accent-primary: #0369a1;
+  --accent-secondary: #0284c7;
+  --accent-deep: #1e40af;
+  --violet-glow: #4f46e5;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-subtle: rgba(15, 23, 42, 0.1);
+  --border-glow: rgba(3, 105, 161, 0.25);
+  --glow-cyan: rgba(14, 165, 233, 0.12);
+  --glow-blue: rgba(30, 64, 175, 0.1);
+  --header-bg: #0f172a;
+  --header-text: #e2e8f0;
+  --header-text-muted: #94a3b8;
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0369a1 0%,
+    #1d4ed8 48%,
+    #5b21b6 100%
+  );
+  --gradient-cta: linear-gradient(90deg, #0284c7, #1d4ed8);
+  /* Sticky header + top padding — used by home hero `min-h` so one screen = header + hero */
+  --site-header-offset: 6rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-mono), ui-monospace, monospace;
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-surface-glass: var(--surface-glass);
+  --color-surface-glass-strong: var(--surface-glass-strong);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-deep: var(--accent-deep);
+  --color-violet-glow: var(--violet-glow);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-glow: var(--border-glow);
+  --color-header-bg: var(--header-bg);
+  --color-header-text: var(--header-text);
+  --color-header-text-muted: var(--header-text-muted);
+  --font-sans: var(--font-sans-body);
+  --font-display: var(--font-display);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.02);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-soft,
+  .animate-pulse-glow {
+    animation: none;
+  }
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(3, 105, 161, 0.18);
+  color: var(--text-primary);
+}
+
+.glass-panel {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.05),
+    0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.gradient-text {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}

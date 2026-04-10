@@ -1,6 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+
+const LAB_IMAGE =
+  "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=900&h=700&fit=crop&q=80&auto=format";
 
 const BULLET_COLORS = [
   "from-teal-400 to-teal-600",
@@ -12,67 +16,55 @@ export function LandingLabStory() {
   return (
     <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-        {/* Visual card — gradient glass */}
         <RevealOnScroll className="relative order-2 lg:order-1">
-          <div
-            className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/50 p-8 shadow-[0_12px_48px_-12px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-10"
-            style={{
-              background:
-                "linear-gradient(145deg, rgba(153,246,228,0.4) 0%, rgba(167,139,250,0.35) 40%, rgba(253,164,175,0.3) 100%)",
-            }}
-          >
-            {/* Decorative orbs */}
+          <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/50 shadow-[0_12px_48px_-12px_rgba(15,23,42,0.14)] sm:min-h-[420px]">
+            <Image
+              src={LAB_IMAGE}
+              alt="Laboratory research work"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
             <div
-              className="absolute right-8 top-8 h-16 w-16 rounded-full"
+              className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.85), rgba(20,184,166,0.5) 55%, rgba(15,118,110,0.3))",
-                boxShadow: "0 8px 24px -4px rgba(20,184,166,0.35), inset 0 -2px 6px rgba(0,0,0,0.06)",
+                  "linear-gradient(to top, rgba(15,23,42,0.75) 0%, rgba(15,23,42,0.35) 35%, rgba(15,23,42,0.05) 70%, transparent 100%)",
+              }}
+            />
+
+            <div
+              className="absolute right-6 top-6 h-12 w-12 rounded-full animate-orbit-slow"
+              style={{
+                background:
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(20,184,166,0.3) 55%, rgba(15,118,110,0.1))",
+                boxShadow: "0 6px 20px -4px rgba(20,184,166,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
               }}
               aria-hidden
             />
             <div
-              className="absolute bottom-10 left-10 h-10 w-10 rounded-full"
+              className="absolute left-8 top-1/3 h-7 w-7 rounded-full animate-orbit-slow"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.85), rgba(124,58,237,0.5) 55%, rgba(91,33,182,0.3))",
-                boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3), inset 0 -1px 4px rgba(0,0,0,0.06)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="absolute bottom-24 right-16 h-7 w-7 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.85), rgba(225,29,72,0.5) 55%, rgba(159,18,57,0.3))",
-                boxShadow: "0 4px 16px -3px rgba(159,18,57,0.25), inset 0 -1px 3px rgba(0,0,0,0.06)",
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(124,58,237,0.3) 55%, rgba(91,33,182,0.1))",
+                boxShadow: "0 4px 14px -3px rgba(91,33,182,0.3), inset 0 -1px 4px rgba(0,0,0,0.1)",
+                animationDelay: "-4s",
+                animationDuration: "14s",
               }}
               aria-hidden
             />
 
-            {/* Subtle grid pattern */}
-            <div
-              className="absolute inset-0 rounded-[2rem] opacity-[0.06]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(15,23,42,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.15) 1px, transparent 1px)",
-                backgroundSize: "48px 48px",
-              }}
-              aria-hidden
-            />
-
-            <div className="relative flex h-full min-h-[240px] flex-col justify-end">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-700">
+            <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.35em] text-teal-300">
                 Operations
               </p>
-              <p className="mt-3 max-w-sm font-display text-xl font-bold leading-snug text-slate-900 sm:text-2xl">
+              <p className="mt-3 max-w-sm font-display text-xl font-bold leading-snug text-white sm:text-2xl">
                 Controlled environments, redundant characterization, traceable release.
               </p>
             </div>
           </div>
         </RevealOnScroll>
 
-        {/* Text content */}
         <div className="order-1 space-y-6 lg:order-2">
           <RevealOnScroll>
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-violet-700">

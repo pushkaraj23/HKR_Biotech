@@ -1,19 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
 import { productCategories } from "@/data/catalog";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
-const FEATURED_GRADIENTS = [
+const FEATURED_STYLES = [
   {
     bg: "linear-gradient(135deg, rgba(153,246,228,0.55) 0%, rgba(167,139,250,0.45) 50%, rgba(196,181,253,0.5) 100%)",
-    orb: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.85), rgba(20,184,166,0.55) 55%, rgba(91,33,182,0.3))",
-    orbShadow: "0 8px 28px -4px rgba(20,184,166,0.4)",
     hoverBorder: "hover:border-teal-300/70",
+    image:
+      "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=800&h=500&fit=crop&q=80&auto=format",
   },
   {
     bg: "linear-gradient(135deg, rgba(196,181,253,0.5) 0%, rgba(253,164,175,0.4) 50%, rgba(252,205,211,0.45) 100%)",
-    orb: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.85), rgba(124,58,237,0.55) 55%, rgba(159,18,57,0.3))",
-    orbShadow: "0 8px 28px -4px rgba(91,33,182,0.35)",
     hoverBorder: "hover:border-violet-300/70",
+    image:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=500&fit=crop&q=80&auto=format",
   },
 ] as const;
 
@@ -53,44 +54,53 @@ export function LandingCategories() {
           </div>
         </RevealOnScroll>
 
-        {/* Two featured gradient cards */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {featured.map((cat, i) => {
-            const style = FEATURED_GRADIENTS[i];
+            const style = FEATURED_STYLES[i];
             return (
               <RevealOnScroll key={cat.slug} delay={i * 100}>
                 <Link
                   href={`/products/${cat.slug}`}
-                  className={`group relative block h-full overflow-hidden rounded-[1.75rem] border border-white/50 p-8 shadow-[0_8px_40px_-12px_rgba(15,23,42,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_56px_-16px_rgba(15,23,42,0.16)] sm:p-10 ${style.hoverBorder}`}
+                  className={`group relative block h-full overflow-hidden rounded-[1.75rem] border border-white/50 shadow-[0_8px_40px_-12px_rgba(15,23,42,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_56px_-16px_rgba(15,23,42,0.16)] ${style.hoverBorder}`}
                   style={{ background: style.bg }}
                 >
-                  {/* Floating orb */}
-                  <div
-                    className="mb-6 h-14 w-14 rounded-full"
-                    style={{
-                      background: style.orb,
-                      boxShadow: `${style.orbShadow}, inset 0 -2px 6px rgba(0,0,0,0.06)`,
-                    }}
-                  />
-                  <h3 className="font-display text-xl font-bold text-slate-900 sm:text-2xl">
-                    {cat.name}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                    {cat.tagline}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-800">
-                    Explore category
-                    <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                      →
+                  <div className="relative h-44 w-full overflow-hidden sm:h-52">
+                    <Image
+                      src={style.image}
+                      alt={cat.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 40%, transparent 100%)",
+                      }}
+                    />
+                  </div>
+
+                  <div className="p-8 pt-4 sm:p-10 sm:pt-5">
+                    <h3 className="font-display text-xl font-bold text-slate-900 sm:text-2xl">
+                      {cat.name}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                      {cat.tagline}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-800">
+                      Explore category
+                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                        →
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </Link>
               </RevealOnScroll>
             );
           })}
         </div>
 
-        {/* Remaining categories as pills */}
         <RevealOnScroll delay={220}>
           <div className="mt-6 flex flex-wrap gap-3">
             {rest.map((cat, i) => (

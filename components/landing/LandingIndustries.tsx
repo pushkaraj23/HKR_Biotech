@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { industries } from "@/data/industries";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
@@ -5,33 +6,38 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 const CARD_STYLES = [
   {
     tint: "from-teal-50/50 to-white",
-    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.65) 55%, rgba(15,118,110,0.45))",
-    orbShadow: "0 6px 20px -4px rgba(20,184,166,0.35)",
-    dot: "bg-teal-500",
+    ring: "ring-teal-300/40",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(20,184,166,0.25)]",
+    image:
+      "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
     tint: "from-violet-50/50 to-white",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.65) 55%, rgba(91,33,182,0.45))",
-    orbShadow: "0 6px 20px -4px rgba(91,33,182,0.3)",
-    dot: "bg-violet-500",
+    ring: "ring-violet-300/40",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(91,33,182,0.2)]",
+    image:
+      "https://plus.unsplash.com/premium_photo-1681426676206-0f2c02b48aff?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
     tint: "from-rose-50/50 to-white",
-    orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.65) 55%, rgba(159,18,57,0.45))",
-    orbShadow: "0 6px 20px -4px rgba(159,18,57,0.28)",
-    dot: "bg-rose-500",
+    ring: "ring-rose-300/40",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(159,18,57,0.18)]",
+    image:
+      "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
     tint: "from-teal-50/40 to-violet-50/30",
-    orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.55) 50%, rgba(91,33,182,0.3))",
-    orbShadow: "0 6px 20px -4px rgba(20,184,166,0.3)",
-    dot: "bg-teal-400",
+    ring: "ring-teal-300/35",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(20,184,166,0.2)]",
+    image:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
     tint: "from-violet-50/40 to-rose-50/30",
-    orb: "radial-gradient(circle at 35% 35%, rgba(221,214,254,0.85), rgba(124,58,237,0.5) 50%, rgba(159,18,57,0.25))",
-    orbShadow: "0 6px 20px -4px rgba(91,33,182,0.25)",
-    dot: "bg-violet-400",
+    ring: "ring-violet-300/35",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(91,33,182,0.18)]",
+    image:
+      "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=200&h=200&fit=crop&q=80&auto=format",
   },
 ] as const;
 
@@ -60,14 +66,17 @@ export function LandingIndustries() {
                   href={`/industries#${ind.slug}`}
                   className={`group relative block h-full overflow-hidden rounded-[1.75rem] border border-white/60 bg-gradient-to-b ${style.tint} p-7 shadow-[0_6px_28px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_44px_-14px_rgba(15,23,42,0.12)]`}
                 >
-                  {/* Mini orb */}
                   <div
-                    className="mb-5 h-10 w-10 rounded-full"
-                    style={{
-                      background: style.orb,
-                      boxShadow: `${style.orbShadow}, inset 0 -1px 4px rgba(0,0,0,0.06)`,
-                    }}
-                  />
+                    className={`relative mb-5 h-12 w-12 overflow-hidden rounded-full ring-2 ${style.ring} ${style.shadow}`}
+                  >
+                    <Image
+                      src={style.image}
+                      alt={ind.title}
+                      fill
+                      sizes="48px"
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="font-display text-lg font-semibold text-slate-900">
                     {ind.title}
                   </h3>

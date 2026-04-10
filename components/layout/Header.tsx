@@ -126,7 +126,7 @@ export function Header() {
                   {/* Dropdown */}
                   <div
                     className={cn(
-                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/60 bg-white/85 p-2 shadow-[0_16px_48px_-12px_rgba(15,23,42,0.12)] backdrop-blur-2xl transition-all duration-200",
+                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_48px_-12px_rgba(15,23,42,0.18)] transition-all duration-200",
                       productsOpen
                         ? "visible translate-y-0 opacity-100"
                         : "invisible -translate-y-1 opacity-0",

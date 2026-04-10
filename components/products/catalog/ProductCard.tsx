@@ -1,66 +1,198 @@
 import Link from "next/link";
-import type { CatalogProduct } from "@/lib/types/catalog";
-import { ButtonLink } from "@/components/ui/ButtonLink";
+import type { CatalogProduct, ProductAvailability } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
-import { StructurePlaceholder } from "./StructurePlaceholder";
 
 type ProductCardProps = {
   product: CatalogProduct;
   className?: string;
 };
 
+const AVAILABILITY_CONFIG: Record<
+  ProductAvailability,
+  { label: string; dot: string; pill: string }
+> = {
+  "In stock": {
+    label: "In stock",
+    dot: "bg-teal-500",
+    pill: "border-teal-200/80 bg-teal-50/70 text-teal-800",
+  },
+  "Made to order": {
+    label: "Made to order",
+    dot: "bg-violet-500",
+    pill: "border-violet-200/80 bg-violet-50/70 text-violet-800",
+  },
+  "Limited lots": {
+    label: "Limited lots",
+    dot: "bg-amber-500",
+    pill: "border-amber-200/80 bg-amber-50/70 text-amber-800",
+  },
+  "Quote required": {
+    label: "Quote required",
+    dot: "bg-slate-400",
+    pill: "border-slate-200/80 bg-slate-50/70 text-slate-700",
+  },
+};
+
+const CATEGORY_ACCENTS: Record<string, { tint: string; orb: string; glow: string }> = {
+  carbohydrates: {
+    tint: "from-teal-50/50 via-white to-white",
+    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
+    glow: "rgba(20,184,166,0.18)",
+  },
+  "api-impurities": {
+    tint: "from-violet-50/50 via-white to-white",
+    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
+    glow: "rgba(124,58,237,0.18)",
+  },
+  "nucleotides-linkers": {
+    tint: "from-rose-50/40 via-white to-white",
+    orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
+    glow: "rgba(225,29,72,0.14)",
+  },
+  "research-intermediates": {
+    tint: "from-teal-50/40 via-violet-50/20 to-white",
+    orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
+    glow: "rgba(20,184,166,0.15)",
+  },
+  "protecting-groups": {
+    tint: "from-violet-50/40 via-rose-50/20 to-white",
+    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
+    glow: "rgba(124,58,237,0.15)",
+  },
+};
+
+const FALLBACK_ACCENT = {
+  tint: "from-teal-50/40 via-white to-white",
+  orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
+  glow: "rgba(20,184,166,0.18)",
+};
+
 export function ProductCard({ product, className }: ProductCardProps) {
   const detailHref = `/products/${product.categorySlug}/${product.slug}`;
   const enquiryHref = `/contact?product=${encodeURIComponent(product.catalogNumber)}`;
+  const avail = AVAILABILITY_CONFIG[product.availability] ?? AVAILABILITY_CONFIG["Quote required"];
+  const accent = CATEGORY_ACCENTS[product.categorySlug] ?? FALLBACK_ACCENT;
 
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-3xl border border-teal-200/70",
-        "bg-gradient-to-b from-white via-white to-teal-50/30",
-        "shadow-[0_6px_28px_-14px_rgba(15,118,110,0.12)] backdrop-blur-sm transition duration-300",
-        "hover:-translate-y-0.5 hover:border-teal-400/55 hover:shadow-[0_22px_48px_-28px_rgba(15,118,110,0.2)]",
+        "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem]",
+        "border border-white/60 backdrop-blur-xl",
+        `bg-gradient-to-b ${accent.tint}`,
+        "shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)]",
+        "transition-all duration-300 hover:-translate-y-1 hover:border-white/80 hover:shadow-[0_20px_48px_-16px_rgba(15,23,42,0.12)]",
         className,
       )}
     >
-      <div className="flex flex-1 flex-col gap-4 p-6">
-        <div className="flex gap-4">
-          <StructurePlaceholder compact className="h-[5.5rem] w-[5.5rem] shrink-0 rounded-2xl" />
-          <div className="min-w-0 flex-1">
-            <h3 className="font-display text-base font-semibold leading-snug text-slate-950 md:text-lg">
-              <Link href={detailHref} className="transition-colors hover:text-teal-800">
+      {/* Ambient glow blob — top right, reacts on hover */}
+      <div
+        className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full blur-2xl opacity-40 transition-opacity duration-500 group-hover:opacity-75"
+        style={{ background: `radial-gradient(circle, ${accent.glow} 0%, transparent 70%)` }}
+        aria-hidden
+      />
+
+      {/* Card body */}
+      <div className="relative flex flex-1 flex-col gap-5 p-6">
+
+        {/* Header row: catalog # + availability */}
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-slate-500">
+            {product.catalogNumber}
+          </p>
+          <span
+            className={cn(
+              "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold",
+              avail.pill,
+            )}
+          >
+            <span className={cn("h-1.5 w-1.5 rounded-full", avail.dot)} aria-hidden />
+            {avail.label}
+          </span>
+        </div>
+
+        {/* Product name + orb */}
+        <div className="flex items-start gap-4">
+          <div
+            className="mt-0.5 h-9 w-9 shrink-0 rounded-full ring-2 ring-white/60"
+            style={{
+              background: accent.orb,
+              boxShadow: "0 4px 14px -3px rgba(15,23,42,0.12), inset 0 -1px 4px rgba(0,0,0,0.06)",
+            }}
+            aria-hidden
+          />
+          <div className="min-w-0">
+            <h3 className="font-display text-base font-semibold leading-snug text-slate-950 md:text-[1.05rem]">
+              <Link
+                href={detailHref}
+                className="transition-colors duration-200 hover:text-teal-800"
+              >
                 {product.chemicalName}
               </Link>
             </h3>
-            <p className="mt-1 font-mono text-[11px] text-slate-500">{product.catalogNumber}</p>
+            <p className="mt-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">
+              {product.categorySlug.replace(/-/g, " ")}
+            </p>
           </div>
         </div>
 
-        <dl className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
-          <div className="rounded-xl border border-white/70 bg-white/60 px-3 py-2">
-            <dt className="text-[11px] font-medium uppercase tracking-wide text-slate-500">CAS</dt>
-            <dd className="font-mono text-[13px] text-slate-900">{product.casNumber}</dd>
+        {/* Spec chips */}
+        <dl className="grid grid-cols-3 gap-2">
+          <div className="col-span-1 rounded-xl border border-white/70 bg-white/60 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">CAS</dt>
+            <dd className="mt-0.5 truncate font-mono text-[11px] font-medium text-slate-900">
+              {product.casNumber}
+            </dd>
           </div>
-          <div className="rounded-xl border border-white/70 bg-white/60 px-3 py-2">
-            <dt className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Formula</dt>
-            <dd className="font-mono text-[13px] text-slate-900">{product.molecularFormula}</dd>
+          <div className="col-span-1 rounded-xl border border-white/70 bg-white/60 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">MW</dt>
+            <dd className="mt-0.5 truncate font-mono text-[11px] font-medium text-slate-900">
+              {product.molecularWeight}
+            </dd>
           </div>
-          <div className="sm:col-span-2 rounded-xl border border-white/70 bg-white/60 px-3 py-2">
-            <dt className="text-[11px] font-medium uppercase tracking-wide text-slate-500">Purity</dt>
-            <dd className="text-[13px] font-medium text-teal-900">{product.purity}</dd>
+          <div className="col-span-1 rounded-xl border border-white/70 bg-white/60 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">Purity</dt>
+            <dd className="mt-0.5 truncate font-mono text-[11px] font-medium text-teal-800">
+              {product.purity}
+            </dd>
           </div>
         </dl>
 
-        <p className="line-clamp-3 text-sm leading-relaxed text-slate-700">{product.shortDescription}</p>
+        {/* Formula pill */}
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+            Formula
+          </span>
+          <span className="rounded-full border border-white/70 bg-white/60 px-3 py-0.5 font-mono text-[12px] font-medium text-slate-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+            {product.molecularFormula}
+          </span>
+        </div>
+
+        {/* Short description */}
+        <p className="line-clamp-2 text-sm leading-relaxed text-slate-600">
+          {product.shortDescription}
+        </p>
       </div>
 
-      <div className="flex flex-wrap gap-3 border-t border-teal-100/80 bg-teal-50/20 px-6 py-4">
-        <ButtonLink href={detailHref} variant="secondary" className="px-5 py-2.5 text-xs">
+      {/* Footer CTA strip */}
+      <div className="relative flex items-center justify-between gap-3 border-t border-white/50 bg-white/30 px-6 py-4 backdrop-blur-sm">
+        <Link
+          href={detailHref}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-800 transition-all duration-200 hover:gap-2.5 hover:text-teal-950"
+        >
           View details
-        </ButtonLink>
-        <ButtonLink href={enquiryHref} variant="primary" className="px-5 py-2.5 text-xs">
+          <span
+            className="transition-transform duration-200 group-hover:translate-x-0.5"
+            aria-hidden
+          >
+            →
+          </span>
+        </Link>
+        <Link
+          href={enquiryHref}
+          className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0f766e,#14b8a6)] px-5 py-2 text-xs font-semibold text-white shadow-[0_6px_18px_-4px_rgba(15,118,110,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_26px_-6px_rgba(15,118,110,0.45)]"
+        >
           Enquire
-        </ButtonLink>
+        </Link>
       </div>
     </article>
   );

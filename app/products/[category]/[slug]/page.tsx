@@ -13,11 +13,10 @@ import { ProductHero } from "@/components/products/catalog/ProductHero";
 import { StructurePlaceholder } from "@/components/products/catalog/StructurePlaceholder";
 import { ProductSpecsTable } from "@/components/products/catalog/ProductSpecsTable";
 import { RelatedProducts } from "@/components/products/catalog/RelatedProducts";
-import { ProductEnquiryCard } from "@/components/products/catalog/ProductEnquiryCard";
 import { ProductStickyEnquiry } from "@/components/products/catalog/ProductStickyEnquiry";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -34,13 +33,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: categoryParam, slug } = await params;
-  const p =
-    isValidCategorySlug(categoryParam) ? getProductBySlug(categoryParam, slug) : undefined;
+  const p = isValidCategorySlug(categoryParam)
+    ? getProductBySlug(categoryParam, slug)
+    : undefined;
   if (!p) return { title: "Product" };
-  return {
-    title: p.chemicalName,
-    description: p.shortDescription,
-  };
+  return { title: p.chemicalName, description: p.shortDescription };
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
@@ -62,160 +59,226 @@ export default async function ProductDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="relative overflow-x-hidden pb-32 md:pb-24">
+    <div className="relative overflow-x-hidden pb-28">
       <PageAmbientGraphics variant="right" opacity="opacity-[0.16]" />
       <ProductStickyEnquiry product={product} />
 
-      <div className="relative z-10 px-4 pt-6 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <Breadcrumbs items={crumbs} />
-        </div>
-      </div>
+      <div className="relative z-10 mx-auto max-w-6xl space-y-10 px-4 pt-6 sm:px-6 md:space-y-12 lg:px-8">
+        <Breadcrumbs items={crumbs} />
 
-      <div className="relative z-10 mx-auto mt-8 max-w-6xl px-4 sm:px-6 lg:px-8">
         <ProductHero product={product} categoryLabel={categoryMeta.name} />
-      </div>
 
-      <div className="relative z-10 mx-auto mt-10 grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_min(380px,100%)] lg:gap-12 lg:px-8">
-        <div className="min-w-0 space-y-10">
-          <section aria-labelledby="overview-heading">
-            <h2 id="overview-heading" className="font-display text-xl font-semibold text-slate-950">
+        {/* Overview */}
+        <RevealOnScroll>
+          <section
+            aria-labelledby="overview-heading"
+            className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/40 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl md:p-9"
+          >
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+              Overview
+            </p>
+            <h2
+              id="overview-heading"
+              className="mt-1 font-display text-xl font-semibold text-slate-950"
+            >
               Product overview
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-700">{product.detailedDescription}</p>
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-700">
+              {product.detailedDescription}
+            </p>
           </section>
+        </RevealOnScroll>
 
-          <section aria-labelledby="structure-heading" className="grid gap-8 lg:grid-cols-[min(320px,100%)_1fr] lg:items-start">
-            <div>
-              <h2 id="structure-heading" className="font-display text-lg font-semibold text-slate-950">
-                Structure
-              </h2>
-              <p className="mt-2 text-sm text-slate-600">
-                Representative depiction — supply structure files with your PO where required.
-              </p>
-              <div className="mt-4">
-                <StructurePlaceholder className="max-w-sm" />
-                <p className="mt-3 font-mono text-sm text-slate-800">{product.molecularFormula}</p>
+        {/* Specs & Structure */}
+        <RevealOnScroll>
+          <section
+            aria-labelledby="specs-heading"
+            className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-violet-50/40 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl md:p-9"
+          >
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-700">
+              Technical data
+            </p>
+            <h2
+              id="specs-heading"
+              className="mt-1 font-display text-xl font-semibold text-slate-950"
+            >
+              Specifications & Structure
+            </h2>
+            <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
+              <div>
+                <StructurePlaceholder />
+                <p className="mt-3 font-mono text-sm text-slate-700">
+                  {product.molecularFormula}
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Representative — supply .mol / .cdx with PO if required.
+                </p>
               </div>
-            </div>
-            <div>
-              <h2 className="font-display text-lg font-semibold text-slate-950">Technical specifications</h2>
-              <ProductSpecsTable product={product} className="mt-4" />
+              <ProductSpecsTable product={product} />
             </div>
           </section>
+        </RevealOnScroll>
 
-          <section aria-labelledby="applications-heading">
-            <h2 id="applications-heading" className="font-display text-xl font-semibold text-slate-950">
-              Applications
-            </h2>
-            <ul className="mt-4 space-y-2.5 text-sm text-slate-700">
-              {product.applications.map((a) => (
-                <li key={a} className="flex gap-3">
-                  <span
-                    className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-teal-500 to-violet-600"
-                    aria-hidden
-                  />
-                  {a}
-                </li>
-              ))}
-            </ul>
-          </section>
+        {/* Applications + Supply side-by-side on desktop */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {/* Applications */}
+          <RevealOnScroll>
+            <section
+              aria-labelledby="applications-heading"
+              className="h-full rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/30 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl"
+            >
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+                Use cases
+              </p>
+              <h2
+                id="applications-heading"
+                className="mt-1 font-display text-xl font-semibold text-slate-950"
+              >
+                Applications
+              </h2>
+              <ul className="mt-5 space-y-2.5">
+                {product.applications.map((a) => (
+                  <li key={a} className="flex gap-3 text-sm text-slate-700">
+                    <span
+                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-teal-500 to-violet-600"
+                      aria-hidden
+                    />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </RevealOnScroll>
 
-          <section aria-labelledby="packaging-heading">
-            <h2 id="packaging-heading" className="font-display text-xl font-semibold text-slate-950">
-              Packaging & supply
-            </h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {product.packSizes.map((s) => (
-                <li
-                  key={s}
-                  className="rounded-full border border-teal-200/80 bg-teal-50/50 px-4 py-1.5 text-sm font-medium text-teal-950"
-                >
-                  {s}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm text-slate-600">
-              Custom pack sizes and labelled batches are quoted on feasibility — reference{" "}
-              <span className="font-mono font-medium text-slate-800">{product.catalogNumber}</span>.
-            </p>
-          </section>
+          {/* Supply & Storage */}
+          <RevealOnScroll delay={60}>
+            <section
+              aria-labelledby="supply-heading"
+              className="h-full rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-rose-50/30 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl"
+            >
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-rose-700">
+                Supply & handling
+              </p>
+              <h2
+                id="supply-heading"
+                className="mt-1 font-display text-xl font-semibold text-slate-950"
+              >
+                Packaging & Storage
+              </h2>
 
-          <section aria-labelledby="storage-heading">
-            <h2 id="storage-heading" className="font-display text-xl font-semibold text-slate-950">
-              Storage & handling
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-700">{product.storageConditions}</p>
-          </section>
+              <div className="mt-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Pack sizes
+                </p>
+                <ul className="mt-2 flex flex-wrap gap-2">
+                  {product.packSizes.map((s) => (
+                    <li
+                      key={s}
+                      className="rounded-full border border-teal-200/80 bg-teal-50/60 px-4 py-1.5 text-sm font-medium text-teal-900"
+                    >
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          <section aria-labelledby="documents-heading">
-            <h2 id="documents-heading" className="font-display text-xl font-semibold text-slate-950">
-              Documents
-            </h2>
-            <p className="mt-3 text-sm text-slate-600">
-              Batch release packages are aligned to your phase — indicate requirements in your enquiry.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li className="flex items-center gap-2">
-                <span
-                  className={product.coaAvailable ? "text-teal-700" : "text-slate-400"}
-                  aria-hidden
-                >
-                  {product.coaAvailable ? "✓" : "—"}
-                </span>
-                Certificate of analysis (COA) — {product.coaAvailable ? "available on release" : "on request"}
-              </li>
-              <li className="flex items-center gap-2">
-                <span
-                  className={product.sdsAvailable ? "text-teal-700" : "text-slate-400"}
-                  aria-hidden
-                >
-                  {product.sdsAvailable ? "✓" : "—"}
-                </span>
-                Safety data sheet (SDS) — {product.sdsAvailable ? "available" : "on request"}
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-teal-700" aria-hidden>
-                  ↓
-                </span>
-                <Link href={product.datasheetUrl ?? "#"} className="font-medium text-teal-800 hover:underline">
-                  Technical summary (PDF placeholder)
-                </Link>
-              </li>
-            </ul>
-          </section>
+              <div className="mt-5 border-t border-slate-100/80 pt-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Storage conditions
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                  {product.storageConditions}
+                </p>
+              </div>
 
-          <RelatedProducts products={related} className="border-t border-slate-200/80 pt-10" />
-
-          <section aria-labelledby="inline-form-heading" className="rounded-[2rem] border border-slate-200/90 bg-white/90 p-6 shadow-sm md:p-8">
-            <h2 id="inline-form-heading" className="font-display text-xl font-semibold text-slate-950">
-              Send an enquiry
-            </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              The product field is pre-filled with your catalogue reference. Add quantity, purity, and timeline.
-            </p>
-            <ContactForm className="mt-6 border-0 bg-transparent p-0 shadow-none" defaultProductRef={product.catalogNumber} />
-          </section>
+              <div className="mt-5 border-t border-slate-100/80 pt-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Documents
+                </p>
+                <ul className="mt-2 space-y-1.5 text-sm text-slate-700">
+                  <li className="flex items-center gap-2">
+                    <span className={product.coaAvailable ? "text-teal-600" : "text-slate-400"} aria-hidden>
+                      {product.coaAvailable ? "✓" : "—"}
+                    </span>
+                    COA — {product.coaAvailable ? "on release" : "on request"}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className={product.sdsAvailable ? "text-teal-600" : "text-slate-400"} aria-hidden>
+                      {product.sdsAvailable ? "✓" : "—"}
+                    </span>
+                    SDS — {product.sdsAvailable ? "available" : "on request"}
+                  </li>
+                  {product.datasheetUrl && (
+                    <li className="flex items-center gap-2">
+                      <span className="text-teal-600" aria-hidden>↓</span>
+                      <Link href={product.datasheetUrl} className="font-medium text-teal-800 hover:underline">
+                        Technical summary (PDF)
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </section>
+          </RevealOnScroll>
         </div>
 
-        <aside className="min-w-0 space-y-6 lg:sticky lg:top-28 lg:self-start">
-          <ProductEnquiryCard product={product} categoryLabel={categoryMeta.name} />
-          <div className="hidden rounded-2xl border border-teal-200/60 bg-gradient-to-b from-white to-teal-50/30 p-6 md:block">
-            <h3 className="font-display text-lg font-semibold text-slate-950">Quick actions</h3>
-            <div className="mt-4 flex flex-col gap-3">
-              <ButtonLink
-                href={`/contact?product=${encodeURIComponent(product.catalogNumber)}`}
-                variant="primary"
-                className="justify-center text-sm"
+        {/* Related products */}
+        <RevealOnScroll>
+          <RelatedProducts products={related} />
+        </RevealOnScroll>
+
+        {/* Enquiry form */}
+        <RevealOnScroll>
+          <section
+            id="enquiry-form"
+            aria-labelledby="enquiry-heading"
+            className="scroll-mt-28 relative overflow-hidden rounded-[2rem] border border-slate-800/60 bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 p-8 shadow-[0_16px_56px_-16px_rgba(15,23,42,0.5)] sm:p-12"
+          >
+            {/* Subtle grid overlay */}
+            <div
+              className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                backgroundSize: "44px 44px",
+              }}
+              aria-hidden
+            />
+
+            {/* Ambient glow */}
+            <div
+              className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full blur-[80px] opacity-30"
+              style={{ background: "radial-gradient(circle, rgba(20,184,166,0.5), transparent 70%)" }}
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full blur-[80px] opacity-20"
+              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)" }}
+              aria-hidden
+            />
+
+            <div className="relative">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-teal-400">
+                Get in touch
+              </p>
+              <h2
+                id="enquiry-heading"
+                className="mt-2 font-display text-2xl font-bold text-white md:text-3xl"
               >
-                Open full contact form
-              </ButtonLink>
-              <ButtonLink href={`/products/${categoryParam}`} variant="secondary" className="justify-center text-sm">
-                Back to {categoryMeta.name}
-              </ButtonLink>
+                Enquire About This Product
+              </h2>
+              <p className="mt-3 max-w-2xl text-slate-400">
+                Include quantity, purity requirements, and timeline — the product reference
+                is pre-filled for you.
+              </p>
+              <ContactForm
+                className="mt-8 border-0 bg-transparent p-0 shadow-none"
+                defaultProductRef={product.catalogNumber}
+                dark
+              />
             </div>
-          </div>
-        </aside>
+          </section>
+        </RevealOnScroll>
       </div>
     </div>
   );

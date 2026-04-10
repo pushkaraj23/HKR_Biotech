@@ -1,11 +1,21 @@
+import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
+
+type CtaItem = {
+  href: string;
+  label: string;
+  primary?: boolean;
+};
 
 type GlassProductsHeroProps = {
   title: string;
   description: string;
   eyebrow?: string;
   tagline?: string;
+  ctas?: CtaItem[];
   className?: string;
+  backgroundImage?: string;
 };
 
 export function GlassProductsHero({
@@ -13,76 +23,175 @@ export function GlassProductsHero({
   description,
   eyebrow,
   tagline,
+  ctas,
   className,
+  backgroundImage,
 }: GlassProductsHeroProps) {
   return (
     <div className={cn("relative", className)}>
+      {/* Ambient glow blobs — outside card, bleed into background */}
       <div
-        className="pointer-events-none absolute -inset-[1px] overflow-hidden rounded-[2rem] opacity-100"
+        className="pointer-events-none absolute -left-[20%] -top-[40%] h-[min(28rem,85vw)] w-[min(28rem,85vw)] rounded-full blur-[100px] opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(15,118,110,0.22) 0%, rgba(20,184,166,0.06) 45%, transparent 70%)",
+        }}
         aria-hidden
-      >
-        <div
-          className="absolute -left-[20%] -top-[40%] h-[min(28rem,85vw)] w-[min(28rem,85vw)] rounded-full blur-[100px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(15,118,110,0.22) 0%, rgba(20,184,166,0.06) 45%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute -right-[15%] top-[10%] h-[min(24rem,75vw)] w-[min(24rem,75vw)] rounded-full blur-[90px] animate-pulse-glow"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(91,33,182,0.16) 0%, rgba(124,58,237,0.08) 50%, transparent 72%)",
-          }}
-        />
-        <div
-          className="absolute bottom-[-20%] left-[30%] h-[min(20rem,60vw)] w-[min(20rem,60vw)] rounded-full blur-[100px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(159,18,57,0.1) 0%, transparent 65%)",
-          }}
-        />
-      </div>
+      />
+      <div
+        className="pointer-events-none absolute -right-[15%] top-[10%] h-[min(24rem,75vw)] w-[min(24rem,75vw)] animate-pulse-glow rounded-full blur-[90px] opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(91,33,182,0.16) 0%, rgba(124,58,237,0.08) 50%, transparent 72%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-20%] left-[30%] h-[min(20rem,60vw)] w-[min(20rem,60vw)] rounded-full blur-[100px]"
+        style={{
+          background: "radial-gradient(circle, rgba(159,18,57,0.08) 0%, transparent 65%)",
+        }}
+        aria-hidden
+      />
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-[2rem] border border-teal-200/60",
-          "bg-gradient-to-br from-white via-white to-teal-50/30",
-          "shadow-[0_4px_32px_-8px_rgba(15,23,42,0.08),0_2px_8px_-2px_rgba(15,23,42,0.04)]",
-          "backdrop-blur-sm",
+          "relative overflow-hidden rounded-[2rem] border border-white/50",
+          !backgroundImage && "bg-gradient-to-br from-white via-white to-teal-50/30",
+          "shadow-[0_8px_48px_-12px_rgba(15,23,42,0.1),0_2px_8px_-2px_rgba(15,23,42,0.04)]",
         )}
       >
+        {/* Background image with white wash */}
+        {backgroundImage && (
+          <>
+            <Image
+              src={backgroundImage}
+              alt=""
+              fill
+              sizes="100vw"
+              priority
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.4) 100%)",
+              }}
+            />
+          </>
+        )}
+
+        {/* Subtle interior gradient wash (no-image fallback) */}
+        {!backgroundImage && (
+          <div
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,118,110,0.05)_0%,transparent_45%,rgba(91,33,182,0.04)_100%)]"
+            aria-hidden
+          />
+        )}
+
+        {/* Subtle grid overlay */}
         <div
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,118,110,0.05)_0%,transparent_45%,rgba(91,33,182,0.04)_100%)]"
+          className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(15,23,42,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.3) 1px, transparent 1px)",
+            backgroundSize: "44px 44px",
+          }}
           aria-hidden
         />
-        <div className="relative px-8 py-12 md:px-14 md:py-16">
+
+        {/* Floating decorative orbs */}
+        <div
+          className="pointer-events-none absolute right-10 top-8 h-10 w-10 animate-orbit-slow rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.7), rgba(20,184,166,0.35) 55%, rgba(15,118,110,0.15))",
+            boxShadow:
+              "0 8px 24px -4px rgba(20,184,166,0.4), inset 0 -2px 6px rgba(0,0,0,0.06), inset 0 2px 4px rgba(255,255,255,0.5)",
+            animationDelay: "-2s",
+            animationDuration: "12s",
+          }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute bottom-8 right-28 h-6 w-6 animate-orbit-slow rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.7), rgba(124,58,237,0.35) 55%, rgba(91,33,182,0.15))",
+            boxShadow:
+              "0 6px 18px -3px rgba(91,33,182,0.35), inset 0 -1px 4px rgba(0,0,0,0.06), inset 0 1px 3px rgba(255,255,255,0.5)",
+            animationDelay: "-7s",
+            animationDuration: "16s",
+          }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute bottom-12 right-10 h-4 w-4 animate-orbit-slow rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.7), rgba(225,29,72,0.3) 55%, rgba(159,18,57,0.12))",
+            boxShadow: "0 4px 14px -3px rgba(159,18,57,0.28)",
+            animationDelay: "-4s",
+            animationDuration: "14s",
+          }}
+          aria-hidden
+        />
+
+        <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[60%]")}>
           {eyebrow ? (
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-accent-primary">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-teal-700">
               {eyebrow}
             </p>
           ) : null}
+
           <h1
             className={cn(
-              "font-display text-4xl font-bold tracking-tight text-text-primary md:text-5xl lg:text-[3.25rem]",
+              "font-display text-4xl font-bold tracking-tight text-slate-950 md:text-5xl lg:text-[3.25rem]",
               eyebrow ? "mt-3" : "",
             )}
           >
-            {title}
+            <span className="gradient-text-shimmer">{title}</span>
           </h1>
+
           {tagline ? (
-            <p className="mt-3 max-w-2xl text-base font-medium leading-relaxed text-accent-deep md:text-lg">
+            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-teal-900/90 md:text-lg">
               {tagline}
             </p>
           ) : null}
+
           <p
             className={cn(
-              "max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg",
+              "max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg",
               tagline ? "mt-4" : "mt-5",
             )}
           >
             {description}
           </p>
+
+          {ctas && ctas.length > 0 ? (
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              {ctas.map((cta) =>
+                cta.primary ? (
+                  <Link
+                    key={cta.href}
+                    href={cta.href}
+                    className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0f766e,#14b8a6)] px-8 py-3 text-sm font-semibold text-white shadow-[0_14px_40px_-10px_rgba(15,118,110,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-12px_rgba(15,118,110,0.5)]"
+                  >
+                    {cta.label}
+                  </Link>
+                ) : (
+                  <Link
+                    key={cta.href}
+                    href={cta.href}
+                    className="inline-flex items-center justify-center rounded-full border border-white/60 bg-white/70 px-8 py-3 text-sm font-semibold text-slate-900 shadow-[0_4px_20px_-6px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_-8px_rgba(15,23,42,0.12)]"
+                  >
+                    {cta.label}
+                  </Link>
+                ),
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

@@ -33,9 +33,9 @@ export default async function ContactPage({ searchParams }: PageProps) {
 
       <div className="relative z-10 mx-auto max-w-6xl space-y-16 px-4 pt-6 pb-28 sm:px-6 md:space-y-20 lg:px-8">
 
-        {/* Hero — photo with white wash */}
+        {/* Hero — photo with dark wash */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/50 shadow-[0_12px_48px_-12px_rgba(15,23,42,0.12)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
             <Image
               src={HERO_IMAGE}
               alt="Laboratory discussion"
@@ -48,7 +48,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.4) 100%)",
+                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
               }}
             />
 
@@ -72,13 +72,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-700">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-400">
                 Get in touch
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
                 Enquiries & RFQ
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-400">
                 Share your target structure, quantity band, and analytical expectations
                 — our team will respond with scientific questions, not just pricing.
               </p>
@@ -92,58 +92,58 @@ export default async function ContactPage({ searchParams }: PageProps) {
           {/* Left column: info cards */}
           <div className="space-y-6 lg:col-span-2">
             <RevealOnScroll>
-              <div className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/50 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(15,23,42,0.12)]">
+              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
-                  className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/60"
+                  className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
                     background: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
                     boxShadow: "0 8px 24px -4px rgba(20,184,166,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
                   }}
                   aria-hidden
                 />
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-teal-700">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-teal-400">
                   Direct contact
                 </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-slate-900">
+                <h2 className="mt-2 font-display text-lg font-semibold text-slate-100">
                   Reach Us
                 </h2>
-                <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                <ul className="mt-4 space-y-3 text-sm text-slate-400">
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">Email</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Email</span>
                     <br />
-                    <span className="font-medium text-slate-800">enquiries@hkrbio.tech</span>
+                    <span className="font-medium text-slate-200">enquiries@hkrbio.tech</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">Phone</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Phone</span>
                     <br />
-                    <span className="font-medium text-slate-800">+1 (555) 010-4420</span>
+                    <span className="font-medium text-slate-200">+1 (555) 010-4420</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">Hours</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Hours</span>
                     <br />
-                    <span className="font-medium text-slate-800">Mon–Fri, 08:00–18:00 (local)</span>
+                    <span className="font-medium text-slate-200">Mon–Fri, 08:00–18:00 (local)</span>
                   </li>
                 </ul>
               </div>
             </RevealOnScroll>
 
             <RevealOnScroll delay={60}>
-              <div className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-violet-50/50 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(15,23,42,0.12)]">
+              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/25 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
-                  className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/60"
+                  className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
                     background: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
                     boxShadow: "0 8px 24px -4px rgba(91,33,182,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
                   }}
                   aria-hidden
                 />
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-violet-700">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-violet-400">
                   Product enquiry
                 </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-slate-900">
+                <h2 className="mt-2 font-display text-lg font-semibold text-slate-100">
                   From the Catalogue?
                 </h2>
-                <p className="mt-3 text-sm text-slate-600">
+                <p className="mt-3 text-sm text-slate-400">
                   Visiting from a catalogue entry? Your product reference is
                   pre-filled in the form automatically.
                 </p>
@@ -158,7 +158,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
             </RevealOnScroll>
 
             <RevealOnScroll delay={120}>
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/50 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.1)]">
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
                 <Image
                   src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=600&h=400&fit=crop&q=80&auto=format"
                   alt="Modern laboratory facility"
@@ -194,14 +194,14 @@ export default async function ContactPage({ searchParams }: PageProps) {
             </RevealOnScroll>
           </div>
 
-          {/* Right column: form in pastel gradient panel */}
+          {/* Right column: form in dark gradient panel */}
           <div className="lg:col-span-3">
             <RevealOnScroll>
               <div
-                className="relative overflow-hidden rounded-[2rem] border border-white/40 p-7 shadow-[0_16px_64px_-16px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] p-7 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-10"
                 style={{
                   background:
-                    "linear-gradient(140deg, rgba(153,246,228,0.3) 0%, rgba(167,139,250,0.25) 35%, rgba(196,181,253,0.25) 55%, rgba(253,164,175,0.2) 100%)",
+                    "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
                 }}
               >
                 {/* Subtle grid */}
@@ -209,7 +209,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-[0.04]"
                   style={{
                     backgroundImage:
-                      "linear-gradient(rgba(15,23,42,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.2) 1px, transparent 1px)",
+                      "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
                     backgroundSize: "44px 44px",
                   }}
                   aria-hidden
@@ -233,13 +233,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 />
 
                 <div className="relative">
-                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-700">
+                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
                     Send a message
                   </p>
-                  <h2 className="mt-2 font-display text-2xl font-bold text-slate-950 md:text-3xl">
+                  <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">
                     Submit Your Enquiry
                   </h2>
-                  <p className="mt-3 max-w-lg text-sm text-slate-600">
+                  <p className="mt-3 max-w-lg text-sm text-slate-400">
                     Include your target, quantity, purity requirements, and timeline
                     for the fastest technical response.
                   </p>

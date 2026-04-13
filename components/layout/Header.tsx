@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { GlobalSearch, SearchTrigger } from "@/components/search/GlobalSearch";
 import { mainNav } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 
@@ -22,8 +23,8 @@ function NavItem({
       className={cn(
         "rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-all duration-200",
         active
-          ? "bg-slate-900/[0.06] text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
-          : "text-slate-600 hover:bg-slate-900/[0.04] hover:text-slate-900",
+          ? "bg-white/[0.1] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+          : "text-slate-400 hover:bg-white/[0.06] hover:text-white",
       )}
     >
       {children}
@@ -39,8 +40,23 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
+
+  const openSearch = useCallback(() => setSearchOpen(true), []);
+
+  /* Cmd/Ctrl+K to toggle search */
+  useEffect(() => {
+    function onKeyDown(e: globalThis.KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -78,7 +94,7 @@ export function Header() {
       <div
         className={cn(
           "mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full px-4 py-2 sm:gap-4 sm:px-6 sm:py-2.5",
-          "border border-white/60 bg-white/75 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.08),0_2px_8px_-2px_rgba(15,23,42,0.04)] backdrop-blur-2xl backdrop-saturate-150",
+          "border border-white/[0.08] bg-[#0c1526]/80 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4),0_2px_8px_-2px_rgba(0,0,0,0.2)] backdrop-blur-2xl backdrop-saturate-150",
         )}
       >
         {/* Logo */}
@@ -112,13 +128,13 @@ export function Header() {
                       className={cn(
                         "rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-all duration-200",
                         active
-                          ? "bg-slate-900/[0.06] text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
-                          : "text-slate-600 hover:bg-slate-900/[0.04] hover:text-slate-900",
+                          ? "bg-white/[0.1] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                          : "text-slate-400 hover:bg-white/[0.06] hover:text-white",
                       )}
                     >
                       {item.label}
                     </Link>
-                    <span className="text-sm text-slate-400" aria-hidden>
+                    <span className="text-sm text-slate-500" aria-hidden>
                       ▾
                     </span>
                   </div>
@@ -126,13 +142,13 @@ export function Header() {
                   {/* Dropdown */}
                   <div
                     className={cn(
-                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_48px_-12px_rgba(15,23,42,0.18)] transition-all duration-200",
+                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/[0.08] bg-[#0c1526]/95 p-2 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-200",
                       productsOpen
                         ? "visible translate-y-0 opacity-100"
                         : "invisible -translate-y-1 opacity-0",
                     )}
                   >
-                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
+                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
                       Browse
                     </p>
                     <ul className="space-y-0.5">
@@ -140,7 +156,7 @@ export function Header() {
                         <li key={child.href}>
                           <Link
                             href={child.href}
-                            className="block rounded-xl px-3 py-2.5 text-sm text-slate-700 transition-colors hover:bg-slate-900/[0.04] hover:text-slate-900"
+                            className="block rounded-xl px-3 py-2.5 text-sm text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white"
                           >
                             {child.label}
                           </Link>
@@ -149,7 +165,7 @@ export function Header() {
                     </ul>
                     <Link
                       href="/products"
-                      className="mt-1 block rounded-xl px-3 py-2 text-xs font-semibold text-teal-700 hover:bg-teal-50/60"
+                      className="mt-1 block rounded-xl px-3 py-2 text-xs font-semibold text-teal-400 hover:bg-teal-500/10"
                     >
                       Full catalogue →
                     </Link>
@@ -167,45 +183,59 @@ export function Header() {
           })}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden shrink-0 lg:block">
+        {/* Search + CTA */}
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <SearchTrigger onClick={openSearch} />
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0f766e,#14b8a6)] px-6 py-2 text-xs font-semibold text-white shadow-[0_8px_24px_-6px_rgba(15,118,110,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-8px_rgba(15,118,110,0.4)]"
+            className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0d9488,#14b8a6)] px-6 py-2 text-xs font-semibold text-white shadow-[0_8px_24px_-6px_rgba(20,184,166,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-8px_rgba(20,184,166,0.5)]"
           >
             Enquire
           </Link>
         </div>
 
-        {/* Mobile burger */}
-        <button
-          type="button"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-700 shadow-sm backdrop-blur-lg transition-colors hover:bg-slate-50 lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav-landing"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="sr-only">Menu</span>
-          <span className="text-lg leading-none">{open ? "×" : "☰"}</span>
-        </button>
+        {/* Mobile: search + burger */}
+        <div className="flex shrink-0 items-center gap-2 lg:hidden">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.06] text-slate-400 shadow-sm backdrop-blur-lg transition-colors hover:bg-white/[0.1] hover:text-white"
+            aria-label="Search"
+            onClick={openSearch}
+          >
+            <svg className="h-4.5 w-4.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="8.5" cy="8.5" r="5.5" />
+              <path d="M12.5 12.5 17 17" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.06] text-slate-300 shadow-sm backdrop-blur-lg transition-colors hover:bg-white/[0.1]"
+            aria-expanded={open}
+            aria-controls="mobile-nav-landing"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="sr-only">Menu</span>
+            <span className="text-lg leading-none">{open ? "×" : "☰"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav panel */}
       <div
         id="mobile-nav-landing"
         className={cn(
-          "mx-auto mt-2 max-w-6xl overflow-hidden rounded-3xl border border-white/60 bg-white/85 shadow-[0_16px_48px_-12px_rgba(15,23,42,0.12)] backdrop-blur-2xl lg:hidden",
+          "mx-auto mt-2 max-w-6xl overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c1526]/95 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.5)] backdrop-blur-2xl lg:hidden",
           open ? "block" : "hidden",
         )}
       >
-        <ul className="divide-y divide-slate-100 px-2 py-2">
+        <ul className="divide-y divide-white/[0.06] px-2 py-2">
           {mainNav.map((item) => {
             const href = "href" in item ? item.href : "/";
             return (
               <li key={href}>
                 <Link
                   href={href}
-                  className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-800 transition-colors hover:bg-slate-50"
+                  className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-200 transition-colors hover:bg-white/[0.06]"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
@@ -216,7 +246,7 @@ export function Header() {
                       <li key={child.href}>
                         <Link
                           href={child.href}
-                          className="block py-2 text-sm text-slate-500 transition-colors hover:text-slate-800"
+                          className="block py-2 text-sm text-slate-400 transition-colors hover:text-white"
                           onClick={() => setOpen(false)}
                         >
                           {child.label}
@@ -231,7 +261,7 @@ export function Header() {
           <li className="px-2 pt-2">
             <Link
               href="/contact"
-              className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,#0f766e,#14b8a6)] px-6 py-2.5 text-xs font-semibold text-white shadow-[0_8px_24px_-6px_rgba(15,118,110,0.35)]"
+              className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,#0d9488,#14b8a6)] px-6 py-2.5 text-xs font-semibold text-white shadow-[0_8px_24px_-6px_rgba(20,184,166,0.4)]"
               onClick={() => setOpen(false)}
             >
               Enquire
@@ -239,6 +269,7 @@ export function Header() {
           </li>
         </ul>
       </div>
+      {searchOpen && <GlobalSearch onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }

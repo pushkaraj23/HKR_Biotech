@@ -1,41 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
-  /* Page: near-white / white — WCAG-friendly text on white */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f4f4f5;
-  --bg-tertiary: #e4e4e7;
-  --surface-glass: rgba(255, 255, 255, 0.92);
-  --surface-glass-strong: #ffffff;
-  /* Logo-derived: deep teal (primary), violet (cool), burgundy/rose (warm) */
-  --brand-teal: #0f766e;
-  --brand-teal-mid: #14b8a6;
-  --brand-violet: #5b21b6;
-  --brand-burgundy: #9f1239;
-  --accent-primary: #0f766e;
-  --accent-secondary: #14b8a6;
-  --accent-deep: #115e59;
-  --violet-glow: #5b21b6;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
+  color-scheme: dark;
+  --bg-primary: #070e1b;
+  --bg-secondary: #0c1526;
+  --bg-tertiary: #111d33;
+  --surface-glass: rgba(12, 21, 38, 0.85);
+  --surface-glass-strong: #0c1526;
+  --brand-teal: #14b8a6;
+  --brand-teal-mid: #2dd4bf;
+  --brand-violet: #7c3aed;
+  --brand-burgundy: #f43f5e;
+  --accent-primary: #14b8a6;
+  --accent-secondary: #2dd4bf;
+  --accent-deep: #0d9488;
+  --violet-glow: #7c3aed;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --border-subtle: rgba(15, 118, 110, 0.12);
-  --border-glow: rgba(91, 33, 182, 0.2);
-  --glow-cyan: rgba(20, 184, 166, 0.18);
-  --glow-blue: rgba(91, 33, 182, 0.12);
-  --header-bg: #ffffff;
-  --header-text: #134e4a;
-  --header-text-muted: #475569;
+  --border-subtle: rgba(20, 184, 166, 0.15);
+  --border-glow: rgba(124, 58, 237, 0.25);
+  --glow-cyan: rgba(20, 184, 166, 0.22);
+  --glow-blue: rgba(124, 58, 237, 0.18);
+  --header-bg: #0c1526;
+  --header-text: #e2e8f0;
+  --header-text-muted: #94a3b8;
   --gradient-hero: linear-gradient(
     135deg,
-    #115e59 0%,
-    #0f766e 26%,
-    #5b21b6 62%,
-    #9f1239 100%
+    #0d9488 0%,
+    #14b8a6 26%,
+    #7c3aed 62%,
+    #f43f5e 100%
   );
-  --gradient-cta: linear-gradient(90deg, #115e59, #0f766e, #14b8a6);
-  /* Sticky header + top padding — used by home hero `min-h` so one screen = header + hero */
+  --gradient-cta: linear-gradient(90deg, #0d9488, #14b8a6, #2dd4bf);
   --site-header-offset: 6rem;
 }
 
@@ -138,7 +135,7 @@ html {
 }
 
 ::selection {
-  background: rgba(15, 118, 110, 0.22);
+  background: rgba(20, 184, 166, 0.3);
   color: var(--text-primary);
 }
 
@@ -146,10 +143,10 @@ html {
   background: var(--surface-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 1px 3px rgba(15, 23, 42, 0.05),
-    0 4px 20px rgba(15, 23, 42, 0.04);
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .gradient-text {
@@ -171,13 +168,13 @@ html {
 .gradient-text-shimmer {
   background: linear-gradient(
     90deg,
-    #115e59 0%,
-    #0f766e 18%,
-    #5b21b6 36%,
-    #9f1239 50%,
-    #5b21b6 64%,
-    #0f766e 82%,
-    #115e59 100%
+    #2dd4bf 0%,
+    #14b8a6 18%,
+    #a78bfa 36%,
+    #f472b6 50%,
+    #a78bfa 64%,
+    #14b8a6 82%,
+    #2dd4bf 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

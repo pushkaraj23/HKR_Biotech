@@ -30,13 +30,13 @@ export function ProductFilters({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-teal-200/60 bg-gradient-to-br from-white via-teal-50/15 to-violet-50/10 p-5 shadow-sm backdrop-blur-sm md:p-6",
+        "rounded-2xl border border-teal-500/20 bg-gradient-to-br from-[#0c1526] via-teal-950/10 to-violet-950/5 p-5 shadow-sm backdrop-blur-sm md:p-6",
         className,
       )}
     >
       <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end md:gap-6">
         <div className="min-w-0">
-          <label htmlFor={searchId} className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+          <label htmlFor={searchId} className="text-xs font-semibold uppercase tracking-wider text-slate-400">
             Search catalogue
           </label>
           <input
@@ -45,13 +45,13 @@ export function ProductFilters({
             value={state.search}
             onChange={(e) => setPartial({ search: e.target.value })}
             placeholder="Name, CAS, formula, catalogue #…"
-            className="mt-2 w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-slate-900 shadow-inner outline-none ring-teal-600/0 transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-600/20"
+            className="mt-2 w-full rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 text-sm text-slate-100 shadow-inner outline-none ring-teal-500/0 transition placeholder:text-slate-500 focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20"
             autoComplete="off"
           />
         </div>
         {showCategoryFilter ? (
           <div className="min-w-[12rem]">
-            <label htmlFor="catalog-category" className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+            <label htmlFor="catalog-category" className="text-xs font-semibold uppercase tracking-wider text-slate-400">
               Category
             </label>
             <select
@@ -62,7 +62,7 @@ export function ProductFilters({
                   category: e.target.value as CatalogFilterState["category"],
                 })
               }
-              className="mt-2 w-full rounded-2xl border border-slate-200/90 bg-white/90 px-4 py-3 text-sm text-slate-900 outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-600/20"
+              className="mt-2 w-full rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 text-sm text-slate-100 outline-none focus:border-teal-500/50 focus:ring-2 focus:ring-teal-500/20"
             >
               <option value="all">All categories</option>
               {categoryOptions.map((c) => (
@@ -76,7 +76,7 @@ export function ProductFilters({
       </div>
 
       <div className="mt-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">Availability</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Availability</p>
         <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Filter by availability">
           <FilterChip
             active={state.availability === "all"}
@@ -115,8 +115,8 @@ function FilterChip({
       className={cn(
         "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition",
         active
-          ? "border-teal-600 bg-teal-700 text-white shadow-sm"
-          : "border-slate-200 bg-white/90 text-slate-700 hover:border-teal-400/60 hover:bg-teal-50/80",
+          ? "border-teal-500/50 bg-teal-600 text-white shadow-sm"
+          : "border-white/[0.1] bg-white/[0.06] text-slate-300 hover:border-teal-500/30 hover:bg-teal-500/10",
       )}
     >
       {children}

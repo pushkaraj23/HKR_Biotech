@@ -11,9 +11,9 @@ export function GlassCard({ children, className, hover = true }: GlassCardProps)
   return (
     <div
       className={cn(
-        "glass-panel rounded-3xl p-6 shadow-[0_4px_24px_-4px_rgba(15,23,42,0.07),0_12px_40px_-12px_rgba(15,23,42,0.06)] transition-all duration-300",
+        "glass-panel rounded-3xl p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.2),0_12px_40px_-12px_rgba(0,0,0,0.15)] transition-all duration-300",
         hover &&
-          "hover:border-accent-primary/25 hover:shadow-[0_8px_32px_-8px_rgba(15,118,110,0.14),0_20px_48px_-16px_rgba(15,23,42,0.08)] hover:-translate-y-0.5",
+          "hover:border-accent-primary/30 hover:shadow-[0_8px_32px_-8px_rgba(20,184,166,0.2),0_20px_48px_-16px_rgba(0,0,0,0.2)] hover:-translate-y-0.5",
         className,
       )}
     >

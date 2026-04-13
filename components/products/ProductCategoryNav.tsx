@@ -24,7 +24,7 @@ export function ProductCategoryNav({
   return (
     <nav
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-teal-200/70 bg-gradient-to-br from-white via-teal-50/25 to-violet-50/20 px-5 py-6 shadow-[0_8px_32px_-16px_rgba(15,118,110,0.12)] backdrop-blur-sm md:px-7 md:py-6",
+        "relative overflow-hidden rounded-2xl border border-teal-500/20 bg-gradient-to-br from-[#0c1526] via-teal-950/15 to-violet-950/10 px-5 py-6 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.3)] backdrop-blur-sm md:px-7 md:py-6",
         className,
       )}
       aria-labelledby="product-categories-heading"
@@ -32,7 +32,7 @@ export function ProductCategoryNav({
       <div
         className="pointer-events-none absolute -right-8 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full blur-2xl opacity-80"
         style={{
-          background: "radial-gradient(circle, rgba(91,33,182,0.12), transparent 70%)",
+          background: "radial-gradient(circle, rgba(91,33,182,0.15), transparent 70%)",
         }}
         aria-hidden
       />
@@ -41,16 +41,16 @@ export function ProductCategoryNav({
         <div>
           <h2
             id="product-categories-heading"
-            className="font-display text-lg font-semibold tracking-tight text-slate-950 md:text-xl"
+            className="font-display text-lg font-semibold tracking-tight text-white md:text-xl"
           >
             Browse by family
           </h2>
-          <p className="mt-1 max-w-xl text-sm text-slate-600">{blurb}</p>
+          <p className="mt-1 max-w-xl text-sm text-slate-400">{blurb}</p>
         </div>
         {mode === "category" ? (
           <Link
             href="/products"
-            className="shrink-0 text-sm font-semibold text-teal-800 transition hover:text-teal-950 hover:underline"
+            className="shrink-0 text-sm font-semibold text-teal-400 transition hover:text-teal-300 hover:underline"
           >
             ← Full catalogue
           </Link>
@@ -86,8 +86,8 @@ function CategoryPill({
       className={cn(
         "inline-flex min-h-[2.75rem] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold tracking-tight transition-all duration-200 md:min-h-[3rem] md:px-6",
         active
-          ? "border-teal-500/55 bg-teal-700 text-white shadow-[0_8px_24px_-10px_rgba(15,118,110,0.35)]"
-          : "border-slate-200/90 bg-white/90 text-slate-700 shadow-sm hover:border-teal-400/50 hover:bg-teal-50/80 hover:text-teal-950",
+          ? "border-teal-500/40 bg-teal-600 text-white shadow-[0_8px_24px_-10px_rgba(15,118,110,0.35)]"
+          : "border-white/[0.1] bg-white/[0.06] text-slate-300 shadow-sm hover:border-teal-500/30 hover:bg-teal-500/10 hover:text-white",
       )}
     >
       {children}

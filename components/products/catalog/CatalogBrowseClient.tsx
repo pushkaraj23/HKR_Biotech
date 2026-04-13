@@ -52,12 +52,12 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
 
         <RevealOnScroll>
           <section aria-labelledby="category-cards-heading">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-teal-400">
               Browse by family
             </p>
             <h2
               id="category-cards-heading"
-              className="mt-2 font-display text-2xl font-bold tracking-tight text-slate-950 md:text-3xl"
+              className="mt-2 font-display text-2xl font-bold tracking-tight text-white md:text-3xl"
             >
               Product Families
             </h2>
@@ -84,34 +84,34 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
           <section aria-labelledby="catalog-grid-heading">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-violet-700">
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-violet-400">
                   Full catalogue
                 </p>
                 <h2
                   id="catalog-grid-heading"
-                  className="mt-1 font-display text-2xl font-bold tracking-tight text-slate-950 md:text-3xl"
+                  className="mt-1 font-display text-2xl font-bold tracking-tight text-white md:text-3xl"
                 >
                   All Entries
                 </h2>
               </div>
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-slate-400">
                 Showing{" "}
-                <span className="font-semibold text-slate-900">{filtered.length}</span> of{" "}
+                <span className="font-semibold text-white">{filtered.length}</span> of{" "}
                 {allProducts.length} entries
               </p>
             </div>
 
             {filtered.length === 0 ? (
-              <div className="mt-8 rounded-[1.75rem] border border-dashed border-teal-300/70 bg-teal-50/30 px-8 py-16 text-center backdrop-blur-sm">
-                <p className="font-display text-lg font-semibold text-slate-900">No matches</p>
-                <p className="mx-auto mt-2 max-w-md text-sm text-slate-600">
+              <div className="mt-8 rounded-[1.75rem] border border-dashed border-teal-500/30 bg-teal-500/5 px-8 py-16 text-center backdrop-blur-sm">
+                <p className="font-display text-lg font-semibold text-white">No matches</p>
+                <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
                   Try a shorter search term, clear availability filters, or pick &ldquo;All categories&rdquo; from the
                   dropdown.
                 </p>
                 <button
                   type="button"
                   onClick={() => setState(initialState)}
-                  className="mt-6 rounded-full border border-teal-500/40 bg-white px-5 py-2 text-sm font-semibold text-teal-900 shadow-sm transition hover:bg-teal-50"
+                  className="mt-6 rounded-full border border-teal-500/30 bg-white/[0.06] px-5 py-2 text-sm font-semibold text-teal-300 shadow-sm transition hover:bg-white/[0.1]"
                 >
                   Reset filters
                 </button>
@@ -133,10 +133,10 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
         {/* CTA banner */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2.5rem] border border-white/40 p-10 text-center shadow-[0_16px_64px_-16px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-14"
+            className="relative overflow-hidden rounded-[2.5rem] border border-white/[0.08] p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
             style={{
               background:
-                "linear-gradient(140deg, rgba(153,246,228,0.45) 0%, rgba(167,139,250,0.4) 35%, rgba(196,181,253,0.4) 55%, rgba(253,164,175,0.35) 100%)",
+                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
             }}
           >
             {/* Decorative orbs */}
@@ -169,14 +169,14 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-700">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-400">
                 Beyond the catalogue
               </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-slate-950 md:text-3xl">
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-white md:text-3xl">
                 Route Scouting, Impurity Synthesis,{" "}
                 <span className="gradient-text-shimmer">and Custom Programmes</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-slate-600">
+              <p className="mx-auto mt-4 max-w-lg text-slate-400">
                 Share your target structure, timeline, and analytical expectations — we respond with scientific
                 questions and a clear feasibility path, not a generic quote grid.
               </p>
@@ -190,7 +190,7 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
                 <ButtonLink
                   href="/services"
                   variant="secondary"
-                  className="rounded-full border-white/60 bg-white/70 px-10 shadow-[0_4px_20px_-6px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                  className="rounded-full border-white/[0.1] bg-white/[0.06] px-10 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl"
                 >
                   Explore services
                 </ButtonLink>

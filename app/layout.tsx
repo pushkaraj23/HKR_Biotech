@@ -45,7 +45,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakarta.variable} ${ibmMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-100 font-sans text-text-primary">
+      <body className="min-h-full flex flex-col bg-[#070e1b] font-sans text-text-primary">
         <AuraBackdrop />
         <SiteHeader />
         <main className="relative flex-1 pt-[var(--site-header-offset)]">{children}</main>

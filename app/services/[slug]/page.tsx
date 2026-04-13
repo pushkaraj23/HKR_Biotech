@@ -52,16 +52,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         {/* Breadcrumb */}
         <nav className="text-sm text-slate-500">
-          <Link href="/services" className="text-teal-800 transition hover:text-teal-950 hover:underline">
+          <Link href="/services" className="text-teal-400 transition hover:text-teal-300 hover:underline">
             Services
           </Link>
-          <span className="mx-2 text-slate-400">/</span>
-          <span className="font-medium text-slate-900">{s.title}</span>
+          <span className="mx-2 text-slate-600">/</span>
+          <span className="font-medium text-slate-100">{s.title}</span>
         </nav>
 
-        {/* Hero — photo background with white wash */}
+        {/* Hero — photo background with dark wash */}
         <RevealOnScroll>
-          <header className="relative overflow-hidden rounded-[2rem] border border-white/50 shadow-[0_12px_48px_-12px_rgba(15,23,42,0.12)]">
+          <header className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
             <Image
               src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=1400&h=600&fit=crop&q=80&auto=format"
               alt="Laboratory research"
@@ -74,7 +74,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.4) 100%)",
+                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
               }}
             />
 
@@ -101,13 +101,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-700">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-400">
                 Service
               </p>
-              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
                 {s.title}
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-400">
                 {s.summary}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -132,15 +132,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Overview */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/40 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/20 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-400">
               Overview
             </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-slate-950">
+            <h2 className="mt-1 font-display text-xl font-semibold text-white">
               What this service delivers
             </h2>
-            <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-700">
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-300">
               {s.overview}
             </p>
           </section>
@@ -149,24 +149,24 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Process steps */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-violet-50/40 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/20 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-700">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-400">
               Workflow
             </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-slate-950">
+            <h2 className="mt-1 font-display text-xl font-semibold text-white">
               Typical process
             </h2>
             <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {s.process.map((step, i) => (
                 <RevealOnScroll key={step} delay={i * 60}>
-                  <li className="flex gap-4 rounded-2xl border border-white/60 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                  <li className="flex gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
                     <span
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${STEP_ACCENTS[i % STEP_ACCENTS.length]} text-xs font-bold text-white shadow-sm`}
                     >
                       {i + 1}
                     </span>
-                    <span className="text-sm leading-relaxed text-slate-700">{step}</span>
+                    <span className="text-sm leading-relaxed text-slate-300">{step}</span>
                   </li>
                 </RevealOnScroll>
               ))}
@@ -178,17 +178,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="grid gap-6 md:grid-cols-2">
           <RevealOnScroll>
             <section
-              className="h-full rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/30 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/15 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-400">
                 Advantages
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-slate-950">
+              <h2 className="mt-1 font-display text-xl font-semibold text-white">
                 Key benefits
               </h2>
               <ul className="mt-5 space-y-3">
                 {s.benefits.map((b) => (
-                  <li key={b} className="flex gap-3 text-sm text-slate-700">
+                  <li key={b} className="flex gap-3 text-sm text-slate-300">
                     <span
                       className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-teal-500 to-teal-700"
                       aria-hidden
@@ -202,17 +202,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
           <RevealOnScroll delay={60}>
             <section
-              className="h-full rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-violet-50/30 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/15 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-700">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-400">
                 Technical scope
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-slate-950">
+              <h2 className="mt-1 font-display text-xl font-semibold text-white">
                 Capabilities
               </h2>
               <ul className="mt-5 space-y-3">
                 {s.capabilities.map((c) => (
-                  <li key={c} className="flex gap-3 text-sm text-slate-700">
+                  <li key={c} className="flex gap-3 text-sm text-slate-300">
                     <span
                       className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-violet-500 to-violet-700"
                       aria-hidden
@@ -228,10 +228,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Related services */}
         <RevealOnScroll>
           <section>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-rose-700">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-rose-400">
               Related
             </p>
-            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
               Other Services
             </h2>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -239,15 +239,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <RevealOnScroll key={rs.slug} delay={i * 50}>
                   <Link
                     href={`/services/${rs.slug}`}
-                    className="group block h-full rounded-[1.25rem] border border-white/60 bg-gradient-to-b from-white to-teal-50/20 p-5 shadow-[0_4px_16px_-6px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(15,23,42,0.1)]"
+                    className="group block h-full rounded-[1.25rem] border border-white/[0.08] bg-gradient-to-b from-[#0c1526] to-teal-950/10 p-5 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
                   >
-                    <h3 className="font-display text-sm font-semibold text-slate-900 transition-colors group-hover:text-teal-800">
+                    <h3 className="font-display text-sm font-semibold text-slate-100 transition-colors group-hover:text-teal-400">
                       {rs.title}
                     </h3>
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-slate-600">
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-slate-400">
                       {rs.summary}
                     </p>
-                    <span className="mt-3 inline-flex text-xs font-semibold text-teal-700 transition-transform group-hover:translate-x-0.5">
+                    <span className="mt-3 inline-flex text-xs font-semibold text-teal-400 transition-transform group-hover:translate-x-0.5">
                       Learn more →
                     </span>
                   </Link>
@@ -257,14 +257,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </section>
         </RevealOnScroll>
 
-        {/* Enquiry form — pastel gradient matching hero */}
+        {/* Enquiry form — dark gradient */}
         <RevealOnScroll>
           <section
             id="enquiry-form"
-            className="scroll-mt-28 relative overflow-hidden rounded-[2.5rem] border border-white/40 p-8 shadow-[0_16px_64px_-16px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-12"
+            className="scroll-mt-28 relative overflow-hidden rounded-[2.5rem] border border-white/[0.08] p-8 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-12"
             style={{
               background:
-                "linear-gradient(140deg, rgba(153,246,228,0.35) 0%, rgba(167,139,250,0.3) 35%, rgba(196,181,253,0.3) 55%, rgba(253,164,175,0.25) 100%)",
+                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
             }}
           >
             {/* Subtle grid */}
@@ -272,7 +272,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               className="pointer-events-none absolute inset-0 rounded-[2.5rem] opacity-[0.04]"
               style={{
                 backgroundImage:
-                  "linear-gradient(rgba(15,23,42,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.2) 1px, transparent 1px)",
+                  "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
                 backgroundSize: "44px 44px",
               }}
               aria-hidden
@@ -299,13 +299,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-700">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
                 Get in touch
               </p>
-              <h2 className="mt-2 font-display text-2xl font-bold text-slate-950 md:text-3xl">
+              <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">
                 Enquire About {s.title}
               </h2>
-              <p className="mt-3 max-w-2xl text-slate-600">
+              <p className="mt-3 max-w-2xl text-slate-400">
                 Describe your project scope, timeline, and any analytical expectations — the
                 service reference is pre-filled for you.
               </p>

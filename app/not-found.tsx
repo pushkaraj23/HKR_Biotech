@@ -9,10 +9,10 @@ export default function NotFound() {
         <BrandLogo size="md" />
       </Link>
       <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-primary">404</p>
-      <h1 className="mt-4 font-display text-3xl font-bold text-text-primary md:text-4xl">
+      <h1 className="mt-4 font-display text-3xl font-bold text-white md:text-4xl">
         This page could not be resolved
       </h1>
-      <p className="mt-4 max-w-md text-text-secondary">
+      <p className="mt-4 max-w-md text-slate-400">
         The resource may have moved, or the link may be outdated. Return to the catalogue or contact our
         team for assistance.
       </p>

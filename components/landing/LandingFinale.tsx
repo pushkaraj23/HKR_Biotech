@@ -6,10 +6,10 @@ export function LandingFinale() {
     <section className="relative px-4 pb-28 pt-8 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <div
-          className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-white/40 p-10 shadow-[0_16px_64px_-16px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-14"
+          className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-white/[0.08] p-10 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-14"
           style={{
             background:
-              "linear-gradient(140deg, rgba(153,246,228,0.45) 0%, rgba(167,139,250,0.4) 35%, rgba(196,181,253,0.4) 55%, rgba(253,164,175,0.35) 100%)",
+              "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
           }}
         >
           {/* Decorative orbs */}
@@ -53,13 +53,13 @@ export function LandingFinale() {
           />
 
           <div className="relative text-center">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-700">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-300">
               Next batch
             </p>
-            <h2 className="mx-auto mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+            <h2 className="mx-auto mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
               Partner on Your Next Critical Route
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-700">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
               Share structures, quantity bands, and analytical expectations — we respond
               with scientific questions, not just pricing.
             </p>

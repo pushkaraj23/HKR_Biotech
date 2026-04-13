@@ -56,12 +56,12 @@ export function GlassProductsHero({
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-[2rem] border border-white/50",
-          !backgroundImage && "bg-gradient-to-br from-white via-white to-teal-50/30",
-          "shadow-[0_8px_48px_-12px_rgba(15,23,42,0.1),0_2px_8px_-2px_rgba(15,23,42,0.04)]",
+          "relative overflow-hidden rounded-[2rem] border border-white/[0.08]",
+          !backgroundImage && "bg-gradient-to-br from-[#0c1526] via-[#0c1526] to-teal-950/20",
+          "shadow-[0_8px_48px_-12px_rgba(0,0,0,0.4),0_2px_8px_-2px_rgba(0,0,0,0.2)]",
         )}
       >
-        {/* Background image with white wash */}
+        {/* Background image with dark wash */}
         {backgroundImage && (
           <>
             <Image
@@ -76,7 +76,7 @@ export function GlassProductsHero({
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.4) 100%)",
+                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
               }}
             />
           </>
@@ -95,7 +95,7 @@ export function GlassProductsHero({
           className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-[0.03]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(15,23,42,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.3) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
             backgroundSize: "44px 44px",
           }}
           aria-hidden
@@ -140,14 +140,14 @@ export function GlassProductsHero({
 
         <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[60%]")}>
           {eyebrow ? (
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-teal-700">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-teal-400">
               {eyebrow}
             </p>
           ) : null}
 
           <h1
             className={cn(
-              "font-display text-4xl font-bold tracking-tight text-slate-950 md:text-5xl lg:text-[3.25rem]",
+              "font-display text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.25rem]",
               eyebrow ? "mt-3" : "",
             )}
           >
@@ -155,14 +155,14 @@ export function GlassProductsHero({
           </h1>
 
           {tagline ? (
-            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-teal-900/90 md:text-lg">
+            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-teal-300/90 md:text-lg">
               {tagline}
             </p>
           ) : null}
 
           <p
             className={cn(
-              "max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg",
+              "max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg",
               tagline ? "mt-4" : "mt-5",
             )}
           >
@@ -184,7 +184,7 @@ export function GlassProductsHero({
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className="inline-flex items-center justify-center rounded-full border border-white/60 bg-white/70 px-8 py-3 text-sm font-semibold text-slate-900 shadow-[0_4px_20px_-6px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_-8px_rgba(15,23,42,0.12)]"
+                    className="inline-flex items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.06] px-8 py-3 text-sm font-semibold text-slate-200 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.4)]"
                   >
                     {cta.label}
                   </Link>

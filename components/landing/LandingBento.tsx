@@ -8,11 +8,11 @@ const bentoBlocks = capabilitySections
   .slice(0, 5);
 
 const CARD_ACCENTS = [
-  "from-teal-100/50 via-white to-teal-50/30",
-  "from-violet-100/50 via-white to-violet-50/30",
-  "from-rose-100/40 via-white to-rose-50/30",
-  "from-teal-50/40 via-violet-50/30 to-white",
-  "from-violet-50/40 via-rose-50/30 to-white",
+  "from-teal-950/30 via-[#0c1526] to-teal-950/15",
+  "from-violet-950/30 via-[#0c1526] to-violet-950/15",
+  "from-rose-950/25 via-[#0c1526] to-rose-950/15",
+  "from-teal-950/20 via-violet-950/15 to-[#0c1526]",
+  "from-violet-950/20 via-rose-950/15 to-[#0c1526]",
 ] as const;
 
 const CARD_IMAGES: (string | null)[] = [
@@ -36,10 +36,10 @@ export function LandingBento() {
     <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-rose-700">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-rose-400">
             Infrastructure
           </p>
-          <h2 className="mt-2 max-w-2xl font-display text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+          <h2 className="mt-2 max-w-2xl font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
             A Lattice of Controlled Environments
           </h2>
         </RevealOnScroll>
@@ -61,7 +61,7 @@ export function LandingBento() {
             return (
               <RevealOnScroll key={`${block.title}-${i}`} delay={i * 60} className={spans}>
                 <article
-                  className={`group relative h-full overflow-hidden rounded-[1.75rem] border border-white/60 bg-gradient-to-br ${accent} shadow-[0_6px_28px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(15,23,42,0.12)]`}
+                  className={`group relative h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br ${accent} shadow-[0_6px_28px_-8px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.3)]`}
                 >
                   {image && (
                     <div className="relative h-36 w-full overflow-hidden sm:h-40">
@@ -76,7 +76,7 @@ export function LandingBento() {
                         className="absolute inset-0"
                         style={{
                           background:
-                            "linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
+                            "linear-gradient(to top, rgba(7,14,27,0.9) 0%, rgba(7,14,27,0.4) 50%, transparent 100%)",
                         }}
                       />
                     </div>
@@ -92,10 +92,10 @@ export function LandingBento() {
                     <p className="relative font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-500">
                       {block.section}
                     </p>
-                    <h3 className="relative mt-3 font-display text-lg font-semibold text-slate-900">
+                    <h3 className="relative mt-3 font-display text-lg font-semibold text-white">
                       {block.title}
                     </h3>
-                    <p className="relative mt-2 text-sm leading-relaxed text-slate-600">
+                    <p className="relative mt-2 text-sm leading-relaxed text-slate-400">
                       {block.description}
                     </p>
 
@@ -104,12 +104,12 @@ export function LandingBento() {
                         {block.metrics.map((m) => (
                           <div
                             key={m.label}
-                            className="rounded-full border border-white/60 bg-white/80 px-3.5 py-1.5 text-xs shadow-[0_2px_10px_-4px_rgba(15,23,42,0.06)] backdrop-blur-lg"
+                            className="rounded-full border border-white/[0.1] bg-white/[0.06] px-3.5 py-1.5 text-xs shadow-[0_2px_10px_-4px_rgba(0,0,0,0.2)] backdrop-blur-lg"
                           >
-                            <dt className="font-mono text-[9px] uppercase tracking-wider text-slate-400">
+                            <dt className="font-mono text-[9px] uppercase tracking-wider text-slate-500">
                               {m.label}
                             </dt>
-                            <dd className="font-semibold text-slate-800">{m.value}</dd>
+                            <dd className="font-semibold text-slate-200">{m.value}</dd>
                           </div>
                         ))}
                       </dl>
@@ -124,7 +124,7 @@ export function LandingBento() {
         <RevealOnScroll className="mt-10 flex justify-center">
           <Link
             href="/capabilities"
-            className="rounded-full border border-white/60 bg-white/70 px-8 py-3 text-sm font-semibold text-slate-900 shadow-[0_4px_20px_-6px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all hover:shadow-[0_8px_28px_-8px_rgba(91,33,182,0.12)]"
+            className="rounded-full border border-white/[0.1] bg-white/[0.06] px-8 py-3 text-sm font-semibold text-slate-200 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all hover:shadow-[0_8px_28px_-8px_rgba(91,33,182,0.12)]"
           >
             All capabilities →
           </Link>

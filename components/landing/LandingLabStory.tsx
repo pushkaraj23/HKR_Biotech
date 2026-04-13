@@ -17,7 +17,7 @@ export function LandingLabStory() {
     <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
         <RevealOnScroll className="relative order-2 lg:order-1">
-          <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/50 shadow-[0_12px_48px_-12px_rgba(15,23,42,0.14)] sm:min-h-[420px]">
+          <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/[0.08] shadow-[0_12px_48px_-12px_rgba(0,0,0,0.3)] sm:min-h-[420px]">
             <Image
               src={LAB_IMAGE}
               alt="Laboratory research work"
@@ -67,20 +67,20 @@ export function LandingLabStory() {
 
         <div className="order-1 space-y-6 lg:order-2">
           <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-violet-700">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-violet-400">
               Inside HKR
             </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
               Infrastructure Built for Reproducibility
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-600">
+            <p className="mt-4 text-lg leading-relaxed text-slate-400">
               Dedicated project leadership, redundant characterization, and digital batch
               records — an environment designed for traceable science.
             </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={80}>
-            <ul className="space-y-3.5 text-sm font-medium text-slate-700">
+            <ul className="space-y-3.5 text-sm font-medium text-slate-300">
               {[
                 "Phase-appropriate documentation with ALCOA+ alignment",
                 "Segregated synthesis lines with inert gas distribution",
@@ -104,7 +104,7 @@ export function LandingLabStory() {
               </ButtonLink>
               <Link
                 href="/contact"
-                className="text-sm font-semibold text-rose-800 transition hover:text-rose-950 hover:underline"
+                className="text-sm font-semibold text-rose-400 transition hover:text-rose-300 hover:underline"
               >
                 Talk to us →
               </Link>

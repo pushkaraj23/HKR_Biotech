@@ -72,18 +72,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section
             aria-labelledby="overview-heading"
-            className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/40 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/20 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-400">
               Overview
             </p>
             <h2
               id="overview-heading"
-              className="mt-1 font-display text-xl font-semibold text-slate-950"
+              className="mt-1 font-display text-xl font-semibold text-white"
             >
               Product overview
             </h2>
-            <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-700">
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-300">
               {product.detailedDescription}
             </p>
           </section>
@@ -93,21 +93,21 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section
             aria-labelledby="specs-heading"
-            className="rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-violet-50/40 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/20 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-700">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-400">
               Technical data
             </p>
             <h2
               id="specs-heading"
-              className="mt-1 font-display text-xl font-semibold text-slate-950"
+              className="mt-1 font-display text-xl font-semibold text-white"
             >
               Specifications & Structure
             </h2>
             <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
               <div>
                 <StructurePlaceholder />
-                <p className="mt-3 font-mono text-sm text-slate-700">
+                <p className="mt-3 font-mono text-sm text-slate-300">
                   {product.molecularFormula}
                 </p>
                 <p className="mt-1 text-xs text-slate-500">
@@ -125,20 +125,20 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <RevealOnScroll>
             <section
               aria-labelledby="applications-heading"
-              className="h-full rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/30 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/15 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-400">
                 Use cases
               </p>
               <h2
                 id="applications-heading"
-                className="mt-1 font-display text-xl font-semibold text-slate-950"
+                className="mt-1 font-display text-xl font-semibold text-white"
               >
                 Applications
               </h2>
               <ul className="mt-5 space-y-2.5">
                 {product.applications.map((a) => (
-                  <li key={a} className="flex gap-3 text-sm text-slate-700">
+                  <li key={a} className="flex gap-3 text-sm text-slate-300">
                     <span
                       className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-teal-500 to-violet-600"
                       aria-hidden
@@ -154,14 +154,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <RevealOnScroll delay={60}>
             <section
               aria-labelledby="supply-heading"
-              className="h-full rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-rose-50/30 to-white p-7 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-rose-950/15 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-rose-700">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-rose-400">
                 Supply & handling
               </p>
               <h2
                 id="supply-heading"
-                className="mt-1 font-display text-xl font-semibold text-slate-950"
+                className="mt-1 font-display text-xl font-semibold text-white"
               >
                 Packaging & Storage
               </h2>
@@ -174,7 +174,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   {product.packSizes.map((s) => (
                     <li
                       key={s}
-                      className="rounded-full border border-teal-200/80 bg-teal-50/60 px-4 py-1.5 text-sm font-medium text-teal-900"
+                      className="rounded-full border border-teal-500/25 bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-300"
                     >
                       {s}
                     </li>
@@ -182,36 +182,36 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </ul>
               </div>
 
-              <div className="mt-5 border-t border-slate-100/80 pt-5">
+              <div className="mt-5 border-t border-white/[0.06] pt-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Storage conditions
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">
                   {product.storageConditions}
                 </p>
               </div>
 
-              <div className="mt-5 border-t border-slate-100/80 pt-5">
+              <div className="mt-5 border-t border-white/[0.06] pt-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Documents
                 </p>
-                <ul className="mt-2 space-y-1.5 text-sm text-slate-700">
+                <ul className="mt-2 space-y-1.5 text-sm text-slate-300">
                   <li className="flex items-center gap-2">
-                    <span className={product.coaAvailable ? "text-teal-600" : "text-slate-400"} aria-hidden>
+                    <span className={product.coaAvailable ? "text-teal-400" : "text-slate-500"} aria-hidden>
                       {product.coaAvailable ? "✓" : "—"}
                     </span>
                     COA — {product.coaAvailable ? "on release" : "on request"}
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className={product.sdsAvailable ? "text-teal-600" : "text-slate-400"} aria-hidden>
+                    <span className={product.sdsAvailable ? "text-teal-400" : "text-slate-500"} aria-hidden>
                       {product.sdsAvailable ? "✓" : "—"}
                     </span>
                     SDS — {product.sdsAvailable ? "available" : "on request"}
                   </li>
                   {product.datasheetUrl && (
                     <li className="flex items-center gap-2">
-                      <span className="text-teal-600" aria-hidden>↓</span>
-                      <Link href={product.datasheetUrl} className="font-medium text-teal-800 hover:underline">
+                      <span className="text-teal-400" aria-hidden>↓</span>
+                      <Link href={product.datasheetUrl} className="font-medium text-teal-400 hover:underline">
                         Technical summary (PDF)
                       </Link>
                     </li>

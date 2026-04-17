@@ -30,7 +30,7 @@ export function ProductFilters({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-teal-500/20 bg-gradient-to-br from-[#0c1526] via-teal-950/10 to-violet-950/5 p-5 shadow-sm backdrop-blur-sm md:p-6",
+        "rounded-2xl border border-teal-500/20 bg-gradient-to-br from-bg-secondary via-teal-950/10 to-violet-950/5 p-5 shadow-sm backdrop-blur-sm md:p-6",
         className,
       )}
     >

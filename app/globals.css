@@ -2,37 +2,38 @@
 
 :root {
   color-scheme: dark;
-  --bg-primary: #070e1b;
-  --bg-secondary: #0c1526;
-  --bg-tertiary: #111d33;
-  --surface-glass: rgba(12, 21, 38, 0.85);
-  --surface-glass-strong: #0c1526;
-  --brand-teal: #14b8a6;
-  --brand-teal-mid: #2dd4bf;
-  --brand-violet: #7c3aed;
-  --brand-burgundy: #f43f5e;
-  --accent-primary: #14b8a6;
-  --accent-secondary: #2dd4bf;
-  --accent-deep: #0d9488;
-  --violet-glow: #7c3aed;
+  /* Lighter slate-navy base — reads fresher and gives logo PNG more separation */
+  --bg-primary: #101c33;
+  --bg-secondary: #162847;
+  --bg-tertiary: #1c3354;
+  --surface-glass: rgba(22, 40, 71, 0.82);
+  --surface-glass-strong: #162847;
+  --brand-teal: #2dd4bf;
+  --brand-teal-mid: #5eead4;
+  --brand-violet: #8b5cf6;
+  --brand-burgundy: #fb7185;
+  --accent-primary: #2dd4bf;
+  --accent-secondary: #5eead4;
+  --accent-deep: #14b8a6;
+  --violet-glow: #8b5cf6;
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --border-subtle: rgba(20, 184, 166, 0.15);
-  --border-glow: rgba(124, 58, 237, 0.25);
-  --glow-cyan: rgba(20, 184, 166, 0.22);
-  --glow-blue: rgba(124, 58, 237, 0.18);
-  --header-bg: #0c1526;
+  --border-subtle: rgba(45, 212, 191, 0.18);
+  --border-glow: rgba(139, 92, 246, 0.28);
+  --glow-cyan: rgba(45, 212, 191, 0.26);
+  --glow-blue: rgba(139, 92, 246, 0.2);
+  --header-bg: #162847;
   --header-text: #e2e8f0;
   --header-text-muted: #94a3b8;
   --gradient-hero: linear-gradient(
     135deg,
-    #0d9488 0%,
-    #14b8a6 26%,
-    #7c3aed 62%,
-    #f43f5e 100%
+    #14b8a6 0%,
+    #2dd4bf 26%,
+    #8b5cf6 62%,
+    #fb7185 100%
   );
-  --gradient-cta: linear-gradient(90deg, #0d9488, #14b8a6, #2dd4bf);
+  --gradient-cta: linear-gradient(90deg, #14b8a6, #2dd4bf, #5eead4);
   --site-header-offset: 6rem;
 }
 
@@ -135,7 +136,7 @@ html {
 }
 
 ::selection {
-  background: rgba(20, 184, 166, 0.3);
+  background: rgba(45, 212, 191, 0.28);
   color: var(--text-primary);
 }
 
@@ -168,13 +169,13 @@ html {
 .gradient-text-shimmer {
   background: linear-gradient(
     90deg,
-    #2dd4bf 0%,
-    #14b8a6 18%,
-    #a78bfa 36%,
-    #f472b6 50%,
-    #a78bfa 64%,
-    #14b8a6 82%,
-    #2dd4bf 100%
+    #5eead4 0%,
+    #2dd4bf 18%,
+    #c4b5fd 36%,
+    #f9a8d4 50%,
+    #c4b5fd 64%,
+    #2dd4bf 82%,
+    #5eead4 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

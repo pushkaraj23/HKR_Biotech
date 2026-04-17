@@ -8,11 +8,11 @@ const bentoBlocks = capabilitySections
   .slice(0, 5);
 
 const CARD_ACCENTS = [
-  "from-teal-950/30 via-[#0c1526] to-teal-950/15",
-  "from-violet-950/30 via-[#0c1526] to-violet-950/15",
-  "from-rose-950/25 via-[#0c1526] to-rose-950/15",
-  "from-teal-950/20 via-violet-950/15 to-[#0c1526]",
-  "from-violet-950/20 via-rose-950/15 to-[#0c1526]",
+  "from-teal-950/30 via-bg-secondary to-teal-950/15",
+  "from-violet-950/30 via-bg-secondary to-violet-950/15",
+  "from-rose-950/25 via-bg-secondary to-rose-950/15",
+  "from-teal-950/20 via-violet-950/15 to-bg-secondary",
+  "from-violet-950/20 via-rose-950/15 to-bg-secondary",
 ] as const;
 
 const CARD_IMAGES: (string | null)[] = [

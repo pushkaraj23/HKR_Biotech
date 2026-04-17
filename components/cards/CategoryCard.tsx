@@ -9,7 +9,7 @@ type CategoryCardProps = {
 
 const CARD_ACCENTS = [
   {
-    tint: "from-teal-950/30 to-[#0c1526]/80",
+    tint: "from-teal-950/30 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
     blob: "radial-gradient(circle, rgba(20,184,166,0.22) 0%, transparent 70%)",
@@ -17,7 +17,7 @@ const CARD_ACCENTS = [
     arrow: "text-teal-400 group-hover:text-teal-300",
   },
   {
-    tint: "from-violet-950/30 to-[#0c1526]/80",
+    tint: "from-violet-950/30 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
     blob: "radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%)",
@@ -25,7 +25,7 @@ const CARD_ACCENTS = [
     arrow: "text-violet-400 group-hover:text-violet-300",
   },
   {
-    tint: "from-rose-950/30 to-[#0c1526]/80",
+    tint: "from-rose-950/30 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
     orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22), inset 0 -2px 5px rgba(0,0,0,0.06)",
     blob: "radial-gradient(circle, rgba(225,29,72,0.15) 0%, transparent 70%)",
@@ -33,7 +33,7 @@ const CARD_ACCENTS = [
     arrow: "text-rose-400 group-hover:text-rose-300",
   },
   {
-    tint: "from-teal-950/25 via-violet-950/20 to-[#0c1526]/80",
+    tint: "from-teal-950/25 via-violet-950/20 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
     blob: "radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 70%)",
@@ -41,7 +41,7 @@ const CARD_ACCENTS = [
     arrow: "text-teal-400 group-hover:text-teal-300",
   },
   {
-    tint: "from-violet-950/25 via-rose-950/20 to-[#0c1526]/80",
+    tint: "from-violet-950/25 via-rose-950/20 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
     orbShadow: "0 8px 24px -4px rgba(124,58,237,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
     blob: "radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%)",

@@ -8,7 +8,7 @@ export function AuraBackdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(168deg, #060c18 0%, #070e1b 18%, #0a1225 42%, #0c1526 78%, #070e1b 100%)",
+            "linear-gradient(168deg, #0c1528 0%, #101c33 18%, #14223c 42%, #162847 78%, #101c33 100%)",
         }}
       />
       <div

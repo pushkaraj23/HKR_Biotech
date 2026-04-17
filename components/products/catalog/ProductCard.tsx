@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import type { CatalogProduct, ProductAvailability } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
 
@@ -35,34 +36,34 @@ const AVAILABILITY_CONFIG: Record<
 
 const CATEGORY_ACCENTS: Record<string, { tint: string; orb: string; glow: string }> = {
   carbohydrates: {
-    tint: "from-teal-950/25 via-[#0c1526] to-[#0c1526]",
+    tint: "from-teal-950/25 via-bg-secondary to-bg-secondary",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     glow: "rgba(20,184,166,0.18)",
   },
   "api-impurities": {
-    tint: "from-violet-950/25 via-[#0c1526] to-[#0c1526]",
+    tint: "from-violet-950/25 via-bg-secondary to-bg-secondary",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     glow: "rgba(124,58,237,0.18)",
   },
   "nucleotides-linkers": {
-    tint: "from-rose-950/20 via-[#0c1526] to-[#0c1526]",
+    tint: "from-rose-950/20 via-bg-secondary to-bg-secondary",
     orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
     glow: "rgba(225,29,72,0.14)",
   },
   "research-intermediates": {
-    tint: "from-teal-950/20 via-violet-950/10 to-[#0c1526]",
+    tint: "from-teal-950/20 via-violet-950/10 to-bg-secondary",
     orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
     glow: "rgba(20,184,166,0.15)",
   },
   "protecting-groups": {
-    tint: "from-violet-950/20 via-rose-950/10 to-[#0c1526]",
+    tint: "from-violet-950/20 via-rose-950/10 to-bg-secondary",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
     glow: "rgba(124,58,237,0.15)",
   },
 };
 
 const FALLBACK_ACCENT = {
-  tint: "from-teal-950/20 via-[#0c1526] to-[#0c1526]",
+  tint: "from-teal-950/20 via-bg-secondary to-bg-secondary",
   orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
   glow: "rgba(20,184,166,0.18)",
 };
@@ -187,12 +188,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
             →
           </span>
         </Link>
-        <Link
+        <EnquireGateLink
           href={enquiryHref}
-          className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0f766e,#14b8a6)] px-5 py-2 text-xs font-semibold text-white shadow-[0_6px_18px_-4px_rgba(15,118,110,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_26px_-6px_rgba(15,118,110,0.45)]"
+          className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#14b8a6,#2dd4bf)] px-5 py-2 text-xs font-semibold text-white shadow-[0_6px_18px_-4px_rgba(45,212,191,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_26px_-6px_rgba(45,212,191,0.45)]"
         >
           Enquire
-        </Link>
+        </EnquireGateLink>
       </div>
     </article>
   );

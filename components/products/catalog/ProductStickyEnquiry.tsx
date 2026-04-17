@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
 
@@ -26,12 +27,12 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         >
           Details
         </Link>
-        <Link
+        <EnquireGateLink
           href={href}
           className="flex flex-[1.2] items-center justify-center rounded-xl bg-gradient-to-r from-teal-800 to-teal-600 px-3 py-3 text-center text-xs font-semibold text-white shadow-md"
         >
           Request quote
-        </Link>
+        </EnquireGateLink>
       </div>
     </div>
   );

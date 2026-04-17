@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
   type KeyboardEvent,
+  type ReactElement,
 } from "react";
 import { createPortal } from "react-dom";
 import { search, type SearchResult, type SearchResultKind } from "@/lib/search-index";
@@ -25,7 +26,7 @@ function IconSearch({ className }: { className?: string }) {
   );
 }
 
-const KIND_ICONS: Record<SearchResultKind, JSX.Element> = {
+const KIND_ICONS: Record<SearchResultKind, ReactElement> = {
   product: (
     <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="6" width="14" height="11" rx="2" />
@@ -152,7 +153,7 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-label="Site search"
-        className="relative mx-4 w-full max-w-xl animate-[fade-up_0.18s_ease-out] overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0c1526]/95 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
+        className="relative mx-4 w-full max-w-xl animate-[fade-up_0.18s_ease-out] overflow-hidden rounded-2xl border border-white/[0.1] bg-bg-secondary/95 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
       >
         {/* Input */}
         <div className="flex items-center gap-3 border-b border-white/[0.08] px-4 py-3">

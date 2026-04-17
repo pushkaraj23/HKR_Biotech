@@ -8,7 +8,7 @@ const PILLARS = [
     image:
       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=400&fit=crop&q=80&auto=format",
     ring: "ring-teal-500/30 shadow-[0_8px_24px_-4px_rgba(20,184,166,0.3)]",
-    tint: "from-teal-950/30 to-[#0c1526]/80",
+    tint: "from-teal-950/30 to-bg-secondary/80",
   },
   {
     title: "Transparent Batches",
@@ -16,7 +16,7 @@ const PILLARS = [
     image:
       "https://plus.unsplash.com/premium_photo-1681426676206-0f2c02b48aff?w=400&h=400&fit=crop&q=80&auto=format",
     ring: "ring-violet-500/30 shadow-[0_8px_24px_-4px_rgba(91,33,182,0.25)]",
-    tint: "from-violet-950/30 to-[#0c1526]/80",
+    tint: "from-violet-950/30 to-bg-secondary/80",
   },
   {
     title: "Scientific Partnership",
@@ -24,7 +24,7 @@ const PILLARS = [
     image:
       "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=400&h=400&fit=crop&q=80&auto=format",
     ring: "ring-rose-500/30 shadow-[0_8px_24px_-4px_rgba(159,18,57,0.22)]",
-    tint: "from-rose-950/30 to-[#0c1526]/80",
+    tint: "from-rose-950/30 to-bg-secondary/80",
   },
 ] as const;
 

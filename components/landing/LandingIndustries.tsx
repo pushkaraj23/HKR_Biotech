@@ -5,21 +5,21 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const CARD_STYLES = [
   {
-    tint: "from-teal-950/25 to-[#0c1526]/80",
+    tint: "from-teal-950/25 to-bg-secondary/80",
     ring: "ring-teal-500/30",
     shadow: "shadow-[0_6px_20px_-4px_rgba(20,184,166,0.25)]",
     image:
       "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-violet-950/25 to-[#0c1526]/80",
+    tint: "from-violet-950/25 to-bg-secondary/80",
     ring: "ring-violet-500/30",
     shadow: "shadow-[0_6px_20px_-4px_rgba(91,33,182,0.2)]",
     image:
       "https://plus.unsplash.com/premium_photo-1681426676206-0f2c02b48aff?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-rose-950/25 to-[#0c1526]/80",
+    tint: "from-rose-950/25 to-bg-secondary/80",
     ring: "ring-rose-500/30",
     shadow: "shadow-[0_6px_20px_-4px_rgba(159,18,57,0.18)]",
     image:

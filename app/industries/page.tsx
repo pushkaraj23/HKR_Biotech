@@ -17,7 +17,7 @@ const HERO_IMAGE =
 
 const CARD_ACCENTS = [
   {
-    tint: "from-teal-950/25 to-[#0c1526]/80",
+    tint: "from-teal-950/25 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3)",
     blob: "rgba(20,184,166,0.18)",
@@ -27,7 +27,7 @@ const CARD_ACCENTS = [
     image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=300&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-violet-950/25 to-[#0c1526]/80",
+    tint: "from-violet-950/25 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25)",
     blob: "rgba(124,58,237,0.15)",
@@ -37,7 +37,7 @@ const CARD_ACCENTS = [
     image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=600&h=300&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-rose-950/20 to-[#0c1526]/80",
+    tint: "from-rose-950/20 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
     orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22)",
     blob: "rgba(225,29,72,0.12)",
@@ -47,7 +47,7 @@ const CARD_ACCENTS = [
     image: "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=600&h=300&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-teal-950/20 via-violet-950/10 to-[#0c1526]/80",
+    tint: "from-teal-950/20 via-violet-950/10 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.25)",
     blob: "rgba(20,184,166,0.14)",
@@ -57,7 +57,7 @@ const CARD_ACCENTS = [
     image: "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=600&h=300&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-violet-950/20 via-rose-950/10 to-[#0c1526]/80",
+    tint: "from-violet-950/20 via-rose-950/10 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
     orbShadow: "0 8px 24px -4px rgba(124,58,237,0.25)",
     blob: "rgba(124,58,237,0.12)",

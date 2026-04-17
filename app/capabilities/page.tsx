@@ -15,11 +15,11 @@ const HERO_IMAGE =
   "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=1400&h=600&fit=crop&q=80&auto=format";
 
 const SECTION_ACCENTS = [
-  { eyebrow: "text-teal-400", tint: "from-teal-950/25 to-[#0c1526]/80", bullet: "from-teal-500 to-teal-700", metricRing: "border-teal-500/20", orb: "rgba(20,184,166,0.18)" },
-  { eyebrow: "text-violet-400", tint: "from-violet-950/25 to-[#0c1526]/80", bullet: "from-violet-500 to-violet-700", metricRing: "border-violet-500/20", orb: "rgba(124,58,237,0.15)" },
-  { eyebrow: "text-rose-400", tint: "from-rose-950/20 to-[#0c1526]/80", bullet: "from-rose-500 to-rose-700", metricRing: "border-rose-500/20", orb: "rgba(225,29,72,0.12)" },
-  { eyebrow: "text-teal-400", tint: "from-teal-950/20 via-violet-950/10 to-[#0c1526]/80", bullet: "from-teal-500 to-violet-600", metricRing: "border-teal-500/20", orb: "rgba(20,184,166,0.14)" },
-  { eyebrow: "text-violet-400", tint: "from-violet-950/20 via-rose-950/10 to-[#0c1526]/80", bullet: "from-violet-500 to-rose-600", metricRing: "border-violet-500/20", orb: "rgba(124,58,237,0.12)" },
+  { eyebrow: "text-teal-400", tint: "from-teal-950/25 to-bg-secondary/80", bullet: "from-teal-500 to-teal-700", metricRing: "border-teal-500/20", orb: "rgba(20,184,166,0.18)" },
+  { eyebrow: "text-violet-400", tint: "from-violet-950/25 to-bg-secondary/80", bullet: "from-violet-500 to-violet-700", metricRing: "border-violet-500/20", orb: "rgba(124,58,237,0.15)" },
+  { eyebrow: "text-rose-400", tint: "from-rose-950/20 to-bg-secondary/80", bullet: "from-rose-500 to-rose-700", metricRing: "border-rose-500/20", orb: "rgba(225,29,72,0.12)" },
+  { eyebrow: "text-teal-400", tint: "from-teal-950/20 via-violet-950/10 to-bg-secondary/80", bullet: "from-teal-500 to-violet-600", metricRing: "border-teal-500/20", orb: "rgba(20,184,166,0.14)" },
+  { eyebrow: "text-violet-400", tint: "from-violet-950/20 via-rose-950/10 to-bg-secondary/80", bullet: "from-violet-500 to-rose-600", metricRing: "border-violet-500/20", orb: "rgba(124,58,237,0.12)" },
 ] as const;
 
 const HIGHLIGHTS = [
@@ -108,7 +108,7 @@ export default function CapabilitiesPage() {
           <div className="grid gap-5 sm:grid-cols-3">
             {HIGHLIGHTS.map((h, i) => (
               <RevealOnScroll key={h.label} delay={i * 60}>
-                <div className="rounded-[1.5rem] border border-white/[0.08] bg-gradient-to-b from-[#0c1526] to-teal-950/10 p-6 text-center shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]">
+                <div className="rounded-[1.5rem] border border-white/[0.08] bg-gradient-to-b from-bg-secondary to-teal-950/10 p-6 text-center shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]">
                   <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
                     {h.label}
                   </p>

@@ -32,7 +32,7 @@ export function CategoryHero({ category, className }: CategoryHeroProps) {
       <div
         className={cn(
           "relative overflow-hidden rounded-[2rem] border border-teal-500/20",
-          "bg-gradient-to-br from-[#0c1526] via-[#0c1526] to-teal-950/20",
+          "bg-gradient-to-br from-bg-secondary via-bg-secondary to-teal-950/20",
           "shadow-[0_4px_32px_-8px_rgba(0,0,0,0.4)] backdrop-blur-sm",
         )}
       >

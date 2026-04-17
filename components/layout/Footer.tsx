@@ -56,7 +56,7 @@ export function Footer() {
         className="relative overflow-hidden rounded-t-[2.5rem] sm:rounded-t-[3rem]"
         style={{
           background:
-            "linear-gradient(155deg, #0c1222 0%, #0f172a 30%, #13102a 60%, #170f1e 100%)",
+            "linear-gradient(155deg, #121f38 0%, #162847 30%, #1a2540 60%, #1e1a32 100%)",
         }}
       >
         {/* Vivid ambient orbs */}
@@ -143,7 +143,7 @@ export function Footer() {
             <div className="lg:col-span-4">
               <Link
                 href="/"
-                className="inline-flex rounded-2xl bg-white px-4 py-2.5 shadow-[0_8px_28px_-8px_rgba(0,0,0,0.3)] transition-all duration-200 hover:scale-[1.02]"
+                className="inline-flex transition-transform duration-200 hover:scale-[1.02]"
                 aria-label="HKR Biotech Labs home"
               >
                 <BrandLogo size="md" priority={false} />
@@ -235,7 +235,7 @@ export function Footer() {
                     className="inline-flex w-full items-center justify-center rounded-full py-2.5 text-xs font-semibold text-white shadow-[0_12px_28px_-8px_rgba(20,184,166,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-10px_rgba(20,184,166,0.5)]"
                     style={{
                       background:
-                        "linear-gradient(135deg, #0f766e 0%, #14b8a6 50%, #5b21b6 100%)",
+                        "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 50%, #7c3aed 100%)",
                     }}
                   >
                     Request an RFQ

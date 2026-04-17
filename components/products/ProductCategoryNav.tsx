@@ -24,7 +24,7 @@ export function ProductCategoryNav({
   return (
     <nav
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-teal-500/20 bg-gradient-to-br from-[#0c1526] via-teal-950/15 to-violet-950/10 px-5 py-6 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.3)] backdrop-blur-sm md:px-7 md:py-6",
+        "relative overflow-hidden rounded-2xl border border-teal-500/20 bg-gradient-to-br from-bg-secondary via-teal-950/15 to-violet-950/10 px-5 py-6 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.3)] backdrop-blur-sm md:px-7 md:py-6",
         className,
       )}
       aria-labelledby="product-categories-heading"

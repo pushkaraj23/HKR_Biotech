@@ -57,7 +57,7 @@ export function GlassProductsHero({
       <div
         className={cn(
           "relative overflow-hidden rounded-[2rem] border border-white/[0.08]",
-          !backgroundImage && "bg-gradient-to-br from-[#0c1526] via-[#0c1526] to-teal-950/20",
+          !backgroundImage && "bg-gradient-to-br from-bg-secondary via-bg-secondary to-teal-950/20",
           "shadow-[0_8px_48px_-12px_rgba(0,0,0,0.4),0_2px_8px_-2px_rgba(0,0,0,0.2)]",
         )}
       >
@@ -176,7 +176,7 @@ export function GlassProductsHero({
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#0f766e,#14b8a6)] px-8 py-3 text-sm font-semibold text-white shadow-[0_14px_40px_-10px_rgba(15,118,110,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-12px_rgba(15,118,110,0.5)]"
+                    className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#14b8a6,#2dd4bf)] px-8 py-3 text-sm font-semibold text-white shadow-[0_14px_40px_-10px_rgba(45,212,191,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-12px_rgba(45,212,191,0.45)]"
                   >
                     {cta.label}
                   </Link>

@@ -70,7 +70,7 @@ export default async function ProductCategoryPage({ params }: PageProps) {
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {cat.highlights.map((h, i) => (
               <RevealOnScroll key={h} delay={i * 50}>
-                <li className="flex gap-3 rounded-[1.25rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-[#0c1526]/80 px-4 py-3.5 text-sm text-slate-300 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
+                <li className="flex gap-3 rounded-[1.25rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-bg-secondary/80 px-4 py-3.5 text-sm text-slate-300 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
                   <span
                     className="mt-1.5 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-teal-500 to-violet-600"
                     aria-hidden

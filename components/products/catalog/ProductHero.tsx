@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
 
@@ -9,6 +10,8 @@ type ProductHeroProps = {
 };
 
 export function ProductHero({ product, categoryLabel, className }: ProductHeroProps) {
+  const enquirySectionHref = `/products/${product.categorySlug}/${product.slug}#enquiry-form`;
+
   return (
     <header
       className={cn(
@@ -88,18 +91,18 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
 
         {/* CTAs */}
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link
-            href="#enquiry-form"
+          <EnquireGateLink
+            href={enquirySectionHref}
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]"
           >
             Request quotation
-          </Link>
-          <Link
-            href="#enquiry-form"
+          </EnquireGateLink>
+          <EnquireGateLink
+            href={enquirySectionHref}
             className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.06] px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
           >
             Enquire now
-          </Link>
+          </EnquireGateLink>
         </div>
       </div>
     </header>

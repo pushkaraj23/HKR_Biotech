@@ -132,7 +132,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Overview */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/20 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/20 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
           >
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-400">
               Overview
@@ -149,7 +149,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Process steps */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/20 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/20 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
           >
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-400">
               Workflow
@@ -178,7 +178,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="grid gap-6 md:grid-cols-2">
           <RevealOnScroll>
             <section
-              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/15 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/15 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
             >
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-400">
                 Advantages
@@ -202,7 +202,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
           <RevealOnScroll delay={60}>
             <section
-              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/15 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/15 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
             >
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-400">
                 Technical scope
@@ -239,7 +239,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <RevealOnScroll key={rs.slug} delay={i * 50}>
                   <Link
                     href={`/services/${rs.slug}`}
-                    className="group block h-full rounded-[1.25rem] border border-white/[0.08] bg-gradient-to-b from-[#0c1526] to-teal-950/10 p-5 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
+                    className="group block h-full rounded-[1.25rem] border border-white/[0.08] bg-gradient-to-b from-bg-secondary to-teal-950/10 p-5 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
                   >
                     <h3 className="font-display text-sm font-semibold text-slate-100 transition-colors group-hover:text-teal-400">
                       {rs.title}

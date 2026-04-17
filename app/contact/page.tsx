@@ -92,7 +92,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
           {/* Left column: info cards */}
           <div className="space-y-6 lg:col-span-2">
             <RevealOnScroll>
-              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
                   className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
@@ -128,7 +128,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
             </RevealOnScroll>
 
             <RevealOnScroll delay={60}>
-              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/25 to-[#0c1526]/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/25 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
                   className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{

@@ -16,7 +16,7 @@ const leadership = [
     bio: "Two decades in process chemistry and impurity strategy across global pharma programs.",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.35)",
-    tint: "from-teal-950/25 to-[#0c1526]/80",
+    tint: "from-teal-950/25 to-bg-secondary/80",
   },
   {
     name: "Dr. placeholder — VP Operations",
@@ -24,7 +24,7 @@ const leadership = [
     bio: "Laboratory automation, analytical governance, and tech transfer for complex synthesis.",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 8px 24px -4px rgba(91,33,182,0.3)",
-    tint: "from-violet-950/25 to-[#0c1526]/80",
+    tint: "from-violet-950/25 to-bg-secondary/80",
   },
 ];
 
@@ -40,7 +40,7 @@ const complianceItems = [
     k: "Quality system",
     v: "Document-controlled SOPs & training matrix",
     ring: "ring-teal-500/30",
-    tint: "from-teal-950/25 to-[#0c1526]/80",
+    tint: "from-teal-950/25 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 4px 14px -3px rgba(20,184,166,0.3)",
   },
@@ -48,7 +48,7 @@ const complianceItems = [
     k: "Data integrity",
     v: "ALCOA+ aligned analytical records",
     ring: "ring-violet-500/30",
-    tint: "from-violet-950/25 to-[#0c1526]/80",
+    tint: "from-violet-950/25 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 4px 14px -3px rgba(91,33,182,0.25)",
   },
@@ -56,7 +56,7 @@ const complianceItems = [
     k: "Safety",
     v: "Process hazard review for scale-up steps",
     ring: "ring-rose-500/30",
-    tint: "from-rose-950/25 to-[#0c1526]/80",
+    tint: "from-rose-950/25 to-bg-secondary/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
     orbShadow: "0 4px 14px -3px rgba(159,18,57,0.22)",
   },
@@ -135,7 +135,7 @@ export default function AboutPage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
             <RevealOnScroll>
-              <div className="h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-[#0c1526]/80 p-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-bg-secondary/80 p-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
                   className="mb-6 h-12 w-12 rounded-full"
                   style={{

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { WelcomeAuthModal } from "@/components/auth/WelcomeAuthModal";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 import { AuraBackdrop } from "@/components/ui/AuraBackdrop";
 import "./globals.css";
 
@@ -45,11 +47,14 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakarta.variable} ${ibmMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#070e1b] font-sans text-text-primary">
-        <AuraBackdrop />
-        <SiteHeader />
-        <main className="relative flex-1 pt-[var(--site-header-offset)]">{children}</main>
-        <Footer />
+      <body className="min-h-full flex flex-col bg-bg-primary font-sans text-text-primary">
+        <AuthProvider>
+          <WelcomeAuthModal />
+          <AuraBackdrop />
+          <SiteHeader />
+          <main className="relative flex-1 pt-[var(--site-header-offset)]">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

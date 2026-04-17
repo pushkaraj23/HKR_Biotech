@@ -1,5 +1,6 @@
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { BiotechHeroVisual } from "@/components/hero/BiotechHeroVisual";
+import { EnquireGateButtonLink } from "@/components/auth/EnquireGateButtonLink";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
@@ -20,9 +21,9 @@ export function HomeHero() {
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <ButtonLink href="/products">Explore products</ButtonLink>
-            <ButtonLink href="/contact" variant="secondary">
+            <EnquireGateButtonLink href="/contact" variant="secondary">
               Enquire now
-            </ButtonLink>
+            </EnquireGateButtonLink>
           </div>
           <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-border-subtle pt-10 sm:grid-cols-3">
             <div>

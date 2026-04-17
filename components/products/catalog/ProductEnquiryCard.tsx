@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { EnquireGateButtonLink } from "@/components/auth/EnquireGateButtonLink";
 import type { CatalogProduct } from "@/lib/types/catalog";
-import { ButtonLink } from "@/components/ui/ButtonLink";
 import { cn } from "@/lib/cn";
 
 type ProductEnquiryCardProps = {
@@ -42,9 +42,9 @@ export function ProductEnquiryCard({ product, categoryLabel, className }: Produc
       </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <ButtonLink href={href} variant="primary" className="justify-center px-6 py-3 text-sm">
+        <EnquireGateButtonLink href={href} variant="primary" className="justify-center px-6 py-3 text-sm">
           Open contact form
-        </ButtonLink>
+        </EnquireGateButtonLink>
         <Link
           href={`mailto:enquiries@hkrbio.tech?subject=${encodeURIComponent(`RFQ ${product.catalogNumber}`)}&body=${encodeURIComponent(summary + "\n\n")}`}
           className="text-center text-sm font-medium text-teal-800 underline-offset-4 hover:underline"

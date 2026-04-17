@@ -14,6 +14,7 @@ export function WelcomeAuthModal() {
   const { user, loading, configured } = useAuth();
   const [dismissed, setDismissed] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [delayElapsed, setDelayElapsed] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -34,13 +35,32 @@ export function WelcomeAuthModal() {
   }, []);
 
   const authRoute = pathname === "/login" || pathname === "/signup";
-  const open =
+  const canPrompt =
     mounted &&
     configured &&
     !loading &&
     !user &&
     !dismissed &&
     !authRoute;
+
+  useEffect(() => {
+    if (!canPrompt) {
+      setDelayElapsed(false);
+      return;
+    }
+    const delayMs = 3000 + Math.floor(Math.random() * 2001);
+    const timeoutId = window.setTimeout(() => {
+      setDelayElapsed(true);
+    }, delayMs);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [canPrompt]);
+
+  const open =
+    canPrompt &&
+    delayElapsed;
 
   useEffect(() => {
     if (!open) {

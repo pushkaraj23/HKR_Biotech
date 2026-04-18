@@ -26,8 +26,8 @@ function NavItem({
       className={cn(
         "whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-medium transition-all duration-200 xl:px-3.5 xl:text-[13px]",
         active
-          ? "bg-white/[0.1] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-          : "text-slate-400 hover:bg-white/[0.06] hover:text-white",
+          ? "bg-white/15 text-secondary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+          : "text-secondary-foreground/85 hover:bg-white/10 hover:text-secondary-foreground",
       )}
     >
       {children}
@@ -102,10 +102,10 @@ export function Header() {
         {configured && user ? (
           <div className="hidden min-w-0 max-w-[13rem] shrink-0 lg:block">
             <p
-              className="truncate rounded-full border border-white/[0.12] bg-bg-secondary/90 px-3 py-2 text-[12px] text-slate-300 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] backdrop-blur-xl xl:px-3.5 xl:text-[13px]"
+              className="truncate rounded-full border border-white/25 bg-surface/90 px-3 py-2 text-[12px] text-secondary-foreground/90 shadow-elevated-lg backdrop-blur-xl xl:px-3.5 xl:text-[13px]"
               title={user.email ?? undefined}
             >
-              Hi, <span className="font-semibold text-white">{firstName}</span>!
+              Hi, <span className="font-semibold text-secondary-foreground">{firstName}</span>!
             </p>
           </div>
         ) : null}
@@ -114,7 +114,7 @@ export function Header() {
           <div
             className={cn(
               "flex items-center justify-between gap-3 rounded-full px-4 py-2 sm:gap-4 sm:px-6 sm:py-2.5",
-              "border border-white/[0.08] bg-bg-secondary/80 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4),0_2px_8px_-2px_rgba(0,0,0,0.2)] backdrop-blur-2xl backdrop-saturate-150",
+              "border border-white/20 bg-surface/85 text-secondary-foreground shadow-[0_8px_32px_-8px_rgba(8,26,120,0.25),0_2px_8px_-2px_rgba(8,26,120,0.12)] backdrop-blur-2xl backdrop-saturate-150",
             )}
           >
         {/* Logo */}
@@ -148,13 +148,13 @@ export function Header() {
                       className={cn(
                         "whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-medium transition-all duration-200 xl:px-3.5 xl:text-[13px]",
                         active
-                          ? "bg-white/[0.1] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                          : "text-slate-400 hover:bg-white/[0.06] hover:text-white",
+                          ? "bg-white/15 text-secondary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+                          : "text-secondary-foreground/85 hover:bg-white/10 hover:text-secondary-foreground",
                       )}
                     >
                       {item.label}
                     </Link>
-                    <span className="shrink-0 pr-1 text-xs text-slate-500" aria-hidden>
+                    <span className="shrink-0 pr-1 text-xs text-secondary-foreground/70" aria-hidden>
                       ▾
                     </span>
                   </div>
@@ -162,13 +162,13 @@ export function Header() {
                   {/* Dropdown */}
                   <div
                     className={cn(
-                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/[0.08] bg-bg-secondary/95 p-2 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-200",
+                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/20 bg-surface/98 p-2 text-secondary-foreground shadow-elevated-lg backdrop-blur-2xl transition-all duration-200",
                       productsOpen
                         ? "visible translate-y-0 opacity-100"
                         : "invisible -translate-y-1 opacity-0",
                     )}
                   >
-                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
+                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-secondary-foreground/65">
                       Browse
                     </p>
                     <ul className="space-y-0.5">
@@ -176,7 +176,7 @@ export function Header() {
                         <li key={child.href}>
                           <Link
                             href={child.href}
-                            className="block rounded-xl px-3 py-2.5 text-sm text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white"
+                            className="block rounded-xl px-3 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
                           >
                             {child.label}
                           </Link>
@@ -185,7 +185,7 @@ export function Header() {
                     </ul>
                     <Link
                       href="/products"
-                      className="mt-1 block rounded-xl px-3 py-2 text-xs font-semibold text-teal-400 hover:bg-teal-500/10"
+                      className="mt-1 block rounded-xl px-3 py-2 text-xs font-semibold text-primary-mid hover:bg-white/10"
                     >
                       Full catalogue →
                     </Link>
@@ -208,7 +208,7 @@ export function Header() {
           <SearchTrigger onClick={openSearch} />
           <EnquireGateLink
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#14b8a6,#2dd4bf)] px-6 py-2 text-xs font-semibold text-white shadow-[0_8px_24px_-6px_rgba(45,212,191,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-8px_rgba(45,212,191,0.4)]"
+            className="inline-flex items-center justify-center rounded-full bg-cta-gradient px-6 py-2 text-xs font-semibold text-primary-foreground shadow-primary-glow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
           >
             Enquire
           </EnquireGateLink>
@@ -218,7 +218,7 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.06] text-slate-400 shadow-sm backdrop-blur-lg transition-colors hover:bg-white/[0.1] hover:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-secondary-foreground shadow-sm backdrop-blur-lg transition-colors hover:bg-white/15 hover:text-secondary-foreground"
             aria-label="Search"
             onClick={openSearch}
           >
@@ -229,7 +229,7 @@ export function Header() {
           </button>
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.06] text-slate-300 shadow-sm backdrop-blur-lg transition-colors hover:bg-white/[0.1]"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-secondary-foreground shadow-sm backdrop-blur-lg transition-colors hover:bg-white/15"
             aria-expanded={open}
             aria-controls="mobile-nav-landing"
             onClick={() => setOpen((v) => !v)}
@@ -248,18 +248,18 @@ export function Header() {
       <div
         id="mobile-nav-landing"
         className={cn(
-          "mx-auto mt-2 max-w-7xl overflow-hidden rounded-3xl border border-white/[0.08] bg-bg-secondary/95 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.5)] backdrop-blur-2xl lg:hidden",
+          "mx-auto mt-2 max-w-7xl overflow-hidden rounded-3xl border border-white/20 bg-surface/95 text-secondary-foreground shadow-elevated-lg backdrop-blur-2xl lg:hidden",
           open ? "block" : "hidden",
         )}
       >
-        <ul className="divide-y divide-white/[0.06] px-2 py-2">
+        <ul className="divide-y divide-white/15 px-2 py-2">
           {mainNav.map((item) => {
             const href = "href" in item ? item.href : "/";
             return (
               <li key={href}>
                 <Link
                   href={href}
-                  className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-200 transition-colors hover:bg-white/[0.06]"
+                  className="block rounded-xl px-3 py-3 text-sm font-medium text-secondary-foreground transition-colors hover:bg-white/10"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
@@ -270,7 +270,7 @@ export function Header() {
                       <li key={child.href}>
                         <Link
                           href={child.href}
-                          className="block py-2 text-sm text-slate-400 transition-colors hover:text-white"
+                          className="block py-2 text-sm text-secondary-foreground/80 transition-colors hover:text-secondary-foreground"
                           onClick={() => setOpen(false)}
                         >
                           {child.label}
@@ -285,7 +285,7 @@ export function Header() {
           <li className="px-2 pt-2">
             <EnquireGateLink
               href="/contact"
-              className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,#14b8a6,#2dd4bf)] px-6 py-2.5 text-xs font-semibold text-white shadow-[0_8px_24px_-6px_rgba(45,212,191,0.45)]"
+              className="flex w-full items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-xs font-semibold text-primary-foreground shadow-primary-glow"
               onClick={() => setOpen(false)}
             >
               Enquire

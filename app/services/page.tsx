@@ -17,48 +17,48 @@ export const metadata: Metadata = {
 
 const CARD_ACCENTS = [
   {
-    tint: "from-teal-950/25 to-bg-secondary/80",
+    tint: "from-tint-primary/25 to-surface/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3)",
     blob: "rgba(20,184,166,0.18)",
-    eyebrow: "text-teal-400",
-    arrow: "text-teal-400 group-hover:text-teal-300",
+    eyebrow: "text-primary",
+    arrow: "text-primary group-hover:text-primary-mid",
     bullet: "from-teal-400 to-teal-600",
   },
   {
-    tint: "from-violet-950/25 to-bg-secondary/80",
+    tint: "from-tint-accent/25 to-surface/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25)",
     blob: "rgba(124,58,237,0.15)",
-    eyebrow: "text-violet-400",
-    arrow: "text-violet-400 group-hover:text-violet-300",
+    eyebrow: "text-accent",
+    arrow: "text-accent group-hover:text-accent",
     bullet: "from-violet-400 to-violet-600",
   },
   {
-    tint: "from-rose-950/20 to-bg-secondary/80",
+    tint: "from-tint-danger/20 to-surface/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
     orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22)",
     blob: "rgba(225,29,72,0.12)",
-    eyebrow: "text-rose-400",
-    arrow: "text-rose-400 group-hover:text-rose-300",
+    eyebrow: "text-danger",
+    arrow: "text-danger group-hover:text-rose-300",
     bullet: "from-rose-400 to-rose-600",
   },
   {
-    tint: "from-teal-950/20 via-violet-950/10 to-bg-secondary/80",
+    tint: "from-tint-primary/20 via-tint-accent/10 to-surface/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.25)",
     blob: "rgba(20,184,166,0.14)",
-    eyebrow: "text-teal-400",
-    arrow: "text-teal-400 group-hover:text-teal-300",
+    eyebrow: "text-primary",
+    arrow: "text-primary group-hover:text-primary-mid",
     bullet: "from-teal-400 to-violet-500",
   },
   {
-    tint: "from-violet-950/20 via-rose-950/10 to-bg-secondary/80",
+    tint: "from-tint-accent/20 via-tint-danger/10 to-surface/80",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
     orbShadow: "0 8px 24px -4px rgba(124,58,237,0.25)",
     blob: "rgba(124,58,237,0.12)",
-    eyebrow: "text-violet-400",
-    arrow: "text-violet-400 group-hover:text-violet-300",
+    eyebrow: "text-accent",
+    arrow: "text-accent group-hover:text-accent",
     bullet: "from-violet-400 to-rose-500",
   },
 ] as const;
@@ -72,7 +72,7 @@ export default function ServicesPage() {
 
         {/* Hero — photo background with dark wash */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
             <Image
               src={HERO_IMAGE}
               alt="Scientific laboratory glassware"
@@ -112,13 +112,13 @@ export default function ServicesPage() {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-400">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
                 Scientific services
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Composable Chemistry Services
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-400">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 From exploratory FTE blocks to filing-ready analytical packages — unified
                 under one project team with transparent milestones and scientific dialogue.
               </p>
@@ -144,10 +144,10 @@ export default function ServicesPage() {
         {/* Service cards */}
         <section id="services-grid">
           <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-teal-400">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
               What we offer
             </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Our Services
             </h2>
           </RevealOnScroll>
@@ -159,7 +159,7 @@ export default function ServicesPage() {
                 <RevealOnScroll key={s.slug} delay={i * 70}>
                   <Link href={`/services/${s.slug}`} className="group block h-full">
                     <article
-                      className={`relative h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.5)]`}
+                      className={`relative h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.5)]`}
                     >
                       {/* Ambient blob */}
                       <div
@@ -182,16 +182,16 @@ export default function ServicesPage() {
                         <p className={`font-mono text-[10px] font-semibold uppercase tracking-[0.22em] ${accent.eyebrow}`}>
                           Service
                         </p>
-                        <h3 className="mt-2 font-display text-xl font-semibold text-slate-100 md:text-2xl">
+                        <h3 className="mt-2 font-display text-xl font-semibold text-foreground/95 md:text-2xl">
                           {s.title}
                         </h3>
-                        <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                           {s.summary}
                         </p>
 
                         <ul className="mt-5 space-y-2">
                           {s.benefits.slice(0, 3).map((b) => (
-                            <li key={b} className="flex gap-2.5 text-sm text-slate-400">
+                            <li key={b} className="flex gap-2.5 text-sm text-muted-foreground">
                               <span
                                 className={`mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r ${accent.bullet}`}
                                 aria-hidden
@@ -219,7 +219,7 @@ export default function ServicesPage() {
         {/* CTA — dark gradient */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2.5rem] border border-white/[0.08] p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
+            className="relative overflow-hidden rounded-[2.5rem] border border-overlay p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
             style={{
               background:
                 "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
@@ -254,13 +254,13 @@ export default function ServicesPage() {
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">
                 Partnership
               </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-white md:text-3xl">
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-foreground md:text-3xl">
                 Not Sure Where to Start?
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-slate-400">
+              <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
                 Share your target, timeline, and analytical expectations. We respond with
                 technical questions and a clear feasibility path — not a generic brochure.
               </p>

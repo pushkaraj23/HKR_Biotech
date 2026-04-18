@@ -37,7 +37,7 @@ export function StructurePlaceholder({
           {label}
         </span>
         <div className="h-px w-12 bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
-        <span className="text-[10px] font-medium text-slate-500">Placeholder — supply .mol / .cdx</span>
+        <span className="text-[10px] font-medium text-caption-foreground">Placeholder — supply .mol / .cdx</span>
       </div>
     </div>
   );

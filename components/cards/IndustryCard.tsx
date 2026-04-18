@@ -13,12 +13,12 @@ export function IndustryCard({ industry, className }: IndustryCardProps) {
   return (
     <GlassCard className={cn("flex h-full flex-col", className)}>
       <div
-        className="mb-6 h-36 rounded-2xl bg-gradient-to-br from-teal-100/95 via-bg-secondary to-violet-100/80 ring-1 ring-border-subtle"
+        className="mb-6 h-36 rounded-2xl bg-gradient-to-br from-light/95 via-surface to-light/80 ring-1 ring-border"
         role="img"
         aria-label=""
       />
-      <h3 className="font-display text-xl font-semibold text-text-primary">{industry.title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-text-secondary">
+      <h3 className="font-display text-xl font-semibold text-foreground">{industry.title}</h3>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
         {industry.description}
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
@@ -27,7 +27,7 @@ export function IndustryCard({ industry, className }: IndustryCardProps) {
         </ButtonLink>
         <Link
           href={`/industries#${industry.slug}`}
-          className="inline-flex items-center px-2 text-xs text-accent-primary hover:underline"
+          className="inline-flex items-center px-2 text-xs text-primary hover:underline"
         >
           Learn more
         </Link>

@@ -29,7 +29,7 @@ const ORBS: OrbConfig[] = [
     className:
       "left-[-14%] top-[-10%] h-[min(80vw,720px)] w-[min(80vw,720px)] sm:left-[-8%] sm:top-[-6%]",
     gradient:
-      "radial-gradient(circle at 40% 40%, rgba(20,184,166,0.6), rgba(15,118,110,0.22) 46%, transparent 65%)",
+      "radial-gradient(circle at 40% 40%, rgba(255,177,98,0.55), rgba(163,81,57,0.2) 46%, transparent 65%)",
     blur: "blur-[90px]",
     animate: {
       x: [0, 40, -30, 20, 0],
@@ -44,7 +44,7 @@ const ORBS: OrbConfig[] = [
     className:
       "right-[-16%] top-[2%] h-[min(70vw,640px)] w-[min(70vw,640px)] sm:right-[-10%]",
     gradient:
-      "radial-gradient(circle at 55% 40%, rgba(91,33,182,0.55), rgba(124,58,237,0.18) 44%, transparent 64%)",
+      "radial-gradient(circle at 55% 40%, rgba(44,59,77,0.5), rgba(74,93,114,0.16) 44%, transparent 64%)",
     blur: "blur-[85px]",
     animate: {
       x: [0, -36, 28, -18, 0],
@@ -59,7 +59,7 @@ const ORBS: OrbConfig[] = [
     className:
       "bottom-[-4%] left-[8%] h-[min(56vw,500px)] w-[min(56vw,500px)] sm:left-[12%]",
     gradient:
-      "radial-gradient(circle at 50% 50%, rgba(159,18,57,0.45), rgba(225,29,72,0.12) 42%, transparent 62%)",
+      "radial-gradient(circle at 50% 50%, rgba(163,81,57,0.42), rgba(200,120,95,0.12) 42%, transparent 62%)",
     blur: "blur-[80px]",
     animate: {
       x: [0, 28, -22, 16, 0],
@@ -74,7 +74,7 @@ const ORBS: OrbConfig[] = [
     className:
       "right-[2%] bottom-[6%] h-[min(44vw,400px)] w-[min(44vw,400px)] sm:right-[8%]",
     gradient:
-      "radial-gradient(circle at 45% 55%, rgba(20,184,166,0.35), rgba(91,33,182,0.2) 48%, transparent 68%)",
+      "radial-gradient(circle at 45% 55%, rgba(255,177,98,0.32), rgba(44,59,77,0.18) 48%, transparent 68%)",
     blur: "blur-[70px]",
     animate: {
       x: [0, -20, 30, -14, 0],
@@ -89,7 +89,7 @@ const ORBS: OrbConfig[] = [
     className:
       "left-[30%] top-[20%] h-[min(36vw,320px)] w-[min(36vw,320px)] sm:left-[35%] sm:top-[15%]",
     gradient:
-      "radial-gradient(circle at 50% 50%, rgba(124,58,237,0.3), rgba(20,184,166,0.15) 50%, transparent 72%)",
+      "radial-gradient(circle at 50% 50%, rgba(155,168,183,0.35), rgba(255,177,98,0.14) 50%, transparent 72%)",
     blur: "blur-[60px]",
     animate: {
       x: [0, 16, -12, 8, 0],
@@ -111,7 +111,7 @@ function CentralPulse({ enableMotion }: { enableMotion: boolean }) {
       className="absolute left-1/2 top-1/2 h-[min(110vw,900px)] w-[min(110vw,900px)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
       style={{
         background:
-          "radial-gradient(circle at 50% 48%, rgba(20,184,166,0.28) 0%, rgba(91,33,182,0.15) 35%, rgba(159,18,57,0.06) 55%, transparent 70%)",
+          "radial-gradient(circle at 50% 48%, rgba(255,177,98,0.26) 0%, rgba(44,59,77,0.14) 35%, rgba(163,81,57,0.06) 55%, transparent 70%)",
       }}
       initial={{ scale: 1, opacity: 0.5 }}
       animate={

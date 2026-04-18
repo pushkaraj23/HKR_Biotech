@@ -10,14 +10,14 @@ type CapabilityCardProps = {
 export function CapabilityCard({ block, className }: CapabilityCardProps) {
   return (
     <GlassCard hover className={cn("h-full", className)}>
-      <h3 className="font-display text-lg font-semibold text-text-primary">{block.title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-text-secondary">{block.description}</p>
+      <h3 className="font-display text-lg font-semibold text-foreground">{block.title}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{block.description}</p>
       {block.metrics && block.metrics.length > 0 ? (
-        <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-border-subtle pt-6">
+        <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-6">
           {block.metrics.map((m) => (
             <div key={m.label}>
-              <dt className="text-xs uppercase tracking-wider text-text-muted">{m.label}</dt>
-              <dd className="mt-1 font-display text-lg font-semibold text-text-primary">
+              <dt className="text-xs uppercase tracking-wider text-caption-foreground">{m.label}</dt>
+              <dd className="mt-1 font-display text-lg font-semibold text-foreground">
                 {m.value}
               </dd>
             </div>

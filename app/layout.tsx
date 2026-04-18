@@ -47,7 +47,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakarta.variable} ${ibmMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg-primary font-sans text-text-primary">
+      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <AuthProvider>
           <WelcomeAuthModal />
           <AuraBackdrop />

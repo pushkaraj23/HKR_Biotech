@@ -26,15 +26,15 @@ export function ProductEnquiryCard({ product, categoryLabel, className }: Produc
         className,
       )}
     >
-      <h2 className="font-display text-xl font-semibold text-slate-950">Product enquiry</h2>
-      <p className="mt-2 text-sm text-slate-600">
+      <h2 className="font-display text-xl font-semibold text-light-foreground">Product enquiry</h2>
+      <p className="mt-2 text-sm text-caption-foreground">
         We route RFQs to our technical team — include purity, quantity band, and analytical expectations.
       </p>
 
       <div className="mt-6 rounded-2xl border border-slate-200/80 bg-white/90 p-4 shadow-inner">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Pre-filled context</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-caption-foreground">Pre-filled context</p>
         <pre
-          className="mt-3 max-h-40 overflow-auto whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-slate-800"
+          className="mt-3 max-h-40 overflow-auto whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-light-foreground"
           tabIndex={0}
         >
           {summary}

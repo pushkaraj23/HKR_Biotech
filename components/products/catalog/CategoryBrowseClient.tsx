@@ -22,23 +22,23 @@ const WHY_ITEMS = [
   {
     title: "Analytical depth",
     body: "Identity and purity context aligned to how you will use the material in the lab.",
-    tint: "from-teal-950/25 to-bg-secondary/80",
-    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3)",
+    tint: "from-tint-primary/25 to-surface/80",
+    orb: "var(--product-orb-carbohydrates)",
+    orbShadow: "var(--orb-shadow-primary)",
   },
   {
     title: "Scale flexibility",
     body: "Milligram exploration through multi-gram supply with transparent feasibility gates.",
-    tint: "from-violet-950/25 to-bg-secondary/80",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25)",
+    tint: "from-tint-accent/25 to-surface/80",
+    orb: "var(--product-orb-api-impurities)",
+    orbShadow: "var(--orb-shadow-accent)",
   },
   {
     title: "Export-ready mindset",
     body: "Documentation and communication tuned for Indian and international procurement teams.",
-    tint: "from-rose-950/25 to-bg-secondary/80",
-    orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22)",
+    tint: "from-tint-danger/25 to-surface/80",
+    orb: "var(--product-orb-nucleotides)",
+    orbShadow: "var(--orb-shadow-danger)",
   },
 ] as const;
 
@@ -82,28 +82,28 @@ export function CategoryBrowseClient({
           <section aria-labelledby="category-list-heading">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-teal-400">
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
                   {category.name}
                 </p>
                 <h2
                   id="category-list-heading"
-                  className="mt-1 font-display text-2xl font-bold tracking-tight text-white md:text-3xl"
+                  className="mt-1 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
                 >
                   Catalogue Entries
                 </h2>
               </div>
-              <p className="text-sm text-slate-400">
-                <span className="font-semibold text-white">{filtered.length}</span> shown in this family
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{filtered.length}</span> shown in this family
               </p>
             </div>
 
             {filtered.length === 0 ? (
-              <div className="mt-8 rounded-[1.75rem] border border-dashed border-teal-500/30 bg-white/[0.04] px-8 py-14 text-center">
-                <p className="font-medium text-white">No products match these filters.</p>
+              <div className="mt-8 rounded-[1.75rem] border border-dashed border-primary/30 bg-on-dark/[0.04] px-8 py-14 text-center">
+                <p className="font-medium text-foreground">No products match these filters.</p>
                 <button
                   type="button"
                   onClick={() => setState({ ...initial, category: category.slug })}
-                  className="mt-4 text-sm font-semibold text-teal-400 underline"
+                  className="mt-4 text-sm font-semibold text-primary underline"
                 >
                   Clear search & availability
                 </button>
@@ -125,7 +125,7 @@ export function CategoryBrowseClient({
         {/* CTA — "Need a non-catalog variant?" */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] p-8 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl md:p-10"
+            className="relative overflow-hidden rounded-[2rem] border border-overlay p-8 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl md:p-10"
             style={{
               background:
                 "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 50%, rgba(91,33,182,0.12) 100%)",
@@ -152,18 +152,18 @@ export function CategoryBrowseClient({
               aria-hidden
             />
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
                 Custom synthesis
               </p>
               <h2
                 id="category-cta-heading"
-                className="mt-2 font-display text-2xl font-bold text-white md:text-3xl"
+                className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl"
               >
                 Need a non-catalogue variant?
               </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                 We routinely deliver analogues, salt forms, and labelled batches within the{" "}
-                <span className="font-medium text-white">{category.name}</span> space — reference this
+                <span className="font-medium text-foreground">{category.name}</span> space — reference this
                 family in your RFQ.
               </p>
               <ButtonLink
@@ -180,16 +180,16 @@ export function CategoryBrowseClient({
         {/* Related categories */}
         <RevealOnScroll>
           <section aria-labelledby="related-cats-heading">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-violet-400">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
               Adjacent chemistries
             </p>
             <h2
               id="related-cats-heading"
-              className="mt-2 font-display text-2xl font-bold tracking-tight text-white md:text-3xl"
+              className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
             >
               Related Categories
             </h2>
-            <p className="mt-3 text-sm text-slate-400">
+            <p className="mt-3 text-sm text-muted-foreground">
               Explore adjacent chemistries often combined in route design.
             </p>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -205,19 +205,19 @@ export function CategoryBrowseClient({
         {/* Why HKR */}
         <RevealOnScroll>
           <section
-            className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] px-8 py-10 backdrop-blur-sm md:px-12"
+            className="relative overflow-hidden rounded-[2rem] border border-overlay px-8 py-10 backdrop-blur-sm md:px-12"
             style={{
               background:
                 "linear-gradient(145deg, rgba(12,21,38,0.95) 0%, rgba(7,14,27,0.9) 100%)",
             }}
             aria-labelledby="trust-heading"
           >
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-rose-400">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-danger">
               Why choose HKR
             </p>
             <h2
               id="trust-heading"
-              className="mt-2 font-display text-2xl font-bold tracking-tight text-white md:text-3xl"
+              className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
             >
               What Teams Value About Our Catalogue Chemistry
             </h2>
@@ -225,18 +225,18 @@ export function CategoryBrowseClient({
               {WHY_ITEMS.map((item, i) => (
                 <RevealOnScroll key={item.title} delay={i * 70}>
                   <li
-                    className={`group h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b ${item.tint} p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.5)]`}
+                    className={`group h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${item.tint} p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.5)]`}
                   >
                     <div
-                      className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
+                      className="mb-5 h-10 w-10 rounded-full ring-2 ring-overlay"
                       style={{
                         background: item.orb,
-                        boxShadow: `${item.orbShadow}, inset 0 -2px 5px rgba(0,0,0,0.06)`,
+                        boxShadow: `${item.orbShadow}, var(--elev-inset-soft)`,
                       }}
                       aria-hidden
                     />
-                    <h3 className="font-display text-lg font-semibold text-slate-100">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-400">{item.body}</p>
+                    <h3 className="font-display text-lg font-semibold text-foreground">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                   </li>
                 </RevealOnScroll>
               ))}
@@ -244,7 +244,7 @@ export function CategoryBrowseClient({
             <RevealOnScroll delay={240}>
               <Link
                 href="/capabilities"
-                className="mt-8 inline-flex text-sm font-semibold text-teal-400 hover:underline"
+                className="mt-8 inline-flex text-sm font-semibold text-primary hover:underline"
               >
                 View capabilities →
               </Link>

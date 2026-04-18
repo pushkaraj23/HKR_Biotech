@@ -56,8 +56,8 @@ export function GlassProductsHero({
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-[2rem] border border-white/[0.08]",
-          !backgroundImage && "bg-gradient-to-br from-bg-secondary via-bg-secondary to-teal-950/20",
+          "relative overflow-hidden rounded-[2rem] border border-overlay",
+          !backgroundImage && "bg-gradient-to-br from-bg-secondary via-surface to-tint-primary/20",
           "shadow-[0_8px_48px_-12px_rgba(0,0,0,0.4),0_2px_8px_-2px_rgba(0,0,0,0.2)]",
         )}
       >
@@ -140,14 +140,14 @@ export function GlassProductsHero({
 
         <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[60%]")}>
           {eyebrow ? (
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-teal-400">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
               {eyebrow}
             </p>
           ) : null}
 
           <h1
             className={cn(
-              "font-display text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.25rem]",
+              "font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-[3.25rem]",
               eyebrow ? "mt-3" : "",
             )}
           >
@@ -155,14 +155,14 @@ export function GlassProductsHero({
           </h1>
 
           {tagline ? (
-            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-teal-300/90 md:text-lg">
+            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-primary-mid/90 md:text-lg">
               {tagline}
             </p>
           ) : null}
 
           <p
             className={cn(
-              "max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg",
+              "max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg",
               tagline ? "mt-4" : "mt-5",
             )}
           >
@@ -176,7 +176,7 @@ export function GlassProductsHero({
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#14b8a6,#2dd4bf)] px-8 py-3 text-sm font-semibold text-white shadow-[0_14px_40px_-10px_rgba(45,212,191,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-12px_rgba(45,212,191,0.45)]"
+                    className="inline-flex items-center justify-center rounded-full bg-cta-gradient px-8 py-3 text-sm font-semibold text-primary-foreground shadow-primary-glow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
                   >
                     {cta.label}
                   </Link>
@@ -184,7 +184,7 @@ export function GlassProductsHero({
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className="inline-flex items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.06] px-8 py-3 text-sm font-semibold text-slate-200 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.4)]"
+                    className="inline-flex items-center justify-center rounded-full border border-overlay-hover bg-on-dark/[0.06] px-8 py-3 text-sm font-semibold text-slate-200 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.4)]"
                   >
                     {cta.label}
                   </Link>

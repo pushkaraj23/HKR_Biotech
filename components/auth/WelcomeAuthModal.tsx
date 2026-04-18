@@ -86,28 +86,28 @@ export function WelcomeAuthModal() {
     >
       <div
         className={cn(
-          "relative w-full max-w-md rounded-3xl border border-white/[0.1] bg-bg-secondary/95 p-8 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.7)] backdrop-blur-2xl",
+          "relative w-full max-w-md rounded-3xl border border-overlay-hover bg-surface/95 p-8 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.7)] backdrop-blur-2xl",
         )}
       >
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-teal-400/90">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-primary/90">
           Welcome
         </p>
-        <h2 id="welcome-auth-title" className="mt-2 font-display text-2xl font-semibold tracking-tight text-white">
+        <h2 id="welcome-auth-title" className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground">
           Sign in to get the full experience
         </h2>
-        <p className="mt-3 text-sm leading-relaxed text-slate-400">
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           Create an account or sign in to save enquiries, track RFQs, and unlock personalized features.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-stretch">
           <Link
             href={`/login?callbackUrl=${encodeURIComponent("/")}`}
-            className="inline-flex flex-1 items-center justify-center rounded-full bg-[linear-gradient(135deg,#14b8a6,#2dd4bf)] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(45,212,191,0.45)] transition-transform hover:-translate-y-0.5"
+            className="inline-flex flex-1 items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-primary-glow transition-transform hover:-translate-y-0.5"
           >
             Sign in
           </Link>
           <Link
             href={`/signup?callbackUrl=${encodeURIComponent("/")}`}
-            className="inline-flex flex-1 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-lg transition-colors hover:bg-white/[0.1]"
+            className="inline-flex flex-1 items-center justify-center rounded-full border border-overlay-strong bg-on-dark/[0.06] px-6 py-2.5 text-sm font-semibold text-foreground backdrop-blur-lg transition-colors hover:bg-on-dark/[0.1]"
           >
             Create account
           </Link>
@@ -115,7 +115,7 @@ export function WelcomeAuthModal() {
         <button
           type="button"
           onClick={dismiss}
-          className="mt-6 w-full text-center text-sm font-medium text-slate-500 transition-colors hover:text-slate-300"
+          className="mt-6 w-full text-center text-sm font-medium text-caption-foreground transition-colors hover:text-muted-foreground"
         >
           Continue browsing
         </button>

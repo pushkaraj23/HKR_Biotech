@@ -21,11 +21,11 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
           </p>
           <h2
             id="related-products-heading"
-            className="mt-1 font-display text-2xl font-semibold tracking-tight text-slate-950"
+            className="mt-1 font-display text-2xl font-semibold tracking-tight text-light-foreground"
           >
             Related catalogue entries
           </h2>
-          <p className="mt-2 max-w-2xl text-sm text-slate-600">
+          <p className="mt-2 max-w-2xl text-sm text-caption-foreground">
             Often specified alongside this SKU in discovery and process programmes.
           </p>
         </div>
@@ -38,7 +38,7 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
                 <div className="flex gap-4">
                   <StructurePlaceholder compact className="h-24 w-24 shrink-0 rounded-xl" />
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-sm font-semibold leading-snug text-slate-950">
+                    <h3 className="font-display text-sm font-semibold leading-snug text-light-foreground">
                       <Link
                         href={`/products/${p.categorySlug}/${p.slug}`}
                         className="transition hover:text-teal-800"
@@ -46,8 +46,8 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
                         {p.chemicalName}
                       </Link>
                     </h3>
-                    <p className="mt-1 font-mono text-[11px] text-slate-500">{p.catalogNumber}</p>
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-slate-600">
+                    <p className="mt-1 font-mono text-[11px] text-caption-foreground">{p.catalogNumber}</p>
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-caption-foreground">
                       {p.shortDescription}
                     </p>
                   </div>

@@ -25,7 +25,7 @@ const caps = [
 
 export function HomeCoreCapabilities() {
   return (
-    <SectionWrapper className="bg-gradient-to-b from-transparent via-bg-secondary/30 to-transparent">
+    <SectionWrapper className="bg-gradient-to-b from-transparent via-surface/30 to-transparent">
       <RevealOnScroll>
         <SectionHeading
           eyebrow="Capabilities"
@@ -37,8 +37,8 @@ export function HomeCoreCapabilities() {
         {caps.map((c, i) => (
           <RevealOnScroll key={c.title} delay={i * 50}>
             <GlassCard className="h-full p-8">
-              <h3 className="font-display text-xl font-semibold text-text-primary">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-text-secondary">{c.body}</p>
+              <h3 className="font-display text-xl font-semibold text-foreground">{c.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
             </GlassCard>
           </RevealOnScroll>
         ))}
@@ -47,7 +47,7 @@ export function HomeCoreCapabilities() {
         <div className="mt-10 text-center">
           <Link
             href="/capabilities"
-            className="text-sm font-medium text-accent-primary hover:underline"
+            className="text-sm font-medium text-primary hover:underline"
           >
             View full capability map →
           </Link>

@@ -11,21 +11,18 @@ type CTASectionProps = {
 export function CTASection({ title, description, className }: CTASectionProps) {
   return (
     <SectionWrapper className={cn("py-16 md:py-20", className)}>
-      <div className="relative overflow-hidden rounded-[2rem] border border-border-subtle bg-gradient-to-r from-bg-secondary via-bg-primary to-bg-secondary px-8 py-12 shadow-[0_4px_32px_-8px_rgba(0,0,0,0.2)] md:px-14 md:py-16">
+      <div className="relative overflow-hidden rounded-[2rem] border border-border bg-gradient-to-r from-surface via-background to-surface px-8 py-12 shadow-elevated-sm md:px-14 md:py-16">
         <div
           className="pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-80"
-          style={{
-            background:
-              "radial-gradient(ellipse at 70% 50%, rgba(20,184,166,0.08), transparent 55%)",
-          }}
+          style={{ background: "var(--cta-radial-glow)" }}
         />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
-            <h2 className="font-display text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {title}
             </h2>
             {description ? (
-              <p className="mt-4 text-lg leading-relaxed text-text-secondary">{description}</p>
+              <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{description}</p>
             ) : null}
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

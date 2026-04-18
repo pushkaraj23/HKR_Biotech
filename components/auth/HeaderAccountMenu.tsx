@@ -40,7 +40,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
     <div className={cn("relative", className)} ref={ref}>
       <button
         type="button"
-        className="rounded-full shadow-[0_8px_28px_-8px_rgba(0,0,0,0.5)] ring-2 ring-white/20 transition-transform hover:scale-[1.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70"
+        className="rounded-full shadow-[0_8px_28px_-8px_rgba(8,26,120,0.35)] ring-2 ring-white/25 transition-transform hover:scale-[1.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
         aria-expanded={menuOpen}
         aria-haspopup="true"
         aria-label="Account menu"
@@ -50,18 +50,18 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
       </button>
       {menuOpen ? (
         <div
-          className="absolute right-0 z-[60] mt-2 w-[min(calc(100vw-2rem),14rem)] rounded-2xl border border-white/[0.1] bg-bg-secondary/95 py-1 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl"
+          className="absolute right-0 z-[60] mt-2 w-[min(calc(100vw-2rem),14rem)] rounded-2xl border border-white/20 bg-surface/98 py-1 text-secondary-foreground shadow-elevated-lg backdrop-blur-xl"
           role="menu"
         >
-          <p className="border-b border-white/[0.06] px-4 py-2.5 text-sm text-slate-200 lg:hidden">
-            Hi, <span className="font-semibold text-white">{firstName}</span>!
+          <p className="border-b border-white/15 px-4 py-2.5 text-sm text-secondary-foreground/95 lg:hidden">
+            Hi, <span className="font-semibold text-secondary-foreground">{firstName}</span>!
           </p>
-          <p className="border-b border-white/[0.06] px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-slate-500 lg:hidden">
+          <p className="border-b border-white/15 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-secondary-foreground/65 lg:hidden">
             {user.email}
           </p>
           <Link
             href="/contact"
-            className="block px-4 py-2.5 text-sm text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white"
+            className="block px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
             role="menuitem"
             onClick={() => setMenuOpen(false)}
           >
@@ -69,7 +69,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
           </Link>
           <button
             type="button"
-            className="w-full px-4 py-2.5 text-left text-sm text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white"
+            className="w-full px-4 py-2.5 text-left text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
             role="menuitem"
             onClick={onSignOut}
           >

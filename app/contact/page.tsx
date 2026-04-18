@@ -35,7 +35,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
 
         {/* Hero — photo with dark wash */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
             <Image
               src={HERO_IMAGE}
               alt="Laboratory discussion"
@@ -72,13 +72,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-400">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
                 Get in touch
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Enquiries & RFQ
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-400">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 Share your target structure, quantity band, and analytical expectations
                 — our team will respond with scientific questions, not just pricing.
               </p>
@@ -92,7 +92,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
           {/* Left column: info cards */}
           <div className="space-y-6 lg:col-span-2">
             <RevealOnScroll>
-              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-teal-950/25 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/25 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
                   className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
@@ -101,25 +101,25 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   }}
                   aria-hidden
                 />
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-teal-400">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
                   Direct contact
                 </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-slate-100">
+                <h2 className="mt-2 font-display text-lg font-semibold text-foreground/95">
                   Reach Us
                 </h2>
-                <ul className="mt-4 space-y-3 text-sm text-slate-400">
+                <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Email</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-caption-foreground">Email</span>
                     <br />
                     <span className="font-medium text-slate-200">enquiries@hkrbio.tech</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Phone</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-caption-foreground">Phone</span>
                     <br />
                     <span className="font-medium text-slate-200">+1 (555) 010-4420</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">Hours</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-caption-foreground">Hours</span>
                     <br />
                     <span className="font-medium text-slate-200">Mon–Fri, 08:00–18:00 (local)</span>
                   </li>
@@ -128,7 +128,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
             </RevealOnScroll>
 
             <RevealOnScroll delay={60}>
-              <div className="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b from-violet-950/25 to-bg-secondary/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-accent/25 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
                 <div
                   className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
@@ -137,13 +137,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   }}
                   aria-hidden
                 />
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-violet-400">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">
                   Product enquiry
                 </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-slate-100">
+                <h2 className="mt-2 font-display text-lg font-semibold text-foreground/95">
                   From the Catalogue?
                 </h2>
-                <p className="mt-3 text-sm text-slate-400">
+                <p className="mt-3 text-sm text-muted-foreground">
                   Visiting from a catalogue entry? Your product reference is
                   pre-filled in the form automatically.
                 </p>
@@ -158,7 +158,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
             </RevealOnScroll>
 
             <RevealOnScroll delay={120}>
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-overlay shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
                 <Image
                   src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=600&h=400&fit=crop&q=80&auto=format"
                   alt="Modern laboratory facility"
@@ -183,10 +183,10 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   aria-hidden
                 />
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-teal-300">
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
                     Location
                   </p>
-                  <p className="mt-2 font-display text-lg font-bold text-white">
+                  <p className="mt-2 font-display text-lg font-bold text-foreground">
                     Purpose-built laboratories for traceable science.
                   </p>
                 </div>
@@ -198,7 +198,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
           <div className="lg:col-span-3">
             <RevealOnScroll>
               <div
-                className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] p-7 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-[2rem] border border-overlay p-7 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-10"
                 style={{
                   background:
                     "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
@@ -233,13 +233,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 />
 
                 <div className="relative">
-                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
+                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                     Send a message
                   </p>
-                  <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">
+                  <h2 className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl">
                     Submit Your Enquiry
                   </h2>
-                  <p className="mt-3 max-w-lg text-sm text-slate-400">
+                  <p className="mt-3 max-w-lg text-sm text-muted-foreground">
                     Include your target, quantity, purity requirements, and timeline
                     for the fastest technical response.
                   </p>

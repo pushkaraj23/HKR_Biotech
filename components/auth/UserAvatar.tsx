@@ -48,7 +48,7 @@ export function UserAvatar({ user, className, size = "md" }: UserAvatarProps) {
   return (
     <span
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500/40 to-teal-600/25 font-semibold text-teal-50 ring-2 ring-white/15",
+        "flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/40 to-teal-600/25 font-semibold text-teal-50 ring-2 ring-white/15",
         sizeCls,
         className,
       )}

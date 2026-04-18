@@ -5,37 +5,37 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const CARD_STYLES = [
   {
-    tint: "from-teal-950/25 to-bg-secondary/80",
-    ring: "ring-teal-500/30",
-    shadow: "shadow-[0_6px_20px_-4px_rgba(20,184,166,0.25)]",
+    tint: "from-tint-primary/25 to-surface/80",
+    ring: "ring-primary/35",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(255,177,98,0.22)]",
     image:
       "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-violet-950/25 to-bg-secondary/80",
-    ring: "ring-violet-500/30",
-    shadow: "shadow-[0_6px_20px_-4px_rgba(91,33,182,0.2)]",
+    tint: "from-tint-accent/25 to-surface/80",
+    ring: "ring-secondary/35",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(44,59,77,0.2)]",
     image:
       "https://plus.unsplash.com/premium_photo-1681426676206-0f2c02b48aff?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-rose-950/25 to-bg-secondary/80",
-    ring: "ring-rose-500/30",
-    shadow: "shadow-[0_6px_20px_-4px_rgba(159,18,57,0.18)]",
+    tint: "from-tint-danger/25 to-surface/80",
+    ring: "ring-danger/35",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(163,81,57,0.18)]",
     image:
       "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-teal-950/20 to-violet-950/15",
-    ring: "ring-teal-500/25",
-    shadow: "shadow-[0_6px_20px_-4px_rgba(20,184,166,0.2)]",
+    tint: "from-tint-primary/20 to-tint-accent/15",
+    ring: "ring-primary/30",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(255,177,98,0.18)]",
     image:
       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=200&h=200&fit=crop&q=80&auto=format",
   },
   {
-    tint: "from-violet-950/20 to-rose-950/15",
-    ring: "ring-violet-500/25",
-    shadow: "shadow-[0_6px_20px_-4px_rgba(91,33,182,0.18)]",
+    tint: "from-tint-accent/20 to-tint-danger/15",
+    ring: "ring-secondary/30",
+    shadow: "shadow-[0_6px_20px_-4px_rgba(44,59,77,0.16)]",
     image:
       "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=200&h=200&fit=crop&q=80&auto=format",
   },
@@ -46,13 +46,13 @@ export function LandingIndustries() {
     <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-teal-400">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-secondary">
             Industries
           </p>
-          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Where This Chemistry Lands
           </h2>
-          <p className="mt-3 max-w-2xl text-lg text-slate-400">
+          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             From pharma CMC to oligo programs — we align deliverables to your governance model.
           </p>
         </RevealOnScroll>
@@ -64,7 +64,7 @@ export function LandingIndustries() {
               <RevealOnScroll key={ind.slug} delay={i * 70}>
                 <Link
                   href={`/industries#${ind.slug}`}
-                  className={`group relative block h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-b ${style.tint} p-7 shadow-[0_6px_28px_-8px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.3)]`}
+                  className={`group relative block h-full overflow-hidden rounded-[1.75rem] border border-border-strong/40 bg-gradient-to-b ${style.tint} p-7 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-md`}
                 >
                   <div
                     className={`relative mb-5 h-12 w-12 overflow-hidden rounded-full ring-2 ${style.ring} ${style.shadow}`}
@@ -77,13 +77,13 @@ export function LandingIndustries() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-white">
+                  <h3 className="font-display text-lg font-semibold text-foreground">
                     {ind.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {ind.description}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-slate-300 transition-colors group-hover:text-white">
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
                     Learn more
                     <span className="transition-transform group-hover:translate-x-1" aria-hidden>
                       →
@@ -98,7 +98,7 @@ export function LandingIndustries() {
         <RevealOnScroll className="mt-10 flex justify-center">
           <Link
             href="/industries"
-            className="rounded-full border border-white/[0.1] bg-white/[0.06] px-8 py-3 text-sm font-semibold text-slate-200 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all hover:shadow-[0_8px_28px_-8px_rgba(20,184,166,0.12)]"
+            className="rounded-full border border-border-strong/50 bg-card/95 px-8 py-3 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md transition-all hover:border-primary/35 hover:shadow-md"
           >
             Industry overview →
           </Link>

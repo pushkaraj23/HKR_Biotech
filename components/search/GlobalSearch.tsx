@@ -144,7 +144,7 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[min(20vh,10rem)]">
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-background/75 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden
       />
@@ -153,11 +153,11 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-label="Site search"
-        className="relative mx-4 w-full max-w-xl animate-[fade-up_0.18s_ease-out] overflow-hidden rounded-2xl border border-white/[0.1] bg-bg-secondary/95 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
+        className="relative mx-4 w-full max-w-xl animate-[fade-up_0.18s_ease-out] overflow-hidden rounded-2xl border border-overlay-hover bg-surface/95 shadow-elevated-lg backdrop-blur-2xl"
       >
         {/* Input */}
-        <div className="flex items-center gap-3 border-b border-white/[0.08] px-4 py-3">
-          <IconSearch className="h-5 w-5 shrink-0 text-slate-500" />
+        <div className="flex items-center gap-3 border-b border-overlay px-4 py-3">
+          <IconSearch className="h-5 w-5 shrink-0 text-caption-foreground" />
           <input
             ref={inputRef}
             type="text"
@@ -165,11 +165,11 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-500"
+            className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-caption-foreground"
             autoComplete="off"
             spellCheck={false}
           />
-          <kbd className="hidden shrink-0 rounded-md border border-white/[0.1] bg-white/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-slate-500 sm:inline">
+          <kbd className="hidden shrink-0 rounded-md border border-overlay-hover bg-on-dark/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-caption-foreground sm:inline">
             ESC
           </kbd>
         </div>
@@ -177,20 +177,20 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
         {/* Results */}
         <div ref={listRef} className="max-h-[min(60vh,26rem)] overflow-y-auto overscroll-contain p-2">
           {query.trim() && flat.length === 0 && (
-            <p className="px-3 py-8 text-center text-sm text-slate-500">
+            <p className="px-3 py-8 text-center text-sm text-caption-foreground">
               No results for &ldquo;{query}&rdquo;
             </p>
           )}
 
           {!query.trim() && (
-            <p className="px-3 py-8 text-center text-sm text-slate-500">
+            <p className="px-3 py-8 text-center text-sm text-caption-foreground">
               Start typing to search the catalogue, services, and pages.
             </p>
           )}
 
           {grouped.map((group) => (
             <div key={group.kind} className="mb-1">
-              <p className="px-3 pb-1.5 pt-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <p className="px-3 pb-1.5 pt-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-caption-foreground">
                 {KIND_LABELS[group.kind]}
               </p>
               {group.items.map((item) => {
@@ -210,16 +210,16 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
                     className={cn(
                       "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors duration-100",
                       isActive
-                        ? "bg-teal-500/10 text-white"
-                        : "text-slate-400 hover:bg-white/[0.04]",
+                        ? "bg-primary/10 text-on-dark"
+                        : "text-muted-foreground hover:bg-on-dark/[0.04]",
                     )}
                   >
                     <span
                       className={cn(
                         "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors duration-100",
                         isActive
-                          ? "border-teal-500/30 bg-teal-500/15 text-teal-400"
-                          : "border-white/[0.08] bg-white/[0.04] text-slate-500",
+                          ? "border-primary/30 bg-primary/15 text-primary"
+                          : "border-overlay bg-on-dark/[0.04] text-caption-foreground",
                       )}
                     >
                       {KIND_ICONS[item.kind]}
@@ -228,12 +228,12 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
                       <span className="block truncate font-medium leading-snug">
                         {item.title}
                       </span>
-                      <span className="block truncate text-xs leading-snug text-slate-500">
+                      <span className="block truncate text-xs leading-snug text-caption-foreground">
                         {item.subtitle}
                       </span>
                     </span>
                     {isActive && (
-                      <kbd className="hidden shrink-0 rounded-md border border-white/[0.1] bg-white/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-slate-500 sm:inline">
+                      <kbd className="hidden shrink-0 rounded-md border border-overlay-hover bg-on-dark/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-caption-foreground sm:inline">
                         ↵
                       </kbd>
                     )}
@@ -246,14 +246,14 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
 
         {/* Footer */}
         {flat.length > 0 && (
-          <div className="flex items-center gap-4 border-t border-white/[0.08] px-4 py-2 text-[11px] text-slate-500">
+          <div className="flex items-center gap-4 border-t border-overlay px-4 py-2 text-[11px] text-caption-foreground">
             <span className="flex items-center gap-1">
-              <kbd className="rounded border border-white/[0.1] bg-white/[0.06] px-1 py-0.5 font-mono text-[9px]">↑</kbd>
-              <kbd className="rounded border border-white/[0.1] bg-white/[0.06] px-1 py-0.5 font-mono text-[9px]">↓</kbd>
+              <kbd className="rounded border border-overlay-hover bg-on-dark/[0.06] px-1 py-0.5 font-mono text-[9px]">↑</kbd>
+              <kbd className="rounded border border-overlay-hover bg-on-dark/[0.06] px-1 py-0.5 font-mono text-[9px]">↓</kbd>
               navigate
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="rounded border border-white/[0.1] bg-white/[0.06] px-1 py-0.5 font-mono text-[9px]">↵</kbd>
+              <kbd className="rounded border border-overlay-hover bg-on-dark/[0.06] px-1 py-0.5 font-mono text-[9px]">↵</kbd>
               open
             </span>
             <span className="ml-auto tabular-nums">{flat.length} result{flat.length !== 1 && "s"}</span>
@@ -271,12 +271,12 @@ export function SearchTrigger({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="flex h-9 items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] pl-3 pr-2.5 text-xs text-slate-400 shadow-sm backdrop-blur-lg transition-all duration-200 hover:border-white/[0.15] hover:bg-white/[0.1] hover:text-white hover:shadow-md"
+      className="flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 pl-3 pr-2.5 text-xs text-secondary-foreground/90 shadow-sm backdrop-blur-lg transition-all duration-200 hover:border-white/30 hover:bg-white/15 hover:text-secondary-foreground hover:shadow-md"
       aria-label="Search"
     >
       <IconSearch className="h-3.5 w-3.5" />
       <span className="hidden sm:inline">Search</span>
-      <kbd className="hidden rounded-[5px] border border-white/[0.1] bg-white/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-slate-500 sm:inline">
+      <kbd className="hidden rounded-[5px] border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono text-[10px] font-medium text-secondary-foreground/80 sm:inline">
         ⌘K
       </kbd>
     </button>

@@ -13,10 +13,10 @@ export function ContactForm({ className, defaultProductRef = "", dark = false }:
   const [status, setStatus] = useState<"idle" | "sent">("idle");
 
   const fieldBase =
-    "w-full rounded-xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 text-sm text-slate-100 shadow-sm backdrop-blur-sm outline-none transition-all duration-200 placeholder:text-slate-500 focus:border-teal-500/40 focus:bg-white/[0.09] focus:shadow-[0_0_0_3px_rgba(20,184,166,0.12)]";
+    "w-full rounded-xl border border-overlay-hover bg-on-dark/[0.06] px-4 py-3 text-sm text-foreground/95 shadow-sm backdrop-blur-sm outline-none transition-all duration-200 placeholder:text-caption-foreground focus:border-primary/40 focus:bg-on-dark/[0.09] focus:ring-2 focus:ring-ring";
 
   const labelClass =
-    "mb-1.5 block font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400";
+    "mb-1.5 block font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground";
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -27,23 +27,23 @@ export function ContactForm({ className, defaultProductRef = "", dark = false }:
     return (
         <div
           className={cn(
-            "rounded-2xl p-10 text-center border border-white/10 bg-white/[0.04]",
+            "rounded-2xl p-10 text-center border border-white/10 bg-on-dark/[0.04]",
             className,
           )}
         >
-        <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-teal-600 shadow-[0_6px_20px_-4px_rgba(20,184,166,0.4)]">
-          <span className="text-lg text-white" aria-hidden>✓</span>
+        <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary-deep shadow-[0_6px_20px_-4px_rgba(20,184,166,0.4)]">
+          <span className="text-lg text-foreground" aria-hidden>✓</span>
         </div>
-        <h3 className="font-display text-lg font-semibold text-white">
+        <h3 className="font-display text-lg font-semibold text-foreground">
           Enquiry received
         </h3>
-        <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
+        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
           Thank you — this demo form does not transmit data. Connect a backend when ready.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-5 rounded-full px-6 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 border border-white/15 bg-white/[0.06] text-white hover:bg-white/10"
+          className="mt-5 rounded-full px-6 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 border border-white/15 bg-on-dark/[0.06] text-foreground hover:bg-white/10"
         >
           Send another
         </button>
@@ -84,7 +84,7 @@ export function ContactForm({ className, defaultProductRef = "", dark = false }:
       </div>
       <button
         type="submit"
-        className="mt-6 w-full rounded-full py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 sm:w-auto sm:px-12 bg-white text-slate-950 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]"
+        className="mt-6 w-full rounded-full py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 sm:w-auto sm:px-12 bg-white text-light-foreground shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]"
       >
         Send enquiry
       </button>

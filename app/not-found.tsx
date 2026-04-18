@@ -8,11 +8,11 @@ export default function NotFound() {
       <Link href="/" className="mb-8 inline-flex" aria-label="HKR Biotech Labs home">
         <BrandLogo size="md" />
       </Link>
-      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-primary">404</p>
-      <h1 className="mt-4 font-display text-3xl font-bold text-white md:text-4xl">
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">404</p>
+      <h1 className="mt-4 font-display text-3xl font-bold text-on-dark md:text-4xl">
         This page could not be resolved
       </h1>
-      <p className="mt-4 max-w-md text-slate-400">
+      <p className="mt-4 max-w-md text-muted-foreground">
         The resource may have moved, or the link may be outdated. Return to the catalogue or contact our
         team for assistance.
       </p>
@@ -22,7 +22,7 @@ export default function NotFound() {
           Products
         </ButtonLink>
       </div>
-      <Link href="/contact" className="mt-6 text-sm text-accent-primary hover:underline">
+      <Link href="/contact" className="mt-6 text-sm text-primary hover:underline">
         Contact support →
       </Link>
     </div>

@@ -55,15 +55,15 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
       />
 
       <div className="relative px-8 py-12 md:px-12 md:py-14">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-400">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
           {categoryLabel}
         </p>
 
-        <h1 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+        <h1 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
           {product.chemicalName}
         </h1>
 
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
           {product.shortDescription}
         </p>
 
@@ -77,12 +77,12 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
           ].map((item) => (
             <div
               key={item.label}
-              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-sm"
+              className="flex items-center gap-2 rounded-full border border-white/10 bg-on-dark/[0.06] px-4 py-2 backdrop-blur-sm"
             >
-              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                 {item.label}
               </span>
-              <span className="font-mono text-[13px] font-medium text-teal-200">
+              <span className="font-mono text-[13px] font-medium text-primary-mid">
                 {item.value}
               </span>
             </div>
@@ -93,13 +93,13 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <EnquireGateLink
             href={enquirySectionHref}
-            className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]"
+            className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-light-foreground shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]"
           >
             Request quotation
           </EnquireGateLink>
           <EnquireGateLink
             href={enquirySectionHref}
-            className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.06] px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
+            className="inline-flex items-center justify-center rounded-full border border-white/20 bg-on-dark/[0.06] px-8 py-3.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
           >
             Enquire now
           </EnquireGateLink>

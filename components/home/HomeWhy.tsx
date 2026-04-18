@@ -27,13 +27,13 @@ export function HomeWhy() {
             {reasons.map((r, i) => (
               <li
                 key={r.title}
-                className="glass-panel rounded-2xl px-5 py-4 transition hover:border-accent-primary/25"
+                className="glass-panel rounded-2xl px-5 py-4 transition hover:border-primary/25"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-primary">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-2 font-display text-lg font-semibold text-text-primary">{r.title}</h3>
-                <p className="mt-2 text-sm text-text-secondary">{r.text}</p>
+                <h3 className="mt-2 font-display text-lg font-semibold text-foreground">{r.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{r.text}</p>
               </li>
             ))}
           </ul>

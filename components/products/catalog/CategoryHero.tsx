@@ -31,8 +31,8 @@ export function CategoryHero({ category, className }: CategoryHeroProps) {
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-[2rem] border border-teal-500/20",
-          "bg-gradient-to-br from-bg-secondary via-bg-secondary to-teal-950/20",
+          "relative overflow-hidden rounded-[2rem] border border-primary/20",
+          "bg-gradient-to-br from-bg-secondary via-surface to-tint-primary/20",
           "shadow-[0_4px_32px_-8px_rgba(0,0,0,0.4)] backdrop-blur-sm",
         )}
       >
@@ -41,16 +41,16 @@ export function CategoryHero({ category, className }: CategoryHeroProps) {
           aria-hidden
         />
         <div className="relative px-8 py-12 md:px-14 md:py-16">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-teal-400">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-primary">
             Product family
           </p>
-          <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             {category.name}
           </h1>
-          <p className="mt-3 max-w-2xl text-lg font-medium leading-relaxed text-teal-300/90">
+          <p className="mt-3 max-w-2xl text-lg font-medium leading-relaxed text-primary-mid/90">
             {category.tagline}
           </p>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-400 md:text-lg">
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {category.description}
           </p>
         </div>

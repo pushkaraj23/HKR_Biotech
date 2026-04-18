@@ -29,7 +29,7 @@ function FooterLink({
     <Link
       href={href}
       className={cn(
-        "text-sm text-slate-300/90 transition-colors duration-200 hover:text-white",
+        "text-sm font-medium text-white/92 transition-colors duration-200 hover:text-primary-mid hover:underline hover:decoration-primary-mid/80 hover:underline-offset-2",
         className,
       )}
     >
@@ -38,9 +38,22 @@ function FooterLink({
   );
 }
 
-function SectionLabel({ children }: { children: ReactNode }) {
+function SectionLabel({
+  children,
+  variant = "on-gradient",
+}: {
+  children: ReactNode;
+  variant?: "on-gradient" | "on-card";
+}) {
   return (
-    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
+    <p
+      className={cn(
+        "font-mono text-[11px] font-semibold uppercase tracking-[0.22em]",
+        variant === "on-gradient" &&
+          "text-primary-mid [text-shadow:0_1px_2px_rgba(8,26,120,0.45)]",
+        variant === "on-card" && "text-caption-foreground",
+      )}
+    >
       {children}
     </p>
   );
@@ -51,66 +64,52 @@ export function Footer() {
 
   return (
     <footer className="relative mt-20">
-      {/* Outer gradient wrapper */}
       <div
         className="relative overflow-hidden rounded-t-[2.5rem] sm:rounded-t-[3rem]"
-        style={{
-          background:
-            "linear-gradient(155deg, #121f38 0%, #162847 30%, #1a2540 60%, #1e1a32 100%)",
-        }}
+        style={{ background: "var(--footer-surface-gradient)" }}
       >
-        {/* Vivid ambient orbs */}
+        {/* Soft green veils — balances dominant blue without overpowering */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-100 mix-blend-soft-light"
+          style={{ background: "var(--footer-green-wash)" }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-90"
+          style={{ background: "var(--footer-green-wash-soft)" }}
+          aria-hidden
+        />
+
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <div
             className="absolute -left-[12%] top-[-8%] h-[min(32rem,65vw)] w-[min(32rem,65vw)] rounded-full blur-[100px] opacity-[0.35]"
-            style={{
-              background:
-                "radial-gradient(circle at 45% 40%, rgba(20,184,166,0.7), rgba(15,118,110,0.2) 48%, transparent 68%)",
-            }}
+            style={{ background: "var(--footer-orb-a)" }}
           />
           <div
             className="absolute -right-[10%] top-[15%] h-[min(28rem,55vw)] w-[min(28rem,55vw)] rounded-full blur-[90px] opacity-[0.3]"
-            style={{
-              background:
-                "radial-gradient(circle at 55% 45%, rgba(91,33,182,0.65), rgba(124,58,237,0.15) 46%, transparent 65%)",
-            }}
+            style={{ background: "var(--footer-orb-b)" }}
           />
           <div
             className="absolute bottom-[-10%] left-[20%] h-[min(24rem,50vw)] w-[min(24rem,50vw)] rounded-full blur-[100px] opacity-[0.25]"
-            style={{
-              background:
-                "radial-gradient(circle at 50% 55%, rgba(159,18,57,0.6), rgba(190,24,93,0.12) 48%, transparent 68%)",
-            }}
+            style={{ background: "var(--footer-orb-c)" }}
           />
-          {/* Subtle grid overlay */}
           <div
             className="absolute inset-0 opacity-[0.04]"
             style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+              backgroundImage: "var(--footer-grid)",
               backgroundSize: "48px 48px",
             }}
           />
         </div>
 
-        {/* Top gradient glow line */}
-        <div
-          className="h-px w-full"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 5%, rgba(20,184,166,0.6) 25%, rgba(91,33,182,0.5) 50%, rgba(159,18,57,0.4) 75%, transparent 95%)",
-          }}
-          aria-hidden
-        />
+        <div className="h-px w-full" style={{ background: "var(--footer-top-line)" }} aria-hidden />
 
-        {/* Floating glass orbs (decorative) */}
         <div className="pointer-events-none absolute right-[8%] top-10 hidden sm:block" aria-hidden>
           <div
             className="h-14 w-14 rounded-full animate-float-soft"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), rgba(20,184,166,0.4) 55%, rgba(15,118,110,0.2))",
-              boxShadow: "0 8px 28px -6px rgba(20,184,166,0.4), inset 0 -2px 6px rgba(0,0,0,0.15)",
+              background: "var(--footer-float-a)",
+              boxShadow: "var(--footer-float-shadow-a)",
             }}
           />
         </div>
@@ -118,9 +117,8 @@ export function Footer() {
           <div
             className="h-8 w-8 rounded-full animate-float-soft"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), rgba(124,58,237,0.4) 55%, rgba(91,33,182,0.2))",
-              boxShadow: "0 6px 20px -4px rgba(91,33,182,0.35), inset 0 -1px 4px rgba(0,0,0,0.15)",
+              background: "var(--footer-float-b)",
+              boxShadow: "var(--footer-float-shadow-b)",
               animationDelay: "-3s",
             }}
           />
@@ -129,17 +127,15 @@ export function Footer() {
           <div
             className="h-6 w-6 rounded-full animate-float-soft"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), rgba(225,29,72,0.35) 55%, rgba(159,18,57,0.15))",
-              boxShadow: "0 4px 16px -3px rgba(159,18,57,0.3), inset 0 -1px 3px rgba(0,0,0,0.15)",
+              background: "var(--footer-float-c)",
+              boxShadow: "var(--footer-float-shadow-c)",
               animationDelay: "-6s",
             }}
           />
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-16 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-16 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
-            {/* Brand column */}
             <div className="lg:col-span-4">
               <Link
                 href="/"
@@ -148,27 +144,26 @@ export function Footer() {
               >
                 <BrandLogo size="md" priority={false} />
               </Link>
-              <h2 className="mt-7 font-display text-xl font-bold tracking-tight text-white">
+              <h2 className="mt-7 font-display text-xl font-bold tracking-tight text-white [text-shadow:0_2px_16px_rgba(8,26,120,0.35)]">
                 Evidence-grade chemistry
               </h2>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
+              <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/92">
                 Custom synthesis, analytical rigor, and documentation you can defend — from
                 early route scouting through GMP-ready packages.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full border border-teal-500/25 bg-teal-500/[0.08] px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-teal-300 shadow-[0_0_12px_-2px_rgba(20,184,166,0.2)]">
+                <span className="rounded-full border border-primary/45 bg-white/95 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-primary-deep shadow-sm">
                   Analytical depth
                 </span>
-                <span className="rounded-full border border-violet-500/25 bg-violet-500/[0.08] px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-violet-300 shadow-[0_0_12px_-2px_rgba(91,33,182,0.2)]">
+                <span className="rounded-full border border-primary/25 bg-primary/12 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-primary-deep shadow-sm backdrop-blur-sm">
                   cGMP mindset
                 </span>
-                <span className="rounded-full border border-rose-500/25 bg-rose-500/[0.08] px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-rose-300 shadow-[0_0_12px_-2px_rgba(159,18,57,0.2)]">
+                <span className="rounded-full border border-white/35 bg-white/90 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-foreground shadow-sm">
                   Global supply
                 </span>
               </div>
             </div>
 
-            {/* Explore links */}
             <nav className="lg:col-span-2" aria-label="Site sections">
               <SectionLabel>Explore</SectionLabel>
               <ul className="mt-5 space-y-3.5">
@@ -180,7 +175,6 @@ export function Footer() {
               </ul>
             </nav>
 
-            {/* Product families */}
             <div className="lg:col-span-3">
               <SectionLabel>Product families</SectionLabel>
               <ul className="mt-5 space-y-3.5">
@@ -190,53 +184,48 @@ export function Footer() {
                   </li>
                 ))}
                 <li>
-                  <FooterLink
+                  <Link
                     href="/products"
-                    className="font-medium text-teal-400 hover:text-teal-300"
+                    className="text-sm font-semibold text-primary-mid transition-colors duration-200 hover:text-white hover:underline hover:decoration-primary-mid/80 hover:underline-offset-2"
                   >
                     Full catalogue →
-                  </FooterLink>
+                  </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Contact — glass card */}
             <div className="lg:col-span-3">
-              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm">
-                <SectionLabel>Contact</SectionLabel>
+              <div className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-[0_12px_40px_-12px_rgba(8,26,120,0.18)] backdrop-blur-sm">
+                <SectionLabel variant="on-card">Contact</SectionLabel>
                 <address className="mt-5 not-italic">
                   <p className="text-sm leading-relaxed">
-                    <span className="text-white/35">Email</span>
+                    <span className="text-caption-foreground">Email</span>
                     <br />
                     <a
                       href="mailto:enquiries@hkrbio.tech"
-                      className="text-white underline decoration-white/20 underline-offset-2 transition hover:decoration-teal-400/70"
+                      className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary-deep hover:decoration-primary"
                     >
                       enquiries@hkrbio.tech
                     </a>
                   </p>
                   <p className="mt-4 text-sm leading-relaxed">
-                    <span className="text-white/35">Phone</span>
+                    <span className="text-caption-foreground">Phone</span>
                     <br />
                     <a
                       href="tel:+15550104420"
-                      className="text-white underline decoration-white/20 underline-offset-2 transition hover:decoration-teal-400/70"
+                      className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary-deep hover:decoration-primary"
                     >
                       +1 (555) 010-4420
                     </a>
                   </p>
-                  <p className="mt-4 text-[11px] leading-relaxed text-white/30">
+                  <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
                     Headquarters &amp; analytical hub — address available on request.
                   </p>
                 </address>
                 <div className="mt-6">
                   <Link
                     href="/contact"
-                    className="inline-flex w-full items-center justify-center rounded-full py-2.5 text-xs font-semibold text-white shadow-[0_12px_28px_-8px_rgba(20,184,166,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-10px_rgba(20,184,166,0.5)]"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 50%, #7c3aed 100%)",
-                    }}
+                    className="inline-flex w-full items-center justify-center rounded-full bg-cta-gradient-diagonal py-2.5 text-xs font-semibold text-primary-foreground shadow-[var(--footer-cta-shadow)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--footer-cta-shadow-hover)]"
                   >
                     Request an RFQ
                   </Link>
@@ -245,13 +234,12 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Bottom bar */}
-          <div className="mt-14 border-t border-white/[0.06] pt-8">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs text-white/30">
+          <div className="mt-14 rounded-2xl border border-white/35 bg-white/55 px-5 py-6 shadow-[0_4px_24px_rgba(8,26,120,0.08)] backdrop-blur-md sm:px-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs font-medium text-foreground">
                 © {year} HKR Biotech Labs. All rights reserved.
               </p>
-              <p className="max-w-xl text-right text-[11px] leading-relaxed text-white/25 sm:max-w-md">
+              <p className="max-w-xl text-right text-[11px] leading-relaxed text-foreground/85 sm:max-w-md">
                 Carbohydrates · API impurities · nucleotide building blocks — manufactured
                 with traceable documentation and QC you can audit.
               </p>

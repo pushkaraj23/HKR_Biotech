@@ -10,10 +10,10 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[linear-gradient(90deg,#14b8a6,#2dd4bf,#5eead4)] text-white font-semibold shadow-[0_4px_16px_-2px_rgba(45,212,191,0.45)] hover:brightness-[1.04] hover:shadow-[0_8px_24px_-4px_rgba(45,212,191,0.35)]",
+    "bg-cta-gradient text-primary-foreground font-semibold shadow-primary-glow hover:brightness-[1.04] hover:shadow-primary-glow-lg",
   secondary:
-    "border border-white/[0.1] bg-white/[0.06] text-slate-200 font-medium shadow-sm hover:border-teal-500/30 hover:bg-white/[0.1] hover:shadow-md",
-  ghost: "text-slate-400 hover:bg-white/[0.06] hover:text-white",
+    "border border-overlay-hover bg-on-dark/[0.06] font-medium text-foreground/90 shadow-sm hover:border-primary/30 hover:bg-on-dark/[0.1] hover:text-foreground hover:shadow-md",
+  ghost: "text-muted-foreground hover:bg-on-dark/[0.06] hover:text-on-dark",
 };
 
 type EnquireGateButtonLinkProps = {

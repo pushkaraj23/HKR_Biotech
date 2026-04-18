@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public catalogue reads for the marketing site (writes go through Admin SDK / admin app).
+    match /categories/{slug} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /products/{slug} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

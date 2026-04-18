@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productCategories } from "@/data/catalog";
+import { getAllCategories } from "@/data/catalog";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const FEATURED_STYLES = [
@@ -24,7 +24,8 @@ const PILL_COLORS = [
   "border-danger/28 bg-danger/10 text-danger hover:bg-danger/16 hover:border-danger/40",
 ] as const;
 
-export function LandingCategories() {
+export async function LandingCategories() {
+  const productCategories = await getAllCategories();
   const featured = productCategories.slice(0, 2);
   const rest = productCategories.slice(2);
 

@@ -22,10 +22,13 @@ type PageProps = {
   params: Promise<{ category: string; slug: string }>;
 };
 
+export const revalidate = 60;
+
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return getAllProducts().map((p) => ({
+  const products = await getAllProducts();
+  return products.map((p) => ({
     category: p.categorySlug,
     slug: p.slug,
   }));
@@ -33,24 +36,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: categoryParam, slug } = await params;
-  const p = isValidCategorySlug(categoryParam)
-    ? getProductBySlug(categoryParam, slug)
-    : undefined;
+  const p =
+    (await isValidCategorySlug(categoryParam)) ? await getProductBySlug(categoryParam, slug) : undefined;
   if (!p) return { title: "Product" };
   return { title: p.chemicalName, description: p.shortDescription };
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { category: categoryParam, slug } = await params;
-  if (!isValidCategorySlug(categoryParam)) notFound();
+  if (!(await isValidCategorySlug(categoryParam))) notFound();
 
-  const product = getProductBySlug(categoryParam, slug);
+  const product = await getProductBySlug(categoryParam, slug);
   if (!product) notFound();
 
-  const categoryMeta = getCategoryBySlug(categoryParam);
+  const categoryMeta = await getCategoryBySlug(categoryParam);
   if (!categoryMeta) notFound();
 
-  const related = getRelatedProductsOrFallback(product, 3);
+  const related = await getRelatedProductsOrFallback(product, 3);
 
   const crumbs = [
     { label: "Products", href: "/products" },

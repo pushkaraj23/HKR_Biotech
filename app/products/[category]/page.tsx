@@ -17,16 +17,19 @@ type PageProps = {
   params: Promise<{ category: string }>;
 };
 
+export const revalidate = 60;
+
 /** Allow any valid category slug at request time (matches catalogue data). */
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return getAllCategories().map((c) => ({ category: c.slug }));
+  const cats = await getAllCategories();
+  return cats.map((c) => ({ category: c.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: slug } = await params;
-  const cat = getCategoryBySlug(slug);
+  const cat = await getCategoryBySlug(slug);
   if (!cat) return { title: "Category" };
   return {
     title: cat.name,
@@ -36,14 +39,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductCategoryPage({ params }: PageProps) {
   const { category: slug } = await params;
-  if (!isValidCategorySlug(slug)) notFound();
+  if (!(await isValidCategorySlug(slug))) notFound();
 
-  const cat = getCategoryBySlug(slug);
+  const cat = await getCategoryBySlug(slug);
   if (!cat) notFound();
 
-  const categoryProducts = getProductsByCategorySlug(slug as ProductCategorySlug);
-  const allCategories = getAllCategories();
-  const relatedCategories = getCategoriesExcept(slug as ProductCategorySlug);
+  const categoryProducts = await getProductsByCategorySlug(slug as ProductCategorySlug);
+  const allCategories = await getAllCategories();
+  const relatedCategories = await getCategoriesExcept(slug as ProductCategorySlug);
 
   return (
     <div className="relative overflow-x-hidden">

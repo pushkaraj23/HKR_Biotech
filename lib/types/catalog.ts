@@ -1,11 +1,7 @@
 /** Product catalogue — biotech / chemical synthesis lab (URL-safe slugs). */
 
-export type ProductCategorySlug =
-  | "carbohydrates"
-  | "api-impurities"
-  | "nucleotides-linkers"
-  | "research-intermediates"
-  | "protecting-groups";
+/** Dynamic categories from Firestore; seed data still uses familiar slug strings. */
+export type ProductCategorySlug = string;
 
 export type ProductAvailability =
   | "In stock"

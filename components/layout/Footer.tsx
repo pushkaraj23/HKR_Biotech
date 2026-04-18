@@ -1,15 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { getAllCategories } from "@/data/catalog";
 import { mainNav } from "@/data/navigation";
 import { cn } from "@/lib/cn";
-
-function getProductFamilyLinks() {
-  const item = mainNav.find((i) => i.href === "/products");
-  return item && "children" in item ? item.children : [];
-}
-
-const productFamilies = getProductFamilyLinks();
 
 const exploreLinks = mainNav.map((item) => ({
   href: item.href,
@@ -59,8 +53,13 @@ function SectionLabel({
   );
 }
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const categories = await getAllCategories();
+  const productFamilies = categories.map((c) => ({
+    href: `/products/${c.slug}`,
+    label: c.name,
+  }));
 
   return (
     <footer className="relative mt-20">

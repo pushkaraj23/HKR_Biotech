@@ -1,10 +1,11 @@
-import { productCategories } from "@/data/catalog";
+import { getAllCategories } from "@/data/catalog";
 import { CategoryCard } from "@/components/cards/CategoryCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
-export function HomeProductCategories() {
+export async function HomeProductCategories() {
+  const productCategories = await getAllCategories();
   return (
     <SectionWrapper id="categories">
       <RevealOnScroll>

@@ -1,4 +1,3 @@
-import { getAllCategories, getAllProducts } from "@/data/catalog";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 
@@ -21,30 +20,9 @@ const PAGES: SearchResult[] = [
   { kind: "page", title: "Contact", subtitle: "Get in touch / enquire", href: "/contact" },
 ];
 
-let _cache: SearchResult[] | null = null;
-
-export function getSearchIndex(): SearchResult[] {
-  if (_cache) return _cache;
-
+/** Services, industries, and top-level pages — used with catalogue results from the API. */
+export function getStaticSiteSearchResults(): SearchResult[] {
   const results: SearchResult[] = [];
-
-  for (const cat of getAllCategories()) {
-    results.push({
-      kind: "category",
-      title: cat.name,
-      subtitle: cat.tagline,
-      href: `/products/${cat.slug}`,
-    });
-  }
-
-  for (const p of getAllProducts()) {
-    results.push({
-      kind: "product",
-      title: p.chemicalName,
-      subtitle: `${p.catalogNumber} · CAS ${p.casNumber}`,
-      href: `/products/${p.categorySlug}/${p.slug}`,
-    });
-  }
 
   for (const s of services) {
     results.push({
@@ -65,15 +43,49 @@ export function getSearchIndex(): SearchResult[] {
   }
 
   results.push(...PAGES);
-
-  _cache = results;
   return results;
 }
 
-export function search(query: string, limit = 20): SearchResult[] {
+export function buildCatalogSearchResults(
+  categories: { slug: string; name: string; tagline: string }[],
+  products: {
+    chemicalName: string;
+    catalogNumber: string;
+    casNumber: string;
+    categorySlug: string;
+    slug: string;
+  }[],
+): SearchResult[] {
+  const results: SearchResult[] = [];
+
+  for (const cat of categories) {
+    results.push({
+      kind: "category",
+      title: cat.name,
+      subtitle: cat.tagline,
+      href: `/products/${cat.slug}`,
+    });
+  }
+
+  for (const p of products) {
+    results.push({
+      kind: "product",
+      title: p.chemicalName,
+      subtitle: `${p.catalogNumber} · CAS ${p.casNumber}`,
+      href: `/products/${p.categorySlug}/${p.slug}`,
+    });
+  }
+
+  return results;
+}
+
+export function mergeSearchIndex(catalogPart: SearchResult[], staticPart: SearchResult[]): SearchResult[] {
+  return [...catalogPart, ...staticPart];
+}
+
+export function search(query: string, limit = 20, index: SearchResult[]): SearchResult[] {
   if (!query.trim()) return [];
   const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
-  const index = getSearchIndex();
 
   const scored: { result: SearchResult; score: number }[] = [];
 

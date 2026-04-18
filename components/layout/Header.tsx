@@ -46,9 +46,25 @@ export function Header() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [productNavItems, setProductNavItems] = useState<{ href: string; label: string }[]>([]);
   const lastScrollY = useRef(0);
 
   const openSearch = useCallback(() => setSearchOpen(true), []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/catalog/nav")
+      .then((r) => r.json())
+      .then((d: { items?: { href: string; label: string }[] }) => {
+        if (!cancelled && Array.isArray(d.items)) {
+          setProductNavItems(d.items);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   /* Cmd/Ctrl+K to toggle search */
   useEffect(() => {
@@ -132,7 +148,7 @@ export function Header() {
           aria-label="Main"
         >
           {mainNav.map((item) => {
-            if (item.href === "/products" && "children" in item && item.children) {
+            if ("productDropdown" in item && item.productDropdown) {
               const active =
                 pathname === "/products" || pathname.startsWith("/products/");
               return (
@@ -172,7 +188,7 @@ export function Header() {
                       Browse
                     </p>
                     <ul className="space-y-0.5">
-                      {item.children.map((child) => (
+                      {productNavItems.map((child) => (
                         <li key={child.href}>
                           <Link
                             href={child.href}
@@ -193,7 +209,7 @@ export function Header() {
                 </div>
               );
             }
-            const href = "href" in item ? item.href : "/";
+            const href = item.href;
             const active = pathname === href || (href !== "/" && pathname.startsWith(href));
             return (
               <NavItem key={href} href={href} active={!!active}>
@@ -254,7 +270,7 @@ export function Header() {
       >
         <ul className="divide-y divide-white/15 px-2 py-2">
           {mainNav.map((item) => {
-            const href = "href" in item ? item.href : "/";
+            const href = item.href;
             return (
               <li key={href}>
                 <Link
@@ -264,9 +280,9 @@ export function Header() {
                 >
                   {item.label}
                 </Link>
-                {"children" in item && item.children ? (
+                {"productDropdown" in item && item.productDropdown && productNavItems.length > 0 ? (
                   <ul className="pb-2 pl-6">
-                    {item.children.map((child) => (
+                    {productNavItems.map((child) => (
                       <li key={child.href}>
                         <Link
                           href={child.href}

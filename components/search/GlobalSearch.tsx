@@ -12,7 +12,13 @@ import {
   type ReactElement,
 } from "react";
 import { createPortal } from "react-dom";
-import { search, type SearchResult, type SearchResultKind } from "@/lib/search-index";
+import {
+  getStaticSiteSearchResults,
+  mergeSearchIndex,
+  search,
+  type SearchResult,
+  type SearchResultKind,
+} from "@/lib/search-index";
 import { cn } from "@/lib/cn";
 
 /* ─── icons ─── */
@@ -75,11 +81,36 @@ const KIND_ORDER: SearchResultKind[] = ["category", "product", "service", "indus
 export function GlobalSearch({ onClose }: { onClose: () => void }) {
   const [query, setQuery] = useState("");
   const [activeIdx, setActiveIdx] = useState(0);
+  const [searchIndex, setSearchIndex] = useState<SearchResult[] | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const results = useMemo(() => search(query, 24), [query]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/catalog/search-index")
+      .then((r) => r.json())
+      .then((d: { results?: SearchResult[] }) => {
+        if (!cancelled && Array.isArray(d.results)) {
+          setSearchIndex(d.results);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setSearchIndex(mergeSearchIndex([], getStaticSiteSearchResults()));
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const results = useMemo(() => {
+    const index =
+      searchIndex ??
+      mergeSearchIndex([], getStaticSiteSearchResults());
+    return search(query, 24, index);
+  }, [query, searchIndex]);
 
   const grouped = useMemo(() => {
     const map = new Map<SearchResultKind, SearchResult[]>();

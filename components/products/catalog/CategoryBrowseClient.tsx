@@ -66,7 +66,7 @@ export function CategoryBrowseClient({
     <div className="space-y-10 px-4 pb-28 pt-6 sm:px-6 lg:px-8 md:space-y-12">
       <div className="mx-auto max-w-6xl space-y-10 md:space-y-12">
         <RevealOnScroll>
-          <ProductCategoryNav activeSlug={category.slug} mode="category" />
+          <ProductCategoryNav categories={allCategories} activeSlug={category.slug} mode="category" />
         </RevealOnScroll>
 
         <RevealOnScroll>

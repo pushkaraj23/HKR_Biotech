@@ -1,17 +1,19 @@
 import Link from "next/link";
-import { productCategories } from "@/data/catalog";
 import { cn } from "@/lib/cn";
+import type { ProductCategory } from "@/lib/types/catalog";
 import type { ProductCategorySlug } from "@/lib/types";
 
 type ActiveSlug = "all" | ProductCategorySlug;
 
 type ProductCategoryNavProps = {
+  categories: ProductCategory[];
   activeSlug: ActiveSlug;
   className?: string;
   mode?: "catalog" | "category";
 };
 
 export function ProductCategoryNav({
+  categories,
   activeSlug,
   className,
   mode = "catalog",
@@ -59,7 +61,7 @@ export function ProductCategoryNav({
         <CategoryPill href="/products" active={activeSlug === "all"}>
           All products
         </CategoryPill>
-        {productCategories.map((c) => (
+        {categories.map((c) => (
           <CategoryPill key={c.slug} href={`/products/${c.slug}`} active={activeSlug === c.slug}>
             {c.name}
           </CategoryPill>

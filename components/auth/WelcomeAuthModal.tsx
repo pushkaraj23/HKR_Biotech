@@ -79,23 +79,23 @@ export function WelcomeAuthModal() {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/75 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-[rgba(7,14,27,0.72)] p-4 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       aria-labelledby="welcome-auth-title"
     >
       <div
         className={cn(
-          "relative w-full max-w-md rounded-3xl border border-overlay-hover bg-surface/95 p-8 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.7)] backdrop-blur-2xl",
+          "relative w-full max-w-md rounded-3xl border border-on-dark/20 bg-[linear-gradient(160deg,rgba(18,25,35,0.94)_0%,rgba(11,19,31,0.96)_100%)] p-8 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.72)] backdrop-blur-2xl",
         )}
       >
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-primary/90">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-primary-mid">
           Welcome
         </p>
-        <h2 id="welcome-auth-title" className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground">
+        <h2 id="welcome-auth-title" className="mt-2 font-display text-2xl font-semibold tracking-tight text-on-dark">
           Sign in to get the full experience
         </h2>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-sm leading-relaxed text-on-dark/78">
           Create an account or sign in to save enquiries, track RFQs, and unlock personalized features.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-stretch">
@@ -107,7 +107,7 @@ export function WelcomeAuthModal() {
           </Link>
           <Link
             href={`/signup?callbackUrl=${encodeURIComponent("/")}`}
-            className="inline-flex flex-1 items-center justify-center rounded-full border border-overlay-strong bg-on-dark/[0.06] px-6 py-2.5 text-sm font-semibold text-foreground backdrop-blur-lg transition-colors hover:bg-on-dark/[0.1]"
+            className="inline-flex flex-1 items-center justify-center rounded-full border border-on-dark/30 bg-[rgba(18,25,35,0.52)] px-6 py-2.5 text-sm font-semibold text-on-dark backdrop-blur-lg transition-colors hover:border-on-dark/45 hover:bg-[rgba(18,25,35,0.68)]"
           >
             Create account
           </Link>
@@ -115,7 +115,7 @@ export function WelcomeAuthModal() {
         <button
           type="button"
           onClick={dismiss}
-          className="mt-6 w-full text-center text-sm font-medium text-caption-foreground transition-colors hover:text-muted-foreground"
+          className="mt-6 w-full text-center text-sm font-medium text-on-dark/72 transition-colors hover:text-on-dark/92"
         >
           Continue browsing
         </button>

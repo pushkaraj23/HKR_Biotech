@@ -44,6 +44,7 @@ export function Header() {
   const { user, signOut, configured } = useAuth();
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [productNavItems, setProductNavItems] = useState<{ href: string; label: string }[]>([]);
@@ -99,6 +100,12 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      setMobileProductsOpen(false);
+    }
   }, [open]);
 
   const firstName =
@@ -271,16 +278,48 @@ export function Header() {
         <ul className="divide-y divide-white/15 px-2 py-2">
           {mainNav.map((item) => {
             const href = item.href;
+            const isProducts = "productDropdown" in item && item.productDropdown;
             return (
               <li key={href}>
-                <Link
-                  href={href}
-                  className="block rounded-xl px-3 py-3 text-sm font-medium text-secondary-foreground transition-colors hover:bg-white/10"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-                {"productDropdown" in item && item.productDropdown && productNavItems.length > 0 ? (
+                {isProducts ? (
+                  <div className="flex items-center gap-2 rounded-xl px-3 py-1">
+                    <Link
+                      href={href}
+                      className="flex-1 rounded-xl py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-white/10"
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                    {productNavItems.length > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => setMobileProductsOpen((v) => !v)}
+                        aria-expanded={mobileProductsOpen}
+                        aria-label={mobileProductsOpen ? "Collapse product categories" : "Expand product categories"}
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/5 text-secondary-foreground/80 transition hover:bg-white/10 hover:text-secondary-foreground"
+                      >
+                        <span
+                          className={cn(
+                            "text-sm transition-transform duration-200",
+                            mobileProductsOpen ? "rotate-180" : "rotate-0",
+                          )}
+                          aria-hidden
+                        >
+                          ▾
+                        </span>
+                      </button>
+                    ) : null}
+                  </div>
+                ) : (
+                  <Link
+                    href={href}
+                    className="block rounded-xl px-3 py-3 text-sm font-medium text-secondary-foreground transition-colors hover:bg-white/10"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+                {isProducts && productNavItems.length > 0 && mobileProductsOpen ? (
                   <ul className="pb-2 pl-6">
                     {productNavItems.map((child) => (
                       <li key={child.href}>

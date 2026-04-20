@@ -51,11 +51,14 @@ export default async function ProductCategoryPage({ params }: PageProps) {
   return (
     <div className="relative overflow-x-hidden">
       <PageAmbientGraphics variant="long" opacity="opacity-[0.16]" />
-      <div className="relative z-10 mx-auto max-w-6xl space-y-8 pt-6 md:space-y-10">
+      <div className="relative z-10 mx-auto max-w-6xl space-y-8 px-4 pt-6 sm:px-6 lg:px-8 md:space-y-10">
         <CategoryHero category={cat} />
       </div>
 
-      <section className="relative z-10 mx-auto max-w-6xl pt-8" aria-labelledby="category-overview-heading">
+      <section
+        className="relative z-10 mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8"
+        aria-labelledby="category-overview-heading"
+      >
         <RevealOnScroll>
           <div
             className="rounded-[1.5rem] border border-on-dark/18 bg-[rgba(18,25,35,0.5)] p-6 shadow-[0_10px_28px_-16px_rgba(18,25,35,0.62)] backdrop-blur-md md:p-8"

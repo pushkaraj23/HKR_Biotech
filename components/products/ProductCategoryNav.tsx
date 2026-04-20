@@ -77,7 +77,7 @@ function CategoryPill({
       className={cn(
         "inline-flex min-h-[2.4rem] items-center justify-center rounded-full border px-3.5 py-1.5 text-sm font-semibold tracking-tight transition-all duration-200 md:min-h-[2.6rem] md:px-5",
         active
-          ? "border-primary/40 bg-primary-deep text-primary-foreground shadow-[var(--orb-shadow-primary)]"
+          ? "border-primary/35 bg-cta-gradient text-primary-foreground shadow-primary-glow"
           : "border-on-dark/30 bg-[rgba(18,25,35,0.45)] text-on-dark/85 shadow-sm hover:border-primary/35 hover:bg-[rgba(18,25,35,0.62)] hover:text-on-dark",
       )}
     >

@@ -115,7 +115,7 @@ function FilterChip({
       className={cn(
         "rounded-full border px-3 py-1 text-[11px] font-semibold transition",
         active
-          ? "border-primary/55 bg-primary-deep text-primary-foreground shadow-sm"
+          ? "border-primary/35 bg-cta-gradient text-primary-foreground shadow-primary-glow"
           : "border-on-dark/30 bg-[rgba(18,25,35,0.45)] text-on-dark/85 hover:border-primary/40 hover:bg-[rgba(18,25,35,0.62)]",
       )}
     >

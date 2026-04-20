@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     const db = getServerFirestoreDb();
     const snap = await getDocs(collection(db, "users", auth.uid, "wishlist"));
     const items: WishlistItem[] = snap.docs
-      .map((d) => ({ id: d.id, ...(d.data() as Record<string, unknown>) }))
+      .map<WishlistItem>((d) => ({ id: d.id, ...(d.data() as Record<string, unknown>) }))
       .sort((a, b) => String(b.updatedAtIso ?? "").localeCompare(String(a.updatedAtIso ?? "")));
     return NextResponse.json({ items });
   } catch (error) {

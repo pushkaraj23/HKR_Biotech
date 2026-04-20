@@ -36,7 +36,7 @@ export async function GET(req: Request) {
     const db = getServerFirestoreDb();
     const snap = await getDocs(collection(db, "users", auth.uid, "cart"));
     const items: CartItem[] = snap.docs
-      .map((d) => ({ id: d.id, ...(d.data() as Record<string, unknown>) }))
+      .map<CartItem>((d) => ({ id: d.id, ...(d.data() as Record<string, unknown>) }))
       .sort((a, b) => String(b.updatedAtIso ?? "").localeCompare(String(a.updatedAtIso ?? "")));
     return NextResponse.json({ items });
   } catch (error) {

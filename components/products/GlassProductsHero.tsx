@@ -140,14 +140,14 @@ export function GlassProductsHero({
 
         <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[60%]")}>
           {eyebrow ? (
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
               {eyebrow}
             </p>
           ) : null}
 
           <h1
             className={cn(
-              "font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-[3.25rem]",
+              "font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl lg:text-[3.25rem]",
               eyebrow ? "mt-3" : "",
             )}
           >
@@ -155,14 +155,14 @@ export function GlassProductsHero({
           </h1>
 
           {tagline ? (
-            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-primary-mid/90 md:text-lg">
+            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-on-dark/88 md:text-lg">
               {tagline}
             </p>
           ) : null}
 
           <p
             className={cn(
-              "max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg",
+              "max-w-2xl text-base leading-relaxed text-on-dark/82 md:text-lg",
               tagline ? "mt-4" : "mt-5",
             )}
           >
@@ -184,7 +184,7 @@ export function GlassProductsHero({
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className="inline-flex items-center justify-center rounded-full border border-overlay-hover bg-on-dark/[0.06] px-8 py-3 text-sm font-semibold text-slate-200 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.4)]"
+                    className="inline-flex items-center justify-center rounded-full border border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-8 py-3 text-sm font-semibold text-on-dark shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)] hover:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.4)]"
                   >
                     {cta.label}
                   </Link>

@@ -31,26 +31,29 @@ export function CategoryHero({ category, className }: CategoryHeroProps) {
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-[2rem] border border-primary/20",
-          "bg-gradient-to-br from-bg-secondary via-surface to-tint-primary/20",
-          "shadow-[0_4px_32px_-8px_rgba(0,0,0,0.4)] backdrop-blur-sm",
+          "relative overflow-hidden rounded-[2rem] border border-on-dark/20",
+          "shadow-[0_12px_36px_-14px_rgba(18,25,35,0.55)] backdrop-blur-md",
         )}
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(18,25,35,0.72) 0%, rgba(27,38,50,0.58) 45%, rgba(44,59,77,0.52) 100%)",
+        }}
       >
         <div
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,118,110,0.05)_0%,transparent_42%,rgba(91,33,182,0.035)_100%)]"
           aria-hidden
         />
         <div className="relative px-8 py-12 md:px-14 md:py-16">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-primary">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-primary-mid">
             Product family
           </p>
-          <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+          <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
             {category.name}
           </h1>
-          <p className="mt-3 max-w-2xl text-lg font-medium leading-relaxed text-primary-mid/90">
+          <p className="mt-3 max-w-2xl text-lg font-medium leading-relaxed text-on-dark/90">
             {category.tagline}
           </p>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-on-dark/85 md:text-lg">
             {category.description}
           </p>
         </div>

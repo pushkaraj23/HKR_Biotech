@@ -52,15 +52,17 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
 
         <RevealOnScroll>
           <section aria-labelledby="category-cards-heading">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
-              Browse by family
-            </p>
-            <h2
-              id="category-cards-heading"
-              className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
-            >
-              Product Families
-            </h2>
+            <div className="rounded-[1.5rem] border border-on-dark/20 bg-[rgba(18,25,35,0.5)] p-6 backdrop-blur-md md:p-7">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+                Browse by family
+              </p>
+              <h2
+                id="category-cards-heading"
+                className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
+              >
+                Product Families
+              </h2>
+            </div>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {categories.map((cat, i) => (
                 <RevealOnScroll key={cat.slug} delay={i * 60}>
@@ -89,29 +91,28 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
                 </p>
                 <h2
                   id="catalog-grid-heading"
-                  className="mt-1 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
+                  className="mt-1 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
                 >
                   All Entries
                 </h2>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Showing{" "}
-                <span className="font-semibold text-foreground">{filtered.length}</span> of{" "}
+              <p className="text-sm text-on-dark/80">
+                Showing <span className="font-semibold text-on-dark">{filtered.length}</span> of{" "}
                 {allProducts.length} entries
               </p>
             </div>
 
             {filtered.length === 0 ? (
-              <div className="mt-8 rounded-[1.75rem] border border-dashed border-primary/30 bg-primary/5 px-8 py-16 text-center backdrop-blur-sm">
-                <p className="font-display text-lg font-semibold text-foreground">No matches</p>
-                <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+              <div className="mt-8 rounded-[1.75rem] border border-dashed border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-8 py-16 text-center backdrop-blur-sm">
+                <p className="font-display text-lg font-semibold text-on-dark">No matches</p>
+                <p className="mx-auto mt-2 max-w-md text-sm text-on-dark/75">
                   Try a shorter search term, clear availability filters, or pick &ldquo;All categories&rdquo; from the
                   dropdown.
                 </p>
                 <button
                   type="button"
                   onClick={() => setState(initialState)}
-                  className="mt-6 rounded-full border border-primary/30 bg-on-dark/[0.06] px-5 py-2 text-sm font-semibold text-primary-mid shadow-sm transition hover:bg-on-dark/[0.1]"
+                  className="mt-6 rounded-full border border-primary/40 bg-[rgba(18,25,35,0.6)] px-5 py-2 text-sm font-semibold text-primary-mid shadow-sm transition hover:bg-[rgba(18,25,35,0.75)]"
                 >
                   Reset filters
                 </button>
@@ -133,10 +134,10 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
         {/* CTA banner */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2.5rem] border border-overlay p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
+            className="relative overflow-hidden rounded-[2.5rem] border border-on-dark/22 p-10 text-center shadow-[0_16px_64px_-16px_rgba(18,25,35,0.55)] backdrop-blur-xl sm:p-14"
             style={{
               background:
-                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
+                "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
             }}
           >
             {/* Decorative orbs */}
@@ -169,14 +170,14 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-on-dark/78">
                 Beyond the catalogue
               </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-foreground md:text-3xl">
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-on-dark md:text-3xl">
                 Route Scouting, Impurity Synthesis,{" "}
                 <span className="gradient-text-shimmer">and Custom Programmes</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+              <p className="mx-auto mt-4 max-w-lg text-on-dark/84">
                 Share your target structure, timeline, and analytical expectations — we respond with scientific
                 questions and a clear feasibility path, not a generic quote grid.
               </p>
@@ -190,7 +191,7 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
                 <ButtonLink
                   href="/services"
                   variant="secondary"
-                  className="rounded-full border-overlay-hover bg-on-dark/[0.06] px-10 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+                  className="rounded-full border-on-dark/38 bg-[rgba(18,25,35,0.52)] px-10 text-on-dark shadow-[0_4px_20px_-6px_rgba(0,0,0,0.3)] backdrop-blur-xl hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.68)]"
                 >
                   Explore services
                 </ButtonLink>

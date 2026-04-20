@@ -35,6 +35,10 @@ yarn-error.log*
 .env.*
 !.env.example
 
+# Firebase Admin SDK keys (if stored next to the app for local dev)
+*-firebase-adminsdk-*.json
+firebase-service-account.json
+
 # vercel
 .vercel
 

@@ -31,10 +31,6 @@ export const metadata: Metadata = {
   },
   description:
     "HKR Biotech Labs delivers high-purity carbohydrates, API impurities, and nucleotide building blocks with analytical rigor and custom synthesis partnership.",
-  icons: {
-    icon: [{ url: "/hkr_logo.png", type: "image/png" }],
-    apple: "/hkr_logo.png",
-  },
 };
 
 export default function RootLayout({
@@ -45,6 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${plusJakarta.variable} ${ibmMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">

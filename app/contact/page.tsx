@@ -35,7 +35,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
 
         {/* Hero — photo with dark wash */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
             <Image
               src={HERO_IMAGE}
               alt="Laboratory discussion"
@@ -72,13 +72,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
                 Get in touch
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
                 Enquiries & RFQ
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
                 Share your target structure, quantity band, and analytical expectations
                 — our team will respond with scientific questions, not just pricing.
               </p>
@@ -92,7 +92,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
           {/* Left column: info cards */}
           <div className="space-y-6 lg:col-span-2">
             <RevealOnScroll>
-              <div className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/25 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.68)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_16px_44px_-14px_rgba(18,25,35,0.76)]">
                 <div
                   className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
@@ -104,31 +104,31 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
                   Direct contact
                 </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-foreground/95">
+                <h2 className="mt-2 font-display text-lg font-semibold text-on-dark">
                   Reach Us
                 </h2>
-                <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <ul className="mt-4 space-y-3 text-sm text-on-dark/82">
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-caption-foreground">Email</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Email</span>
                     <br />
-                    <span className="font-medium text-slate-200">enquiries@hkrbio.tech</span>
+                    <span className="font-medium text-on-dark">enquiries@hkrbio.tech</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-caption-foreground">Phone</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Phone</span>
                     <br />
-                    <span className="font-medium text-slate-200">+1 (555) 010-4420</span>
+                    <span className="font-medium text-on-dark">+1 (555) 010-4420</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-caption-foreground">Hours</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Hours</span>
                     <br />
-                    <span className="font-medium text-slate-200">Mon–Fri, 08:00–18:00 (local)</span>
+                    <span className="font-medium text-on-dark">Mon–Fri, 08:00–18:00 (local)</span>
                   </li>
                 </ul>
               </div>
             </RevealOnScroll>
 
             <RevealOnScroll delay={60}>
-              <div className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-accent/25 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
+              <div className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.68)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_16px_44px_-14px_rgba(18,25,35,0.76)]">
                 <div
                   className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
                   style={{
@@ -140,68 +140,33 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">
                   Product enquiry
                 </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-foreground/95">
+                <h2 className="mt-2 font-display text-lg font-semibold text-on-dark">
                   From the Catalogue?
                 </h2>
-                <p className="mt-3 text-sm text-muted-foreground">
+                <p className="mt-3 text-sm text-on-dark/82">
                   Visiting from a catalogue entry? Your product reference is
                   pre-filled in the form automatically.
                 </p>
                 <ButtonLink
                   href="/products"
                   variant="secondary"
-                  className="mt-5 rounded-full px-6 text-xs"
+                  className="mt-5 rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-6 text-xs text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
                 >
                   Browse catalogue
                 </ButtonLink>
               </div>
             </RevealOnScroll>
 
-            <RevealOnScroll delay={120}>
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-overlay shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
-                <Image
-                  src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=600&h=400&fit=crop&q=80&auto=format"
-                  alt="Modern laboratory facility"
-                  width={600}
-                  height={400}
-                  className="h-auto w-full object-cover"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.3) 40%, transparent 100%)",
-                  }}
-                />
-                <div
-                  className="absolute right-4 top-4 h-8 w-8 animate-orbit-slow rounded-full"
-                  style={{
-                    background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.4), rgba(20,184,166,0.3) 55%, rgba(15,118,110,0.1))",
-                    boxShadow: "0 4px 14px -3px rgba(20,184,166,0.3)",
-                    animationDelay: "-3s",
-                  }}
-                  aria-hidden
-                />
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
-                    Location
-                  </p>
-                  <p className="mt-2 font-display text-lg font-bold text-foreground">
-                    Purpose-built laboratories for traceable science.
-                  </p>
-                </div>
-              </div>
-            </RevealOnScroll>
           </div>
 
           {/* Right column: form in dark gradient panel */}
           <div className="lg:col-span-3">
             <RevealOnScroll>
               <div
-                className="relative overflow-hidden rounded-[2rem] border border-overlay p-7 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 p-7 shadow-[0_16px_64px_-16px_rgba(18,25,35,0.58)] backdrop-blur-xl sm:p-10"
                 style={{
                   background:
-                    "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
+                    "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
                 }}
               >
                 {/* Subtle grid */}
@@ -233,25 +198,60 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 />
 
                 <div className="relative">
-                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
                     Send a message
                   </p>
-                  <h2 className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl">
+                  <h2 className="mt-2 font-display text-2xl font-bold text-on-dark md:text-3xl">
                     Submit Your Enquiry
                   </h2>
-                  <p className="mt-3 max-w-lg text-sm text-muted-foreground">
+                  <p className="mt-3 max-w-lg text-sm text-on-dark/84">
                     Include your target, quantity, purity requirements, and timeline
                     for the fastest technical response.
                   </p>
                   <ContactForm
                     className="mt-8 border-0 bg-transparent p-0 shadow-none"
                     defaultProductRef={productRef}
+                    enquirySource="contact-page"
+                    dark
                   />
                 </div>
               </div>
             </RevealOnScroll>
           </div>
         </div>
+
+        {/* Full-width location map */}
+        <RevealOnScroll>
+          <section
+            aria-labelledby="location-heading"
+            className="overflow-hidden rounded-[2rem] border border-on-dark/20 bg-[rgba(18,25,35,0.58)] py-10 shadow-[0_16px_48px_-24px_rgba(18,25,35,0.7)] backdrop-blur-md"
+          >
+            <div className="px-6 sm:px-8 lg:px-10">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
+                Location
+              </p>
+              <h2
+                id="location-heading"
+                className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
+              >
+                Visit Our Facility
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm text-on-dark/80 md:text-base">
+                Purpose-built laboratories for traceable science.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <iframe
+                title="HKR Biotech Labs location"
+                src="https://www.google.com/maps?q=HKR+Biotech+Labs&output=embed"
+                className="h-[420px] w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </section>
+        </RevealOnScroll>
       </div>
     </div>
   );

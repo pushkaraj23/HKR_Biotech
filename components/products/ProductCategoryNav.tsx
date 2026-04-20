@@ -26,38 +26,29 @@ export function ProductCategoryNav({
   return (
     <nav
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-surface via-tint-primary/15 to-tint-accent/10 px-5 py-6 shadow-elevated-md backdrop-blur-sm md:px-7 md:py-6",
+        "relative overflow-hidden rounded-2xl border border-on-dark/18 bg-[rgba(18,25,35,0.46)] px-4 py-4 shadow-[0_8px_24px_-14px_rgba(18,25,35,0.65)] backdrop-blur-md md:px-6 md:py-5",
         className,
       )}
       aria-labelledby="product-categories-heading"
     >
-      <div
-        className="pointer-events-none absolute -right-8 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full blur-2xl opacity-80"
-        style={{ background: "var(--nav-accent-blob)" }}
-        aria-hidden
-      />
-
       <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2
-            id="product-categories-heading"
-            className="font-display text-lg font-semibold tracking-tight text-on-dark md:text-xl"
-          >
+          <h2 id="product-categories-heading" className="font-display text-lg font-semibold tracking-tight text-on-dark md:text-xl">
             Browse by family
           </h2>
-          <p className="mt-1 max-w-xl text-sm text-muted-foreground">{blurb}</p>
+          <p className="mt-1 max-w-xl text-xs text-on-dark/70 sm:text-sm">{blurb}</p>
         </div>
         {mode === "category" ? (
           <Link
             href="/products"
-            className="shrink-0 text-sm font-semibold text-primary transition hover:text-primary-mid hover:underline"
+            className="shrink-0 text-sm font-semibold text-primary-mid transition hover:text-primary hover:underline"
           >
             ← Full catalogue
           </Link>
         ) : null}
       </div>
 
-      <div className="relative mt-5 flex flex-wrap gap-2.5">
+      <div className="relative mt-4 flex flex-wrap gap-2">
         <CategoryPill href="/products" active={activeSlug === "all"}>
           All products
         </CategoryPill>
@@ -84,10 +75,10 @@ function CategoryPill({
     <Link
       href={href}
       className={cn(
-        "inline-flex min-h-[2.75rem] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold tracking-tight transition-all duration-200 md:min-h-[3rem] md:px-6",
+        "inline-flex min-h-[2.4rem] items-center justify-center rounded-full border px-3.5 py-1.5 text-sm font-semibold tracking-tight transition-all duration-200 md:min-h-[2.6rem] md:px-5",
         active
           ? "border-primary/40 bg-primary-deep text-primary-foreground shadow-[var(--orb-shadow-primary)]"
-          : "border-overlay-hover bg-on-dark/[0.06] text-muted-foreground shadow-sm hover:border-primary/30 hover:bg-primary/10 hover:text-on-dark",
+          : "border-on-dark/30 bg-[rgba(18,25,35,0.45)] text-on-dark/85 shadow-sm hover:border-primary/35 hover:bg-[rgba(18,25,35,0.62)] hover:text-on-dark",
       )}
     >
       {children}

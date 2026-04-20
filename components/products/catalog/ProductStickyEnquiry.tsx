@@ -20,16 +20,16 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         className,
       )}
     >
-      <div className="pointer-events-auto flex w-full max-w-lg gap-2 rounded-2xl border border-teal-200/80 bg-white/95 p-2 shadow-[0_-8px_32px_-8px_rgba(15,23,42,0.15)] backdrop-blur-md">
+      <div className="pointer-events-auto flex w-full max-w-lg gap-2 rounded-2xl border border-on-dark/25 bg-[rgba(18,25,35,0.78)] p-2 shadow-[0_-8px_32px_-8px_rgba(18,25,35,0.4)] backdrop-blur-md">
         <Link
           href="#enquiry"
-          className="flex flex-1 items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-3 text-center text-xs font-semibold text-light-foreground"
+          className="flex flex-1 items-center justify-center rounded-xl border border-on-dark/30 bg-[rgba(18,25,35,0.55)] px-3 py-3 text-center text-xs font-semibold text-on-dark"
         >
           Details
         </Link>
         <EnquireGateLink
           href={href}
-          className="flex flex-[1.2] items-center justify-center rounded-xl bg-gradient-to-r from-teal-800 to-teal-600 px-3 py-3 text-center text-xs font-semibold text-foreground shadow-md"
+          className="flex flex-[1.2] items-center justify-center rounded-xl bg-cta-gradient px-3 py-3 text-center text-xs font-semibold text-primary-foreground shadow-primary-glow"
         >
           Request quote
         </EnquireGateLink>

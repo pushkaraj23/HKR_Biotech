@@ -1,7 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
 import type { DocumentData } from "firebase/firestore";
-import { productCategories as seedCategories } from "@/data/catalog/categories";
-import { products as seedProducts } from "@/data/catalog/products";
 import { getServerFirestoreDb } from "@/lib/firebase/server-firestore";
 import { isFirebaseConfigured } from "@/lib/firebase/config";
 import type { CatalogProduct, ProductAvailability, ProductCategory } from "@/lib/types/catalog";
@@ -103,28 +101,18 @@ async function fetchProductsFromFirestore(): Promise<CatalogProduct[]> {
 export type ResolvedCatalog = {
   categories: ProductCategory[];
   products: CatalogProduct[];
-  source: "firestore" | "seed" | "mixed";
+  source: "firestore";
 };
 
 async function loadCatalogUncached(): Promise<ResolvedCatalog> {
   if (!isFirebaseConfigured()) {
-    return { categories: seedCategories, products: seedProducts, source: "seed" };
+    throw new Error(
+      "Firebase is not configured. Set NEXT_PUBLIC_FIREBASE_* variables so categories and products can load from Firestore.",
+    );
   }
 
-  try {
-    const [fc, fp] = await Promise.all([fetchCategoriesFromFirestore(), fetchProductsFromFirestore()]);
-
-    const categories = fc.length > 0 ? fc : seedCategories;
-    const products = fp.length > 0 ? fp : seedProducts;
-
-    let source: ResolvedCatalog["source"] = "firestore";
-    if (fc.length === 0 && fp.length === 0) source = "seed";
-    else if (fc.length === 0 || fp.length === 0) source = "mixed";
-
-    return { categories, products, source };
-  } catch {
-    return { categories: seedCategories, products: seedProducts, source: "seed" };
-  }
+  const [categories, products] = await Promise.all([fetchCategoriesFromFirestore(), fetchProductsFromFirestore()]);
+  return { categories, products, source: "firestore" };
 }
 
 export const loadCatalog = unstable_cache(loadCatalogUncached, ["site-catalog"], {

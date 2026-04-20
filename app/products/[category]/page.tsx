@@ -51,38 +51,46 @@ export default async function ProductCategoryPage({ params }: PageProps) {
   return (
     <div className="relative overflow-x-hidden">
       <PageAmbientGraphics variant="long" opacity="opacity-[0.16]" />
-      <div className="relative z-10 mx-auto max-w-6xl space-y-10 pt-6 md:space-y-12">
+      <div className="relative z-10 mx-auto max-w-6xl space-y-8 pt-6 md:space-y-10">
         <CategoryHero category={cat} />
       </div>
 
-      <section
-        className="relative z-10 mx-auto max-w-6xl pt-10"
-        aria-labelledby="category-overview-heading"
-      >
+      <section className="relative z-10 mx-auto max-w-6xl pt-8" aria-labelledby="category-overview-heading">
         <RevealOnScroll>
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
-            Overview
-          </p>
-          <h2
-            id="category-overview-heading"
-            className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
+          <div
+            className="rounded-[1.5rem] border border-on-dark/18 bg-[rgba(18,25,35,0.5)] p-6 shadow-[0_10px_28px_-16px_rgba(18,25,35,0.62)] backdrop-blur-md md:p-8"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(18,25,35,0.72) 0%, rgba(27,38,50,0.56) 48%, rgba(44,59,77,0.48) 100%)",
+            }}
           >
-            About {cat.name}
-          </h2>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">{cat.overview}</p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {cat.highlights.map((h, i) => (
-              <RevealOnScroll key={h} delay={i * 50}>
-                <li className="flex gap-3 rounded-[1.25rem] border border-overlay bg-gradient-to-b from-tint-primary/25 to-surface/80 px-4 py-3.5 text-sm text-muted-foreground shadow-[0_4px_16px_-6px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+              Overview
+            </p>
+            <h2
+              id="category-overview-heading"
+              className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
+            >
+              About {cat.name}
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark/84">{cat.overview}</p>
+
+            {/* Compact highlights list to reduce card clutter */}
+            <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+              {cat.highlights.map((h) => (
+                <li
+                  key={h}
+                  className="flex items-start gap-2.5 rounded-xl border border-on-dark/16 bg-[rgba(18,25,35,0.45)] px-4 py-3 text-sm text-on-dark/82"
+                >
                   <span
-                    className="mt-1.5 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-violet-600"
+                    className="mt-1.5 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-primary-mid"
                     aria-hidden
                   />
                   {h}
                 </li>
-              </RevealOnScroll>
-            ))}
-          </ul>
+              ))}
+            </ul>
+          </div>
         </RevealOnScroll>
       </section>
 

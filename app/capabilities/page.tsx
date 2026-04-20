@@ -15,11 +15,11 @@ const HERO_IMAGE =
   "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=1400&h=600&fit=crop&q=80&auto=format";
 
 const SECTION_ACCENTS = [
-  { eyebrow: "text-primary", tint: "from-tint-primary/25 to-surface/80", bullet: "from-primary to-primary-deep", metricRing: "border-primary/20", orb: "rgba(20,184,166,0.18)" },
-  { eyebrow: "text-accent", tint: "from-tint-accent/25 to-surface/80", bullet: "from-accent to-accent", metricRing: "border-violet-500/20", orb: "rgba(124,58,237,0.15)" },
-  { eyebrow: "text-danger", tint: "from-tint-danger/20 to-surface/80", bullet: "from-danger to-danger", metricRing: "border-rose-500/20", orb: "rgba(225,29,72,0.12)" },
-  { eyebrow: "text-primary", tint: "from-tint-primary/20 via-tint-accent/10 to-surface/80", bullet: "from-primary to-violet-600", metricRing: "border-primary/20", orb: "rgba(20,184,166,0.14)" },
-  { eyebrow: "text-accent", tint: "from-tint-accent/20 via-tint-danger/10 to-surface/80", bullet: "from-accent to-rose-600", metricRing: "border-violet-500/20", orb: "rgba(124,58,237,0.12)" },
+  { eyebrow: "text-primary-mid", tint: "from-[rgba(44,59,77,0.42)] to-[rgba(18,25,35,0.62)]", bullet: "from-primary to-primary-mid", metricRing: "border-primary/30", orb: "rgba(20,184,166,0.18)" },
+  { eyebrow: "text-primary-mid", tint: "from-[rgba(74,93,114,0.4)] to-[rgba(18,25,35,0.62)]", bullet: "from-accent to-primary-mid", metricRing: "border-accent/30", orb: "rgba(124,58,237,0.15)" },
+  { eyebrow: "text-primary-mid", tint: "from-[rgba(163,81,57,0.3)] to-[rgba(18,25,35,0.62)]", bullet: "from-danger to-primary-mid", metricRing: "border-danger/30", orb: "rgba(225,29,72,0.12)" },
+  { eyebrow: "text-primary-mid", tint: "from-[rgba(44,59,77,0.38)] via-[rgba(74,93,114,0.32)] to-[rgba(18,25,35,0.62)]", bullet: "from-primary to-primary-mid", metricRing: "border-primary/30", orb: "rgba(20,184,166,0.14)" },
+  { eyebrow: "text-primary-mid", tint: "from-[rgba(74,93,114,0.36)] via-[rgba(163,81,57,0.22)] to-[rgba(18,25,35,0.62)]", bullet: "from-accent to-primary-mid", metricRing: "border-accent/30", orb: "rgba(124,58,237,0.12)" },
 ] as const;
 
 const HIGHLIGHTS = [
@@ -37,7 +37,7 @@ export default function CapabilitiesPage() {
 
         {/* Hero — photo with dark wash */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
             <Image
               src={HERO_IMAGE}
               alt="Laboratory instrumentation"
@@ -74,13 +74,13 @@ export default function CapabilitiesPage() {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
                 Infrastructure
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
                 Capabilities
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
                 Quantified infrastructure, redundant characterization, and synthesis
                 depth — modular blocks you can map to your program milestones.
               </p>
@@ -94,7 +94,7 @@ export default function CapabilitiesPage() {
                 <ButtonLink
                   href="#infrastructure"
                   variant="secondary"
-                  className="rounded-full px-10"
+                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
                 >
                   Explore below
                 </ButtonLink>
@@ -108,11 +108,11 @@ export default function CapabilitiesPage() {
           <div className="grid gap-5 sm:grid-cols-3">
             {HIGHLIGHTS.map((h, i) => (
               <RevealOnScroll key={h.label} delay={i * 60}>
-                <div className="rounded-[1.5rem] border border-overlay bg-gradient-to-b from-bg-secondary to-tint-primary/10 p-6 text-center shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]">
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-caption-foreground">
+                <div className="rounded-[1.5rem] border border-on-dark/18 bg-[rgba(18,25,35,0.5)] p-6 text-center shadow-[0_4px_16px_-8px_rgba(18,25,35,0.68)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_8px_24px_-10px_rgba(18,25,35,0.75)]">
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/70">
                     {h.label}
                   </p>
-                  <p className="mt-2 font-display text-2xl font-bold text-foreground">
+                  <p className="mt-2 font-display text-2xl font-bold text-on-dark">
                     {h.value}
                   </p>
                   <div className={`mx-auto mt-3 h-1 w-10 rounded-full bg-gradient-to-r ${h.accent}`} aria-hidden />
@@ -131,10 +131,10 @@ export default function CapabilitiesPage() {
                 <p className={`font-mono text-[11px] font-semibold uppercase tracking-[0.28em] ${accent.eyebrow}`}>
                   {section.id.replace(/-/g, " ")}
                 </p>
-                <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
                   {section.heading}
                 </h2>
-                <p className="mt-3 max-w-3xl text-lg text-muted-foreground">
+                <p className="mt-3 max-w-3xl text-lg text-on-dark/82">
                   {section.subheading}
                 </p>
               </RevealOnScroll>
@@ -143,7 +143,7 @@ export default function CapabilitiesPage() {
                 {section.blocks.map((block, bi) => (
                   <RevealOnScroll key={block.title} delay={bi * 60}>
                     <article
-                      className={`group relative h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]`}
+                      className={`group relative h-full overflow-hidden rounded-[1.75rem] border border-on-dark/20 bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_16px_44px_-14px_rgba(18,25,35,0.78)]`}
                     >
                       <div
                         className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
@@ -152,10 +152,10 @@ export default function CapabilitiesPage() {
                       />
 
                       <div className="relative">
-                        <h3 className="font-display text-lg font-semibold text-foreground/95">
+                        <h3 className="font-display text-lg font-semibold text-on-dark">
                           {block.title}
                         </h3>
-                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        <p className="mt-3 text-sm leading-relaxed text-on-dark/82">
                           {block.description}
                         </p>
 
@@ -164,12 +164,12 @@ export default function CapabilitiesPage() {
                             {block.metrics.map((m) => (
                               <div
                                 key={m.label}
-                                className={`rounded-full border ${accent.metricRing} bg-on-dark/[0.06] px-3.5 py-1.5 text-xs shadow-[0_2px_10px_-4px_rgba(0,0,0,0.3)] backdrop-blur-lg`}
+                                className={`rounded-full border ${accent.metricRing} bg-[rgba(18,25,35,0.48)] px-3.5 py-1.5 text-xs shadow-[0_2px_10px_-4px_rgba(0,0,0,0.3)] backdrop-blur-lg`}
                               >
-                                <dt className="font-mono text-[9px] uppercase tracking-wider text-caption-foreground">
+                                <dt className="font-mono text-[9px] uppercase tracking-wider text-on-dark/65">
                                   {m.label}
                                 </dt>
-                                <dd className="font-semibold text-slate-200">{m.value}</dd>
+                                <dd className="font-semibold text-on-dark">{m.value}</dd>
                               </div>
                             ))}
                           </dl>
@@ -186,10 +186,10 @@ export default function CapabilitiesPage() {
         {/* CTA — dark gradient */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2.5rem] border border-overlay p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
+            className="relative overflow-hidden rounded-[2.5rem] border border-on-dark/22 p-10 text-center shadow-[0_16px_64px_-16px_rgba(18,25,35,0.55)] backdrop-blur-xl sm:p-14"
             style={{
               background:
-                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
+                "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
             }}
           >
             <div
@@ -218,13 +218,13 @@ export default function CapabilitiesPage() {
               aria-hidden
             />
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-on-dark/78">
                 Next step
               </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-foreground md:text-3xl">
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-on-dark md:text-3xl">
                 Map These Capabilities to Your Program
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+              <p className="mx-auto mt-4 max-w-lg text-on-dark/84">
                 Tell us your molecule class, target timeline, and analytical expectations
                 — we respond with a technical capability fit, not a brochure.
               </p>
@@ -238,7 +238,7 @@ export default function CapabilitiesPage() {
                 <ButtonLink
                   href="/services"
                   variant="secondary"
-                  className="rounded-full px-10"
+                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
                 >
                   View services
                 </ButtonLink>

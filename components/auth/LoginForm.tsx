@@ -66,8 +66,8 @@ export function LoginForm() {
           <button
             type="button"
             className={cn(
-              "flex w-full items-center justify-center gap-2 rounded-full border border-overlay-strong bg-white/[0.08] px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm backdrop-blur-lg transition-all duration-200",
-              "hover:border-white/[0.18] hover:bg-white/[0.12]",
+              "flex w-full items-center justify-center gap-2 rounded-full border border-on-dark/25 bg-[rgba(248,250,255,0.1)] px-4 py-2.5 text-sm font-semibold text-on-dark shadow-sm backdrop-blur-lg transition-all duration-200",
+              "hover:border-primary/35 hover:bg-[rgba(248,250,255,0.14)]",
             )}
             disabled={loading}
             onClick={() => void onGoogle()}
@@ -77,10 +77,10 @@ export function LoginForm() {
           </button>
           <div className="relative my-8">
             <div className="absolute inset-0 flex items-center" aria-hidden>
-              <div className="w-full border-t border-overlay" />
+              <div className="w-full border-t border-on-dark/20" />
             </div>
             <div className="relative flex justify-center">
-              <span className="bg-surface/80 px-3 font-mono text-[10px] uppercase tracking-[0.2em] text-caption-foreground">
+              <span className="bg-[rgba(18,26,38,0.9)] px-3 font-mono text-[10px] uppercase tracking-[0.2em] text-on-dark/65">
                 or email
               </span>
             </div>

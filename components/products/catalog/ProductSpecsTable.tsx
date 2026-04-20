@@ -20,7 +20,7 @@ export function ProductSpecsTable({ product, className }: ProductSpecsTableProps
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-2xl border border-light-border bg-light/80 shadow-[inset_0_1px_0_color-mix(in_srgb,var(--light)_90%,transparent)] backdrop-blur-sm",
+        "overflow-hidden rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.5)] shadow-[inset_0_1px_0_color-mix(in_srgb,var(--on-dark)_12%,transparent)] backdrop-blur-md",
         className,
       )}
     >
@@ -30,15 +30,15 @@ export function ProductSpecsTable({ product, className }: ProductSpecsTableProps
           {rows.map((row) => (
             <tr
               key={row.label}
-              className="border-b border-light-border last:border-b-0 odd:bg-primary/5"
+              className="border-b border-on-dark/16 last:border-b-0 odd:bg-on-dark/[0.03]"
             >
               <th
                 scope="row"
-                className="w-[38%] px-4 py-3 font-medium text-caption-foreground sm:w-[32%] md:px-5"
+                className="w-[38%] px-4 py-3 font-medium text-on-dark/72 sm:w-[32%] md:px-5"
               >
                 {row.label}
               </th>
-              <td className="px-4 py-3 font-mono text-[13px] text-light-foreground md:px-5">
+              <td className="px-4 py-3 font-mono text-[13px] text-on-dark md:px-5">
                 {row.get(product)}
               </td>
             </tr>

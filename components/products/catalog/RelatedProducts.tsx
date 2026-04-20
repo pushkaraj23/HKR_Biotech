@@ -16,16 +16,16 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
     <section className={cn("space-y-6", className)} aria-labelledby="related-products-heading">
       <RevealOnScroll>
         <div>
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-700">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
             Related entries
           </p>
           <h2
             id="related-products-heading"
-            className="mt-1 font-display text-2xl font-semibold tracking-tight text-light-foreground"
+            className="mt-1 font-display text-2xl font-semibold tracking-tight text-on-dark"
           >
             Related catalogue entries
           </h2>
-          <p className="mt-2 max-w-2xl text-sm text-caption-foreground">
+          <p className="mt-2 max-w-2xl text-sm text-on-dark/75">
             Often specified alongside this SKU in discovery and process programmes.
           </p>
         </div>
@@ -34,27 +34,27 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
         {products.map((p, i) => (
           <RevealOnScroll key={p.slug} delay={i * 70}>
             <li>
-              <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/60 bg-gradient-to-b from-teal-50/40 to-white p-5 shadow-[0_6px_28px_-8px_rgba(15,23,42,0.07)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-teal-300/50 hover:shadow-[0_16px_44px_-14px_rgba(15,23,42,0.12)]">
+              <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.55)] p-5 shadow-[0_10px_28px_-12px_rgba(18,25,35,0.65)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_16px_36px_-12px_rgba(18,25,35,0.72)]">
                 <div className="flex gap-4">
                   <StructurePlaceholder compact className="h-24 w-24 shrink-0 rounded-xl" />
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-sm font-semibold leading-snug text-light-foreground">
+                    <h3 className="font-display text-sm font-semibold leading-snug text-on-dark">
                       <Link
                         href={`/products/${p.categorySlug}/${p.slug}`}
-                        className="transition hover:text-teal-800"
+                        className="transition hover:text-primary-mid"
                       >
                         {p.chemicalName}
                       </Link>
                     </h3>
-                    <p className="mt-1 font-mono text-[11px] text-caption-foreground">{p.catalogNumber}</p>
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-caption-foreground">
+                    <p className="mt-1 font-mono text-[11px] text-on-dark/70">{p.catalogNumber}</p>
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-on-dark/75">
                       {p.shortDescription}
                     </p>
                   </div>
                 </div>
                 <Link
                   href={`/products/${p.categorySlug}/${p.slug}`}
-                  className="mt-4 inline-flex text-xs font-semibold text-teal-800 transition group-hover:text-teal-950"
+                  className="mt-4 inline-flex text-xs font-semibold text-primary-mid transition group-hover:text-primary"
                 >
                   View specifications →
                 </Link>

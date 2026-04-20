@@ -5,23 +5,29 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const FEATURED_STYLES = [
   {
-    bg: "linear-gradient(135deg, rgba(255,177,98,0.18) 0%, rgba(201,193,177,0.14) 50%, rgba(238,233,223,0.95) 100%)",
-    hoverBorder: "hover:border-primary/35",
+    tag: "Flagship",
+    border: "border-primary/25 hover:border-primary/50",
+    stripe: "from-primary via-primary-mid to-tint-primary",
+    tagClass: "bg-primary text-primary-foreground",
+    linkColor: "text-primary-mid",
     image:
-      "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=800&h=500&fit=crop&q=80&auto=format",
+      "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=900&h=600&fit=crop&q=80&auto=format",
   },
   {
-    bg: "linear-gradient(135deg, rgba(44,59,77,0.12) 0%, rgba(155,168,183,0.12) 50%, rgba(238,233,223,0.95) 100%)",
-    hoverBorder: "hover:border-secondary/35",
+    tag: "Signature",
+    border: "border-secondary/22 hover:border-secondary/45",
+    stripe: "from-secondary via-accent to-tint-accent",
+    tagClass: "bg-secondary text-secondary-foreground",
+    linkColor: "text-on-dark/90",
     image:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=500&fit=crop&q=80&auto=format",
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&h=600&fit=crop&q=80&auto=format",
   },
 ] as const;
 
-const PILL_COLORS = [
-  "border-primary/30 bg-primary/12 text-primary-deep hover:bg-primary/18 hover:border-primary/45",
-  "border-secondary/25 bg-secondary/10 text-secondary hover:bg-secondary/16 hover:border-secondary/40",
-  "border-danger/28 bg-danger/10 text-danger hover:bg-danger/16 hover:border-danger/40",
+const PILL_STYLES = [
+  "border-primary/40 bg-primary/16 text-on-dark hover:bg-primary/22 hover:border-primary/60",
+  "border-secondary/35 bg-secondary/15 text-on-dark hover:bg-secondary/22 hover:border-secondary/55",
+  "border-danger/35 bg-danger/15 text-on-dark hover:bg-danger/22 hover:border-danger/55",
 ] as const;
 
 export async function LandingCategories() {
@@ -33,68 +39,113 @@ export async function LandingCategories() {
     <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <RevealOnScroll>
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-secondary">
-                Catalogue
-              </p>
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                Product Families
-              </h2>
-              <p className="mt-3 max-w-lg text-base text-muted-foreground">
-                Carbohydrates, impurities, linkers, intermediates, and more — each
-                with full listings and analytical documentation.
-              </p>
+          <div
+            className="relative overflow-hidden rounded-[2rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] px-6 py-8 shadow-[0_16px_42px_-14px_rgba(18,25,35,0.5)] backdrop-blur-md sm:px-10"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(18,25,35,0.72) 0%, rgba(27,38,50,0.58) 45%, rgba(44,59,77,0.5) 100%)",
+            }}
+          >
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-on-dark/25 bg-on-dark/[0.08] px-4 py-1.5">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+                  </span>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-on-dark">
+                    01 / Catalogue
+                  </span>
+                </div>
+                <h2 className="max-w-2xl font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+                  Product <span className="text-primary-mid">Families</span>
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-on-dark/90 sm:text-lg">
+                  Carbohydrates, impurities, linkers, intermediates, and more — each with full
+                  listings and analytical documentation.
+                </p>
+              </div>
+              <Link
+                href="/products"
+                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-on-dark/35 bg-[rgba(18,25,35,0.45)] px-6 py-3 text-sm font-semibold text-on-dark shadow-elevated-sm transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:bg-[rgba(18,25,35,0.62)] hover:shadow-elevated-md lg:self-end"
+              >
+                Full catalogue
+                <span
+                  aria-hidden
+                  className="grid h-5 w-5 place-items-center rounded-full bg-primary/20 text-primary-mid transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </Link>
             </div>
-            <Link
-              href="/products"
-              className="shrink-0 rounded-full border border-border-strong/50 bg-card/95 px-7 py-2.5 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md transition-all hover:border-primary/35 hover:shadow-md"
-            >
-              Full catalogue →
-            </Link>
           </div>
         </RevealOnScroll>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        {/* Featured categories */}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 sm:gap-7">
           {featured.map((cat, i) => {
             const style = FEATURED_STYLES[i];
             return (
-              <RevealOnScroll key={cat.slug} delay={i * 100}>
+              <RevealOnScroll key={cat.slug} delay={i * 120}>
                 <Link
                   href={`/products/${cat.slug}`}
-                  className={`group relative block h-full overflow-hidden rounded-[1.75rem] border border-border-strong/45 bg-card/40 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${style.hoverBorder}`}
-                  style={{ background: style.bg }}
+                  className={`group relative block h-full overflow-hidden rounded-[2rem] border bg-[rgba(18,25,35,0.74)] shadow-[0_14px_36px_-14px_rgba(8,13,20,0.8)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_42px_-14px_rgba(8,13,20,0.9)] ${style.border}`}
+                  style={{
+                    background:
+                      "linear-gradient(155deg, rgba(18,25,35,0.82) 0%, rgba(26,36,50,0.74) 52%, rgba(38,52,70,0.68) 100%)",
+                  }}
                 >
-                  <div className="relative h-44 w-full overflow-hidden sm:h-52">
+                  {/* Top gradient stripe */}
+                  <div className={`h-1.5 w-full bg-gradient-to-r ${style.stripe}`} />
+
+                  {/* Image with corner tag */}
+                  <div className="relative h-48 w-full overflow-hidden sm:h-56">
                     <Image
                       src={style.image}
                       alt={cat.name}
                       fill
                       sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div
                       className="absolute inset-0"
                       style={{
                         background:
-                          "linear-gradient(to top, rgba(27,38,50,0.82) 0%, rgba(27,38,50,0.28) 40%, transparent 100%)",
+                          "linear-gradient(to top, rgba(27,38,50,0.8) 0%, rgba(27,38,50,0.24) 45%, transparent 100%)",
                       }}
                     />
+                    {/* Tag */}
+                    <span
+                      className={`absolute left-5 top-5 rounded-full px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.22em] shadow-elevated-sm ${style.tagClass}`}
+                    >
+                      {style.tag}
+                    </span>
                   </div>
 
-                  <div className="p-8 pt-4 sm:p-10 sm:pt-5">
-                    <h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">
+                  <div className="p-8 pt-6 sm:p-10 sm:pt-7">
+                    <h3 className="font-display text-2xl font-bold tracking-tight text-on-dark sm:text-[1.65rem]">
                       {cat.name}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2.5 text-sm leading-relaxed text-on-dark/78">
                       {cat.tagline}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-deep">
-                      Explore category
-                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                        →
+
+                    <div className="mt-6 flex items-center justify-between border-t border-on-dark/15 pt-5">
+                      <span
+                        className={`inline-flex items-center gap-2 text-sm font-semibold ${style.linkColor}`}
+                      >
+                        Explore category
+                        <span
+                          aria-hidden
+                          className="transition-transform group-hover:translate-x-1"
+                        >
+                          →
+                        </span>
                       </span>
-                    </span>
+                      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/55">
+                        0{i + 1}
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </RevealOnScroll>
@@ -102,22 +153,33 @@ export async function LandingCategories() {
           })}
         </div>
 
-        <RevealOnScroll delay={220}>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {rest.map((cat, i) => (
-              <Link
-                key={cat.slug}
-                href={`/products/${cat.slug}`}
-                className={`group rounded-full border px-5 py-3 text-sm font-medium shadow-[0_2px_12px_-4px_rgba(0,0,0,0.2)] backdrop-blur-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] ${PILL_COLORS[i % PILL_COLORS.length]}`}
-              >
-                {cat.name}
-                <span className="ml-2 text-xs opacity-60 transition-transform group-hover:translate-x-0.5" aria-hidden>
-                  →
-                </span>
-              </Link>
-            ))}
-          </div>
-        </RevealOnScroll>
+        {/* Sub-category pills */}
+        {rest.length > 0 && (
+          <RevealOnScroll delay={250}>
+            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-on-dark/65">
+                Also available
+              </span>
+              <div className="flex flex-wrap gap-2.5">
+                {rest.map((cat, i) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/products/${cat.slug}`}
+                    className={`group rounded-full border px-5 py-2.5 text-sm font-medium shadow-elevated-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-elevated-md ${PILL_STYLES[i % PILL_STYLES.length]}`}
+                  >
+                    {cat.name}
+                    <span
+                      className="ml-2 text-xs opacity-55 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+        )}
       </div>
     </section>
   );

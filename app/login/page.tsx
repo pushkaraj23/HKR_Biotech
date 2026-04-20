@@ -13,13 +13,13 @@ export default function LoginPage() {
   return (
     <div className="relative px-4 py-16 sm:py-24">
       <div className="mx-auto max-w-md">
-        <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-primary/90">
+        <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-primary-mid">
           Account
         </p>
-        <h1 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="font-display text-2xl font-semibold tracking-tight text-on-dark sm:text-3xl">
           Sign in
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-on-dark/75">
           Continue with Google or your email and password.
         </p>
         <div className="mt-8">
@@ -33,7 +33,7 @@ export default function LoginPage() {
             <LoginForm />
           </Suspense>
         </div>
-        <p className="mt-8 text-center text-sm text-caption-foreground">
+        <p className="mt-8 text-center text-sm text-on-dark/65">
           No account?{" "}
           <Link href="/signup" className="font-medium text-primary hover:text-primary-mid">
             Create one

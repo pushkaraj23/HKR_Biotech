@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const CARD_ACCENTS = [
   {
-    tint: "from-tint-primary/25 to-surface/80",
+    tint: "from-[rgba(44,59,77,0.42)] to-[rgba(18,25,35,0.62)]",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3)",
     blob: "rgba(20,184,166,0.18)",
@@ -26,7 +26,7 @@ const CARD_ACCENTS = [
     bullet: "from-teal-400 to-teal-600",
   },
   {
-    tint: "from-tint-accent/25 to-surface/80",
+    tint: "from-[rgba(74,93,114,0.4)] to-[rgba(18,25,35,0.62)]",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25)",
     blob: "rgba(124,58,237,0.15)",
@@ -35,7 +35,7 @@ const CARD_ACCENTS = [
     bullet: "from-violet-400 to-violet-600",
   },
   {
-    tint: "from-tint-danger/20 to-surface/80",
+    tint: "from-[rgba(163,81,57,0.3)] to-[rgba(18,25,35,0.62)]",
     orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
     orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22)",
     blob: "rgba(225,29,72,0.12)",
@@ -44,7 +44,7 @@ const CARD_ACCENTS = [
     bullet: "from-rose-400 to-rose-600",
   },
   {
-    tint: "from-tint-primary/20 via-tint-accent/10 to-surface/80",
+    tint: "from-[rgba(44,59,77,0.38)] via-[rgba(74,93,114,0.32)] to-[rgba(18,25,35,0.62)]",
     orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.25)",
     blob: "rgba(20,184,166,0.14)",
@@ -53,7 +53,7 @@ const CARD_ACCENTS = [
     bullet: "from-teal-400 to-violet-500",
   },
   {
-    tint: "from-tint-accent/20 via-tint-danger/10 to-surface/80",
+    tint: "from-[rgba(74,93,114,0.36)] via-[rgba(163,81,57,0.22)] to-[rgba(18,25,35,0.62)]",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
     orbShadow: "0 8px 24px -4px rgba(124,58,237,0.25)",
     blob: "rgba(124,58,237,0.12)",
@@ -72,7 +72,7 @@ export default function ServicesPage() {
 
         {/* Hero — photo background with dark wash */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
             <Image
               src={HERO_IMAGE}
               alt="Scientific laboratory glassware"
@@ -112,13 +112,13 @@ export default function ServicesPage() {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
                 Scientific services
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
                 Composable Chemistry Services
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
                 From exploratory FTE blocks to filing-ready analytical packages — unified
                 under one project team with transparent milestones and scientific dialogue.
               </p>
@@ -132,7 +132,7 @@ export default function ServicesPage() {
                 <ButtonLink
                   href="#services-grid"
                   variant="secondary"
-                  className="rounded-full px-10"
+                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
                 >
                   Browse services
                 </ButtonLink>
@@ -144,10 +144,10 @@ export default function ServicesPage() {
         {/* Service cards */}
         <section id="services-grid">
           <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
               What we offer
             </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
               Our Services
             </h2>
           </RevealOnScroll>
@@ -159,7 +159,7 @@ export default function ServicesPage() {
                 <RevealOnScroll key={s.slug} delay={i * 70}>
                   <Link href={`/services/${s.slug}`} className="group block h-full">
                     <article
-                      className={`relative h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.5)]`}
+                      className={`relative h-full overflow-hidden rounded-[1.75rem] border border-on-dark/20 bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:shadow-[0_20px_48px_-16px_rgba(18,25,35,0.78)]`}
                     >
                       {/* Ambient blob */}
                       <div
@@ -182,16 +182,16 @@ export default function ServicesPage() {
                         <p className={`font-mono text-[10px] font-semibold uppercase tracking-[0.22em] ${accent.eyebrow}`}>
                           Service
                         </p>
-                        <h3 className="mt-2 font-display text-xl font-semibold text-foreground/95 md:text-2xl">
+                        <h3 className="mt-2 font-display text-xl font-semibold text-on-dark md:text-2xl">
                           {s.title}
                         </h3>
-                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        <p className="mt-3 text-sm leading-relaxed text-on-dark/82">
                           {s.summary}
                         </p>
 
                         <ul className="mt-5 space-y-2">
                           {s.benefits.slice(0, 3).map((b) => (
-                            <li key={b} className="flex gap-2.5 text-sm text-muted-foreground">
+                            <li key={b} className="flex gap-2.5 text-sm text-on-dark/78">
                               <span
                                 className={`mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r ${accent.bullet}`}
                                 aria-hidden
@@ -219,10 +219,10 @@ export default function ServicesPage() {
         {/* CTA — dark gradient */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2.5rem] border border-overlay p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
+            className="relative overflow-hidden rounded-[2.5rem] border border-on-dark/22 p-10 text-center shadow-[0_16px_64px_-16px_rgba(18,25,35,0.55)] backdrop-blur-xl sm:p-14"
             style={{
               background:
-                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
+                "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
             }}
           >
             <div
@@ -254,13 +254,13 @@ export default function ServicesPage() {
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-on-dark/78">
                 Partnership
               </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-foreground md:text-3xl">
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-on-dark md:text-3xl">
                 Not Sure Where to Start?
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+              <p className="mx-auto mt-4 max-w-lg text-on-dark/84">
                 Share your target, timeline, and analytical expectations. We respond with
                 technical questions and a clear feasibility path — not a generic brochure.
               </p>
@@ -274,7 +274,7 @@ export default function ServicesPage() {
                 <ButtonLink
                   href="/capabilities"
                   variant="secondary"
-                  className="rounded-full px-10"
+                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
                 >
                   View capabilities
                 </ButtonLink>

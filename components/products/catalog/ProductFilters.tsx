@@ -30,13 +30,13 @@ export function ProductFilters({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-primary/20 bg-gradient-to-br from-bg-secondary via-tint-primary/10 to-tint-accent/5 p-5 shadow-sm backdrop-blur-sm md:p-6",
+        "rounded-2xl border border-on-dark/18 bg-[rgba(18,25,35,0.44)] p-4 shadow-[0_8px_22px_-14px_rgba(18,25,35,0.62)] backdrop-blur-md md:p-5",
         className,
       )}
     >
-      <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end md:gap-6">
+      <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end md:gap-4">
         <div className="min-w-0">
-          <label htmlFor={searchId} className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <label htmlFor={searchId} className="text-xs font-semibold uppercase tracking-wider text-on-dark/80">
             Search catalogue
           </label>
           <input
@@ -45,13 +45,13 @@ export function ProductFilters({
             value={state.search}
             onChange={(e) => setPartial({ search: e.target.value })}
             placeholder="Name, CAS, formula, catalogue #…"
-            className="mt-2 w-full rounded-2xl border border-overlay-hover bg-on-dark/[0.06] px-4 py-3 text-sm text-foreground/95 shadow-inner outline-none ring-primary/0 transition placeholder:text-caption-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
+            className="mt-1.5 w-full rounded-xl border border-on-dark/30 bg-[rgba(18,25,35,0.5)] px-4 py-2.5 text-sm text-on-dark shadow-inner outline-none ring-primary/0 transition placeholder:text-on-dark/50 focus:border-primary/60 focus:ring-2 focus:ring-primary/25"
             autoComplete="off"
           />
         </div>
         {showCategoryFilter ? (
           <div className="min-w-[12rem]">
-            <label htmlFor="catalog-category" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <label htmlFor="catalog-category" className="text-xs font-semibold uppercase tracking-wider text-on-dark/80">
               Category
             </label>
             <select
@@ -62,7 +62,7 @@ export function ProductFilters({
                   category: e.target.value as CatalogFilterState["category"],
                 })
               }
-              className="mt-2 w-full rounded-2xl border border-overlay-hover bg-on-dark/[0.06] px-4 py-3 text-sm text-foreground/95 outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
+              className="mt-1.5 w-full rounded-xl border border-on-dark/30 bg-[rgba(18,25,35,0.5)] px-4 py-2.5 text-sm text-on-dark outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/25"
             >
               <option value="all">All categories</option>
               {categoryOptions.map((c) => (
@@ -75,9 +75,9 @@ export function ProductFilters({
         ) : null}
       </div>
 
-      <div className="mt-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Availability</p>
-        <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Filter by availability">
+      <div className="mt-4">
+        <p className="text-xs font-semibold uppercase tracking-wider text-on-dark/80">Availability</p>
+        <div className="mt-1.5 flex flex-wrap gap-1.5" role="group" aria-label="Filter by availability">
           <FilterChip
             active={state.availability === "all"}
             onClick={() => setPartial({ availability: "all" })}
@@ -113,10 +113,10 @@ function FilterChip({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition",
+        "rounded-full border px-3 py-1 text-[11px] font-semibold transition",
         active
-          ? "border-primary/50 bg-primary-deep text-primary-foreground shadow-sm"
-          : "border-overlay-hover bg-on-dark/[0.06] text-muted-foreground hover:border-primary/30 hover:bg-primary/10",
+          ? "border-primary/55 bg-primary-deep text-primary-foreground shadow-sm"
+          : "border-on-dark/30 bg-[rgba(18,25,35,0.45)] text-on-dark/85 hover:border-primary/40 hover:bg-[rgba(18,25,35,0.62)]",
       )}
     >
       {children}

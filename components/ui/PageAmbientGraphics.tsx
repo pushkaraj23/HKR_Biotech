@@ -85,6 +85,29 @@ const CONFIGS = {
       glow: "drop-shadow-[0_0_32px_rgba(159,18,57,0.16)]",
     },
   ],
+  /** Left-heavy: complements pages with right-aligned or centered cards */
+  left: [
+    {
+      src: "/graphics/atom2.png",
+      className: "-left-[16%] -top-[2%] w-[min(42vw,420px)]",
+      glow: "drop-shadow-[0_0_42px_rgba(91,33,182,0.26)]",
+    },
+    {
+      src: "/graphics/atom1.png",
+      className: "-right-[14%] top-[18%] w-[min(36vw,360px)]",
+      glow: "drop-shadow-[0_0_38px_rgba(15,118,110,0.24)]",
+    },
+    {
+      src: "/graphics/atom3.png",
+      className: "-left-[13%] top-[55%] w-[min(38vw,380px)]",
+      glow: "drop-shadow-[0_0_36px_rgba(20,184,166,0.22)]",
+    },
+    {
+      src: "/graphics/atom4.png",
+      className: "-right-[11%] top-[68%] w-[min(32vw,320px)]",
+      glow: "drop-shadow-[0_0_32px_rgba(159,18,57,0.16)]",
+    },
+  ],
 } as const;
 
 type PageAmbientGraphicsProps = {
@@ -99,7 +122,7 @@ export function PageAmbientGraphics({
   opacity = "opacity-[0.20]",
   className,
 }: PageAmbientGraphicsProps) {
-  const molecules = CONFIGS[variant];
+  const molecules = CONFIGS[variant] ?? CONFIGS.default;
 
   return (
     <div

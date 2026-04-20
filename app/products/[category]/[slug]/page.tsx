@@ -74,18 +74,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section
             aria-labelledby="overview-heading"
-            className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/20 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-on-dark/22 bg-[rgba(18,25,35,0.56)] p-7 shadow-[0_12px_34px_-14px_rgba(18,25,35,0.62)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
               Overview
             </p>
             <h2
               id="overview-heading"
-              className="mt-1 font-display text-xl font-semibold text-foreground"
+              className="mt-1 font-display text-xl font-semibold text-on-dark"
             >
               Product overview
             </h2>
-            <p className="mt-4 max-w-4xl text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-on-dark/84">
               {product.detailedDescription}
             </p>
           </section>
@@ -95,24 +95,24 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section
             aria-labelledby="specs-heading"
-            className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-accent/20 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-on-dark/22 bg-[rgba(18,25,35,0.56)] p-7 shadow-[0_12px_34px_-14px_rgba(18,25,35,0.62)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
               Technical data
             </p>
             <h2
               id="specs-heading"
-              className="mt-1 font-display text-xl font-semibold text-foreground"
+              className="mt-1 font-display text-xl font-semibold text-on-dark"
             >
               Specifications & Structure
             </h2>
             <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
               <div>
                 <StructurePlaceholder />
-                <p className="mt-3 font-mono text-sm text-muted-foreground">
+                <p className="mt-3 font-mono text-sm text-on-dark/82">
                   {product.molecularFormula}
                 </p>
-                <p className="mt-1 text-xs text-caption-foreground">
+                <p className="mt-1 text-xs text-on-dark/70">
                   Representative — supply .mol / .cdx with PO if required.
                 </p>
               </div>
@@ -127,22 +127,22 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <RevealOnScroll>
             <section
               aria-labelledby="applications-heading"
-              className="h-full rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/15 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-on-dark/22 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_12px_34px_-14px_rgba(18,25,35,0.62)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
                 Use cases
               </p>
               <h2
                 id="applications-heading"
-                className="mt-1 font-display text-xl font-semibold text-foreground"
+                className="mt-1 font-display text-xl font-semibold text-on-dark"
               >
                 Applications
               </h2>
               <ul className="mt-5 space-y-2.5">
                 {product.applications.map((a) => (
-                  <li key={a} className="flex gap-3 text-sm text-muted-foreground">
+                  <li key={a} className="flex gap-3 text-sm text-on-dark/82">
                     <span
-                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-violet-600"
+                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-primary-mid"
                       aria-hidden
                     />
                     {a}
@@ -156,27 +156,27 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <RevealOnScroll delay={60}>
             <section
               aria-labelledby="supply-heading"
-              className="h-full rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-danger/15 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-on-dark/22 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_12px_34px_-14px_rgba(18,25,35,0.62)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-danger">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
                 Supply & handling
               </p>
               <h2
                 id="supply-heading"
-                className="mt-1 font-display text-xl font-semibold text-foreground"
+                className="mt-1 font-display text-xl font-semibold text-on-dark"
               >
                 Packaging & Storage
               </h2>
 
               <div className="mt-5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-caption-foreground">
+                <p className="text-xs font-semibold uppercase tracking-wider text-on-dark/72">
                   Pack sizes
                 </p>
                 <ul className="mt-2 flex flex-wrap gap-2">
                   {product.packSizes.map((s) => (
                     <li
                       key={s}
-                      className="rounded-full border border-primary/25 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary-mid"
+                      className="rounded-full border border-primary/35 bg-primary/15 px-4 py-1.5 text-sm font-medium text-primary-mid"
                     >
                       {s}
                     </li>
@@ -184,28 +184,28 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </ul>
               </div>
 
-              <div className="mt-5 border-t border-overlay pt-5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-caption-foreground">
+              <div className="mt-5 border-t border-on-dark/18 pt-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-on-dark/72">
                   Storage conditions
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-on-dark/82">
                   {product.storageConditions}
                 </p>
               </div>
 
-              <div className="mt-5 border-t border-overlay pt-5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-caption-foreground">
+              <div className="mt-5 border-t border-on-dark/18 pt-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-on-dark/72">
                   Documents
                 </p>
-                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                <ul className="mt-2 space-y-1.5 text-sm text-on-dark/82">
                   <li className="flex items-center gap-2">
-                    <span className={product.coaAvailable ? "text-primary" : "text-caption-foreground"} aria-hidden>
+                    <span className={product.coaAvailable ? "text-primary" : "text-on-dark/60"} aria-hidden>
                       {product.coaAvailable ? "✓" : "—"}
                     </span>
                     COA — {product.coaAvailable ? "on release" : "on request"}
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className={product.sdsAvailable ? "text-primary" : "text-caption-foreground"} aria-hidden>
+                    <span className={product.sdsAvailable ? "text-primary" : "text-on-dark/60"} aria-hidden>
                       {product.sdsAvailable ? "✓" : "—"}
                     </span>
                     SDS — {product.sdsAvailable ? "available" : "on request"}
@@ -213,7 +213,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   {product.datasheetUrl && (
                     <li className="flex items-center gap-2">
                       <span className="text-primary" aria-hidden>↓</span>
-                      <Link href={product.datasheetUrl} className="font-medium text-primary hover:underline">
+                      <Link href={product.datasheetUrl} className="font-medium text-primary-mid hover:underline">
                         Technical summary (PDF)
                       </Link>
                     </li>
@@ -260,22 +260,23 @@ export default async function ProductDetailPage({ params }: PageProps) {
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
                 Get in touch
               </p>
               <h2
                 id="enquiry-heading"
-                className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl"
+                className="mt-2 font-display text-2xl font-bold text-on-dark md:text-3xl"
               >
                 Enquire About This Product
               </h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
+              <p className="mt-3 max-w-2xl text-on-dark/84">
                 Include quantity, purity requirements, and timeline — the product reference
                 is pre-filled for you.
               </p>
               <ContactForm
                 className="mt-8 border-0 bg-transparent p-0 shadow-none"
                 defaultProductRef={product.catalogNumber}
+                enquirySource={`product:${product.slug}`}
                 dark
               />
             </div>

@@ -51,17 +51,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <div className="relative z-10 mx-auto max-w-6xl space-y-12 px-4 pt-6 sm:px-6 md:space-y-16 lg:px-8">
 
         {/* Breadcrumb */}
-        <nav className="text-sm text-caption-foreground">
-          <Link href="/services" className="text-primary transition hover:text-primary-mid hover:underline">
+        <nav className="text-sm text-on-dark/72">
+          <Link href="/services" className="text-primary-mid transition hover:text-primary hover:underline">
             Services
           </Link>
-          <span className="mx-2 text-caption-foreground">/</span>
-          <span className="font-medium text-foreground/95">{s.title}</span>
+          <span className="mx-2 text-on-dark/45">/</span>
+          <span className="font-medium text-on-dark">{s.title}</span>
         </nav>
 
         {/* Hero — photo background with dark wash */}
         <RevealOnScroll>
-          <header className="relative overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+          <header className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
             <Image
               src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=1400&h=600&fit=crop&q=80&auto=format"
               alt="Laboratory research"
@@ -101,13 +101,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
                 Service
               </p>
-              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
                 {s.title}
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
                 {s.summary}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -120,7 +120,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <ButtonLink
                   href="/services"
                   variant="secondary"
-                  className="rounded-full px-10"
+                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
                 >
                   All services
                 </ButtonLink>
@@ -132,15 +132,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Overview */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/20 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
               Overview
             </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-foreground">
+            <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
               What this service delivers
             </h2>
-            <p className="mt-4 max-w-4xl text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-on-dark/82">
               {s.overview}
             </p>
           </section>
@@ -149,24 +149,24 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Process steps */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-accent/20 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl md:p-9"
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
               Workflow
             </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-foreground">
+            <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
               Typical process
             </h2>
             <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {s.process.map((step, i) => (
                 <RevealOnScroll key={step} delay={i * 60}>
-                  <li className="flex gap-4 rounded-2xl border border-overlay bg-on-dark/[0.04] p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                  <li className="flex gap-4 rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.48)] p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:bg-[rgba(18,25,35,0.62)] hover:shadow-md">
                     <span
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${STEP_ACCENTS[i % STEP_ACCENTS.length]} text-xs font-bold text-foreground shadow-sm`}
                     >
                       {i + 1}
                     </span>
-                    <span className="text-sm leading-relaxed text-muted-foreground">{step}</span>
+                    <span className="text-sm leading-relaxed text-on-dark/82">{step}</span>
                   </li>
                 </RevealOnScroll>
               ))}
@@ -178,17 +178,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="grid gap-6 md:grid-cols-2">
           <RevealOnScroll>
             <section
-              className="h-full rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/15 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
                 Advantages
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-foreground">
+              <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
                 Key benefits
               </h2>
               <ul className="mt-5 space-y-3">
                 {s.benefits.map((b) => (
-                  <li key={b} className="flex gap-3 text-sm text-muted-foreground">
+                  <li key={b} className="flex gap-3 text-sm text-on-dark/82">
                     <span
                       className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-primary-deep"
                       aria-hidden
@@ -202,17 +202,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
           <RevealOnScroll delay={60}>
             <section
-              className="h-full rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-accent/15 to-surface/80 p-7 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
                 Technical scope
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-foreground">
+              <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
                 Capabilities
               </h2>
               <ul className="mt-5 space-y-3">
                 {s.capabilities.map((c) => (
-                  <li key={c} className="flex gap-3 text-sm text-muted-foreground">
+                  <li key={c} className="flex gap-3 text-sm text-on-dark/82">
                     <span
                       className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-accent to-accent"
                       aria-hidden
@@ -228,10 +228,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Related services */}
         <RevealOnScroll>
           <section>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-danger">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
               Related
             </p>
-            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
               Other Services
             </h2>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -239,15 +239,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <RevealOnScroll key={rs.slug} delay={i * 50}>
                   <Link
                     href={`/services/${rs.slug}`}
-                    className="group block h-full rounded-[1.25rem] border border-overlay bg-gradient-to-b from-bg-secondary to-tint-primary/10 p-5 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.5)]"
+                    className="group block h-full rounded-[1.25rem] border border-on-dark/20 bg-[rgba(18,25,35,0.5)] p-5 shadow-[0_4px_16px_-8px_rgba(18,25,35,0.7)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_8px_24px_-10px_rgba(18,25,35,0.75)]"
                   >
-                    <h3 className="font-display text-sm font-semibold text-foreground/95 transition-colors group-hover:text-primary">
+                    <h3 className="font-display text-sm font-semibold text-on-dark transition-colors group-hover:text-primary-mid">
                       {rs.title}
                     </h3>
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-on-dark/78">
                       {rs.summary}
                     </p>
-                    <span className="mt-3 inline-flex text-xs font-semibold text-primary transition-transform group-hover:translate-x-0.5">
+                    <span className="mt-3 inline-flex text-xs font-semibold text-primary-mid transition-transform group-hover:translate-x-0.5">
                       Learn more →
                     </span>
                   </Link>
@@ -261,10 +261,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section
             id="enquiry-form"
-            className="scroll-mt-28 relative overflow-hidden rounded-[2.5rem] border border-overlay p-8 shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-12"
+            className="scroll-mt-28 relative overflow-hidden rounded-[2.5rem] border border-on-dark/22 p-8 shadow-[0_16px_64px_-16px_rgba(18,25,35,0.58)] backdrop-blur-xl sm:p-12"
             style={{
               background:
-                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
+                "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
             }}
           >
             {/* Subtle grid */}
@@ -299,19 +299,21 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
                 Get in touch
               </p>
-              <h2 className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl">
+              <h2 className="mt-2 font-display text-2xl font-bold text-on-dark md:text-3xl">
                 Enquire About {s.title}
               </h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
+              <p className="mt-3 max-w-2xl text-on-dark/84">
                 Describe your project scope, timeline, and any analytical expectations — the
                 service reference is pre-filled for you.
               </p>
               <ContactForm
                 className="mt-8 border-0 bg-transparent p-0 shadow-none"
                 defaultProductRef={`service:${s.slug}`}
+                enquirySource={`service:${s.slug}`}
+                dark
               />
             </div>
           </section>

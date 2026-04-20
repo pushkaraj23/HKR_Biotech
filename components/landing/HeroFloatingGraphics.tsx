@@ -29,13 +29,13 @@ const ORBS: OrbConfig[] = [
     className:
       "left-[-14%] top-[-10%] h-[min(80vw,720px)] w-[min(80vw,720px)] sm:left-[-8%] sm:top-[-6%]",
     gradient:
-      "radial-gradient(circle at 40% 40%, rgba(255,177,98,0.55), rgba(163,81,57,0.2) 46%, transparent 65%)",
+      "radial-gradient(circle at 40% 40%, rgba(255,177,98,0.32), rgba(163,81,57,0.12) 46%, transparent 65%)",
     blur: "blur-[90px]",
     animate: {
       x: [0, 40, -30, 20, 0],
       y: [0, -30, 40, -15, 0],
       scale: [1, 1.12, 0.92, 1.06, 1],
-      opacity: [0.7, 1, 0.65, 0.9, 0.7],
+      opacity: [0.45, 0.62, 0.4, 0.55, 0.45],
     },
     duration: 16,
     delay: 0,
@@ -44,13 +44,13 @@ const ORBS: OrbConfig[] = [
     className:
       "right-[-16%] top-[2%] h-[min(70vw,640px)] w-[min(70vw,640px)] sm:right-[-10%]",
     gradient:
-      "radial-gradient(circle at 55% 40%, rgba(44,59,77,0.5), rgba(74,93,114,0.16) 44%, transparent 64%)",
+      "radial-gradient(circle at 55% 40%, rgba(44,59,77,0.28), rgba(74,93,114,0.08) 44%, transparent 64%)",
     blur: "blur-[85px]",
     animate: {
       x: [0, -36, 28, -18, 0],
       y: [0, 24, -36, 18, 0],
       scale: [1, 1.1, 0.93, 1.08, 1],
-      opacity: [0.65, 0.95, 0.6, 0.85, 0.65],
+      opacity: [0.45, 0.6, 0.4, 0.55, 0.45],
     },
     duration: 18,
     delay: -2,
@@ -59,13 +59,13 @@ const ORBS: OrbConfig[] = [
     className:
       "bottom-[-4%] left-[8%] h-[min(56vw,500px)] w-[min(56vw,500px)] sm:left-[12%]",
     gradient:
-      "radial-gradient(circle at 50% 50%, rgba(163,81,57,0.42), rgba(200,120,95,0.12) 42%, transparent 62%)",
+      "radial-gradient(circle at 50% 50%, rgba(163,81,57,0.25), rgba(200,120,95,0.08) 42%, transparent 62%)",
     blur: "blur-[80px]",
     animate: {
       x: [0, 28, -22, 16, 0],
       y: [0, -24, 32, -12, 0],
       scale: [1, 1.08, 0.94, 1.05, 1],
-      opacity: [0.55, 0.85, 0.5, 0.75, 0.55],
+      opacity: [0.35, 0.55, 0.32, 0.5, 0.35],
     },
     duration: 14,
     delay: -4,
@@ -74,13 +74,13 @@ const ORBS: OrbConfig[] = [
     className:
       "right-[2%] bottom-[6%] h-[min(44vw,400px)] w-[min(44vw,400px)] sm:right-[8%]",
     gradient:
-      "radial-gradient(circle at 45% 55%, rgba(255,177,98,0.32), rgba(44,59,77,0.18) 48%, transparent 68%)",
+      "radial-gradient(circle at 45% 55%, rgba(255,177,98,0.2), rgba(44,59,77,0.08) 48%, transparent 68%)",
     blur: "blur-[70px]",
     animate: {
       x: [0, -20, 30, -14, 0],
       y: [0, 22, -26, 16, 0],
       scale: [1, 1.06, 0.95, 1.04, 1],
-      opacity: [0.5, 0.8, 0.45, 0.7, 0.5],
+      opacity: [0.32, 0.5, 0.3, 0.45, 0.32],
     },
     duration: 20,
     delay: -1,
@@ -89,13 +89,13 @@ const ORBS: OrbConfig[] = [
     className:
       "left-[30%] top-[20%] h-[min(36vw,320px)] w-[min(36vw,320px)] sm:left-[35%] sm:top-[15%]",
     gradient:
-      "radial-gradient(circle at 50% 50%, rgba(155,168,183,0.35), rgba(255,177,98,0.14) 50%, transparent 72%)",
+      "radial-gradient(circle at 50% 50%, rgba(155,168,183,0.2), rgba(255,177,98,0.08) 50%, transparent 72%)",
     blur: "blur-[60px]",
     animate: {
       x: [0, 16, -12, 8, 0],
       y: [0, -14, 18, -8, 0],
       scale: [1, 1.1, 0.96, 1.05, 1],
-      opacity: [0.4, 0.7, 0.35, 0.6, 0.4],
+      opacity: [0.25, 0.4, 0.22, 0.35, 0.25],
     },
     duration: 12,
     delay: -3,
@@ -111,7 +111,7 @@ function CentralPulse({ enableMotion }: { enableMotion: boolean }) {
       className="absolute left-1/2 top-1/2 h-[min(110vw,900px)] w-[min(110vw,900px)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
       style={{
         background:
-          "radial-gradient(circle at 50% 48%, rgba(255,177,98,0.26) 0%, rgba(44,59,77,0.14) 35%, rgba(163,81,57,0.06) 55%, transparent 70%)",
+          "radial-gradient(circle at 50% 48%, rgba(255,177,98,0.24) 0%, rgba(44,59,77,0.1) 35%, rgba(163,81,57,0.05) 55%, transparent 70%)",
       }}
       initial={{ scale: 1, opacity: 0.5 }}
       animate={
@@ -158,6 +158,22 @@ export function HeroFloatingGraphics() {
           }
         />
       ))}
+
+      {/* Legibility wash: ensures dark, even base behind hero text regardless of orb motion */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 42%, rgba(18,25,35,0.55) 0%, rgba(18,25,35,0.38) 35%, rgba(18,25,35,0.15) 65%, transparent 90%)",
+        }}
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-[55%]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(18,25,35,0.38) 0%, rgba(18,25,35,0.18) 50%, transparent 100%)",
+        }}
+      />
     </div>
   );
 }

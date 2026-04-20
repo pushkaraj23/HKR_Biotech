@@ -60,6 +60,14 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
             {user.email}
           </p>
           <Link
+            href="/profile"
+            className="block px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+            role="menuitem"
+            onClick={() => setMenuOpen(false)}
+          >
+            My profile
+          </Link>
+          <Link
             href="/contact"
             className="block px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
             role="menuitem"

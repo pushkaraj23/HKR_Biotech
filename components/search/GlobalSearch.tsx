@@ -175,7 +175,7 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[min(20vh,10rem)]">
       <div
-        className="absolute inset-0 bg-background/75 backdrop-blur-sm"
+        className="absolute inset-0 bg-[rgba(7,14,27,0.6)] backdrop-blur-md"
         onClick={onClose}
         aria-hidden
       />
@@ -184,11 +184,11 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-label="Site search"
-        className="relative mx-4 w-full max-w-xl animate-[fade-up_0.18s_ease-out] overflow-hidden rounded-2xl border border-overlay-hover bg-surface/95 shadow-elevated-lg backdrop-blur-2xl"
+        className="relative mx-4 w-full max-w-xl animate-[fade-up_0.18s_ease-out] overflow-hidden rounded-2xl border border-on-dark/26 bg-[rgba(18,25,35,0.92)] shadow-[0_20px_48px_-20px_rgba(18,25,35,0.85)] backdrop-blur-2xl"
       >
         {/* Input */}
-        <div className="flex items-center gap-3 border-b border-overlay px-4 py-3">
-          <IconSearch className="h-5 w-5 shrink-0 text-caption-foreground" />
+        <div className="flex items-center gap-3 border-b border-on-dark/16 px-4 py-3">
+          <IconSearch className="h-5 w-5 shrink-0 text-on-dark/60" />
           <input
             ref={inputRef}
             type="text"
@@ -196,11 +196,11 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-caption-foreground"
+            className="flex-1 bg-transparent text-sm text-on-dark outline-none placeholder:text-on-dark/55"
             autoComplete="off"
             spellCheck={false}
           />
-          <kbd className="hidden shrink-0 rounded-md border border-overlay-hover bg-on-dark/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-caption-foreground sm:inline">
+          <kbd className="hidden shrink-0 rounded-md border border-on-dark/25 bg-[rgba(18,25,35,0.52)] px-1.5 py-0.5 font-mono text-[10px] font-medium text-on-dark/65 sm:inline">
             ESC
           </kbd>
         </div>
@@ -208,20 +208,20 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
         {/* Results */}
         <div ref={listRef} className="max-h-[min(60vh,26rem)] overflow-y-auto overscroll-contain p-2">
           {query.trim() && flat.length === 0 && (
-            <p className="px-3 py-8 text-center text-sm text-caption-foreground">
+            <p className="px-3 py-8 text-center text-sm text-on-dark/65">
               No results for &ldquo;{query}&rdquo;
             </p>
           )}
 
           {!query.trim() && (
-            <p className="px-3 py-8 text-center text-sm text-caption-foreground">
+            <p className="px-3 py-8 text-center text-sm text-on-dark/65">
               Start typing to search the catalogue, services, and pages.
             </p>
           )}
 
           {grouped.map((group) => (
             <div key={group.kind} className="mb-1">
-              <p className="px-3 pb-1.5 pt-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-caption-foreground">
+              <p className="px-3 pb-1.5 pt-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-on-dark/52">
                 {KIND_LABELS[group.kind]}
               </p>
               {group.items.map((item) => {
@@ -241,16 +241,16 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
                     className={cn(
                       "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors duration-100",
                       isActive
-                        ? "bg-primary/10 text-on-dark"
-                        : "text-muted-foreground hover:bg-on-dark/[0.04]",
+                        ? "bg-primary/20 text-on-dark"
+                        : "text-on-dark/82 hover:bg-[rgba(18,25,35,0.5)]",
                     )}
                   >
                     <span
                       className={cn(
                         "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors duration-100",
                         isActive
-                          ? "border-primary/30 bg-primary/15 text-primary"
-                          : "border-overlay bg-on-dark/[0.04] text-caption-foreground",
+                          ? "border-primary/45 bg-primary/25 text-primary-mid"
+                          : "border-on-dark/16 bg-[rgba(18,25,35,0.42)] text-on-dark/50",
                       )}
                     >
                       {KIND_ICONS[item.kind]}
@@ -259,12 +259,12 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
                       <span className="block truncate font-medium leading-snug">
                         {item.title}
                       </span>
-                      <span className="block truncate text-xs leading-snug text-caption-foreground">
+                      <span className="block truncate text-xs leading-snug text-on-dark/62">
                         {item.subtitle}
                       </span>
                     </span>
                     {isActive && (
-                      <kbd className="hidden shrink-0 rounded-md border border-overlay-hover bg-on-dark/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-caption-foreground sm:inline">
+                      <kbd className="hidden shrink-0 rounded-md border border-on-dark/25 bg-[rgba(18,25,35,0.52)] px-1.5 py-0.5 font-mono text-[10px] font-medium text-on-dark/65 sm:inline">
                         ↵
                       </kbd>
                     )}
@@ -277,14 +277,14 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
 
         {/* Footer */}
         {flat.length > 0 && (
-          <div className="flex items-center gap-4 border-t border-overlay px-4 py-2 text-[11px] text-caption-foreground">
+          <div className="flex items-center gap-4 border-t border-on-dark/16 px-4 py-2 text-[11px] text-on-dark/60">
             <span className="flex items-center gap-1">
-              <kbd className="rounded border border-overlay-hover bg-on-dark/[0.06] px-1 py-0.5 font-mono text-[9px]">↑</kbd>
-              <kbd className="rounded border border-overlay-hover bg-on-dark/[0.06] px-1 py-0.5 font-mono text-[9px]">↓</kbd>
+              <kbd className="rounded border border-on-dark/25 bg-[rgba(18,25,35,0.52)] px-1 py-0.5 font-mono text-[9px]">↑</kbd>
+              <kbd className="rounded border border-on-dark/25 bg-[rgba(18,25,35,0.52)] px-1 py-0.5 font-mono text-[9px]">↓</kbd>
               navigate
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="rounded border border-overlay-hover bg-on-dark/[0.06] px-1 py-0.5 font-mono text-[9px]">↵</kbd>
+              <kbd className="rounded border border-on-dark/25 bg-[rgba(18,25,35,0.52)] px-1 py-0.5 font-mono text-[9px]">↵</kbd>
               open
             </span>
             <span className="ml-auto tabular-nums">{flat.length} result{flat.length !== 1 && "s"}</span>

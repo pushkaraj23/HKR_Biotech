@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { CatalogProduct, ProductCategory, ProductCategorySlug } from "@/lib/types/catalog";
 import { filterCatalogProducts, type CatalogFilterState } from "@/lib/catalog/filters";
@@ -41,6 +41,7 @@ const WHY_ITEMS = [
     orbShadow: "var(--orb-shadow-danger)",
   },
 ] as const;
+const PAGE_SIZE = 12;
 
 export function CategoryBrowseClient({
   category,
@@ -54,11 +55,37 @@ export function CategoryBrowseClient({
     availability: "all",
   };
   const [state, setState] = useState<CatalogFilterState>(initial);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   const filtered = useMemo(
     () => filterCatalogProducts(categoryProducts, state, category.slug as ProductCategorySlug),
     [category.slug, categoryProducts, state],
   );
+  const visibleProducts = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount],
+  );
+  const hasMore = visibleCount < filtered.length;
+
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [category.slug, state.search, state.availability]);
+
+  useEffect(() => {
+    if (!hasMore || !sentinelRef.current) return;
+    const target = sentinelRef.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, filtered.length));
+        }
+      },
+      { rootMargin: "220px 0px", threshold: 0.01 },
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [hasMore, filtered.length]);
 
   const categoryOptions = allCategories.map((c) => ({ slug: c.slug, name: c.name }));
 
@@ -93,7 +120,7 @@ export function CategoryBrowseClient({
                 </h2>
               </div>
               <p className="text-sm text-on-dark/80">
-                <span className="font-semibold text-on-dark">{filtered.length}</span> shown in this family
+                <span className="font-semibold text-on-dark">{visibleProducts.length}</span> shown in this family
               </p>
             </div>
 
@@ -110,7 +137,7 @@ export function CategoryBrowseClient({
               </div>
             ) : (
               <ul className="mt-8 grid gap-6 md:grid-cols-2">
-                {filtered.map((p, i) => (
+                {visibleProducts.map((p, i) => (
                   <RevealOnScroll key={p.slug} delay={(i % 4) * 55}>
                     <li>
                       <ProductCard product={p} className="h-full" />
@@ -119,6 +146,16 @@ export function CategoryBrowseClient({
                 ))}
               </ul>
             )}
+            {filtered.length > 0 ? (
+              <div className="mt-6 flex flex-col items-center gap-2">
+                <div ref={sentinelRef} className="h-1 w-full" aria-hidden />
+                {hasMore ? (
+                  <p className="text-xs text-on-dark/65">Loading more products as you scroll...</p>
+                ) : (
+                  <p className="text-xs text-on-dark/65">All matching products loaded.</p>
+                )}
+              </div>
+            ) : null}
           </section>
         </RevealOnScroll>
 

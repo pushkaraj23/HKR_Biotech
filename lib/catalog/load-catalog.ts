@@ -32,6 +32,7 @@ function docToCategory(id: string, data: DocumentData): ProductCategory | null {
   return {
     slug,
     name,
+    imageUrl: data.imageUrl ? asString(data.imageUrl) : undefined,
     tagline: asString(data.tagline),
     description: asString(data.description),
     overview: asString(data.overview),
@@ -48,6 +49,7 @@ function docToProduct(id: string, data: DocumentData): CatalogProduct | null {
   return {
     id: asString(data.id, slug),
     slug,
+    imageUrl: data.imageUrl ? asString(data.imageUrl) : undefined,
     catalogNumber: asString(data.catalogNumber),
     categorySlug,
     chemicalName,

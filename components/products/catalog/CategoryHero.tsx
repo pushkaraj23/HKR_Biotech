@@ -39,6 +39,19 @@ export function CategoryHero({ category, className }: CategoryHeroProps) {
             "linear-gradient(135deg, rgba(18,25,35,0.72) 0%, rgba(27,38,50,0.58) 45%, rgba(44,59,77,0.52) 100%)",
         }}
       >
+        {category.imageUrl ? (
+          <>
+            <div
+              className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-24"
+              style={{ backgroundImage: `url("${category.imageUrl}")` }}
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(7,14,27,0.7)_0%,rgba(7,14,27,0.52)_42%,rgba(7,14,27,0.72)_100%)]"
+              aria-hidden
+            />
+          </>
+        ) : null}
         <div
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,118,110,0.05)_0%,transparent_42%,rgba(91,33,182,0.035)_100%)]"
           aria-hidden

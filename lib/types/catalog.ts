@@ -12,6 +12,7 @@ export type ProductAvailability =
 export type ProductCategory = {
   slug: ProductCategorySlug;
   name: string;
+  imageUrl?: string;
   tagline: string;
   /** Short line for cards */
   description: string;
@@ -25,6 +26,7 @@ export type CatalogProduct = {
   id: string;
   /** Unique globally — used in /products/[category]/[slug] */
   slug: string;
+  imageUrl?: string;
   catalogNumber: string;
   categorySlug: ProductCategorySlug;
   chemicalName: string;

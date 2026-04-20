@@ -16,11 +16,15 @@ export function RevealOnScroll({ children, className, delay = 0 }: RevealOnScrol
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const fallback = window.setTimeout(() => {
+      setVisible(true);
+    }, 900);
 
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
+          window.clearTimeout(fallback);
           obs.disconnect();
         }
       },
@@ -28,7 +32,10 @@ export function RevealOnScroll({ children, className, delay = 0 }: RevealOnScrol
     );
 
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      window.clearTimeout(fallback);
+      obs.disconnect();
+    };
   }, []);
 
   return (

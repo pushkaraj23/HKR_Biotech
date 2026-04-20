@@ -15,6 +15,8 @@ import { ProductSpecsTable } from "@/components/products/catalog/ProductSpecsTab
 import { RelatedProducts } from "@/components/products/catalog/RelatedProducts";
 import { ProductStickyEnquiry } from "@/components/products/catalog/ProductStickyEnquiry";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { UserProductActions } from "@/components/commerce/UserProductActions";
+import { ProductInterestTracker } from "@/components/analytics/ProductInterestTracker";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
@@ -63,6 +65,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
   return (
     <div className="relative overflow-x-hidden pb-28">
       <PageAmbientGraphics variant="right" opacity="opacity-[0.16]" />
+      <ProductInterestTracker
+        slug={product.slug}
+        categorySlug={product.categorySlug}
+        chemicalName={product.chemicalName}
+        catalogNumber={product.catalogNumber}
+      />
       <ProductStickyEnquiry product={product} />
 
       <div className="relative z-10 mx-auto max-w-6xl space-y-10 px-4 pt-6 sm:px-6 md:space-y-12 lg:px-8">
@@ -108,13 +116,26 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </h2>
             <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
               <div>
-                <StructurePlaceholder />
+                <StructurePlaceholder imageUrl={product.imageUrl} imageAlt={`${product.chemicalName} structure`} />
                 <p className="mt-3 font-mono text-sm text-on-dark/82">
                   {product.molecularFormula}
                 </p>
                 <p className="mt-1 text-xs text-on-dark/70">
                   Representative — supply .mol / .cdx with PO if required.
                 </p>
+                <UserProductActions
+                  className="mt-4"
+                  product={{
+                    slug: product.slug,
+                    catalogNumber: product.catalogNumber,
+                    categorySlug: product.categorySlug,
+                    chemicalName: product.chemicalName,
+                    shortDescription: product.shortDescription,
+                    purity: product.purity,
+                    availability: product.availability,
+                    imageUrl: product.imageUrl,
+                  }}
+                />
               </div>
               <ProductSpecsTable product={product} />
             </div>

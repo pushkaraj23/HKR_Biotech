@@ -2,6 +2,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import { getServerFirestoreDb } from "@/lib/firebase/server-firestore";
 import { verifyFirebaseIdTokenPublic } from "@/lib/firebase/verify-id-token";
+import { trackProductInterest } from "@/lib/analytics/product-interest";
 
 type EnquiryBody = {
   name?: unknown;
@@ -65,6 +66,16 @@ export async function POST(req: Request) {
       updatedAt: serverTimestamp(),
       createdAtIso: created,
     });
+    const productSlugFromSource = source.startsWith("product:") ? source.slice("product:".length).trim() : "";
+    if (productSlugFromSource) {
+      await trackProductInterest({
+        eventType: "enquiry_submit",
+        slug: productSlugFromSource,
+        catalogNumber: reference || undefined,
+        uid: decoded?.uid ?? null,
+        email: decoded?.email ?? null,
+      });
+    }
     return NextResponse.json({ ok: true, id: docRef.id });
   } catch (error) {
     return NextResponse.json(

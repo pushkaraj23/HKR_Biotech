@@ -1,9 +1,12 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 type StructurePlaceholderProps = {
   label?: string;
   className?: string;
   compact?: boolean;
+  imageUrl?: string;
+  imageAlt?: string;
 };
 
 /** Styled placeholder when no structure image asset is available. */
@@ -11,7 +14,29 @@ export function StructurePlaceholder({
   label = "Structure",
   className,
   compact = false,
+  imageUrl,
+  imageAlt = "Compound structure",
 }: StructurePlaceholderProps) {
+  if (imageUrl) {
+    return (
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-2xl border border-teal-200/60 bg-white/95 shadow-inner",
+          compact ? "aspect-square max-h-28" : "aspect-[4/3] w-full max-w-md",
+          className,
+        )}
+      >
+        <Image
+          src={imageUrl}
+          alt={imageAlt}
+          fill
+          sizes={compact ? "112px" : "(max-width: 768px) 90vw, 480px"}
+          className="object-contain p-3"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(

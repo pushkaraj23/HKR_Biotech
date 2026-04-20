@@ -29,6 +29,19 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
         }}
         aria-hidden
       />
+      {product.imageUrl ? (
+        <>
+          <div
+            className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-28"
+            style={{ backgroundImage: `url("${product.imageUrl}")` }}
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(7,14,27,0.78)_0%,rgba(7,14,27,0.58)_42%,rgba(7,14,27,0.72)_100%)]"
+            aria-hidden
+          />
+        </>
+      ) : null}
 
       {/* Ambient glow — subtle, cool tones only */}
       <div

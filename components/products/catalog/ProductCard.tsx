@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { UserProductActions } from "@/components/commerce/UserProductActions";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
+import { trackProductInterestClient } from "@/lib/analytics/track-product-interest";
 import type { CatalogProduct, ProductAvailability } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
 
@@ -167,6 +169,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
       <div className="relative flex items-center justify-between gap-3 border-t border-on-dark/18 bg-[rgba(18,25,35,0.42)] px-6 py-4 backdrop-blur-sm">
         <Link
           href={detailHref}
+          onClick={() =>
+            void trackProductInterestClient("view_from_list", {
+              slug: product.slug,
+              categorySlug: product.categorySlug,
+              chemicalName: product.chemicalName,
+              catalogNumber: product.catalogNumber,
+            })
+          }
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-200 hover:gap-2.5 hover:text-primary-mid"
         >
           View details
@@ -183,6 +193,21 @@ export function ProductCard({ product, className }: ProductCardProps) {
         >
           Enquire
         </EnquireGateLink>
+      </div>
+      <div className="relative border-t border-on-dark/15 px-6 py-3">
+        <UserProductActions
+          compact
+          product={{
+            slug: product.slug,
+            catalogNumber: product.catalogNumber,
+            categorySlug: product.categorySlug,
+            chemicalName: product.chemicalName,
+            shortDescription: product.shortDescription,
+            purity: product.purity,
+            availability: product.availability,
+            imageUrl: product.imageUrl,
+          }}
+        />
       </div>
     </article>
   );

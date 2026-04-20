@@ -68,6 +68,16 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
           style={{ background: accent.blob }}
           aria-hidden
         />
+        {category.imageUrl ? (
+          <>
+            <div
+              className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-20 transition-opacity duration-300 group-hover:opacity-30"
+              style={{ backgroundImage: `url("${category.imageUrl}")` }}
+              aria-hidden
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,14,27,0.26),rgba(7,14,27,0.56))]" aria-hidden />
+          </>
+        ) : null}
 
         <div className="relative p-7">
           {/* Orb icon */}

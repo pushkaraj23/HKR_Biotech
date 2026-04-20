@@ -14,6 +14,11 @@ type WishlistPayload = {
   imageUrl?: unknown;
 };
 
+type WishlistItem = {
+  id: string;
+  updatedAtIso?: string;
+} & Record<string, unknown>;
+
 export async function GET(req: Request) {
   const auth = await requireUserAuth(req);
   if (auth instanceof NextResponse) return auth;
@@ -21,7 +26,7 @@ export async function GET(req: Request) {
   try {
     const db = getServerFirestoreDb();
     const snap = await getDocs(collection(db, "users", auth.uid, "wishlist"));
-    const items = snap.docs
+    const items: WishlistItem[] = snap.docs
       .map((d) => ({ id: d.id, ...(d.data() as Record<string, unknown>) }))
       .sort((a, b) => String(b.updatedAtIso ?? "").localeCompare(String(a.updatedAtIso ?? "")));
     return NextResponse.json({ items });

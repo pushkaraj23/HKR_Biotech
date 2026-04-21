@@ -243,6 +243,16 @@ export async function Footer() {
                 with traceable documentation and QC you can audit.
               </p>
             </div>
+            <p className="mt-4 text-center text-xs text-foreground/90">
+              <a
+                href="https://www.fibonce.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary-deep hover:decoration-primary"
+              >
+                Designed and developed by Fibonce Tech Solutions Pvt. Ltd.
+              </a>
+            </p>
           </div>
         </div>
       </div>

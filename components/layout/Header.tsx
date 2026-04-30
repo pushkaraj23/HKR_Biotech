@@ -26,8 +26,8 @@ function NavItem({
       className={cn(
         "whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-medium transition-all duration-200 xl:px-3.5 xl:text-[13px]",
         active
-          ? "bg-white/15 text-secondary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
-          : "text-secondary-foreground/85 hover:bg-white/10 hover:text-secondary-foreground",
+          ? "bg-white/15 text-on-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+          : "text-on-dark/90 hover:bg-white/10 hover:text-on-dark",
       )}
     >
       {children}
@@ -125,10 +125,10 @@ export function Header() {
         {configured && user ? (
           <div className="hidden min-w-0 max-w-[13rem] shrink-0 lg:block">
             <p
-              className="truncate rounded-full border border-white/25 bg-surface/90 px-3 py-2 text-[12px] text-secondary-foreground/90 shadow-elevated-lg backdrop-blur-xl xl:px-3.5 xl:text-[13px]"
+              className="truncate rounded-full border border-white/25 bg-surface/90 px-3 py-2 text-[12px] text-on-dark/95 shadow-elevated-lg backdrop-blur-xl xl:px-3.5 xl:text-[13px]"
               title={user.email ?? undefined}
             >
-              Hi, <span className="font-semibold text-secondary-foreground">{firstName}</span>!
+              Hi, <span className="font-semibold text-on-dark">{firstName}</span>!
             </p>
           </div>
         ) : null}
@@ -137,7 +137,7 @@ export function Header() {
           <div
             className={cn(
               "flex items-center justify-between gap-3 rounded-full px-4 py-2 sm:gap-4 sm:px-6 sm:py-2.5",
-              "border border-white/20 bg-surface/85 text-secondary-foreground shadow-[0_8px_32px_-8px_rgba(8,26,120,0.25),0_2px_8px_-2px_rgba(8,26,120,0.12)] backdrop-blur-2xl backdrop-saturate-150",
+              "border border-white/20 bg-surface/85 text-on-dark shadow-[0_8px_32px_-8px_rgba(8,26,120,0.25),0_2px_8px_-2px_rgba(8,26,120,0.12)] backdrop-blur-2xl backdrop-saturate-150",
             )}
           >
         {/* Logo */}
@@ -171,13 +171,13 @@ export function Header() {
                       className={cn(
                         "whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-medium transition-all duration-200 xl:px-3.5 xl:text-[13px]",
                         active
-                          ? "bg-white/15 text-secondary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
-                          : "text-secondary-foreground/85 hover:bg-white/10 hover:text-secondary-foreground",
+                          ? "bg-white/15 text-on-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+                          : "text-on-dark/90 hover:bg-white/10 hover:text-on-dark",
                       )}
                     >
                       {item.label}
                     </Link>
-                    <span className="shrink-0 pr-1 text-xs text-secondary-foreground/70" aria-hidden>
+                    <span className="shrink-0 pr-1 text-xs text-on-dark/75" aria-hidden>
                       ▾
                     </span>
                   </div>
@@ -185,13 +185,13 @@ export function Header() {
                   {/* Dropdown */}
                   <div
                     className={cn(
-                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/20 bg-surface/98 p-2 text-secondary-foreground shadow-elevated-lg backdrop-blur-2xl transition-all duration-200",
+                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/20 bg-surface/98 p-2 text-on-dark shadow-elevated-lg backdrop-blur-2xl transition-all duration-200",
                       productsOpen
                         ? "visible translate-y-0 opacity-100"
                         : "invisible -translate-y-1 opacity-0",
                     )}
                   >
-                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-secondary-foreground/65">
+                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-on-dark/70">
                       Browse
                     </p>
                     <ul className="space-y-0.5">
@@ -199,7 +199,7 @@ export function Header() {
                         <li key={child.href}>
                           <Link
                             href={child.href}
-                            className="block rounded-xl px-3 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+                            className="block rounded-xl px-3 py-2.5 text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
                           >
                             {child.label}
                           </Link>
@@ -241,7 +241,7 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-secondary-foreground shadow-sm backdrop-blur-lg transition-colors hover:bg-white/15 hover:text-secondary-foreground"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-on-dark shadow-sm backdrop-blur-lg transition-colors hover:bg-white/15 hover:text-on-dark"
             aria-label="Search"
             onClick={openSearch}
           >
@@ -252,7 +252,7 @@ export function Header() {
           </button>
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-secondary-foreground shadow-sm backdrop-blur-lg transition-colors hover:bg-white/15"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-on-dark shadow-sm backdrop-blur-lg transition-colors hover:bg-white/15"
             aria-expanded={open}
             aria-controls="mobile-nav-landing"
             onClick={() => setOpen((v) => !v)}
@@ -271,7 +271,7 @@ export function Header() {
       <div
         id="mobile-nav-landing"
         className={cn(
-          "mx-auto mt-2 max-w-7xl overflow-hidden rounded-3xl border border-white/20 bg-surface/95 text-secondary-foreground shadow-elevated-lg backdrop-blur-2xl lg:hidden",
+          "mx-auto mt-2 max-w-7xl overflow-hidden rounded-3xl border border-white/20 bg-surface/95 text-on-dark shadow-elevated-lg backdrop-blur-2xl lg:hidden",
           open ? "block" : "hidden",
         )}
       >
@@ -285,7 +285,7 @@ export function Header() {
                   <div className="flex items-center gap-2 rounded-xl px-3 py-1">
                     <Link
                       href={href}
-                      className="flex-1 rounded-xl py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-white/10"
+                      className="flex-1 rounded-xl py-2 text-sm font-medium text-on-dark transition-colors hover:bg-white/10"
                       onClick={() => setOpen(false)}
                     >
                       {item.label}
@@ -296,7 +296,7 @@ export function Header() {
                         onClick={() => setMobileProductsOpen((v) => !v)}
                         aria-expanded={mobileProductsOpen}
                         aria-label={mobileProductsOpen ? "Collapse product categories" : "Expand product categories"}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/5 text-secondary-foreground/80 transition hover:bg-white/10 hover:text-secondary-foreground"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/5 text-on-dark/80 transition hover:bg-white/10 hover:text-on-dark"
                       >
                         <span
                           className={cn(
@@ -313,7 +313,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={href}
-                    className="block rounded-xl px-3 py-3 text-sm font-medium text-secondary-foreground transition-colors hover:bg-white/10"
+                    className="block rounded-xl px-3 py-3 text-sm font-medium text-on-dark transition-colors hover:bg-white/10"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
@@ -325,7 +325,7 @@ export function Header() {
                       <li key={child.href}>
                         <Link
                           href={child.href}
-                          className="block py-2 text-sm text-secondary-foreground/80 transition-colors hover:text-secondary-foreground"
+                          className="block py-2 text-sm text-on-dark/80 transition-colors hover:text-on-dark"
                           onClick={() => setOpen(false)}
                         >
                           {child.label}
@@ -340,7 +340,7 @@ export function Header() {
           <li className="px-2 pt-2">
             <EnquireGateLink
               href="/contact"
-              className="flex w-full items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-xs font-semibold text-primary-foreground shadow-primary-glow"
+              className="flex w-full items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-xs font-semibold text-primary-foreground shadow-primary-glow hover:brightness-[1.04] hover:shadow-primary-glow-lg"
               onClick={() => setOpen(false)}
             >
               Enquire

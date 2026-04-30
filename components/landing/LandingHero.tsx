@@ -106,7 +106,7 @@ export function LandingHero() {
               style={{ textShadow: "0 1px 12px rgba(18,25,35,0.4)" }}
             >
               Rare building blocks, API-related impurities, and nucleotide chemistry —{" "}
-              <span className="font-semibold text-primary-mid">
+              <span className="font-semibold text-accent">
                 with analytics that hold up to scrutiny
               </span>{" "}
               and timelines that respect your milestone.

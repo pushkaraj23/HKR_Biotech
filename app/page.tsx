@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LandingBento } from "@/components/landing/LandingBento";
 import { LandingCategories } from "@/components/landing/LandingCategories";
 import { LandingFinale } from "@/components/landing/LandingFinale";
-import { HomeAmbientMolecules } from "@/components/landing/HomeAmbientMolecules";
+import { LandingFounderNote } from "@/components/landing/LandingFounderNote";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { LandingIndustries } from "@/components/landing/LandingIndustries";
 import { LandingLabStory } from "@/components/landing/LandingLabStory";
@@ -31,7 +31,8 @@ export default function HomePage() {
           {
             "@type": "ContactPoint",
             contactType: "sales",
-            email: "enquiries@hkrbio.tech",
+            email: "kishor@hkrbiotechlabs.com",
+            telephone: "+91 9212123868",
           },
         ],
       },
@@ -49,9 +50,31 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative -mt-[var(--site-header-offset)] overflow-x-hidden">
+    <div className="relative -mt-[var(--site-header-offset)] overflow-hidden bg-[#020A63]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      <HomeAmbientMolecules />
+      <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div
+          className="absolute left-0 top-0 h-[34rem] w-[34rem] -translate-x-1/3 -translate-y-1/3 rounded-full blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 38%, transparent 74%)",
+          }}
+        />
+        <div
+          className="absolute right-0 top-[12%] h-[38rem] w-[38rem] translate-x-1/3 rounded-full blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(125, 255, 219, 0.34) 0%, rgba(125, 255, 219, 0.14) 40%, transparent 76%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-[14%] h-[30rem] w-[30rem] translate-y-1/3 rounded-full blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.1) 42%, transparent 76%)",
+          }}
+        />
+      </div>
       <div className="relative z-10">
         <LandingHero />
         <LandingWhy />
@@ -59,6 +82,7 @@ export default function HomePage() {
         <LandingBento />
         <LandingIndustries />
         <LandingLabStory />
+        <LandingFounderNote />
         <LandingFinale />
       </div>
     </div>

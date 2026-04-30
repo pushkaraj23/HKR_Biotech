@@ -11,17 +11,18 @@ export const metadata: Metadata = {
 
 const leadership = [
   {
-    name: "Dr. placeholder — CSO",
-    role: "Chief Scientific Officer",
-    bio: "Two decades in process chemistry and impurity strategy across global pharma programs.",
+    name: "Kishor R. Harale, PhD",
+    role: "Director",
+    bio: "Leads HKR Biotech with a focus on complex carbohydrate synthesis, API impurity programs, and practical R&D delivery for pharma and biotech partners.",
+    image: "/team/founder.jpg",
     orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
     orbShadow: "0 8px 24px -4px rgba(20,184,166,0.35)",
     tint: "from-tint-primary/25 to-surface/80",
   },
   {
-    name: "Dr. placeholder — VP Operations",
-    role: "VP, Operations & Quality Systems",
-    bio: "Laboratory automation, analytical governance, and tech transfer for complex synthesis.",
+    name: "Scientific Program Team",
+    role: "R&D, Analytical, and Consultation Support",
+    bio: "A multidisciplinary team delivering route scouting, analytical characterization, and consultation support aligned to customer-specific development goals.",
     orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
     orbShadow: "0 8px 24px -4px rgba(91,33,182,0.3)",
     tint: "from-tint-accent/25 to-surface/80",
@@ -29,10 +30,10 @@ const leadership = [
 ];
 
 const facilityLines = [
-  "Walk-in cold rooms & segregated stabilizer storage",
-  "Dedicated prep HPLC farm with fraction barcoding",
-  "Inert-atmosphere manifold distribution across hood lines",
-  "Secure archival of analytical data packages",
+  "Synthesis support for complex carbohydrates, oligosaccharides, and glycoprotein-linked projects",
+  "API impurity, nitrosamine impurity (NDSRI), and API standard development support",
+  "Advanced analytical characterization using NMR, MS, UV, and IR techniques",
+  "Route design, route scouting, and technical consultation for process development",
 ];
 
 const complianceItems = [
@@ -103,14 +104,13 @@ export default function AboutPage() {
                 About
               </p>
               <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-                Independent{" "}
-                <span className="gradient-text-shimmer">Synthesis</span>,
-                <br />
-                Enterprise Discipline.
+                Welcome to{" "}
+                <span className="gradient-text-shimmer">HKR Biotech</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                An advanced synthesis partner blending rigorous analytics with agile
-                chemistry — for teams who cannot compromise on traceability.
+                We deliver innovative and customized research solutions in carbohydrate
+                chemistry, API impurity synthesis, and custom organic synthesis for
+                pharma and biotech teams.
               </p>
             </RevealOnScroll>
           </div>
@@ -128,8 +128,9 @@ export default function AboutPage() {
               Company Overview
             </h2>
             <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-              HKR was founded to bridge boutique synthesis shops and slow-moving CMOs —
-              PhD-level scientific partnership with industrial discipline.
+              HKR Biotech Pvt. Ltd. is built to provide focused R&D support where
+              complex chemistry, analytical depth, and responsive execution are all
+              required together.
             </p>
           </RevealOnScroll>
 
@@ -146,10 +147,9 @@ export default function AboutPage() {
                 />
                 <h3 className="font-display text-xl font-semibold text-foreground/95">What we do</h3>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  We design and execute custom syntheses for rare building blocks,
-                  API-related impurities, and nucleotide chemistry — with analytical
-                  packages that stand up to regulatory scrutiny and discovery sprint
-                  timelines alike.
+                  We support synthesis of carbohydrate-related products, API impurities,
+                  APIs, linker chemistry, and conjugation programs, backed by
+                  characterization workflows tailored to each project.
                 </p>
               </div>
             </RevealOnScroll>
@@ -186,7 +186,7 @@ export default function AboutPage() {
                     Lab footprint
                   </p>
                   <p className="mt-3 font-display text-xl font-bold leading-snug text-foreground">
-                    Purpose-built environments for traceable batches.
+                    Scientific execution designed for reproducible outcomes.
                   </p>
                 </div>
               </div>
@@ -218,12 +218,12 @@ export default function AboutPage() {
                 Vision
               </p>
               <h2 className="mt-3 font-display text-2xl font-bold text-foreground/95 md:text-3xl">
-                Chemistry infrastructure that accelerates evidence generation
+                Pioneering innovation in complex carbohydrates and custom synthesis
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                We envision a model where discovery teams can access complex molecules
-                without waiting quarters for a slot — while retaining the documentation
-                depth regulators expect.
+                To be a leading provider of bespoke R&D solutions that empower
+                organizations to build with complex carbohydrates, API impurity science,
+                and advanced custom synthesis.
               </p>
             </div>
           </RevealOnScroll>
@@ -248,12 +248,12 @@ export default function AboutPage() {
                 Mission
               </p>
               <h2 className="mt-3 font-display text-2xl font-bold text-foreground/95 md:text-3xl">
-                Deliver defensible materials with scientific transparency
+                Deliver practical R&D support with scientific clarity
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Our mission is to pair reproducible synthesis with analytical
-                storytelling — so every shipment arrives with context, not just a
-                container label.
+                Our mission is to provide customer-aligned development support in
+                carbohydrate chemistry, API impurity programs, and advanced intermediate
+                synthesis with transparent technical communication.
               </p>
             </div>
           </RevealOnScroll>
@@ -271,8 +271,7 @@ export default function AboutPage() {
               Team
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-              A deliberately senior-heavy scientific staff — fewer handoffs, clearer
-              accountability.
+              Meet the leadership and scientific team driving HKR Biotech programs.
             </p>
           </RevealOnScroll>
 
@@ -283,14 +282,26 @@ export default function AboutPage() {
                   className={`group h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${person.tint} p-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]`}
                 >
                   <div className="flex gap-5">
-                    <div
-                      className="h-16 w-16 shrink-0 rounded-full ring-2 ring-white/[0.08]"
-                      style={{
-                        background: person.orb,
-                        boxShadow: `${person.orbShadow}, inset 0 -3px 8px rgba(0,0,0,0.08)`,
-                      }}
-                      aria-hidden
-                    />
+                    {person.image ? (
+                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-white/[0.16]">
+                        <Image
+                          src={person.image}
+                          alt={person.name}
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="h-16 w-16 shrink-0 rounded-full ring-2 ring-white/[0.08]"
+                        style={{
+                          background: person.orb,
+                          boxShadow: `${person.orbShadow}, inset 0 -3px 8px rgba(0,0,0,0.08)`,
+                        }}
+                        aria-hidden
+                      />
+                    )}
                     <div>
                       <h3 className="font-display text-lg font-semibold text-foreground/95">
                         {person.name}

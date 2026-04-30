@@ -4,37 +4,37 @@
   color-scheme: light;
 
   /* Page & text */
-  --background: #eee9df;
-  --foreground: #1b2632;
-  --muted-foreground: #5c564c;
-  --caption-foreground: #7a7368;
+  --background: #f2f4f6;
+  --foreground: #17324d;
+  --muted-foreground: #3e5870;
+  --caption-foreground: #567089;
 
   /* Surfaces */
-  --surface: #2c3b4d;
-  --surface-2: #3d5066;
+  --surface: #1f4f87;
+  --surface-2: #2a66ad;
   --card: #ffffff;
-  --card-foreground: #1b2632;
+  --card-foreground: #17324d;
   --popover: rgba(255, 255, 255, 0.92);
-  --popover-foreground: #1b2632;
-  --muted: #e5e1d8;
+  --popover-foreground: #17324d;
+  --muted: #e6e9ec;
 
   /* Brand & actions */
-  --primary: #ffb162;
-  --primary-foreground: #1b2632;
-  --primary-deep: #a35139;
-  --primary-mid: #ffc48a;
+  --primary: #1a73e8;
+  --primary-foreground: #17324d;
+  --primary-deep: #1459b8;
+  --primary-mid: #1a73e8;
 
-  --secondary: #2c3b4d;
-  --secondary-foreground: #ffffff;
+  --secondary: #e6e9ec;
+  --secondary-foreground: #17324d;
 
-  --accent: #9ba8b7;
-  --accent-foreground: #1b2632;
+  --accent: #2bc48a;
+  --accent-foreground: #0c3a29;
 
   /* Status */
-  --success: #5b7f6a;
-  --warning: #ffb162;
-  --danger: #a35139;
-  --info: #3d5170;
+  --success: #2bc48a;
+  --warning: #4b94f0;
+  --danger: #1459b8;
+  --info: #1f4f87;
 
   /* Borders & focus */
   --border: rgba(27, 38, 50, 0.12);
@@ -48,7 +48,7 @@
   /* Light surfaces */
   --light: #ffffff;
   --light-foreground: #1b2632;
-  --light-muted: #6d655a;
+  --light-muted: #4f6478;
   --light-border: rgba(27, 38, 50, 0.12);
   --light-accent: #2c3b4d;
 
@@ -57,15 +57,15 @@
   --overlay-strong: rgba(255, 255, 255, 0.3);
 
   --on-dark: #ffffff;
-  --on-dark-muted: rgba(255, 255, 255, 0.72);
+  --on-dark-muted: rgba(255, 255, 255, 0.84);
 
   --scrim: rgba(27, 38, 50, 0.32);
   --scrim-soft: rgba(27, 38, 50, 0.5);
 
   /* Tints */
-  --tint-primary: #fff0e0;
-  --tint-accent: #e8ecf0;
-  --tint-danger: #ffe8e2;
+  --tint-primary: #e8f1fd;
+  --tint-accent: #e8f8f1;
+  --tint-danger: #dfeafb;
 
   /* Glows */
   --glow-primary: rgba(255, 177, 98, 0.28);
@@ -74,36 +74,43 @@
 
   /* Gradients */
   --hero-gradient: linear-gradient(135deg,
-      #2c3b4d 0%,
-      #3d5066 28%,
-      #ffb162 58%,
-      #eee9df 100%);
+      #1f4f87 0%,
+      #1a73e8 34%,
+      #2bc48a 72%,
+      #e6e9ec 100%);
 
-  --cta-gradient: linear-gradient(90deg, #a35139, #ffb162, #ffc48a);
+  --cta-gradient: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--light) 72%, var(--accent) 28%) 0%,
+      color-mix(in srgb, var(--accent) 58%, var(--primary) 42%) 52%,
+      var(--accent) 100%
+    );
 
-  --cta-gradient-diagonal: linear-gradient(135deg,
-      #a35139 0%,
-      #ffb162 48%,
-      #ffc48a 100%);
+  --cta-gradient-diagonal: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--light) 70%, var(--accent) 30%) 0%,
+      color-mix(in srgb, var(--accent) 56%, var(--primary) 44%) 50%,
+      var(--accent) 100%
+    );
 
   --cta-radial-glow: radial-gradient(ellipse at 70% 50%,
       color-mix(in srgb, var(--primary) 18%, transparent),
       transparent 55%);
 
   --shimmer-gradient: linear-gradient(90deg,
-      #2c3b4d 0%,
-      #4a5d72 16%,
-      #9ba8b7 34%,
-      #eee9df 50%,
-      #ffb162 66%,
-      #c9c1b1 82%,
-      #2c3b4d 100%);
+      #1f4f87 0%,
+      #1a73e8 18%,
+      #4b94f0 34%,
+      #e6e9ec 50%,
+      #2bc48a 68%,
+      #b8dfcf 82%,
+      #1f4f87 100%);
 
   --footer-surface-gradient: linear-gradient(155deg,
-      #1b2632 0%,
-      #2c3b4d 32%,
-      #4a5d72 68%,
-      #e8dfd4 100%);
+      #17324d 0%,
+      #1c4676 34%,
+      #1a73e8 66%,
+      #2f7fa8 100%);
   /* Subtle green veils on footer (blue–green balance, used as overlays) */
   --footer-green-wash: radial-gradient(
     ellipse 85% 55% at 100% 0%,
@@ -184,11 +191,7 @@
     0 24px 52px -18px rgba(27, 38, 50, 0.16);
 
   /* Ambient / marketing backgrounds */
-  --aura-base: linear-gradient(168deg,
-      #1b2632 0%,
-      #2c3b4d 28%,
-      #4a5d72 58%,
-      #eee9df 100%);
+  --aura-base: #020a63;
 
   --aura-glow-a: radial-gradient(circle at 45% 40%,
       rgba(255, 177, 98, 0.22) 0%,

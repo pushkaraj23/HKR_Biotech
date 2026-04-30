@@ -101,18 +101,18 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
       </button>
       {menuOpen ? (
         <div
-          className="absolute right-0 z-[60] mt-2 w-[min(calc(100vw-2rem),14rem)] rounded-2xl border border-white/20 bg-surface/98 py-1 text-secondary-foreground shadow-elevated-lg backdrop-blur-xl"
+          className="absolute right-0 z-[60] mt-2 w-[min(calc(100vw-2rem),14rem)] rounded-2xl border border-white/20 bg-surface/98 py-1 text-on-dark shadow-elevated-lg backdrop-blur-xl"
           role="menu"
         >
-          <p className="border-b border-white/15 px-4 py-2.5 text-sm text-secondary-foreground/95 lg:hidden">
-            Hi, <span className="font-semibold text-secondary-foreground">{firstName}</span>!
+          <p className="border-b border-white/15 px-4 py-2.5 text-sm text-on-dark/95 lg:hidden">
+            Hi, <span className="font-semibold text-on-dark">{firstName}</span>!
           </p>
-          <p className="border-b border-white/15 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-secondary-foreground/65 lg:hidden">
+          <p className="border-b border-white/15 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-on-dark/70 lg:hidden">
             {user.email}
           </p>
           <Link
             href="/profile"
-            className="block px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+            className="block px-4 py-2.5 text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
             role="menuitem"
             onClick={() => setMenuOpen(false)}
           >
@@ -120,7 +120,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
           </Link>
           <Link
             href="/wishlist"
-            className="flex items-center justify-between gap-2 px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+            className="flex items-center justify-between gap-2 px-4 py-2.5 text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
             role="menuitem"
             onClick={() => setMenuOpen(false)}
           >
@@ -133,7 +133,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
           </Link>
           <Link
             href="/cart"
-            className="flex items-center justify-between gap-2 px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+            className="flex items-center justify-between gap-2 px-4 py-2.5 text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
             role="menuitem"
             onClick={() => setMenuOpen(false)}
           >
@@ -146,7 +146,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
           </Link>
           <Link
             href="/contact"
-            className="block px-4 py-2.5 text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+            className="block px-4 py-2.5 text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
             role="menuitem"
             onClick={() => setMenuOpen(false)}
           >
@@ -154,7 +154,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
           </Link>
           <button
             type="button"
-            className="w-full px-4 py-2.5 text-left text-sm text-secondary-foreground/90 transition-colors hover:bg-white/10 hover:text-secondary-foreground"
+            className="w-full px-4 py-2.5 text-left text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
             role="menuitem"
             onClick={onSignOut}
           >

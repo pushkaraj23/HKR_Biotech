@@ -46,7 +46,7 @@ export function ProductEnquiryCard({ product, categoryLabel, className }: Produc
           Open contact form
         </EnquireGateButtonLink>
         <Link
-          href={`mailto:enquiries@hkrbio.tech?subject=${encodeURIComponent(`RFQ ${product.catalogNumber}`)}&body=${encodeURIComponent(summary + "\n\n")}`}
+          href={`mailto:kishor@hkrbiotechlabs.com?subject=${encodeURIComponent(`RFQ ${product.catalogNumber}`)}&body=${encodeURIComponent(summary + "\n\n")}`}
           className="text-center text-sm font-medium text-teal-800 underline-offset-4 hover:underline"
         >
           Email with this context

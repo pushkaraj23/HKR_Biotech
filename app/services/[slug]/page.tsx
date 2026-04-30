@@ -10,9 +10,9 @@ import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 
 const VALID: ServiceSlug[] = [
-  "custom-chemical-synthesis",
-  "contract-research",
+  "research-and-development",
   "analytical-services",
+  "consultation-and-support",
   "impurity-profiling",
   "method-development",
 ];

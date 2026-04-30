@@ -13,10 +13,10 @@ export function LandingFinale() {
     <section className="relative px-4 pb-28 pt-12 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <div
-          className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-border-strong/50 p-10 shadow-[var(--elev-card-stack)] sm:p-16"
+          className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-white/50 p-10 shadow-[var(--elev-card-stack)] sm:p-16"
           style={{
             background:
-              "linear-gradient(135deg, #1b2632 0%, #2c3b4d 45%, #4a5d72 100%)",
+              "linear-gradient(135deg, color-mix(in srgb, var(--light) 84%, var(--primary) 16%) 0%, color-mix(in srgb, var(--light) 70%, var(--primary-mid) 30%) 48%, color-mix(in srgb, var(--light) 72%, var(--accent) 28%) 100%)",
           }}
         >
           {/* Decorative glowing orbs */}
@@ -69,24 +69,24 @@ export function LandingFinale() {
             {/* Copy */}
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-on-dark/30 bg-[rgba(18,25,35,0.45)] px-3 py-1.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white/78 px-3 py-1.5 backdrop-blur-md">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
                 </span>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-on-dark">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-foreground/85">
                   Next batch
                 </span>
               </div>
 
-              <h2 className="mt-5 font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-on-dark sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="mt-5 font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
                 Partner on Your Next{" "}
                 <span className="relative inline-block">
                   <span
                     className="relative z-10 bg-clip-text text-transparent"
                     style={{
                       backgroundImage:
-                        "linear-gradient(90deg, #ffb162 0%, #f4a77a 50%, #a35139 100%)",
+                        "linear-gradient(90deg, color-mix(in srgb, var(--primary) 85%, var(--surface) 15%) 0%, var(--primary-mid) 52%, var(--accent) 100%)",
                     }}
                   >
                     Critical Route
@@ -98,7 +98,7 @@ export function LandingFinale() {
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-on-dark/90 sm:text-lg">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/82 sm:text-lg">
                 Share structures, quantity bands, and analytical expectations —
                 we respond with scientific questions, not just pricing.
               </p>
@@ -108,7 +108,7 @@ export function LandingFinale() {
                 {PROMISES.map((p) => (
                   <span
                     key={p}
-                    className="inline-flex items-center gap-2 rounded-full border border-on-dark/30 bg-[rgba(18,25,35,0.45)] px-3.5 py-1.5 font-mono text-[11px] font-semibold tracking-wide text-on-dark backdrop-blur-md"
+                    className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/76 px-3.5 py-1.5 font-mono text-[11px] font-semibold tracking-wide text-foreground backdrop-blur-md"
                   >
                     <svg
                       width="12"
@@ -140,7 +140,7 @@ export function LandingFinale() {
                 </ButtonLink>
                 <Link
                   href="/products"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-on-dark/40 bg-[rgba(18,25,35,0.5)] px-7 py-3 text-sm font-semibold text-on-dark backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-on-dark/60 hover:bg-[rgba(18,25,35,0.68)]"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-white/80 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/55 hover:bg-white"
                 >
                   Browse Products
                   <span
@@ -155,33 +155,33 @@ export function LandingFinale() {
 
             {/* Right side: contact-card style panel */}
             <div className="relative">
-              <div className="relative overflow-hidden rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.45)] p-7 backdrop-blur-md">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
+              <div className="relative overflow-hidden rounded-2xl border border-primary/22 bg-white/70 p-7 backdrop-blur-md">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary">
                   Direct line
                 </p>
-                <p className="mt-3 font-display text-lg font-bold text-on-dark">
+                <p className="mt-3 font-display text-lg font-bold text-foreground">
                   Science desk — not a sales funnel
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-on-dark/90">
+                <p className="mt-2 text-sm leading-relaxed text-foreground/82">
                   Every inbound reaches a chemist first. Expect questions about
                   purity bands, analytical scope, and scale before anything else.
                 </p>
 
                 {/* Mini stats */}
                 <dl className="mt-6 grid grid-cols-2 gap-3">
-                  <div className="rounded-xl border border-on-dark/20 bg-[rgba(18,25,35,0.42)] p-3">
-                    <dt className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-on-dark/80">
+                  <div className="rounded-xl border border-primary/20 bg-white/72 p-3">
+                    <dt className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-foreground/75">
                       First reply
                     </dt>
-                    <dd className="mt-1 font-display text-lg font-bold text-on-dark">
+                    <dd className="mt-1 font-display text-lg font-bold text-foreground">
                       &lt; 48h
                     </dd>
                   </div>
-                  <div className="rounded-xl border border-on-dark/20 bg-[rgba(18,25,35,0.42)] p-3">
-                    <dt className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-on-dark/80">
+                  <div className="rounded-xl border border-primary/20 bg-white/72 p-3">
+                    <dt className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-foreground/75">
                       QC pass
                     </dt>
-                    <dd className="mt-1 font-display text-lg font-bold text-on-dark">
+                    <dd className="mt-1 font-display text-lg font-bold text-foreground">
                       99.7%
                     </dd>
                   </div>

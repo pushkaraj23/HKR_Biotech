@@ -8,7 +8,7 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact HKR Biotech Labs for quotations, custom synthesis, and technical partnership.",
+    "Contact HKR Biotech Pvt. Ltd. for quotations, custom synthesis, analytical support, and technical partnership.",
 };
 
 const HERO_IMAGE =
@@ -79,8 +79,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 Enquiries & RFQ
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
-                Share your target structure, quantity band, and analytical expectations
-                — our team will respond with scientific questions, not just pricing.
+                Share your target structure, quantity band, and analytical expectations.
+                Our Pune-based team responds with scientific questions, not just pricing.
               </p>
             </div>
           </div>
@@ -111,17 +111,19 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   <li>
                     <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Email</span>
                     <br />
-                    <span className="font-medium text-on-dark">enquiries@hkrbio.tech</span>
+                    <span className="font-medium text-on-dark">kishor@hkrbiotechlabs.com</span>
                   </li>
                   <li>
                     <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Phone</span>
                     <br />
-                    <span className="font-medium text-on-dark">+1 (555) 010-4420</span>
+                    <span className="font-medium text-on-dark">+91 9212123868</span>
                   </li>
                   <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Hours</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Address</span>
                     <br />
-                    <span className="font-medium text-on-dark">Mon–Fri, 08:00–18:00 (local)</span>
+                    <span className="font-medium text-on-dark">
+                      HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -237,14 +239,14 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 Visit Our Facility
               </h2>
               <p className="mt-3 max-w-2xl text-sm text-on-dark/80 md:text-base">
-                Purpose-built laboratories for traceable science.
+                HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008.
               </p>
             </div>
 
             <div className="mt-6">
               <iframe
                 title="HKR Biotech Labs location"
-                src="https://www.google.com/maps?q=HKR+Biotech+Labs&output=embed"
+                src="https://www.google.com/maps?q=NCL+Innovation+Park+Pashan+Road+Pune+411008&output=embed"
                 className="h-[420px] w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

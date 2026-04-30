@@ -12,9 +12,9 @@ export type {
 export type { CatalogProduct as Product } from "./types/catalog";
 
 export type ServiceSlug =
-  | "custom-chemical-synthesis"
-  | "contract-research"
+  | "research-and-development"
   | "analytical-services"
+  | "consultation-and-support"
   | "impurity-profiling"
   | "method-development";
 

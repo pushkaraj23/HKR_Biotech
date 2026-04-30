@@ -2,12 +2,12 @@ import type { Service } from "@/lib/types";
 
 export const services: Service[] = [
   {
-    slug: "custom-chemical-synthesis",
-    title: "Custom Chemical Synthesis",
+    slug: "research-and-development",
+    title: "Research & Development",
     summary:
-      "Route design, multistep synthesis, and scale-up from milligrams to multi-kilogram batches.",
+      "Comprehensive R&D support for complex carbohydrates, nucleosides, nucleotides, API impurities, and advanced intermediates.",
     overview:
-      "Our chemists partner with your team to deliver complex targets with documented purity profiles, analytical packages, and transparent timelines—from first route to GMP-ready intermediates where required.",
+      "Our team works closely with clients to build customer-specific development routes for complex synthesis programs with clear technical checkpoints and transparent communication.",
     process: [
       "Target review & feasibility",
       "Route scouting / literature intelligence",
@@ -16,25 +16,25 @@ export const services: Service[] = [
       "Analytical release & documentation",
     ],
     benefits: [
-      "Dedicated project chemist",
-      "Structured milestone reporting",
-      "IP-aware execution",
-      "Seamless tech transfer options",
+      "Customer-aligned project planning",
+      "Scientific milestone reporting",
+      "Complex route design support",
+      "Flexible execution from exploratory to advanced stages",
     ],
     capabilities: [
-      "Air- and moisture-sensitive chemistry",
-      "Cryogenic & high-pressure options",
-      "Chromatography at preparative scale",
-      "Salt & polymorph screening support",
+      "Complex polysaccharide and oligosaccharide synthesis",
+      "Nucleoside, nucleotide, and linker chemistry",
+      "API impurity and API standard development",
+      "Route scouting and process troubleshooting",
     ],
   },
   {
-    slug: "contract-research",
-    title: "Contract Research",
+    slug: "analytical-services",
+    title: "Analytical Services",
     summary:
-      "Discovery-oriented programs with hypothesis-driven experimentation and rapid iteration.",
+      "In-depth analytical characterization using NMR, mass spectrometry, UV, IR, and allied methods.",
     overview:
-      "HKR supports exploratory chemistry aligned to biological hypotheses—ideal for lead optimization, SAR expansions, and novel scaffold access with scientific rigor.",
+      "We provide practical analytical support for carbohydrates, nucleotides, complex heterocycles, chiral molecules, and unknown API impurities with traceable reports.",
     process: [
       "Scope alignment & success criteria",
       "Experimental planning",
@@ -42,23 +42,23 @@ export const services: Service[] = [
       "Data package delivery",
     ],
     benefits: [
-      "Flexible FTE or milestone models",
-      "Integrated analytical support",
-      "Publication-ready data on request",
+      "Rapid analytical turnaround",
+      "Comprehensive characterization packages",
+      "Decision-ready scientific interpretation",
     ],
     capabilities: [
-      "Parallel synthesis",
-      "Purification troubleshooting",
-      "Structure elucidation liaison",
+      "Advanced 1D/2D NMR workflows",
+      "Mass spectrometry and structure confirmation",
+      "Purity and identity verification support",
     ],
   },
   {
-    slug: "analytical-services",
-    title: "Analytical Services",
+    slug: "consultation-and-support",
+    title: "Consultation & Support",
     summary:
-      "Method development, validation support, and high-resolution characterization.",
+      "Strategic consultation for synthesis route design, route scouting, and process development support.",
     overview:
-      "From early profiling to filing-ready documentation, our analytical team delivers traceable results with instrument redundancy and controlled data handling.",
+      "Our experts support teams through technical decisions across R&D lifecycle stages, helping resolve route challenges and optimize development pathways.",
     process: [
       "Requirement intake",
       "Method feasibility",
@@ -66,15 +66,14 @@ export const services: Service[] = [
       "Reporting & archival",
     ],
     benefits: [
-      "Regulatory-aware protocols",
-      "Fast turnaround for critical batches",
-      "Scientifically defensible conclusions",
+      "Direct scientist-to-scientist collaboration",
+      "Faster route decision cycles",
+      "Practical guidance for development risk reduction",
     ],
     capabilities: [
-      "HPLC / UHPLC",
-      "LC-MS / HRMS",
-      "NMR (400 MHz)",
-      "Prep isolation support",
+      "Route strategy and route scouting",
+      "Problem-solving for difficult synthesis steps",
+      "Support for development planning and execution",
     ],
   },
   {

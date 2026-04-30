@@ -302,12 +302,12 @@ export function SearchTrigger({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 pl-3 pr-2.5 text-xs text-secondary-foreground/90 shadow-sm backdrop-blur-lg transition-all duration-200 hover:border-white/30 hover:bg-white/15 hover:text-secondary-foreground hover:shadow-md"
+      className="flex h-9 items-center gap-2 rounded-full border border-white/25 bg-white/12 pl-3 pr-2.5 text-xs text-on-dark shadow-sm backdrop-blur-lg transition-all duration-200 hover:border-white/35 hover:bg-white/18 hover:text-on-dark hover:shadow-md"
       aria-label="Search"
     >
       <IconSearch className="h-3.5 w-3.5" />
       <span className="hidden sm:inline">Search</span>
-      <kbd className="hidden rounded-[5px] border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono text-[10px] font-medium text-secondary-foreground/80 sm:inline">
+      <kbd className="hidden rounded-[5px] border border-white/25 bg-white/12 px-1.5 py-0.5 font-mono text-[10px] font-medium text-on-dark/85 sm:inline">
         ⌘K
       </kbd>
     </button>

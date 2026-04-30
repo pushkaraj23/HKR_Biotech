@@ -1,53 +1,26 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { getAllCategories } from "@/data/catalog";
 import { mainNav } from "@/data/navigation";
-import { cn } from "@/lib/cn";
 
-const exploreLinks = mainNav.map((item) => ({
-  href: item.href,
-  label: item.label,
-}));
+const exploreLinks = mainNav
+  .filter((item) => item.href !== "/")
+  .map((item) => ({ href: item.href, label: item.label }));
 
-function FooterLink({
-  href,
-  children,
-  className,
-}: {
-  href: string;
-  children: ReactNode;
-  className?: string;
-}) {
+function FooterListLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className={cn(
-        "text-sm font-medium text-white/92 transition-colors duration-200 hover:text-primary-mid hover:underline hover:decoration-primary-mid/80 hover:underline-offset-2",
-        className,
-      )}
+      className="text-sm text-on-dark/90 transition-colors hover:text-on-dark"
     >
-      {children}
+      {label}
     </Link>
   );
 }
 
-function SectionLabel({
-  children,
-  variant = "on-gradient",
-}: {
-  children: ReactNode;
-  variant?: "on-gradient" | "on-card";
-}) {
+function FooterTitle({ children }: { children: string }) {
   return (
-    <p
-      className={cn(
-        "font-mono text-[11px] font-semibold uppercase tracking-[0.22em]",
-        variant === "on-gradient" &&
-          "text-primary-mid [text-shadow:0_1px_2px_rgba(8,26,120,0.45)]",
-        variant === "on-card" && "text-caption-foreground",
-      )}
-    >
+    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-on-dark/80">
       {children}
     </p>
   );
@@ -56,204 +29,114 @@ function SectionLabel({
 export async function Footer() {
   const year = new Date().getFullYear();
   const categories = await getAllCategories();
-  const productFamilies = categories.map((c) => ({
+  const productFamilies = categories.slice(0, 6).map((c) => ({
     href: `/products/${c.slug}`,
     label: c.name,
   }));
 
   return (
-    <footer className="relative mt-20">
-      <div
-        className="relative overflow-hidden rounded-t-[2.5rem] sm:rounded-t-[3rem]"
-        style={{ background: "var(--footer-surface-gradient)" }}
-      >
-        {/* Soft green veils — balances dominant blue without overpowering */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-100 mix-blend-soft-light"
-          style={{ background: "var(--footer-green-wash)" }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-90"
-          style={{ background: "var(--footer-green-wash-soft)" }}
-          aria-hidden
-        />
-
-        <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <div
-            className="absolute -left-[12%] top-[-8%] h-[min(32rem,65vw)] w-[min(32rem,65vw)] rounded-full blur-[100px] opacity-[0.35]"
-            style={{ background: "var(--footer-orb-a)" }}
-          />
-          <div
-            className="absolute -right-[10%] top-[15%] h-[min(28rem,55vw)] w-[min(28rem,55vw)] rounded-full blur-[90px] opacity-[0.3]"
-            style={{ background: "var(--footer-orb-b)" }}
-          />
-          <div
-            className="absolute bottom-[-10%] left-[20%] h-[min(24rem,50vw)] w-[min(24rem,50vw)] rounded-full blur-[100px] opacity-[0.25]"
-            style={{ background: "var(--footer-orb-c)" }}
-          />
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage: "var(--footer-grid)",
-              backgroundSize: "48px 48px",
-            }}
-          />
-        </div>
-
-        <div className="h-px w-full" style={{ background: "var(--footer-top-line)" }} aria-hidden />
-
-        <div className="pointer-events-none absolute right-[8%] top-10 hidden sm:block" aria-hidden>
-          <div
-            className="h-14 w-14 rounded-full animate-float-soft"
-            style={{
-              background: "var(--footer-float-a)",
-              boxShadow: "var(--footer-float-shadow-a)",
-            }}
-          />
-        </div>
-        <div className="pointer-events-none absolute bottom-[20%] left-[6%] hidden lg:block" aria-hidden>
-          <div
-            className="h-8 w-8 rounded-full animate-float-soft"
-            style={{
-              background: "var(--footer-float-b)",
-              boxShadow: "var(--footer-float-shadow-b)",
-              animationDelay: "-3s",
-            }}
-          />
-        </div>
-        <div className="pointer-events-none absolute bottom-[35%] right-[15%] hidden lg:block" aria-hidden>
-          <div
-            className="h-6 w-6 rounded-full animate-float-soft"
-            style={{
-              background: "var(--footer-float-c)",
-              boxShadow: "var(--footer-float-shadow-c)",
-              animationDelay: "-6s",
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-16 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
-            <div className="lg:col-span-4">
-              <Link
-                href="/"
-                className="inline-flex transition-transform duration-200 hover:scale-[1.02]"
-                aria-label="HKR Biotech Labs home"
-              >
-                <BrandLogo size="md" priority={false} />
-              </Link>
-              <h2 className="mt-7 font-display text-xl font-bold tracking-tight text-white [text-shadow:0_2px_16px_rgba(8,26,120,0.35)]">
-                Evidence-grade chemistry
-              </h2>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/92">
-                Custom synthesis, analytical rigor, and documentation you can defend — from
-                early route scouting through GMP-ready packages.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full border border-primary/45 bg-white/95 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-primary-deep shadow-sm">
-                  Analytical depth
-                </span>
-                <span className="rounded-full border border-primary/25 bg-primary/12 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-primary-deep shadow-sm backdrop-blur-sm">
-                  cGMP mindset
-                </span>
-                <span className="rounded-full border border-white/35 bg-white/90 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-foreground shadow-sm">
-                  Global supply
-                </span>
-              </div>
-            </div>
-
-            <nav className="lg:col-span-2" aria-label="Site sections">
-              <SectionLabel>Explore</SectionLabel>
-              <ul className="mt-5 space-y-3.5">
-                {exploreLinks.map((l) => (
-                  <li key={l.href}>
-                    <FooterLink href={l.href}>{l.label}</FooterLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div className="lg:col-span-3">
-              <SectionLabel>Product families</SectionLabel>
-              <ul className="mt-5 space-y-3.5">
-                {productFamilies.map((l) => (
-                  <li key={l.href}>
-                    <FooterLink href={l.href}>{l.label}</FooterLink>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    href="/products"
-                    className="text-sm font-semibold text-primary-mid transition-colors duration-200 hover:text-white hover:underline hover:decoration-primary-mid/80 hover:underline-offset-2"
-                  >
-                    Full catalogue →
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="lg:col-span-3">
-              <div className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-[0_12px_40px_-12px_rgba(8,26,120,0.18)] backdrop-blur-sm">
-                <SectionLabel variant="on-card">Contact</SectionLabel>
-                <address className="mt-5 not-italic">
-                  <p className="text-sm leading-relaxed">
-                    <span className="text-caption-foreground">Email</span>
-                    <br />
-                    <a
-                      href="mailto:enquiries@hkrbio.tech"
-                      className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary-deep hover:decoration-primary"
-                    >
-                      enquiries@hkrbio.tech
-                    </a>
-                  </p>
-                  <p className="mt-4 text-sm leading-relaxed">
-                    <span className="text-caption-foreground">Phone</span>
-                    <br />
-                    <a
-                      href="tel:+15550104420"
-                      className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary-deep hover:decoration-primary"
-                    >
-                      +1 (555) 010-4420
-                    </a>
-                  </p>
-                  <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
-                    Headquarters &amp; analytical hub — address available on request.
-                  </p>
-                </address>
-                <div className="mt-6">
-                  <Link
-                    href="/contact"
-                    className="inline-flex w-full items-center justify-center rounded-full bg-cta-gradient-diagonal py-2.5 text-xs font-semibold text-primary-foreground shadow-[var(--footer-cta-shadow)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--footer-cta-shadow-hover)]"
-                  >
-                    Request an RFQ
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-14 rounded-2xl border border-white/35 bg-white/55 px-5 py-6 shadow-[0_4px_24px_rgba(8,26,120,0.08)] backdrop-blur-md sm:px-8">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs font-medium text-foreground">
-                © {year} HKR Biotech Labs. All rights reserved.
-              </p>
-              <p className="max-w-xl text-right text-[11px] leading-relaxed text-foreground/85 sm:max-w-md">
-                Carbohydrates · API impurities · nucleotide building blocks — manufactured
-                with traceable documentation and QC you can audit.
-              </p>
-            </div>
-            <p className="mt-4 text-center text-xs text-foreground/90">
-              <a
-                href="https://www.fibonce.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary-deep hover:decoration-primary"
-              >
-                Designed and developed by Fibonce Tech Solutions Pvt. Ltd.
-              </a>
+    <footer className="mt-20 border-t border-on-dark/25 bg-[color-mix(in_srgb,var(--surface)_88%,#01084e_12%)]">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Link
+              href="/"
+              className="inline-flex transition-transform duration-200 hover:scale-[1.02]"
+              aria-label="HKR Biotech Labs home"
+            >
+              <BrandLogo size="md" priority={false} />
+            </Link>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-on-dark/90">
+              HKR Biotech Pvt. Ltd. delivers complex carbohydrate synthesis, API
+              impurity standards, nucleotide/linker chemistry, and analytical support
+              from Pune, India.
             </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center rounded-full bg-cta-gradient px-5 py-2 text-xs font-semibold text-primary-foreground shadow-primary-glow transition hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
+            >
+              Request an RFQ
+            </Link>
           </div>
+
+          <nav className="lg:col-span-2" aria-label="Footer explore links">
+            <FooterTitle>Explore</FooterTitle>
+            <ul className="mt-4 space-y-2.5">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <FooterListLink href={link.href} label={link.label} />
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav className="lg:col-span-3" aria-label="Footer product families">
+            <FooterTitle>Product families</FooterTitle>
+            <ul className="mt-4 space-y-2.5">
+              {productFamilies.map((family) => (
+                <li key={family.href}>
+                  <FooterListLink href={family.href} label={family.label} />
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/products"
+                  className="text-sm font-semibold text-on-dark transition-colors hover:text-accent"
+                >
+                  Full catalogue →
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="rounded-2xl border border-on-dark/20 bg-white p-6 text-foreground shadow-[0_12px_30px_-16px_rgba(18,50,90,0.6)] lg:col-span-3">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">Contact</p>
+            <address className="mt-4 not-italic text-sm leading-relaxed">
+              <p className="text-muted-foreground">Email</p>
+              <a
+                href="mailto:kishor@hkrbiotechlabs.com"
+                className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary"
+              >
+                kishor@hkrbiotechlabs.com
+              </a>
+              <p className="mt-4 text-muted-foreground">Phone</p>
+              <a
+                href="tel:+919212123868"
+                className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary"
+              >
+                +91 9212123868
+              </a>
+              <p className="mt-4 text-muted-foreground">Address</p>
+              <p className="font-medium text-foreground">
+                NCL Innovation Park, Pashan Road, Pune - 411008
+              </p>
+            </address>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-on-dark/25 pt-6">
+          <div className="flex flex-col gap-3 text-xs text-on-dark/85 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {year} HKR Biotech Labs. All rights reserved.</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link href="/privacy-policy" className="text-on-dark/90 underline decoration-on-dark/40 underline-offset-2 hover:text-on-dark">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-and-conditions" className="text-on-dark/90 underline decoration-on-dark/40 underline-offset-2 hover:text-on-dark">
+                Terms & Conditions
+              </Link>
+              <Link href="/cookie-policy" className="text-on-dark/90 underline decoration-on-dark/40 underline-offset-2 hover:text-on-dark">
+                Cookie Policy
+              </Link>
+            </div>
+          </div>
+          <a
+            href="https://www.fibonce.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 block text-center text-xs font-medium text-on-dark/90 underline decoration-on-dark/50 underline-offset-2 transition hover:text-on-dark"
+          >
+            Designed and developed by Fibonce Tech Solutions Pvt. Ltd.
+          </a>
         </div>
       </div>
     </footer>

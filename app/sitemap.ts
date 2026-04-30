@@ -15,6 +15,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/capabilities`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteUrl}/industries`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${siteUrl}/terms-and-conditions`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${siteUrl}/cookie-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const [categories, products] = await Promise.all([getAllCategories(), getAllProducts()]);

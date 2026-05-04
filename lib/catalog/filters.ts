@@ -3,7 +3,6 @@ import type { CatalogProduct, ProductAvailability, ProductCategorySlug } from "@
 export type CatalogFilterState = {
   search: string;
   category: ProductCategorySlug | "all";
-  availability: "all" | ProductAvailability;
 };
 
 const AVAILABILITY_VALUES: ProductAvailability[] = [
@@ -47,11 +46,5 @@ export function filterCatalogProducts(
     out = out.filter((p) => p.categorySlug === state.category);
   }
 
-  if (state.availability !== "all") {
-    out = out.filter((p) => p.availability === state.availability);
-  }
-
   return out;
 }
-
-export const AVAILABILITY_OPTIONS = AVAILABILITY_VALUES;

@@ -31,25 +31,26 @@ export function GlassProductsHero({
     <div className={cn("relative", className)}>
       {/* Ambient glow blobs — outside card, bleed into background */}
       <div
-        className="pointer-events-none absolute -left-[20%] -top-[40%] h-[min(28rem,85vw)] w-[min(28rem,85vw)] rounded-full blur-[100px] opacity-80"
+        className="pointer-events-none absolute -left-[20%] -top-[40%] h-[min(28rem,85vw)] w-[min(28rem,85vw)] rounded-full blur-[100px] opacity-90"
         style={{
           background:
-            "radial-gradient(circle, rgba(15,118,110,0.22) 0%, rgba(20,184,166,0.06) 45%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,255,255,0.2) 0%, color-mix(in srgb, var(--primary) 22%, transparent) 40%, transparent 72%)",
         }}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-[15%] top-[10%] h-[min(24rem,75vw)] w-[min(24rem,75vw)] animate-pulse-glow rounded-full blur-[90px] opacity-80"
+        className="pointer-events-none absolute -right-[15%] top-[10%] h-[min(24rem,75vw)] w-[min(24rem,75vw)] animate-pulse-glow rounded-full blur-[90px] opacity-85"
         style={{
           background:
-            "radial-gradient(circle, rgba(91,33,182,0.16) 0%, rgba(124,58,237,0.08) 50%, transparent 72%)",
+            "radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent) 0%, color-mix(in srgb, var(--primary-mid) 14%, transparent) 50%, transparent 72%)",
         }}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute bottom-[-20%] left-[30%] h-[min(20rem,60vw)] w-[min(20rem,60vw)] rounded-full blur-[100px]"
+        className="pointer-events-none absolute bottom-[-20%] left-[30%] h-[min(20rem,60vw)] w-[min(20rem,60vw)] rounded-full blur-[100px] opacity-80"
         style={{
-          background: "radial-gradient(circle, rgba(159,18,57,0.08) 0%, transparent 65%)",
+          background:
+            "radial-gradient(circle, color-mix(in srgb, var(--primary) 18%, transparent) 0%, transparent 68%)",
         }}
         aria-hidden
       />
@@ -85,7 +86,7 @@ export function GlassProductsHero({
         {/* Subtle interior gradient wash (no-image fallback) */}
         {!backgroundImage && (
           <div
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,118,110,0.05)_0%,transparent_45%,rgba(91,33,182,0.04)_100%)]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--primary)_12%,transparent)_0%,transparent_48%,color-mix(in_srgb,var(--accent)_10%,transparent)_100%)]"
             aria-hidden
           />
         )}
@@ -118,9 +119,9 @@ export function GlassProductsHero({
           className="pointer-events-none absolute bottom-8 right-28 h-6 w-6 animate-orbit-slow rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.7), rgba(124,58,237,0.35) 55%, rgba(91,33,182,0.15))",
+              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.75), color-mix(in srgb, var(--primary-mid) 38%, transparent) 55%, transparent)",
             boxShadow:
-              "0 6px 18px -3px rgba(91,33,182,0.35), inset 0 -1px 4px rgba(0,0,0,0.06), inset 0 1px 3px rgba(255,255,255,0.5)",
+              "0 6px 18px -3px color-mix(in srgb, var(--primary) 32%, transparent), inset 0 -1px 4px rgba(0,0,0,0.06), inset 0 1px 3px rgba(255,255,255,0.5)",
             animationDelay: "-7s",
             animationDuration: "16s",
           }}
@@ -130,8 +131,8 @@ export function GlassProductsHero({
           className="pointer-events-none absolute bottom-12 right-10 h-4 w-4 animate-orbit-slow rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.7), rgba(225,29,72,0.3) 55%, rgba(159,18,57,0.12))",
-            boxShadow: "0 4px 14px -3px rgba(159,18,57,0.28)",
+              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.75), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
+            boxShadow: "0 4px 14px -3px color-mix(in srgb, var(--accent) 28%, transparent)",
             animationDelay: "-4s",
             animationDuration: "14s",
           }}

@@ -3,13 +3,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { CatalogProduct, ProductCategory, ProductCategorySlug } from "@/lib/types/catalog";
+import { cn } from "@/lib/cn";
 import { filterCatalogProducts, type CatalogFilterState } from "@/lib/catalog/filters";
-import { ProductCategoryNav } from "@/components/products/ProductCategoryNav";
 import { CategoryCard } from "@/components/cards/CategoryCard";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ProductCard } from "./ProductCard";
-import { ProductFilters } from "./ProductFilters";
+import { CategoryBrowseToolbar } from "./CategoryBrowseToolbar";
 
 type CategoryBrowseClientProps = {
   category: ProductCategory;
@@ -22,23 +22,23 @@ const WHY_ITEMS = [
   {
     title: "Analytical depth",
     body: "Identity and purity context aligned to how you will use the material in the lab.",
-    tint: "from-[rgba(44,59,77,0.38)] to-[rgba(18,25,35,0.58)]",
-    orb: "var(--product-orb-carbohydrates)",
-    orbShadow: "var(--orb-shadow-primary)",
+    tint: "from-[color-mix(in_srgb,var(--surface)_82%,var(--primary)_18%)] to-[color-mix(in_srgb,var(--surface)_70%,#01084e_30%)]",
+    orb: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 45%, transparent) 55%, transparent)",
+    orbShadow: "0 8px 24px -4px color-mix(in srgb, var(--primary) 32%, transparent)",
   },
   {
     title: "Scale flexibility",
     body: "Milligram exploration through multi-gram supply with transparent feasibility gates.",
-    tint: "from-[rgba(74,93,114,0.34)] to-[rgba(18,25,35,0.58)]",
-    orb: "var(--product-orb-api-impurities)",
-    orbShadow: "var(--orb-shadow-accent)",
+    tint: "from-[color-mix(in_srgb,var(--accent)_55%,var(--light)_45%)] to-[color-mix(in_srgb,var(--primary-mid)_35%,var(--accent)_65%)]",
+    orb: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.75), color-mix(in srgb, var(--accent) 50%, transparent) 55%, transparent)",
+    orbShadow: "0 8px 24px -4px color-mix(in srgb, var(--accent) 28%, transparent)",
   },
   {
     title: "Export-ready mindset",
     body: "Documentation and communication tuned for Indian and international procurement teams.",
-    tint: "from-[rgba(163,81,57,0.26)] to-[rgba(18,25,35,0.58)]",
-    orb: "var(--product-orb-nucleotides)",
-    orbShadow: "var(--orb-shadow-danger)",
+    tint: "from-[color-mix(in_srgb,var(--light)_90%,var(--primary)_10%)] to-[color-mix(in_srgb,var(--light)_76%,var(--accent)_24%)]",
+    orb: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.95), color-mix(in srgb, var(--primary-mid) 35%, transparent) 50%, transparent)",
+    orbShadow: "0 6px 20px -4px color-mix(in srgb, var(--primary) 22%, transparent)",
   },
 ] as const;
 const PAGE_SIZE = 12;
@@ -52,7 +52,6 @@ export function CategoryBrowseClient({
   const initial: CatalogFilterState = {
     search: "",
     category: category.slug,
-    availability: "all",
   };
   const [state, setState] = useState<CatalogFilterState>(initial);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -70,7 +69,7 @@ export function CategoryBrowseClient({
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [category.slug, state.search, state.availability]);
+  }, [category.slug, state.search]);
 
   useEffect(() => {
     if (!hasMore || !sentinelRef.current) return;
@@ -87,52 +86,46 @@ export function CategoryBrowseClient({
     return () => observer.disconnect();
   }, [hasMore, filtered.length]);
 
-  const categoryOptions = allCategories.map((c) => ({ slug: c.slug, name: c.name }));
-
   return (
-    <div className="space-y-10 px-4 pb-28 pt-6 sm:px-6 lg:px-8 md:space-y-12">
+    <div className="space-y-10 px-4 pb-28 pt-10 sm:px-6 lg:px-8 md:space-y-12">
       <div className="mx-auto max-w-6xl space-y-10 md:space-y-12">
         <RevealOnScroll>
-          <ProductCategoryNav categories={allCategories} activeSlug={category.slug} mode="category" />
-        </RevealOnScroll>
-
-        <RevealOnScroll>
-          <ProductFilters
-            state={state}
-            onChange={setState}
-            categoryOptions={categoryOptions}
-            showCategoryFilter={false}
+          <CategoryBrowseToolbar
+            allCategories={allCategories}
+            activeCategory={category}
+            search={state.search}
+            onSearchChange={(value) => setState((s) => ({ ...s, search: value }))}
           />
         </RevealOnScroll>
 
         <RevealOnScroll>
           <section aria-labelledby="category-list-heading">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
+              <div className="min-w-0">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-on-dark/72">
                   {category.name}
                 </p>
                 <h2
                   id="category-list-heading"
-                  className="mt-1 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
+                  className="mt-1.5 font-display text-xl font-bold tracking-tight text-on-dark md:text-2xl"
                 >
-                  Catalogue Entries
+                  Catalogue <span className="text-accent">entries</span>
                 </h2>
               </div>
-              <p className="text-sm text-on-dark/80">
+              <p className="text-xs text-on-dark/80 sm:text-sm">
                 <span className="font-semibold text-on-dark">{visibleProducts.length}</span> shown in this family
               </p>
             </div>
 
             {filtered.length === 0 ? (
-              <div className="mt-8 rounded-[1.75rem] border border-dashed border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-8 py-14 text-center">
-                <p className="font-medium text-on-dark">No products match these filters.</p>
+              <div className="mt-8 rounded-[1.75rem] border border-dashed border-white/45 bg-white/88 px-8 py-14 text-center shadow-[0_12px_32px_-14px_rgba(18,50,90,0.22)]">
+                <p className="font-medium text-foreground">No products match these filters.</p>
                 <button
                   type="button"
                   onClick={() => setState({ ...initial, category: category.slug })}
-                  className="mt-4 text-sm font-semibold text-primary-mid underline"
+                  className="mt-4 text-sm font-semibold text-primary-deep underline"
                 >
-                  Clear search & availability
+                  Clear search
                 </button>
               </div>
             ) : (
@@ -162,45 +155,35 @@ export function CategoryBrowseClient({
         {/* CTA — "Need a non-catalog variant?" */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2rem] border border-on-dark/20 p-8 shadow-[0_16px_64px_-16px_rgba(18,25,35,0.5)] backdrop-blur-xl md:p-10"
+            className="relative overflow-hidden rounded-[2rem] border border-white/50 p-8 shadow-[var(--elev-card-stack)] backdrop-blur-xl md:p-10"
             style={{
               background:
-                "linear-gradient(140deg, rgba(18,25,35,0.74) 0%, rgba(27,38,50,0.58) 48%, rgba(44,59,77,0.5) 100%)",
+                "linear-gradient(135deg, color-mix(in srgb, var(--light) 84%, var(--primary) 16%) 0%, color-mix(in srgb, var(--light) 72%, var(--accent) 28%) 100%)",
             }}
             aria-labelledby="category-cta-heading"
           >
-            {/* Decorative orbs */}
             <div
-              className="pointer-events-none absolute -left-4 -top-4 h-16 w-16 rounded-full"
+              className="pointer-events-none absolute -left-8 -top-10 h-40 w-40 rounded-full opacity-60"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(20,184,166,0.4) 55%, rgba(15,118,110,0.2))",
-                boxShadow: "0 8px 28px -6px rgba(20,184,166,0.35), inset 0 -2px 6px rgba(0,0,0,0.06)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute -bottom-3 right-8 h-10 w-10 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(124,58,237,0.4) 55%, rgba(91,33,182,0.2))",
-                boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
+                  "radial-gradient(circle, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 20%, transparent) 55%, transparent 72%)",
+                filter: "blur(4px)",
               }}
               aria-hidden
             />
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-on-dark/78">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground/78">
                 Custom synthesis
               </p>
               <h2
                 id="category-cta-heading"
-                className="mt-2 font-display text-2xl font-bold text-on-dark md:text-3xl"
+                className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl"
               >
                 Need a non-catalogue variant?
               </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-on-dark/82 md:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/82 md:text-base">
                 We routinely deliver analogues, salt forms, and labelled batches within the{" "}
-                <span className="font-medium text-on-dark">{category.name}</span> space — reference this
+                <span className="font-medium text-primary-deep">{category.name}</span> space — reference this
                 family in your RFQ.
               </p>
               <ButtonLink
@@ -242,46 +225,63 @@ export function CategoryBrowseClient({
         {/* Why HKR */}
         <RevealOnScroll>
           <section
-            className="relative overflow-hidden rounded-[2rem] border border-overlay px-8 py-10 backdrop-blur-sm md:px-12"
+            className="relative overflow-hidden rounded-[2rem] border border-white/45 px-8 py-10 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.28)] backdrop-blur-sm md:px-12"
             style={{
               background:
-                "linear-gradient(145deg, rgba(12,21,38,0.95) 0%, rgba(7,14,27,0.9) 100%)",
+                "linear-gradient(145deg, color-mix(in srgb, var(--light) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 100%)",
             }}
             aria-labelledby="trust-heading"
           >
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-deep">
               Why choose HKR
             </p>
             <h2
               id="trust-heading"
-              className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
+              className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl"
             >
-              What Teams Value About Our Catalogue Chemistry
+              What teams value about our catalogue chemistry
             </h2>
             <ul className="mt-8 grid gap-6 md:grid-cols-3">
-              {WHY_ITEMS.map((item, i) => (
+              {WHY_ITEMS.map((item, i) => {
+                const lightCard = i === 2;
+                return (
                 <RevealOnScroll key={item.title} delay={i * 70}>
                   <li
-                    className={`group h-full overflow-hidden rounded-[1.75rem] border border-on-dark/20 bg-gradient-to-b ${item.tint} p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.65)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:shadow-[0_20px_48px_-16px_rgba(18,25,35,0.72)]`}
+                    className={`group h-full overflow-hidden rounded-[1.75rem] border border-white/50 bg-gradient-to-b ${item.tint} p-7 shadow-[0_10px_28px_-12px_rgba(18,50,90,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:shadow-[0_18px_40px_-14px_rgba(18,50,90,0.3)]`}
                   >
                     <div
-                      className="mb-5 h-10 w-10 rounded-full ring-2 ring-overlay"
+                      className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/40"
                       style={{
                         background: item.orb,
-                        boxShadow: `${item.orbShadow}, var(--elev-inset-soft)`,
+                        boxShadow: `${item.orbShadow}, inset 0 -2px 5px rgba(0,0,0,0.06)`,
                       }}
                       aria-hidden
                     />
-                    <h3 className="font-display text-lg font-semibold text-on-dark">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-on-dark/82">{item.body}</p>
+                    <h3
+                      className={cn(
+                        "font-display text-lg font-semibold",
+                        lightCard ? "text-foreground" : "text-on-dark",
+                      )}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      className={cn(
+                        "mt-3 text-sm leading-relaxed",
+                        lightCard ? "text-foreground/82" : "text-on-dark/82",
+                      )}
+                    >
+                      {item.body}
+                    </p>
                   </li>
                 </RevealOnScroll>
-              ))}
+                );
+              })}
             </ul>
             <RevealOnScroll delay={240}>
               <Link
                 href="/capabilities"
-                className="mt-8 inline-flex text-sm font-semibold text-primary-mid hover:underline"
+                className="mt-8 inline-flex text-sm font-semibold text-primary-deep hover:underline"
               >
                 View capabilities →
               </Link>

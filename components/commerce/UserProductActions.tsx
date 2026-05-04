@@ -22,10 +22,13 @@ export function UserProductActions({
   product,
   className,
   compact,
+  surface = "dark",
 }: {
   product: ProductLite;
   className?: string;
   compact?: boolean;
+  /** Wishlist row: match product card glass (catalogue) or default dark glass (PDP). */
+  surface?: "dark" | "light";
 }) {
   const { user } = useAuth();
   const router = useRouter();
@@ -214,9 +217,15 @@ export function UserProductActions({
           onClick={() => void (wishlisted ? removeWishlist() : addWishlist())}
           disabled={savingWish}
           className={cn(
-            "inline-flex h-9 w-9 items-center justify-center rounded-full border border-on-dark/30 bg-[rgba(18,25,35,0.48)] text-on-dark/90 transition hover:border-primary/40 hover:text-on-dark disabled:opacity-60",
+            "inline-flex h-9 w-9 items-center justify-center rounded-full border transition disabled:opacity-60",
+            surface === "light"
+              ? "border-[#17324d]/20 bg-white/88 text-[#17324d] hover:border-primary/45 hover:text-[#0d2137]"
+              : "border-on-dark/30 bg-[rgba(18,25,35,0.48)] text-on-dark/90 hover:border-primary/40 hover:text-on-dark",
             compact && "h-8 w-8",
-            wishlisted && "border-primary/55 bg-primary/20 text-primary-mid",
+            wishlisted &&
+              (surface === "light"
+                ? "border-primary/50 bg-primary/12 text-primary"
+                : "border-primary/55 bg-primary/20 text-primary-mid"),
           )}
           aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           title={wishlisted ? "Wishlisted" : "Add to wishlist"}
@@ -240,8 +249,19 @@ export function UserProductActions({
           {savingCart ? "Adding..." : inCart ? "Added" : "Add to cart"}
         </button>
       </div>
-      {!wishLoaded || !cartLoaded ? <p className="text-[11px] text-on-dark/65">Checking saved state...</p> : null}
-      {msg ? <p className="text-[11px] text-on-dark/75">{msg}</p> : null}
+      {!wishLoaded || !cartLoaded ? (
+        <p
+          className={cn(
+            "text-[11px]",
+            surface === "light" ? "text-[#234a62]/75" : "text-on-dark/65",
+          )}
+        >
+          Checking saved state...
+        </p>
+      ) : null}
+      {msg ? (
+        <p className={cn("text-[11px]", surface === "light" ? "text-[#234a62]/85" : "text-on-dark/75")}>{msg}</p>
+      ) : null}
     </div>
   );
 }

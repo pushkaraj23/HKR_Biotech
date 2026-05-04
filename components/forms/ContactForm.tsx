@@ -9,6 +9,8 @@ type ContactFormProps = {
   defaultProductRef?: string;
   enquirySource?: string;
   dark?: boolean;
+  /** Mint/white panels (e.g. product PDP enquiry band) — high-contrast fields matching site palette. */
+  tone?: "default" | "brandLight" | "brandGreen";
 };
 
 type SubmitState = "idle" | "submitting" | "sent";
@@ -18,21 +20,36 @@ export function ContactForm({
   defaultProductRef = "",
   enquirySource = "website",
   dark = false,
+  tone = "default",
 }: ContactFormProps) {
   const { user } = useAuth();
   const [status, setStatus] = useState<SubmitState>("idle");
   const [error, setError] = useState<string | null>(null);
 
+  const brandLight = tone === "brandLight" && !dark;
+  const brandGreen = tone === "brandGreen" && !dark;
+  const brandPanel = brandLight || brandGreen;
+
   const fieldBase = cn(
-    "w-full rounded-xl border px-4 py-3 text-sm shadow-sm backdrop-blur-sm outline-none transition-all duration-200 focus:ring-2",
+    "w-full rounded-xl border px-4 py-3 text-sm shadow-sm outline-none transition-all duration-200 focus:ring-2",
     dark
-      ? "border-on-dark/28 bg-[rgba(18,25,35,0.5)] text-on-dark placeholder:text-on-dark/50 focus:border-primary/55 focus:bg-[rgba(18,25,35,0.66)] focus:ring-primary/25"
-      : "border-overlay-hover bg-on-dark/[0.06] text-foreground/95 placeholder:text-caption-foreground focus:border-primary/40 focus:bg-on-dark/[0.09] focus:ring-ring",
+      ? "border-on-dark/28 bg-[rgba(18,25,35,0.5)] text-on-dark backdrop-blur-sm placeholder:text-on-dark/50 focus:border-primary/55 focus:bg-[rgba(18,25,35,0.66)] focus:ring-primary/25"
+      : brandGreen
+        ? "border-white/35 bg-white/94 text-[#0a2130] placeholder:text-[#4f6478] shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] focus:border-emerald-400/70 focus:bg-white focus:ring-emerald-300/35"
+        : brandLight
+          ? "border-[#17324d]/14 bg-white/95 text-[#0d2137] placeholder:text-[#567089] focus:border-primary/50 focus:bg-white focus:ring-2 focus:ring-primary/22"
+          : "border-overlay-hover bg-on-dark/[0.06] text-foreground/95 backdrop-blur-sm placeholder:text-caption-foreground focus:border-primary/40 focus:bg-on-dark/[0.09] focus:ring-ring",
   );
 
   const labelClass = cn(
     "mb-1.5 block font-mono text-[10px] font-semibold uppercase tracking-[0.2em]",
-    dark ? "text-on-dark/75" : "text-muted-foreground",
+    dark
+      ? "text-on-dark/75"
+      : brandGreen
+        ? "text-emerald-50/95 [text-shadow:0_1px_10px_rgba(0,40,30,0.35)]"
+        : brandLight
+          ? "text-[#1459b8]"
+          : "text-muted-foreground",
   );
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -81,17 +98,43 @@ export function ContactForm({
             "rounded-2xl p-10 text-center border",
             dark
               ? "border-on-dark/25 bg-[rgba(18,25,35,0.5)]"
-              : "border-white/10 bg-on-dark/[0.04]",
+              : brandGreen
+                ? "border-emerald-200/40 bg-white/96 shadow-[0_12px_36px_-12px_rgba(8,105,78,0.25)]"
+                : brandLight
+                  ? "border-[#17324d]/12 bg-white/95 shadow-[0_12px_32px_-14px_rgba(23,50,77,0.12)]"
+                  : "border-white/10 bg-on-dark/[0.04]",
             className,
           )}
         >
-        <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary-deep shadow-[0_6px_20px_-4px_rgba(20,184,166,0.4)]">
-          <span className="text-lg text-foreground" aria-hidden>✓</span>
+        <div
+          className={cn(
+            "mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full shadow-[0_6px_20px_-4px_rgba(26,115,232,0.35)]",
+            brandLight || brandGreen
+              ? "bg-cta-gradient text-primary-foreground"
+              : "bg-primary-deep shadow-[0_6px_20px_-4px_rgba(20,184,166,0.4)]",
+          )}
+        >
+          <span
+            className={cn("text-lg", brandLight || brandGreen ? "text-primary-foreground" : "text-foreground")}
+            aria-hidden
+          >
+            ✓
+          </span>
         </div>
-        <h3 className={cn("font-display text-lg font-semibold", dark ? "text-on-dark" : "text-foreground")}>
+        <h3
+          className={cn(
+            "font-display text-lg font-semibold",
+            dark ? "text-on-dark" : brandPanel ? "text-[#0d2137]" : "text-foreground",
+          )}
+        >
           Enquiry received
         </h3>
-        <p className={cn("mx-auto mt-2 max-w-md text-sm", dark ? "text-on-dark/80" : "text-muted-foreground")}>
+        <p
+          className={cn(
+            "mx-auto mt-2 max-w-md text-sm",
+            dark ? "text-on-dark/80" : brandPanel ? "text-[#234a62]" : "text-muted-foreground",
+          )}
+        >
           Thank you. We have logged your request and will follow up shortly.
         </p>
         <button
@@ -101,7 +144,11 @@ export function ContactForm({
             "mt-5 rounded-full px-6 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 border",
             dark
               ? "border-on-dark/35 bg-[rgba(18,25,35,0.56)] text-on-dark hover:bg-[rgba(18,25,35,0.7)]"
-              : "border-white/15 bg-on-dark/[0.06] text-foreground hover:bg-white/10",
+              : brandGreen
+                ? "border-emerald-400/40 bg-white text-[#0d5c45] hover:border-emerald-500/50 hover:bg-emerald-50/90"
+                : brandLight
+                  ? "border-primary/25 bg-white text-[#1459b8] hover:border-primary/40 hover:bg-[#f0f7ff]"
+                  : "border-white/15 bg-on-dark/[0.06] text-foreground hover:bg-white/10",
           )}
         >
           Send another
@@ -147,7 +194,16 @@ export function ContactForm({
         </div>
       </div>
       {error ? (
-        <p className={cn("mt-4 rounded-xl border px-3 py-2 text-sm", dark ? "border-danger/45 bg-danger/10 text-on-dark" : "border-danger/25 bg-danger/10 text-danger")}>
+        <p
+          className={cn(
+            "mt-4 rounded-xl border px-3 py-2 text-sm",
+            dark
+              ? "border-danger/45 bg-danger/10 text-on-dark"
+              : brandGreen || brandLight
+                ? "border-[#c43b2e]/30 bg-white text-[#0d2137]"
+                : "border-danger/25 bg-danger/10 text-danger",
+          )}
+        >
           {error}
         </p>
       ) : null}
@@ -156,7 +212,7 @@ export function ContactForm({
         disabled={status === "submitting"}
         className={cn(
           "mt-6 w-full rounded-full py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-65 sm:w-auto sm:px-12",
-          dark
+          dark || brandPanel
             ? "bg-cta-gradient text-primary-foreground shadow-primary-glow hover:shadow-primary-glow-lg"
             : "bg-white text-light-foreground shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]",
         )}

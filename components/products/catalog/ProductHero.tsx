@@ -15,13 +15,17 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
   return (
     <header
       className={cn(
-        "relative overflow-hidden rounded-[2rem] border border-slate-800/60 bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 shadow-[0_16px_56px_-16px_rgba(15,23,42,0.5)]",
+        "relative overflow-hidden rounded-[1.75rem] border border-white/30 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]",
         className,
       )}
+      style={{
+        background:
+          "linear-gradient(135deg, color-mix(in srgb, var(--surface) 88%, #01084e 12%) 0%, color-mix(in srgb, var(--primary) 38%, var(--surface) 62%) 52%, color-mix(in srgb, var(--accent) 32%, var(--surface) 68%) 100%)",
+      }}
     >
       {/* Subtle grid overlay */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-[0.06]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
@@ -50,8 +54,11 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full blur-[80px] opacity-25"
-        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)" }}
+        className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full blur-[80px] opacity-35"
+        style={{
+          background:
+            "radial-gradient(circle, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%)",
+        }}
         aria-hidden
       />
 

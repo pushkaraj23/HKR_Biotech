@@ -8,6 +8,8 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { cn } from "@/lib/cn";
+import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
 
 const VALID: ServiceSlug[] = [
   "research-and-development",
@@ -28,14 +30,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return { title: s.title, description: s.summary };
 }
 
-const STEP_ACCENTS = [
-  "from-primary to-primary-deep",
-  "from-accent to-accent",
-  "from-danger to-danger",
-  "from-primary to-violet-600",
-  "from-accent to-rose-600",
-] as const;
-
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
   if (!VALID.includes(slug as ServiceSlug)) notFound();
@@ -45,12 +39,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const relatedServices = services.filter((x) => x.slug !== s.slug).slice(0, 4);
 
   return (
-    <div className="relative overflow-x-hidden pb-28">
-      <PageAmbientGraphics variant="right" opacity="opacity-[0.16]" />
+    <div className="relative overflow-x-hidden bg-[#020A63] pb-28">
+      <PageAmbientGraphics variant="right" opacity="opacity-[0.12]" />
 
       <div className="relative z-10 mx-auto max-w-6xl space-y-12 px-4 pt-6 sm:px-6 md:space-y-16 lg:px-8">
 
-        {/* Breadcrumb */}
         <nav className="text-sm text-on-dark/72">
           <Link href="/services" className="text-primary-mid transition hover:text-primary hover:underline">
             Services
@@ -59,9 +52,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <span className="font-medium text-on-dark">{s.title}</span>
         </nav>
 
-        {/* Hero — photo background with dark wash */}
+        {/* Hero */}
         <RevealOnScroll>
-          <header className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
+          <header className="relative overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
             <Image
               src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=1400&h=600&fit=crop&q=80&auto=format"
               alt="Laboratory research"
@@ -74,17 +67,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
+                  "linear-gradient(115deg, rgba(2,10,99,0.88) 0%, rgba(2,10,99,0.72) 42%, color-mix(in srgb, var(--primary) 22%, transparent) 100%)",
               }}
             />
 
-            {/* Floating orbs */}
             <div
               className="pointer-events-none absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(20,184,166,0.3) 55%, rgba(15,118,110,0.1))",
-                boxShadow: "0 6px 20px -4px rgba(20,184,166,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
+                boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
               }}
               aria-hidden
             />
@@ -92,8 +84,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               className="pointer-events-none absolute bottom-10 right-[20%] h-7 w-7 animate-orbit-slow rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(124,58,237,0.3) 55%, rgba(91,33,182,0.1))",
-                boxShadow: "0 4px 14px -3px rgba(91,33,182,0.3), inset 0 -1px 4px rgba(0,0,0,0.1)",
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 40%, transparent) 55%, transparent)",
+                boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35), inset 0 -1px 4px rgba(0,0,0,0.1)",
                 animationDelay: "-4s",
                 animationDuration: "14s",
               }}
@@ -107,20 +99,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
                 {s.title}
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
-                {s.summary}
-              </p>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">{s.summary}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink
-                  href="#enquiry-form"
-                  className="rounded-full px-10 shadow-[0_14px_40px_-10px_rgba(15,118,110,0.35)]"
-                >
+                <ButtonLink href="#enquiry-form" className="rounded-full px-10 shadow-primary-glow">
                   Enquire about this service
                 </ButtonLink>
                 <ButtonLink
                   href="/services"
                   variant="secondary"
-                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
+                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
                 >
                   All services
                 </ButtonLink>
@@ -129,68 +116,67 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </header>
         </RevealOnScroll>
 
-        {/* Overview */}
+        {/* Overview — light mint */}
         <RevealOnScroll>
           <section
-            className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl md:p-9"
+            className="rounded-[1.75rem] border border-[#17324d]/12 p-7 shadow-[0_14px_36px_-14px_rgba(23,50,77,0.14)] backdrop-blur-sm md:p-9"
+            style={{
+              background: "linear-gradient(165deg, #e8f4ef 0%, #ffffff 52%, color-mix(in srgb, var(--light) 92%, var(--primary) 8%) 100%)",
+            }}
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
-              Overview
-            </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
-              What this service delivers
-            </h2>
-            <p className="mt-4 max-w-4xl text-base leading-relaxed text-on-dark/82">
-              {s.overview}
-            </p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">Overview</p>
+            <h2 className="mt-1 font-display text-xl font-semibold text-[#0d2137]">What this service delivers</h2>
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-[#234a62]">{s.overview}</p>
           </section>
         </RevealOnScroll>
 
-        {/* Process steps */}
+        {/* Process — color-cycled cards */}
         <RevealOnScroll>
-          <section
-            className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl md:p-9"
-          >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
-              Workflow
-            </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
+          <section>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">Workflow</p>
+            <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
               Typical process
             </h2>
             <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {s.process.map((step, i) => (
-                <RevealOnScroll key={step} delay={i * 60}>
-                  <li className="flex gap-4 rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.48)] p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:bg-[rgba(18,25,35,0.62)] hover:shadow-md">
-                    <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${STEP_ACCENTS[i % STEP_ACCENTS.length]} text-xs font-bold text-foreground shadow-sm`}
+              {s.process.map((step, i) => {
+                const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
+                return (
+                  <RevealOnScroll key={step} delay={i * 60}>
+                    <li
+                      style={{ backgroundColor: v.surface }}
+                      className={cn(
+                        "flex min-h-[5.5rem] gap-4 rounded-[1.25rem] border p-5 transition-all duration-200 hover:-translate-y-0.5",
+                        v.shell,
+                      )}
                     >
-                      {i + 1}
-                    </span>
-                    <span className="text-sm leading-relaxed text-on-dark/82">{step}</span>
-                  </li>
-                </RevealOnScroll>
-              ))}
+                      <span className={cn("shrink-0 rounded-full", v.stepBadge)}>{i + 1}</span>
+                      <span className={cn("text-sm leading-relaxed", v.body)}>{step}</span>
+                    </li>
+                  </RevealOnScroll>
+                );
+              })}
             </ol>
           </section>
         </RevealOnScroll>
 
-        {/* Benefits + Capabilities side by side */}
+        {/* Benefits (blue) + Capabilities (green) */}
         <div className="grid gap-6 md:grid-cols-2">
           <RevealOnScroll>
             <section
-              className="h-full rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/35 p-7 text-white shadow-[0_12px_36px_-12px_rgba(13,71,161,0.45)] md:p-9"
+              style={{
+                background: "linear-gradient(155deg, #1a73e8 0%, color-mix(in srgb, var(--primary-deep) 55%, #041238) 100%)",
+              }}
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">
                 Advantages
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
-                Key benefits
-              </h2>
+              <h2 className="mt-1 font-display text-xl font-semibold text-white">Key benefits</h2>
               <ul className="mt-5 space-y-3">
                 {s.benefits.map((b) => (
-                  <li key={b} className="flex gap-3 text-sm text-on-dark/82">
+                  <li key={b} className="flex gap-3 text-sm leading-relaxed text-white/88">
                     <span
-                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-primary-deep"
+                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-white/90 shadow-[0_0_10px_rgba(255,255,255,0.35)]"
                       aria-hidden
                     />
                     {b}
@@ -202,19 +188,20 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
           <RevealOnScroll delay={60}>
             <section
-              className="h-full rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl"
+              className="h-full rounded-[1.75rem] border border-white/30 p-7 text-white shadow-[0_12px_36px_-12px_rgba(8,105,78,0.42)] md:p-9"
+              style={{
+                background: "linear-gradient(155deg, #22a884 0%, color-mix(in srgb, var(--accent) 75%, #064d3a) 100%)",
+              }}
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-50/95">
                 Technical scope
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">
-                Capabilities
-              </h2>
+              <h2 className="mt-1 font-display text-xl font-semibold text-white">Capabilities</h2>
               <ul className="mt-5 space-y-3">
                 {s.capabilities.map((c) => (
-                  <li key={c} className="flex gap-3 text-sm text-on-dark/82">
+                  <li key={c} className="flex gap-3 text-sm leading-relaxed text-white/88">
                     <span
-                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-accent to-accent"
+                      className="mt-2 h-1.5 w-4 shrink-0 rounded-full bg-white/90 shadow-[0_0_10px_rgba(220,255,245,0.35)]"
                       aria-hidden
                     />
                     {c}
@@ -225,95 +212,100 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </RevealOnScroll>
         </div>
 
-        {/* Related services */}
+        {/* Related services — solid cycle */}
         <RevealOnScroll>
           <section>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
-              Related
-            </p>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Related</p>
             <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
-              Other Services
+              Other services
             </h2>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {relatedServices.map((rs, i) => (
-                <RevealOnScroll key={rs.slug} delay={i * 50}>
-                  <Link
-                    href={`/services/${rs.slug}`}
-                    className="group block h-full rounded-[1.25rem] border border-on-dark/20 bg-[rgba(18,25,35,0.5)] p-5 shadow-[0_4px_16px_-8px_rgba(18,25,35,0.7)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_8px_24px_-10px_rgba(18,25,35,0.75)]"
-                  >
-                    <h3 className="font-display text-sm font-semibold text-on-dark transition-colors group-hover:text-primary-mid">
-                      {rs.title}
-                    </h3>
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-on-dark/78">
-                      {rs.summary}
-                    </p>
-                    <span className="mt-3 inline-flex text-xs font-semibold text-primary-mid transition-transform group-hover:translate-x-0.5">
-                      Learn more →
-                    </span>
-                  </Link>
-                </RevealOnScroll>
-              ))}
+              {relatedServices.map((rs, i) => {
+                const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
+                return (
+                  <RevealOnScroll key={rs.slug} delay={i * 50}>
+                    <Link
+                      href={`/services/${rs.slug}`}
+                      style={{ backgroundColor: v.surface }}
+                      className={cn(
+                        "group block h-full rounded-[1.25rem] border p-5 transition-all duration-200 hover:-translate-y-0.5",
+                        v.shell,
+                      )}
+                    >
+                      <span
+                        className={cn("mb-4 block h-9 w-9 rounded-full", v.orbShell)}
+                        style={{ background: v.orb }}
+                        aria-hidden
+                      />
+                      <h3
+                        className={cn(
+                          "font-display text-sm font-semibold leading-snug transition-colors",
+                          v.title,
+                          v.titleGroupHover,
+                        )}
+                      >
+                        {rs.title}
+                      </h3>
+                      <p className={cn("mt-2 line-clamp-3 text-xs leading-relaxed", v.body)}>{rs.summary}</p>
+                      <span className={cn("mt-4 inline-flex text-xs font-semibold transition-transform group-hover:translate-x-0.5", v.link)}>
+                        Learn more →
+                      </span>
+                    </Link>
+                  </RevealOnScroll>
+                );
+              })}
             </div>
           </section>
         </RevealOnScroll>
 
-        {/* Enquiry form — dark gradient */}
+        {/* Enquiry — same green-glass band as product PDP */}
         <RevealOnScroll>
           <section
             id="enquiry-form"
-            className="scroll-mt-28 relative overflow-hidden rounded-[2.5rem] border border-on-dark/22 p-8 shadow-[0_16px_64px_-16px_rgba(18,25,35,0.58)] backdrop-blur-xl sm:p-12"
-            style={{
-              background:
-                "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
-            }}
+            aria-labelledby="enquiry-heading"
+            className="scroll-mt-28 relative overflow-hidden rounded-[1.75rem] border border-white/35 shadow-[0_20px_48px_-18px_rgba(2,10,99,0.45)] backdrop-blur-md"
           >
-            {/* Subtle grid */}
             <div
-              className="pointer-events-none absolute inset-0 rounded-[2.5rem] opacity-[0.04]"
+              className="pointer-events-none absolute inset-0"
               style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
-                backgroundSize: "44px 44px",
+                background: [
+                  "linear-gradient(165deg,",
+                  "color-mix(in srgb, var(--accent) 52%, transparent) 0%,",
+                  "color-mix(in srgb, var(--accent) 28%, #020A63) 38%,",
+                  "rgba(2, 10, 99, 0.78) 100%)",
+                ].join(" "),
+                opacity: 0.82,
               }}
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute -right-28 -top-36 h-[24rem] w-[24rem] rounded-full opacity-[0.52] blur-3xl sm:h-[28rem] sm:w-[28rem]"
+              style={{
+                background:
+                  "radial-gradient(circle at 72% 26%, rgba(180, 255, 220, 0.78) 0%, color-mix(in srgb, var(--accent) 45%, transparent) 38%, transparent 62%)",
+              }}
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(2,10,99,0.14)_100%)]"
               aria-hidden
             />
 
-            {/* Decorative orbs */}
-            <div
-              className="pointer-events-none absolute -right-4 top-6 h-16 w-16 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(20,184,166,0.4) 55%, rgba(15,118,110,0.2))",
-                boxShadow: "0 8px 28px -6px rgba(20,184,166,0.35), inset 0 -2px 6px rgba(0,0,0,0.06)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute -left-3 bottom-8 h-10 w-10 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(124,58,237,0.4) 55%, rgba(91,33,182,0.2))",
-                boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
-              }}
-              aria-hidden
-            />
-
-            <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
+            <div className="relative z-10 px-7 py-8 sm:px-10 sm:py-10">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">
                 Get in touch
               </p>
-              <h2 className="mt-2 font-display text-2xl font-bold text-on-dark md:text-3xl">
-                Enquire About {s.title}
+              <h2 id="enquiry-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
+                Enquire about {s.title}
               </h2>
-              <p className="mt-3 max-w-2xl text-on-dark/84">
-                Describe your project scope, timeline, and any analytical expectations — the
-                service reference is pre-filled for you.
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-on-dark/88 md:text-base">
+                Describe your project scope, timeline, and any analytical expectations — the service reference is pre-filled for you.
               </p>
               <ContactForm
-                className="mt-8 border-0 bg-transparent p-0 shadow-none"
+                className="mt-8"
+                tone="brandGreen"
                 defaultProductRef={`service:${s.slug}`}
                 enquirySource={`service:${s.slug}`}
-                dark
               />
             </div>
           </section>

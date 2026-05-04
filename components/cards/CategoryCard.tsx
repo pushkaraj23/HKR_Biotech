@@ -7,104 +7,105 @@ type CategoryCardProps = {
   className?: string;
 };
 
-const CARD_ACCENTS = [
+/** Solid fills (no gradients): royal blue, teal, cool mint — cycle by slug for variety. */
+const CARD_STYLES = [
   {
-    tint: "from-[rgba(44,59,77,0.42)] to-[rgba(18,25,35,0.6)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
-    blob: "radial-gradient(circle, rgba(20,184,166,0.22) 0%, transparent 70%)",
-    eyebrow: "text-primary",
-    arrow: "text-primary group-hover:text-primary-mid",
+    background: "#1a73e8",
+    cornerGlow:
+      "radial-gradient(ellipse 95% 85% at 0% 0%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.12) 38%, transparent 62%)",
+    orb: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.12) 100%)",
+    orbRing: "ring-white/35",
+    orbShadow: "0 4px 16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5)",
+    shadow: "0 14px 36px -12px rgba(13, 71, 161, 0.45)",
+    eyebrow: "text-white/90",
+    title: "text-white",
+    body: "text-white/92",
+    arrow: "text-white decoration-white/45 underline-offset-4 hover:decoration-white",
+    dark: true,
   },
   {
-    tint: "from-[rgba(74,93,114,0.4)] to-[rgba(18,25,35,0.6)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
-    blob: "radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%)",
-    eyebrow: "text-accent",
-    arrow: "text-accent group-hover:text-accent",
+    background: "#22a884",
+    cornerGlow:
+      "radial-gradient(ellipse 95% 85% at 0% 0%, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.1) 40%, transparent 62%)",
+    orb: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(200,255,235,0.5) 50%, rgba(255,255,255,0.15) 100%)",
+    orbRing: "ring-white/40",
+    orbShadow: "0 4px 16px rgba(0,60,45,0.2), inset 0 1px 0 rgba(255,255,255,0.45)",
+    shadow: "0 14px 36px -12px rgba(8, 105, 78, 0.4)",
+    eyebrow: "text-white/90",
+    title: "text-white",
+    body: "text-white/92",
+    arrow: "text-white decoration-white/45 underline-offset-4 hover:decoration-white",
+    dark: true,
   },
   {
-    tint: "from-[rgba(163,81,57,0.32)] to-[rgba(18,25,35,0.6)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22), inset 0 -2px 5px rgba(0,0,0,0.06)",
-    blob: "radial-gradient(circle, rgba(225,29,72,0.15) 0%, transparent 70%)",
-    eyebrow: "text-danger",
-    arrow: "text-danger group-hover:text-rose-300",
-  },
-  {
-    tint: "from-[rgba(44,59,77,0.42)] via-[rgba(74,93,114,0.34)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
-    orbShadow: "0 8px 24px -4px rgba(20,184,166,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
-    blob: "radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 70%)",
-    eyebrow: "text-primary",
-    arrow: "text-primary group-hover:text-primary-mid",
-  },
-  {
-    tint: "from-[rgba(74,93,114,0.4)] via-[rgba(163,81,57,0.22)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
-    orbShadow: "0 8px 24px -4px rgba(124,58,237,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
-    blob: "radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%)",
-    eyebrow: "text-accent",
-    arrow: "text-accent group-hover:text-accent",
+    background: "#e8f4ef",
+    cornerGlow:
+      "radial-gradient(ellipse 95% 85% at 0% 0%, rgba(255,255,255,0.95) 0%, rgba(43,196,138,0.18) 42%, transparent 65%)",
+    orb: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.98), color-mix(in srgb, var(--accent) 42%, white) 55%, color-mix(in srgb, var(--primary) 22%, white) 100%)",
+    orbRing: "ring-[#17324d]/12",
+    orbShadow: "0 4px 14px rgba(23,50,77,0.12), inset 0 1px 0 rgba(255,255,255,0.9)",
+    shadow: "0 14px 36px -14px rgba(23, 50, 77, 0.18)",
+    eyebrow: "text-[#1459b8] font-bold tracking-[0.24em]",
+    title: "text-[#0d2137]",
+    body: "text-[#234a62]",
+    arrow: "text-[#1459b8] decoration-[#1459b8]/35 underline-offset-4 hover:text-[#0d2137]",
+    dark: false,
   },
 ] as const;
 
 export function CategoryCard({ category, className }: CategoryCardProps) {
-  const accent = CARD_ACCENTS[Math.abs(category.slug.charCodeAt(0) + category.slug.charCodeAt(1)) % CARD_ACCENTS.length];
+  const style =
+    CARD_STYLES[Math.abs(category.slug.charCodeAt(0) + category.slug.charCodeAt(1)) % CARD_STYLES.length];
 
   return (
     <Link href={`/products/${category.slug}`} className={cn("group block", className)}>
       <div
         className={cn(
-          `relative h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${accent.tint}`,
-          "border-on-dark/20 shadow-[0_10px_28px_-12px_rgba(18,25,35,0.65)] backdrop-blur-xl",
-          "transition-all duration-300 hover:-translate-y-1 hover:border-overlay-strong hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.3)]",
+          "relative h-full overflow-hidden rounded-[1.75rem] border p-7 transition-all duration-300",
+          "hover:-translate-y-1 hover:shadow-[0_22px_48px_-14px_rgba(0,0,0,0.22)]",
         )}
+        style={{
+          background: style.background,
+          borderColor: style.dark ? "rgba(255,255,255,0.22)" : "rgba(23, 50, 77, 0.12)",
+          boxShadow: style.shadow,
+        }}
       >
-        {/* Ambient glow blob */}
+        {/* Top-left corner glow (solid card only — no full-card gradient) */}
         <div
-          className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-50 blur-2xl transition-opacity duration-500 group-hover:opacity-80"
-          style={{ background: accent.blob }}
+          className="pointer-events-none absolute inset-0 rounded-[1.75rem]"
+          style={{ background: style.cornerGlow }}
           aria-hidden
         />
-        {category.imageUrl ? (
-          <>
+
+        <div className="relative">
+          <div className="mb-5 flex items-start justify-between gap-3">
             <div
-              className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-20 transition-opacity duration-300 group-hover:opacity-30"
-              style={{ backgroundImage: `url("${category.imageUrl}")` }}
+              className={cn("h-11 w-11 shrink-0 rounded-xl ring-2", style.orbRing)}
+              style={{
+                background: style.orb,
+                boxShadow: style.orbShadow,
+              }}
               aria-hidden
             />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,14,27,0.26),rgba(7,14,27,0.56))]" aria-hidden />
-          </>
-        ) : null}
+          </div>
 
-        <div className="relative p-7">
-          {/* Orb icon */}
-          <div
-            className="mb-5 h-11 w-11 rounded-full ring-2 ring-white/20"
-            style={{
-              background: accent.orb,
-              boxShadow: accent.orbShadow,
-            }}
-            aria-hidden
-          />
-
-          <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", accent.eyebrow)}>
+          <p className={cn("font-mono text-[10px] font-bold uppercase tracking-[0.26em]", style.eyebrow)}>
             Category
           </p>
-          <h3 className="mt-2 font-display text-xl font-semibold text-on-dark md:text-2xl">
+          <h3 className={cn("mt-2 font-display text-xl font-bold tracking-tight md:text-2xl", style.title)}>
             {category.name}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed text-on-dark/82">{category.tagline}</p>
+          <p className={cn("mt-3 text-sm font-medium leading-relaxed md:text-[15px]", style.body)}>
+            {category.tagline}
+          </p>
           <span
             className={cn(
-              "mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200",
-              accent.arrow,
+              "mt-6 inline-flex items-center gap-2 text-sm font-bold underline decoration-2 underline-offset-[5px] transition-colors duration-200",
+              style.arrow,
             )}
           >
             Browse catalogue
-            <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+            <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden>
               →
             </span>
           </span>

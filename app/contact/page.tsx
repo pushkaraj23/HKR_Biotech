@@ -4,6 +4,8 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { cn } from "@/lib/cn";
+import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -27,15 +29,18 @@ export default async function ContactPage({ searchParams }: PageProps) {
         ? sp.product[0]
         : "";
 
+  const infoCard = BRAND_SOLID_CARD_CYCLE[0];
+  const catalogueCard = BRAND_SOLID_CARD_CYCLE[1];
+
   return (
-    <div className="relative overflow-x-hidden">
-      <PageAmbientGraphics variant="right" opacity="opacity-[0.16]" />
+    <div className="relative overflow-x-hidden bg-[#020A63]">
+      <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl space-y-16 px-4 pt-6 pb-28 sm:px-6 md:space-y-20 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl space-y-16 px-4 pb-28 pt-6 sm:px-6 md:space-y-20 lg:px-8">
 
-        {/* Hero — photo with dark wash */}
+        {/* Hero */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
             <Image
               src={HERO_IMAGE}
               alt="Laboratory discussion"
@@ -48,23 +53,25 @@ export default async function ContactPage({ searchParams }: PageProps) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
+                  "linear-gradient(115deg, rgba(2,10,99,0.88) 0%, rgba(2,10,99,0.72) 42%, color-mix(in srgb, var(--primary) 22%, transparent) 100%)",
               }}
             />
 
             <div
               className="pointer-events-none absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
               style={{
-                background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(20,184,166,0.3) 55%, rgba(15,118,110,0.1))",
-                boxShadow: "0 6px 20px -4px rgba(20,184,166,0.35)",
+                background:
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
+                boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
               }}
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute bottom-10 right-[20%] h-7 w-7 animate-orbit-slow rounded-full"
+              className="pointer-events-none absolute bottom-10 right-[18%] h-7 w-7 animate-orbit-slow rounded-full"
               style={{
-                background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(124,58,237,0.3) 55%, rgba(91,33,182,0.1))",
-                boxShadow: "0 4px 14px -3px rgba(91,33,182,0.3)",
+                background:
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 40%, transparent) 55%, transparent)",
+                boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35), inset 0 -1px 4px rgba(0,0,0,0.1)",
                 animationDelay: "-4s",
                 animationDuration: "14s",
               }}
@@ -72,182 +79,206 @@ export default async function ContactPage({ searchParams }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
-                Get in touch
-              </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
-                Enquiries & RFQ
-              </h1>
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">Get in touch</p>
+              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">Enquiries & RFQ</h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
-                Share your target structure, quantity band, and analytical expectations.
-                Our Pune-based team responds with scientific questions, not just pricing.
+                Share your target structure, quantity band, and analytical expectations. Our Pune-based team responds with
+                scientific questions, not just pricing.
               </p>
-            </div>
-          </div>
-        </RevealOnScroll>
-
-        {/* Two-column layout: info cards + form */}
-        <div className="grid gap-12 lg:grid-cols-5 lg:gap-10">
-
-          {/* Left column: info cards */}
-          <div className="space-y-6 lg:col-span-2">
-            <RevealOnScroll>
-              <div className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.68)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_16px_44px_-14px_rgba(18,25,35,0.76)]">
-                <div
-                  className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
-                  style={{
-                    background: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-                    boxShadow: "0 8px 24px -4px rgba(20,184,166,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
-                  }}
-                  aria-hidden
-                />
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
-                  Direct contact
-                </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-on-dark">
-                  Reach Us
-                </h2>
-                <ul className="mt-4 space-y-3 text-sm text-on-dark/82">
-                  <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Email</span>
-                    <br />
-                    <span className="font-medium text-on-dark">kishor@hkrbiotechlabs.com</span>
-                  </li>
-                  <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Phone</span>
-                    <br />
-                    <span className="font-medium text-on-dark">+91 9212123868</span>
-                  </li>
-                  <li>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-on-dark/65">Address</span>
-                    <br />
-                    <span className="font-medium text-on-dark">
-                      HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={60}>
-              <div className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.52)] p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.68)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_16px_44px_-14px_rgba(18,25,35,0.76)]">
-                <div
-                  className="mb-5 h-10 w-10 rounded-full ring-2 ring-white/[0.08]"
-                  style={{
-                    background: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
-                    boxShadow: "0 8px 24px -4px rgba(91,33,182,0.25), inset 0 -2px 5px rgba(0,0,0,0.06)",
-                  }}
-                  aria-hidden
-                />
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">
-                  Product enquiry
-                </p>
-                <h2 className="mt-2 font-display text-lg font-semibold text-on-dark">
-                  From the Catalogue?
-                </h2>
-                <p className="mt-3 text-sm text-on-dark/82">
-                  Visiting from a catalogue entry? Your product reference is
-                  pre-filled in the form automatically.
-                </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="#enquiry-form" className="rounded-full px-10 shadow-primary-glow">
+                  Send an enquiry
+                </ButtonLink>
                 <ButtonLink
                   href="/products"
                   variant="secondary"
-                  className="mt-5 rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-6 text-xs text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
+                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
                 >
                   Browse catalogue
                 </ButtonLink>
               </div>
+            </div>
+          </div>
+        </RevealOnScroll>
+
+        {/* Two-column: solid brand cards + green-glass form */}
+        <div className="grid gap-12 lg:grid-cols-5 lg:gap-10">
+          <div className="space-y-6 lg:col-span-2">
+            <RevealOnScroll>
+              <article
+                style={{ backgroundColor: infoCard.surface }}
+                className={cn(
+                  "group relative overflow-hidden rounded-[1.75rem] border p-7 transition-all duration-300 hover:-translate-y-0.5",
+                  infoCard.shell,
+                )}
+              >
+                <div
+                  className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-30 blur-2xl transition-opacity duration-500 group-hover:opacity-50"
+                  style={{
+                    background: "radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%)",
+                  }}
+                  aria-hidden
+                />
+                <div className="relative">
+                  <span
+                    className={cn("mb-5 block h-10 w-10 shrink-0 rounded-full", infoCard.orbShell)}
+                    style={{ background: infoCard.orb }}
+                    aria-hidden
+                  />
+                  <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", infoCard.eyebrow)}>
+                    Direct contact
+                  </p>
+                  <h2 className={cn("mt-2 font-display text-lg font-semibold", infoCard.title)}>Reach us</h2>
+                  <ul className={cn("mt-4 space-y-3 text-sm", infoCard.body)}>
+                    <li>
+                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Email</span>
+                      <br />
+                      <a href="mailto:kishor@hkrbiotechlabs.com" className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
+                        kishor@hkrbiotechlabs.com
+                      </a>
+                    </li>
+                    <li>
+                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Phone</span>
+                      <br />
+                      <a href="tel:+919212123868" className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
+                        +91 9212123868
+                      </a>
+                    </li>
+                    <li>
+                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Address</span>
+                      <br />
+                      <span className="font-medium text-inherit">HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
             </RevealOnScroll>
 
+            <RevealOnScroll delay={60}>
+              <article
+                style={{ backgroundColor: catalogueCard.surface }}
+                className={cn(
+                  "group relative overflow-hidden rounded-[1.75rem] border p-7 transition-all duration-300 hover:-translate-y-0.5",
+                  catalogueCard.shell,
+                )}
+              >
+                <div
+                  className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-30 blur-2xl transition-opacity duration-500 group-hover:opacity-50"
+                  style={{
+                    background: "radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%)",
+                  }}
+                  aria-hidden
+                />
+                <div className="relative">
+                  <span
+                    className={cn("mb-5 block h-10 w-10 shrink-0 rounded-full", catalogueCard.orbShell)}
+                    style={{ background: catalogueCard.orb }}
+                    aria-hidden
+                  />
+                  <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", catalogueCard.eyebrow)}>
+                    Product enquiry
+                  </p>
+                  <h2 className={cn("mt-2 font-display text-lg font-semibold", catalogueCard.title)}>From the catalogue?</h2>
+                  <p className={cn("mt-3 text-sm leading-relaxed", catalogueCard.body)}>
+                    Visiting from a catalogue entry? Your product reference is pre-filled in the form automatically.
+                  </p>
+                  <ButtonLink
+                    href="/products"
+                    variant="secondary"
+                    className="mt-5 rounded-full border-white/35 bg-white/10 px-6 text-xs text-on-dark backdrop-blur-sm hover:border-white/50 hover:bg-white/16"
+                  >
+                    Browse catalogue
+                  </ButtonLink>
+                </div>
+              </article>
+            </RevealOnScroll>
           </div>
 
-          {/* Right column: form in dark gradient panel */}
           <div className="lg:col-span-3">
             <RevealOnScroll>
-              <div
-                className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 p-7 shadow-[0_16px_64px_-16px_rgba(18,25,35,0.58)] backdrop-blur-xl sm:p-10"
-                style={{
-                  background:
-                    "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
-                }}
+              <section
+                id="enquiry-form"
+                aria-labelledby="enquiry-heading"
+                className="scroll-mt-28 relative overflow-hidden rounded-[1.75rem] border border-white/35 shadow-[0_20px_48px_-18px_rgba(2,10,99,0.45)] backdrop-blur-md"
               >
-                {/* Subtle grid */}
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-[0.04]"
+                  className="pointer-events-none absolute inset-0"
                   style={{
-                    backgroundImage:
-                      "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
-                    backgroundSize: "44px 44px",
+                    background: [
+                      "linear-gradient(165deg,",
+                      "color-mix(in srgb, var(--accent) 52%, transparent) 0%,",
+                      "color-mix(in srgb, var(--accent) 28%, #020A63) 38%,",
+                      "rgba(2, 10, 99, 0.78) 100%)",
+                    ].join(" "),
+                    opacity: 0.82,
                   }}
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute -right-28 -top-36 h-[24rem] w-[24rem] rounded-full opacity-[0.52] blur-3xl sm:h-[28rem] sm:w-[28rem]"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 72% 26%, rgba(180, 255, 220, 0.78) 0%, color-mix(in srgb, var(--accent) 45%, transparent) 38%, transparent 62%)",
+                  }}
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(2,10,99,0.14)_100%)]"
                   aria-hidden
                 />
 
-                <div
-                  className="pointer-events-none absolute -right-6 top-6 h-16 w-16 rounded-full"
-                  style={{
-                    background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.6), rgba(20,184,166,0.35) 55%, rgba(15,118,110,0.15))",
-                    boxShadow: "0 8px 24px -4px rgba(20,184,166,0.3)",
-                  }}
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute -left-4 bottom-10 h-10 w-10 rounded-full"
-                  style={{
-                    background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.6), rgba(124,58,237,0.35) 55%, rgba(91,33,182,0.15))",
-                    boxShadow: "0 6px 18px -3px rgba(91,33,182,0.25)",
-                  }}
-                  aria-hidden
-                />
-
-                <div className="relative">
-                  <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
-                    Send a message
-                  </p>
-                  <h2 className="mt-2 font-display text-2xl font-bold text-on-dark md:text-3xl">
-                    Submit Your Enquiry
+                <div className="relative z-10 px-7 py-8 sm:px-10 sm:py-10">
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">Send a message</p>
+                  <h2 id="enquiry-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
+                    Submit your enquiry
                   </h2>
-                  <p className="mt-3 max-w-lg text-sm text-on-dark/84">
-                    Include your target, quantity, purity requirements, and timeline
-                    for the fastest technical response.
+                  <p className="mt-3 max-w-lg text-sm leading-relaxed text-on-dark/88 md:text-base">
+                    Include your target, quantity, purity requirements, and timeline for the fastest technical response.
                   </p>
                   <ContactForm
-                    className="mt-8 border-0 bg-transparent p-0 shadow-none"
+                    className="mt-8"
+                    tone="brandGreen"
                     defaultProductRef={productRef}
                     enquirySource="contact-page"
-                    dark
                   />
                 </div>
-              </div>
+              </section>
             </RevealOnScroll>
           </div>
         </div>
 
-        {/* Full-width location map */}
+        {/* Location — light panel + map */}
         <RevealOnScroll>
           <section
             aria-labelledby="location-heading"
-            className="overflow-hidden rounded-[2rem] border border-on-dark/20 bg-[rgba(18,25,35,0.58)] py-10 shadow-[0_16px_48px_-24px_rgba(18,25,35,0.7)] backdrop-blur-md"
+            className="relative overflow-hidden rounded-[1.75rem] border border-white/45 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.28)] backdrop-blur-md"
+            style={{
+              background:
+                "linear-gradient(125deg, color-mix(in srgb, var(--light) 90%, var(--primary) 10%) 0%, color-mix(in srgb, var(--light) 82%, var(--accent) 18%) 55%, #e8f4ef 100%)",
+            }}
           >
-            <div className="px-6 sm:px-8 lg:px-10">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
-                Location
-              </p>
-              <h2
-                id="location-heading"
-                className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
-              >
-                Visit Our Facility
+            <div
+              className="pointer-events-none absolute -right-16 top-0 h-40 w-40 rounded-full opacity-40 blur-3xl"
+              style={{
+                background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 70%)",
+              }}
+              aria-hidden
+            />
+            <div className="relative px-6 pb-2 pt-8 sm:px-8 sm:pt-10 lg:px-10">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">Location</p>
+              <h2 id="location-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-[#0d2137] md:text-3xl">
+                Visit our facility
               </h2>
-              <p className="mt-3 max-w-2xl text-sm text-on-dark/80 md:text-base">
+              <p className="mt-3 max-w-2xl text-sm text-[#234a62] md:text-base">
                 HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008.
               </p>
             </div>
 
-            <div className="mt-6">
+            <div className="relative mt-6 border-t border-[#17324d]/10 bg-white px-2 pb-2 pt-2 sm:px-3 sm:pb-3">
               <iframe
                 title="HKR Biotech Labs location"
                 src="https://www.google.com/maps?q=NCL+Innovation+Park+Pashan+Road+Pune+411008&output=embed"
-                className="h-[420px] w-full border-0"
+                className="h-[420px] w-full rounded-xl border-0 shadow-[inset_0_1px_0_rgba(23,50,77,0.06)]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

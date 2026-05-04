@@ -14,13 +14,20 @@ const rows: { label: string; get: (p: CatalogProduct) => string }[] = [
 type ProductSpecsTableProps = {
   product: CatalogProduct;
   className?: string;
+  /** Light mint/white table for contrast on dark blue panels. */
+  variant?: "dark" | "insetLight";
 };
 
-export function ProductSpecsTable({ product, className }: ProductSpecsTableProps) {
+export function ProductSpecsTable({ product, className, variant = "dark" }: ProductSpecsTableProps) {
+  const light = variant === "insetLight";
+
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.5)] shadow-[inset_0_1px_0_color-mix(in_srgb,var(--on-dark)_12%,transparent)] backdrop-blur-md",
+        "overflow-hidden rounded-2xl border backdrop-blur-md",
+        light
+          ? "border-[#17324d]/12 bg-white/95 shadow-[0_10px_28px_-12px_rgba(23,50,77,0.15),inset_0_1px_0_rgba(255,255,255,0.9)]"
+          : "border-on-dark/20 bg-[rgba(18,25,35,0.5)] shadow-[inset_0_1px_0_color-mix(in_srgb,var(--on-dark)_12%,transparent)]",
         className,
       )}
     >
@@ -30,15 +37,28 @@ export function ProductSpecsTable({ product, className }: ProductSpecsTableProps
           {rows.map((row) => (
             <tr
               key={row.label}
-              className="border-b border-on-dark/16 last:border-b-0 odd:bg-on-dark/[0.03]"
+              className={cn(
+                "border-b last:border-b-0",
+                light
+                  ? "border-[#17324d]/10 odd:bg-[#f3faf7]/90"
+                  : "border-on-dark/16 odd:bg-on-dark/[0.03]",
+              )}
             >
               <th
                 scope="row"
-                className="w-[38%] px-4 py-3 font-medium text-on-dark/72 sm:w-[32%] md:px-5"
+                className={cn(
+                  "w-[38%] px-4 py-3 font-medium sm:w-[32%] md:px-5",
+                  light ? "text-[#4f6478]" : "text-on-dark/72",
+                )}
               >
                 {row.label}
               </th>
-              <td className="px-4 py-3 font-mono text-[13px] text-on-dark md:px-5">
+              <td
+                className={cn(
+                  "px-4 py-3 font-mono text-[13px] md:px-5",
+                  light ? "font-semibold text-[#0d2137]" : "text-on-dark",
+                )}
+              >
                 {row.get(product)}
               </td>
             </tr>

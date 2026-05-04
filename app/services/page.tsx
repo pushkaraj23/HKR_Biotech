@@ -5,6 +5,8 @@ import { services } from "@/data/services";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { cn } from "@/lib/cn";
+import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1400&h=600&fit=crop&q=80&auto=format";
@@ -15,64 +17,16 @@ export const metadata: Metadata = {
     "Custom synthesis, contract research, analytical services, impurity profiling, and method development at HKR Biotech Labs.",
 };
 
-const CARD_ACCENTS = [
-  {
-    tint: "from-[rgba(44,59,77,0.42)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(20,184,166,0.3)",
-    blob: "rgba(20,184,166,0.18)",
-    eyebrow: "text-primary",
-    arrow: "text-primary group-hover:text-primary-mid",
-    bullet: "from-teal-400 to-teal-600",
-  },
-  {
-    tint: "from-[rgba(74,93,114,0.4)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(91,33,182,0.25)",
-    blob: "rgba(124,58,237,0.15)",
-    eyebrow: "text-accent",
-    arrow: "text-accent group-hover:text-accent",
-    bullet: "from-violet-400 to-violet-600",
-  },
-  {
-    tint: "from-[rgba(163,81,57,0.3)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(159,18,57,0.22)",
-    blob: "rgba(225,29,72,0.12)",
-    eyebrow: "text-danger",
-    arrow: "text-danger group-hover:text-rose-300",
-    bullet: "from-rose-400 to-rose-600",
-  },
-  {
-    tint: "from-[rgba(44,59,77,0.38)] via-[rgba(74,93,114,0.32)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(167,243,208,0.85), rgba(20,184,166,0.5) 50%, rgba(91,33,182,0.3))",
-    orbShadow: "0 8px 24px -4px rgba(20,184,166,0.25)",
-    blob: "rgba(20,184,166,0.14)",
-    eyebrow: "text-primary",
-    arrow: "text-primary group-hover:text-primary-mid",
-    bullet: "from-teal-400 to-violet-500",
-  },
-  {
-    tint: "from-[rgba(74,93,114,0.36)] via-[rgba(163,81,57,0.22)] to-[rgba(18,25,35,0.62)]",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.8), rgba(167,139,250,0.55) 50%, rgba(124,58,237,0.35))",
-    orbShadow: "0 8px 24px -4px rgba(124,58,237,0.25)",
-    blob: "rgba(124,58,237,0.12)",
-    eyebrow: "text-accent",
-    arrow: "text-accent group-hover:text-accent",
-    bullet: "from-violet-400 to-rose-500",
-  },
-] as const;
-
 export default function ServicesPage() {
   return (
-    <div className="relative overflow-x-hidden">
-      <PageAmbientGraphics variant="long" opacity="opacity-[0.16]" />
+    <div className="relative overflow-x-hidden bg-[#020A63]">
+      <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl space-y-16 px-4 pt-6 pb-28 sm:px-6 md:space-y-20 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl space-y-16 px-4 pb-28 pt-6 sm:px-6 md:space-y-20 lg:px-8">
 
-        {/* Hero — photo background with dark wash */}
+        {/* Hero — photo + navy wash (products-style) */}
         <RevealOnScroll>
-          <div className="relative overflow-hidden rounded-[2rem] border border-on-dark/22 shadow-[0_12px_48px_-12px_rgba(18,25,35,0.58)]">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
             <Image
               src={HERO_IMAGE}
               alt="Scientific laboratory glassware"
@@ -85,17 +39,16 @@ export default function ServicesPage() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
+                  "linear-gradient(115deg, rgba(2,10,99,0.88) 0%, rgba(2,10,99,0.72) 42%, color-mix(in srgb, var(--primary) 22%, transparent) 100%)",
               }}
             />
 
-            {/* Floating orbs */}
             <div
               className="pointer-events-none absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(20,184,166,0.3) 55%, rgba(15,118,110,0.1))",
-                boxShadow: "0 6px 20px -4px rgba(20,184,166,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
+                boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
               }}
               aria-hidden
             />
@@ -103,8 +56,8 @@ export default function ServicesPage() {
               className="pointer-events-none absolute bottom-10 right-[20%] h-7 w-7 animate-orbit-slow rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(124,58,237,0.3) 55%, rgba(91,33,182,0.1))",
-                boxShadow: "0 4px 14px -3px rgba(91,33,182,0.3), inset 0 -1px 4px rgba(0,0,0,0.1)",
+                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 40%, transparent) 55%, transparent)",
+                boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35), inset 0 -1px 4px rgba(0,0,0,0.1)",
                 animationDelay: "-4s",
                 animationDuration: "14s",
               }}
@@ -119,20 +72,20 @@ export default function ServicesPage() {
                 Composable Chemistry Services
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
-                From exploratory FTE blocks to filing-ready analytical packages — unified
-                under one project team with transparent milestones and scientific dialogue.
+                From exploratory FTE blocks to filing-ready analytical packages — unified under one project team
+                with transparent milestones and scientific dialogue.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink
                   href="/contact"
-                  className="rounded-full px-10 shadow-[0_14px_40px_-10px_rgba(15,118,110,0.35)]"
+                  className="rounded-full px-10 shadow-primary-glow"
                 >
                   Discuss your project
                 </ButtonLink>
                 <ButtonLink
                   href="#services-grid"
                   variant="secondary"
-                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
+                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
                 >
                   Browse services
                 </ButtonLink>
@@ -141,10 +94,10 @@ export default function ServicesPage() {
           </div>
         </RevealOnScroll>
 
-        {/* Service cards */}
+        {/* Service cards — blue / green / light solids */}
         <section id="services-grid">
           <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
               What we offer
             </p>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
@@ -154,58 +107,62 @@ export default function ServicesPage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {services.map((s, i) => {
-              const accent = CARD_ACCENTS[i % CARD_ACCENTS.length];
+              const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
               return (
                 <RevealOnScroll key={s.slug} delay={i * 70}>
                   <Link href={`/services/${s.slug}`} className="group block h-full">
                     <article
-                      className={`relative h-full overflow-hidden rounded-[1.75rem] border border-on-dark/20 bg-gradient-to-b ${accent.tint} p-7 shadow-[0_8px_32px_-12px_rgba(18,25,35,0.7)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:shadow-[0_20px_48px_-16px_rgba(18,25,35,0.78)]`}
+                      style={{ backgroundColor: v.surface }}
+                      className={cn(
+                        "relative h-full overflow-hidden rounded-[1.75rem] border p-7 transition-all duration-300 hover:-translate-y-1",
+                        v.shell,
+                      )}
                     >
-                      {/* Ambient blob */}
                       <div
-                        className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
-                        style={{ background: `radial-gradient(circle, ${accent.blob} 0%, transparent 70%)` }}
+                        className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-35 blur-2xl transition-opacity duration-500 group-hover:opacity-55"
+                        style={{
+                          background:
+                            v.surface === "#e8f4ef"
+                              ? "radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%)"
+                              : "radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%)",
+                        }}
                         aria-hidden
                       />
 
                       <div className="relative">
-                        {/* Orb */}
-                        <div
-                          className="mb-5 h-11 w-11 rounded-full ring-2 ring-white/[0.08]"
-                          style={{
-                            background: accent.orb,
-                            boxShadow: `${accent.orbShadow}, inset 0 -2px 5px rgba(0,0,0,0.06)`,
-                          }}
+                        <span
+                          className={cn("mb-5 block h-11 w-11 shrink-0 rounded-full", v.orbShell)}
+                          style={{ background: v.orb }}
                           aria-hidden
                         />
 
-                        <p className={`font-mono text-[10px] font-semibold uppercase tracking-[0.22em] ${accent.eyebrow}`}>
+                        <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", v.eyebrow)}>
                           Service
                         </p>
-                        <h3 className="mt-2 font-display text-xl font-semibold text-on-dark md:text-2xl">
+                        <h3 className={cn("mt-2 font-display text-xl font-semibold md:text-2xl", v.title)}>
                           {s.title}
                         </h3>
-                        <p className="mt-3 text-sm leading-relaxed text-on-dark/82">
-                          {s.summary}
-                        </p>
+                        <p className={cn("mt-3 text-sm leading-relaxed", v.body)}>{s.summary}</p>
 
                         <ul className="mt-5 space-y-2">
                           {s.benefits.slice(0, 3).map((b) => (
-                            <li key={b} className="flex gap-2.5 text-sm text-on-dark/78">
-                              <span
-                                className={`mt-2 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r ${accent.bullet}`}
-                                aria-hidden
-                              />
+                            <li key={b} className={cn("flex gap-2.5 text-sm", v.body)}>
+                              <span className={v.bullet} aria-hidden />
                               {b}
                             </li>
                           ))}
                         </ul>
 
                         <span
-                          className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 ${accent.arrow}`}
+                          className={cn(
+                            "mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200",
+                            v.link,
+                          )}
                         >
                           Learn more
-                          <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                          <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                            →
+                          </span>
                         </span>
                       </div>
                     </article>
@@ -216,65 +173,50 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* CTA — dark gradient */}
+        {/* CTA — light band + mint (matches catalogue toolbars) */}
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2.5rem] border border-on-dark/22 p-10 text-center shadow-[0_16px_64px_-16px_rgba(18,25,35,0.55)] backdrop-blur-xl sm:p-14"
+            className="relative overflow-hidden rounded-[1.75rem] border border-white/45 px-8 py-12 text-center shadow-[0_16px_42px_-14px_rgba(18,50,90,0.28)] backdrop-blur-md sm:px-12 sm:py-14"
             style={{
               background:
-                "linear-gradient(140deg, rgba(18,25,35,0.76) 0%, rgba(27,38,50,0.62) 35%, rgba(44,59,77,0.56) 62%, rgba(74,93,114,0.5) 100%)",
+                "linear-gradient(125deg, color-mix(in srgb, var(--light) 90%, var(--primary) 10%) 0%, color-mix(in srgb, var(--light) 82%, var(--accent) 18%) 55%, #e8f4ef 100%)",
             }}
           >
             <div
-              className="pointer-events-none absolute -left-4 top-8 h-16 w-16 rounded-full sm:h-20 sm:w-20"
+              className="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full opacity-50 blur-3xl"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(20,184,166,0.4) 55%, rgba(15,118,110,0.2))",
-                boxShadow: "0 8px 28px -6px rgba(20,184,166,0.35), inset 0 -2px 6px rgba(0,0,0,0.06)",
+                  "radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 68%)",
               }}
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute -right-3 bottom-6 h-12 w-12 rounded-full"
+              className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full opacity-40 blur-3xl"
               style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(124,58,237,0.4) 55%, rgba(91,33,182,0.2))",
-                boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-0 rounded-[2.5rem] opacity-[0.04]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
-                backgroundSize: "44px 44px",
+                background: "radial-gradient(circle, color-mix(in srgb, var(--primary) 28%, transparent), transparent 70%)",
               }}
               aria-hidden
             />
 
             <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-on-dark/78">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">
                 Partnership
               </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-on-dark md:text-3xl">
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-[#0d2137] md:text-3xl">
                 Not Sure Where to Start?
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-on-dark/84">
-                Share your target, timeline, and analytical expectations. We respond with
-                technical questions and a clear feasibility path — not a generic brochure.
+              <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#234a62] md:text-base">
+                Share your target, timeline, and analytical expectations. We respond with technical questions and a
+                clear feasibility path — not a generic brochure.
               </p>
               <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <ButtonLink
-                  href="/contact"
-                  className="rounded-full px-10 shadow-[0_14px_40px_-10px_rgba(15,118,110,0.35)]"
-                >
+                <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">
                   Start a conversation
                 </ButtonLink>
                 <ButtonLink
                   href="/capabilities"
                   variant="secondary"
-                  className="rounded-full border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-10 text-on-dark hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
+                  className="rounded-full border-[#17324d]/18 bg-white/90 px-10 text-[#0d2137] hover:border-primary/35 hover:bg-white"
                 >
                   View capabilities
                 </ButtonLink>

@@ -7,7 +7,7 @@ import {
   getProductsByCategorySlug,
   isValidCategorySlug,
 } from "@/data/catalog";
-import { CategoryHero } from "@/components/products/catalog/CategoryHero";
+import { CategoryIntro } from "@/components/products/catalog/CategoryIntro";
 import { CategoryBrowseClient } from "@/components/products/catalog/CategoryBrowseClient";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
@@ -49,53 +49,15 @@ export default async function ProductCategoryPage({ params }: PageProps) {
   const relatedCategories = await getCategoriesExcept(slug as ProductCategorySlug);
 
   return (
-    <div className="relative overflow-x-hidden">
-      <PageAmbientGraphics variant="long" opacity="opacity-[0.16]" />
-      <div className="relative z-10 mx-auto max-w-6xl space-y-8 px-4 pt-6 sm:px-6 lg:px-8 md:space-y-10">
-        <CategoryHero category={cat} />
+    <div className="relative overflow-x-hidden bg-[#020A63]">
+      <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
+      <div className="relative z-10 px-4 pt-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <RevealOnScroll>
+            <CategoryIntro category={cat} />
+          </RevealOnScroll>
+        </div>
       </div>
-
-      <section
-        className="relative z-10 mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8"
-        aria-labelledby="category-overview-heading"
-      >
-        <RevealOnScroll>
-          <div
-            className="rounded-[1.5rem] border border-on-dark/18 bg-[rgba(18,25,35,0.5)] p-6 shadow-[0_10px_28px_-16px_rgba(18,25,35,0.62)] backdrop-blur-md md:p-8"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(18,25,35,0.72) 0%, rgba(27,38,50,0.56) 48%, rgba(44,59,77,0.48) 100%)",
-            }}
-          >
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
-              Overview
-            </p>
-            <h2
-              id="category-overview-heading"
-              className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl"
-            >
-              About {cat.name}
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark/84">{cat.overview}</p>
-
-            {/* Compact highlights list to reduce card clutter */}
-            <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-              {cat.highlights.map((h) => (
-                <li
-                  key={h}
-                  className="flex items-start gap-2.5 rounded-xl border border-on-dark/16 bg-[rgba(18,25,35,0.45)] px-4 py-3 text-sm text-on-dark/82"
-                >
-                  <span
-                    className="mt-1.5 h-1.5 w-4 shrink-0 rounded-full bg-gradient-to-r from-primary to-primary-mid"
-                    aria-hidden
-                  />
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </RevealOnScroll>
-      </section>
 
       <CategoryBrowseClient
         category={cat}

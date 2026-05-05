@@ -1,33 +1,24 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { ExpertsContent } from "@/components/about/ExpertsContent";
+import {
+  aboutCoreExpertise,
+  aboutDifferentiators,
+  aboutHighlightMetrics,
+  aboutMarketingHero,
+  aboutWhyChoose,
+} from "@/data/aboutMarketingContent";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
+import { cn } from "@/lib/cn";
+import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Company overview, vision, leadership, infrastructure, and compliance posture at HKR Biotech Labs.",
+    "HKR Biotech Pvt Ltd — global carbohydrate synthesis: custom glycans, modified sugars, nucleic-acid chemistry, impurities & reference standards, and worldwide logistics.",
 };
-
-const leadership = [
-  {
-    name: "Kishor R. Harale, PhD",
-    role: "Director",
-    bio: "Leads HKR Biotech with a focus on complex carbohydrate synthesis, API impurity programs, and practical R&D delivery for pharma and biotech partners.",
-    image: "/team/founder.jpg",
-    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(20,184,166,0.35)",
-    tint: "from-tint-primary/25 to-surface/80",
-  },
-  {
-    name: "Scientific Program Team",
-    role: "R&D, Analytical, and Consultation Support",
-    bio: "A multidisciplinary team delivering route scouting, analytical characterization, and consultation support aligned to customer-specific development goals.",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
-    orbShadow: "0 8px 24px -4px rgba(91,33,182,0.3)",
-    tint: "from-tint-accent/25 to-surface/80",
-  },
-];
 
 const facilityLines = [
   "Synthesis support for complex carbohydrates, oligosaccharides, and glycoprotein-linked projects",
@@ -37,52 +28,34 @@ const facilityLines = [
 ];
 
 const complianceItems = [
-  {
-    k: "Quality system",
-    v: "Document-controlled SOPs & training matrix",
-    ring: "ring-primary/30",
-    tint: "from-tint-primary/25 to-surface/80",
-    orb: "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-    orbShadow: "0 4px 14px -3px rgba(20,184,166,0.3)",
-  },
-  {
-    k: "Data integrity",
-    v: "ALCOA+ aligned analytical records",
-    ring: "ring-violet-500/30",
-    tint: "from-tint-accent/25 to-surface/80",
-    orb: "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.85), rgba(124,58,237,0.6) 55%, rgba(91,33,182,0.4))",
-    orbShadow: "0 4px 14px -3px rgba(91,33,182,0.25)",
-  },
-  {
-    k: "Safety",
-    v: "Process hazard review for scale-up steps",
-    ring: "ring-rose-500/30",
-    tint: "from-tint-danger/25 to-surface/80",
-    orb: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.85), rgba(225,29,72,0.6) 55%, rgba(159,18,57,0.4))",
-    orbShadow: "0 4px 14px -3px rgba(159,18,57,0.22)",
-  },
+  { k: "Quality system", v: "Document-controlled SOPs & training matrix" },
+  { k: "Data integrity", v: "ALCOA+ aligned analytical records" },
+  { k: "Safety", v: "Process hazard review for scale-up steps" },
 ];
-
-const BULLET_COLORS = [
-  "from-teal-400 to-teal-600",
-  "from-violet-400 to-violet-600",
-  "from-rose-400 to-rose-600",
-  "from-teal-400 to-violet-500",
-] as const;
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=1200&h=600&fit=crop&q=80&auto=format";
 const LAB_IMAGE =
   "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=900&h=600&fit=crop&q=80&auto=format";
-const OVERVIEW_IMAGE =
-  "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=800&h=600&fit=crop&q=80&auto=format";
+
+/** Large-screen column spans for a 12-col bento: row 7+5, row 4+4+4. */
+const EXPERTISE_BENTO_SPANS = ["lg:col-span-7", "lg:col-span-5", "lg:col-span-4", "lg:col-span-4", "lg:col-span-4"];
 
 export default function AboutPage() {
+  let expertiseCycle = 0;
+  const titleAccent = aboutMarketingHero.titleAccentPhrase;
+  const titleLead =
+    titleAccent && aboutMarketingHero.title.includes(titleAccent)
+      ? aboutMarketingHero.title.replace(titleAccent, "").trim()
+      : null;
+
   return (
-    <div className="relative overflow-x-hidden pb-28">
-      {/* ─── Hero ─── */}
-      <section className="relative px-4 pt-6 sm:px-6 lg:px-8">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
+    <div className="relative overflow-x-hidden bg-[#020A63] pb-28">
+      <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
+
+      {/* Hero */}
+      <section className="relative z-10 px-4 pt-6 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
           <Image
             src={HERO_IMAGE}
             alt="HKR Biotech laboratory"
@@ -95,266 +68,239 @@ export default function AboutPage() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
+                "linear-gradient(115deg, rgba(2,10,99,0.88) 0%, rgba(2,10,99,0.72) 42%, color-mix(in srgb, var(--primary) 22%, transparent) 100%)",
             }}
           />
-          <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-            <RevealOnScroll>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
-                About
-              </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-                Welcome to{" "}
-                <span className="gradient-text-shimmer">HKR Biotech</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                We deliver innovative and customized research solutions in carbohydrate
-                chemistry, API impurity synthesis, and custom organic synthesis for
-                pharma and biotech teams.
-              </p>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Overview ─── */}
-      <section className="relative mt-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
-              Overview
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Company Overview
-            </h2>
-            <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-              HKR Biotech Pvt. Ltd. is built to provide focused R&D support where
-              complex chemistry, analytical depth, and responsive execution are all
-              required together.
-            </p>
-          </RevealOnScroll>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
-            <RevealOnScroll>
-              <div className="h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b from-tint-primary/25 to-surface/80 p-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]">
-                <div
-                  className="mb-6 h-12 w-12 rounded-full"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 35% 35%, rgba(153,246,228,0.85), rgba(20,184,166,0.6) 55%, rgba(15,118,110,0.4))",
-                    boxShadow: "0 8px 24px -4px rgba(20,184,166,0.3), inset 0 -2px 6px rgba(0,0,0,0.06)",
-                  }}
-                />
-                <h3 className="font-display text-xl font-semibold text-foreground/95">What we do</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  We support synthesis of carbohydrate-related products, API impurities,
-                  APIs, linker chemistry, and conjugation programs, backed by
-                  characterization workflows tailored to each project.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={60}>
-              <div className="relative h-full min-h-[280px] overflow-hidden rounded-[1.75rem] border border-overlay shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
-                <Image
-                  src={OVERVIEW_IMAGE}
-                  alt="Chemistry lab with colourful solutions"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.3) 40%, transparent 100%)",
-                  }}
-                />
-                {/* Floating orb */}
-                <div
-                  className="absolute right-6 top-6 h-10 w-10 rounded-full animate-orbit-slow"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), rgba(124,58,237,0.3) 55%, rgba(91,33,182,0.1))",
-                    boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3)",
-                    animationDelay: "-3s",
-                  }}
-                  aria-hidden
-                />
-                <div className="absolute inset-x-0 bottom-0 p-8">
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
-                    Lab footprint
-                  </p>
-                  <p className="mt-3 font-display text-xl font-bold leading-snug text-foreground">
-                    Scientific execution designed for reproducible outcomes.
-                  </p>
-                </div>
-              </div>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Vision & Mission ─── */}
-      <section className="relative mt-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 md:gap-8">
-          <RevealOnScroll>
-            <div
-              className="group relative h-full overflow-hidden rounded-[1.75rem] border border-overlay p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_-14px_rgba(0,0,0,0.5)]"
-              style={{
-                background:
-                  "linear-gradient(145deg, rgba(20,184,166,0.12) 0%, rgba(124,58,237,0.08) 60%, rgba(91,33,182,0.1) 100%)",
-              }}
-            >
-              <div
-                className="mb-6 h-10 w-10 rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(20,184,166,0.4) 55%, rgba(15,118,110,0.2))",
-                  boxShadow: "0 6px 20px -4px rgba(20,184,166,0.35), inset 0 -2px 5px rgba(0,0,0,0.06)",
-                }}
-              />
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
-                Vision
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold text-foreground/95 md:text-3xl">
-                Pioneering innovation in complex carbohydrates and custom synthesis
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                To be a leading provider of bespoke R&D solutions that empower
-                organizations to build with complex carbohydrates, API impurity science,
-                and advanced custom synthesis.
-              </p>
-            </div>
-          </RevealOnScroll>
-
-          <RevealOnScroll delay={70}>
-            <div
-              className="group relative h-full overflow-hidden rounded-[1.75rem] border border-overlay p-8 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_-14px_rgba(0,0,0,0.5)]"
-              style={{
-                background:
-                  "linear-gradient(145deg, rgba(124,58,237,0.12) 0%, rgba(225,29,72,0.08) 60%, rgba(244,63,94,0.1) 100%)",
-              }}
-            >
-              <div
-                className="mb-6 h-10 w-10 rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(124,58,237,0.4) 55%, rgba(91,33,182,0.2))",
-                  boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
-                }}
-              />
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">
-                Mission
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold text-foreground/95 md:text-3xl">
-                Deliver practical R&D support with scientific clarity
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Our mission is to provide customer-aligned development support in
-                carbohydrate chemistry, API impurity programs, and advanced intermediate
-                synthesis with transparent technical communication.
-              </p>
-            </div>
-          </RevealOnScroll>
-        </div>
-      </section>
-
-      {/* ─── Leadership ─── */}
-      <section className="relative mt-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
-              Leadership
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Team
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-              Meet the leadership and scientific team driving HKR Biotech programs.
-            </p>
-          </RevealOnScroll>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {leadership.map((person, i) => (
-              <RevealOnScroll key={person.name} delay={i * 55}>
-                <div
-                  className={`group h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${person.tint} p-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]`}
-                >
-                  <div className="flex gap-5">
-                    {person.image ? (
-                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-white/[0.16]">
-                        <Image
-                          src={person.image}
-                          alt={person.name}
-                          fill
-                          sizes="64px"
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        className="h-16 w-16 shrink-0 rounded-full ring-2 ring-white/[0.08]"
-                        style={{
-                          background: person.orb,
-                          boxShadow: `${person.orbShadow}, inset 0 -3px 8px rgba(0,0,0,0.08)`,
-                        }}
-                        aria-hidden
-                      />
-                    )}
-                    <div>
-                      <h3 className="font-display text-lg font-semibold text-foreground/95">
-                        {person.name}
-                      </h3>
-                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-caption-foreground">
-                        {person.role}
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                        {person.bio}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Infrastructure ─── */}
-      <section className="relative mt-20 px-4 sm:px-6 lg:px-8">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-overlay shadow-[0_12px_48px_-12px_rgba(0,0,0,0.5)]">
-          <Image
-            src={LAB_IMAGE}
-            alt="Modern laboratory facility"
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
           <div
-            className="absolute inset-0"
+            className="pointer-events-none absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
             style={{
               background:
-                "linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0.4) 100%)",
-            }}
-          />
-
-          {/* Floating orbs */}
-          <div
-            className="absolute right-[8%] top-8 h-12 w-12 rounded-full animate-orbit-slow"
-            style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.4), rgba(20,184,166,0.3) 55%, rgba(15,118,110,0.1))",
-              boxShadow: "0 6px 20px -4px rgba(20,184,166,0.35)",
+                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
+              boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
             }}
             aria-hidden
           />
           <div
-            className="absolute bottom-12 left-[6%] h-7 w-7 rounded-full animate-orbit-slow"
+            className="pointer-events-none absolute bottom-10 right-[18%] h-7 w-7 animate-orbit-slow rounded-full"
             style={{
               background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.4), rgba(124,58,237,0.3) 55%, rgba(91,33,182,0.1))",
-              boxShadow: "0 4px 14px -3px rgba(91,33,182,0.3)",
+                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 40%, transparent) 55%, transparent)",
+              boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35), inset 0 -1px 4px rgba(0,0,0,0.1)",
+              animationDelay: "-4s",
+              animationDuration: "14s",
+            }}
+            aria-hidden
+          />
+          <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[88%] xl:max-w-4xl">
+            <RevealOnScroll>
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">{aboutMarketingHero.eyebrow}</p>
+              <h1 className="mt-4 text-balance font-display text-3xl font-bold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
+                {titleLead ? (
+                  <>
+                    {titleLead}{" "}
+                    <span className="gradient-text-shimmer">{titleAccent}</span>
+                  </>
+                ) : (
+                  aboutMarketingHero.title
+                )}
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-on-dark/84 md:text-xl">{aboutMarketingHero.intro}</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">
+                  Partner with HKR
+                </ButtonLink>
+                <ButtonLink
+                  href="#core-expertise-heading"
+                  variant="secondary"
+                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
+                >
+                  Explore expertise
+                </ButtonLink>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
+      </section>
+
+      {/* Highlight metrics */}
+      <section className="relative z-10 mt-10 px-4 sm:px-6 lg:px-8" aria-label="At a glance">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-5 sm:grid-cols-3">
+            {aboutHighlightMetrics.map((h, i) => {
+              const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
+              const light = v.surface === "#e8f4ef";
+              return (
+                <RevealOnScroll key={h.label} delay={i * 60}>
+                  <div
+                    style={{ backgroundColor: v.surface }}
+                    className={cn(
+                      "rounded-[1.5rem] border p-6 text-center transition-all duration-200 hover:-translate-y-0.5",
+                      v.shell,
+                    )}
+                  >
+                    <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", v.secondary)}>
+                      {h.label}
+                    </p>
+                    <p className={cn("mt-2 font-display text-xl font-bold sm:text-2xl", v.title)}>{h.value}</p>
+                    <div
+                      className={cn(
+                        "mx-auto mt-3 h-1 w-12 rounded-full",
+                        light ? "bg-gradient-to-r from-primary/70 to-accent/70" : "bg-gradient-to-r from-white/45 to-white/20",
+                      )}
+                      aria-hidden
+                    />
+                  </div>
+                </RevealOnScroll>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Core Expertise */}
+      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8" aria-labelledby="core-expertise-heading">
+        <div className="mx-auto max-w-6xl">
+          <RevealOnScroll>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">What we deliver</p>
+            <h2 id="core-expertise-heading" className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+              {aboutCoreExpertise.heading}
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark/78 md:text-lg">{aboutCoreExpertise.subheading}</p>
+          </RevealOnScroll>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-12 lg:gap-6">
+            {aboutCoreExpertise.items.map((item, i) => {
+              const v = BRAND_SOLID_CARD_CYCLE[expertiseCycle % BRAND_SOLID_CARD_CYCLE.length];
+              expertiseCycle += 1;
+              const light = v.surface === "#e8f4ef";
+              const bentoSpan = EXPERTISE_BENTO_SPANS[i] ?? "lg:col-span-4";
+              return (
+                <RevealOnScroll key={item.title} delay={i * 55} className={bentoSpan}>
+                  <article
+                    style={{ backgroundColor: v.surface }}
+                    className={cn(
+                      "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[1.75rem] border p-7 shadow-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-18px_rgba(2,10,99,0.35)] sm:p-8",
+                      i === 0 && "lg:min-h-[220px]",
+                      v.shell,
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "absolute right-6 top-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]",
+                        light ? v.secondary : "text-on-dark/40",
+                      )}
+                      aria-hidden
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div
+                      className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-30 blur-2xl"
+                      style={{
+                        background:
+                          light
+                            ? "radial-gradient(circle, rgba(255,255,255,0.82), transparent 70%)"
+                            : "radial-gradient(circle, rgba(255,255,255,0.34), transparent 70%)",
+                      }}
+                      aria-hidden
+                    />
+                    <span className={cn("relative mb-4 block h-10 w-10 rounded-full", v.orbShell)} style={{ background: v.orb }} aria-hidden />
+                    <h3
+                      className={cn(
+                        "relative pr-12 font-display font-semibold leading-snug",
+                        i === 0 ? "text-xl md:text-[1.35rem]" : "text-lg",
+                        v.title,
+                      )}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className={cn("relative mt-3 flex-1 text-sm leading-relaxed", v.body)}>{item.description}</p>
+                  </article>
+                </RevealOnScroll>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8" aria-labelledby="why-choose-heading">
+        <div className="mx-auto max-w-6xl">
+          <RevealOnScroll>
+            <div
+              className="relative overflow-hidden rounded-[1.75rem] border border-white/35 px-8 py-10 shadow-[0_16px_42px_-14px_rgba(2,10,99,0.35)] backdrop-blur-md sm:px-10 sm:py-12"
+              style={{
+                background:
+                  "linear-gradient(125deg, color-mix(in srgb, var(--light) 88%, var(--primary) 12%) 0%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 52%, #e8f4ef 100%)",
+              }}
+            >
+              <div
+                className="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full opacity-45 blur-3xl"
+                style={{
+                  background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 72%)",
+                }}
+                aria-hidden
+              />
+              <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-12 lg:items-start">
+                <div className="lg:col-span-7">
+                  <h2 id="why-choose-heading" className="font-display text-2xl font-bold tracking-tight text-[#0d2137] md:text-3xl">
+                    {aboutWhyChoose.heading}
+                  </h2>
+                  <div className="mt-5 space-y-4 text-base leading-relaxed text-[#234a62] sm:text-lg">
+                    {aboutWhyChoose.paragraphs.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                </div>
+                <aside className="space-y-4 lg:col-span-5">
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1459b8]">What stands out</p>
+                  <ul className="space-y-3">
+                    {aboutDifferentiators.map((d) => (
+                      <li
+                        key={d.title}
+                        className="rounded-2xl border border-[#17324d]/12 bg-white/55 p-5 shadow-sm backdrop-blur-sm transition hover:border-[#1459b8]/25 hover:bg-white/75"
+                      >
+                        <p className="font-display text-base font-semibold text-[#0d2137]">{d.title}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-[#234a62]">{d.subtitle}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* Client content: experts, culture, work-with CTA */}
+      <ExpertsContent />
+
+      {/* Infrastructure */}
+      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.75rem] border border-white/20 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
+          <Image src={LAB_IMAGE} alt="Modern laboratory facility" fill sizes="100vw" className="object-cover" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(2,10,99,0.88) 0%, rgba(2,10,99,0.68) 40%, rgba(2,10,99,0.48) 100%)",
+            }}
+          />
+
+          <div
+            className="absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.45), color-mix(in srgb, var(--accent) 32%, transparent) 55%, transparent)",
+              boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute bottom-12 left-[6%] h-7 w-7 animate-orbit-slow rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.45), color-mix(in srgb, var(--primary) 38%, transparent) 55%, transparent)",
+              boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35)",
               animationDelay: "-5s",
               animationDuration: "14s",
             }}
@@ -363,24 +309,23 @@ export default function AboutPage() {
 
           <div className="relative px-8 py-14 sm:px-12 md:py-16">
             <RevealOnScroll>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
-                Infrastructure
-              </p>
-              <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-                Laboratory Facilities
-              </h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                Segregated synthesis suites, controlled storage, and redundant
-                characterization — engineered for batch continuity.
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">Infrastructure</p>
+              <h2 className="mt-2 font-display text-3xl font-bold text-on-dark md:text-4xl">Laboratory Facilities</h2>
+              <p className="mt-3 max-w-2xl text-on-dark/82">
+                Segregated synthesis suites, controlled storage, and redundant characterization — engineered for batch
+                continuity.
               </p>
             </RevealOnScroll>
 
             <ul className="relative mt-10 grid gap-4 sm:grid-cols-2">
               {facilityLines.map((line, i) => (
                 <RevealOnScroll key={line} delay={i * 50}>
-                  <li className="flex gap-3 text-sm text-foreground/90">
+                  <li className="flex gap-3 text-sm text-on-dark/90">
                     <span
-                      className={`mt-2 h-1.5 w-5 shrink-0 rounded-full bg-gradient-to-r ${BULLET_COLORS[i % BULLET_COLORS.length]} shadow-sm`}
+                      className={cn(
+                        "mt-2 h-1.5 w-5 shrink-0 rounded-full shadow-sm",
+                        i % 2 === 0 ? "bg-gradient-to-r from-primary to-accent" : "bg-gradient-to-r from-accent to-primary",
+                      )}
                       aria-hidden
                     />
                     {line}
@@ -392,111 +337,103 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── Compliance ─── */}
-      <section className="relative mt-20 px-4 sm:px-6 lg:px-8">
+      {/* Compliance */}
+      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-danger">
-              Compliance
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Certifications & Posture
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Compliance</p>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+              Certifications &amp; Posture
             </h2>
-            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-              Phase-appropriate controls with a roadmap to formal audits where programs
-              demand them.
+            <p className="mt-4 max-w-2xl text-lg text-on-dark/82">
+              Phase-appropriate controls with a roadmap to formal audits where programs demand them.
             </p>
           </RevealOnScroll>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {complianceItems.map((item, i) => (
-              <RevealOnScroll key={item.k} delay={i * 55}>
-                <div
-                  className={`h-full overflow-hidden rounded-[1.75rem] border border-overlay bg-gradient-to-b ${item.tint} p-7 shadow-[0_6px_28px_-8px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-14px_rgba(0,0,0,0.5)]`}
-                >
-                  <div
-                    className="mb-5 h-9 w-9 rounded-full"
-                    style={{
-                      background: item.orb,
-                      boxShadow: `${item.orbShadow}, inset 0 -1px 4px rgba(0,0,0,0.06)`,
-                    }}
-                  />
-                  <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-caption-foreground">
-                    {item.k}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.v}</p>
-                </div>
-              </RevealOnScroll>
-            ))}
+            {complianceItems.map((item, i) => {
+              const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
+              return (
+                <RevealOnScroll key={item.k} delay={i * 55}>
+                  <article
+                    style={{ backgroundColor: v.surface }}
+                    className={cn(
+                      "h-full overflow-hidden rounded-[1.75rem] border p-7 transition-all duration-300 hover:-translate-y-0.5",
+                      v.shell,
+                    )}
+                  >
+                    <div
+                      className={cn("mb-5 h-9 w-9 rounded-full", v.orbShell)}
+                      style={{ background: v.orb }}
+                      aria-hidden
+                    />
+                    <h3 className={cn("font-mono text-[11px] font-semibold uppercase tracking-[0.2em]", v.secondary)}>{item.k}</h3>
+                    <p className={cn("mt-3 text-sm leading-relaxed", v.body)}>{item.v}</p>
+                  </article>
+                </RevealOnScroll>
+              );
+            })}
           </div>
           <RevealOnScroll delay={180}>
-            <p className="mt-10 text-center text-xs leading-relaxed text-caption-foreground">
-              Formal GMP certification can be pursued via qualified partner sites — HKR
-              orchestrates tech transfer when programs require audited batches.
+            <p className="mt-10 text-center text-xs leading-relaxed text-on-dark/65">
+              Formal GMP certification can be pursued via qualified partner sites — HKR orchestrates tech transfer when
+              programs require audited batches.
             </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="relative mt-20 px-4 sm:px-6 lg:px-8">
-        <RevealOnScroll>
-          <div
-            className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-overlay p-10 text-center shadow-[0_16px_64px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-14"
-            style={{
-              background:
-                "linear-gradient(140deg, rgba(20,184,166,0.15) 0%, rgba(124,58,237,0.12) 35%, rgba(91,33,182,0.12) 55%, rgba(244,63,94,0.08) 100%)",
-            }}
-          >
-            {/* Decorative orbs */}
+      {/* Bottom CTA — matches capabilities / services band */}
+      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <RevealOnScroll>
             <div
-              className="pointer-events-none absolute -left-4 top-8 h-16 w-16 rounded-full sm:h-20 sm:w-20"
+              className="relative overflow-hidden rounded-[1.75rem] border border-white/45 px-8 py-12 text-center shadow-[0_16px_42px_-14px_rgba(18,50,90,0.28)] backdrop-blur-md sm:px-12 sm:py-14"
               style={{
                 background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(20,184,166,0.4) 55%, rgba(15,118,110,0.2))",
-                boxShadow: "0 8px 28px -6px rgba(20,184,166,0.35), inset 0 -2px 6px rgba(0,0,0,0.06)",
+                  "linear-gradient(125deg, color-mix(in srgb, var(--light) 90%, var(--primary) 10%) 0%, color-mix(in srgb, var(--light) 82%, var(--accent) 18%) 55%, #e8f4ef 100%)",
               }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute -right-3 bottom-6 h-12 w-12 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(124,58,237,0.4) 55%, rgba(91,33,182,0.2))",
-                boxShadow: "0 6px 20px -4px rgba(91,33,182,0.3), inset 0 -2px 5px rgba(0,0,0,0.06)",
-              }}
-              aria-hidden
-            />
+            >
+              <div
+                className="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full opacity-50 blur-3xl"
+                style={{
+                  background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 68%)",
+                }}
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full opacity-40 blur-3xl"
+                style={{
+                  background: "radial-gradient(circle, color-mix(in srgb, var(--primary) 28%, transparent), transparent 70%)",
+                }}
+                aria-hidden
+              />
 
-            <div className="relative">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
-                Next step
-              </p>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-foreground md:text-3xl">
-                Tell Us About Your Route or Analytical Gap
-              </h2>
-              <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-                We respond with technical questions and realistic timelines — not
-                generic brochures.
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <ButtonLink
-                  href="/contact"
-                  className="rounded-full px-10 shadow-[0_14px_40px_-10px_rgba(15,118,110,0.4)]"
-                >
-                  Start a conversation
-                </ButtonLink>
-                <ButtonLink
-                  href="/capabilities"
-                  variant="secondary"
-                  className="rounded-full px-10"
-                >
-                  View capabilities
-                </ButtonLink>
+              <div className="relative">
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">Next step</p>
+                <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-[#0d2137] md:text-3xl">
+                  Translate this backbone into your program
+                </h2>
+                <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#234a62] md:text-base">
+                  Share your target scaffold, purity bar, and timeline — we reply with synthesis feasibility, analytical
+                  release expectations, and a practical path forward.
+                </p>
+                <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">
+                    Start a conversation
+                  </ButtonLink>
+                  <ButtonLink
+                    href="/capabilities"
+                    variant="secondary"
+                    className="rounded-full border-[#17324d]/18 bg-white/90 px-10 text-[#0d2137] hover:border-primary/35 hover:bg-white"
+                  >
+                    Capabilities overview
+                  </ButtonLink>
+                </div>
               </div>
             </div>
-          </div>
-        </RevealOnScroll>
+          </RevealOnScroll>
+        </div>
       </section>
     </div>
   );

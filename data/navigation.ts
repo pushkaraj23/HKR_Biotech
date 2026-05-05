@@ -5,6 +5,7 @@ export type MainNavItem =
 /** Top-level routes; product family links are loaded from Firestore via `/api/catalog/nav`. */
 export const mainNav: MainNavItem[] = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/products", label: "Products", productDropdown: true },
   { href: "/services", label: "Services" },
   { href: "/capabilities", label: "Capabilities" },

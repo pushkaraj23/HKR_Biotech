@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/forms/ContactForm";
+import {
+  contactChannels,
+  contactDetailsHeading,
+  contactGlobalLogistics,
+  contactHero,
+  contactStartProject,
+  quoteFormSection,
+} from "@/data/contactPageContent";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
@@ -10,7 +18,7 @@ import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact HKR Biotech Pvt. Ltd. for quotations, custom synthesis, analytical support, and technical partnership.",
+    "Get in touch with HKR Biotech for protected sugars, custom glycan synthesis, NMR analysis, quotes, shipping worldwide, CDAs/NDAs, and technical support.",
 };
 
 const HERO_IMAGE =
@@ -23,11 +31,7 @@ type PageProps = {
 export default async function ContactPage({ searchParams }: PageProps) {
   const sp = await searchParams;
   const productRef =
-    typeof sp.product === "string"
-      ? sp.product
-      : Array.isArray(sp.product)
-        ? sp.product[0]
-        : "";
+    typeof sp.product === "string" ? sp.product : Array.isArray(sp.product) ? sp.product[0] : "";
 
   const infoCard = BRAND_SOLID_CARD_CYCLE[0];
   const catalogueCard = BRAND_SOLID_CARD_CYCLE[1];
@@ -37,7 +41,6 @@ export default async function ContactPage({ searchParams }: PageProps) {
       <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
 
       <div className="relative z-10 mx-auto max-w-6xl space-y-16 px-4 pb-28 pt-6 sm:px-6 md:space-y-20 lg:px-8">
-
         {/* Hero */}
         <RevealOnScroll>
           <div className="relative overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
@@ -78,30 +81,100 @@ export default async function ContactPage({ searchParams }: PageProps) {
               aria-hidden
             />
 
-            <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">Get in touch</p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">Enquiries & RFQ</h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
-                Share your target structure, quantity band, and analytical expectations. Our Pune-based team responds with
-                scientific questions, not just pricing.
-              </p>
+            <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[90%]">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">{contactHero.eyebrow}</p>
+              <h1 className="mt-4 max-w-4xl text-balance font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
+                {contactHero.title}
+              </h1>
+              <p className="mt-5 max-w-3xl text-lg leading-relaxed text-on-dark/84">{contactHero.intro}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="#enquiry-form" className="rounded-full px-10 shadow-primary-glow">
-                  Send an enquiry
+                <ButtonLink href={contactHero.primaryAnchor} className="rounded-full px-10 shadow-primary-glow">
+                  {contactHero.primaryCtaLabel}
                 </ButtonLink>
                 <ButtonLink
-                  href="/products"
+                  href={contactHero.secondaryHref}
                   variant="secondary"
                   className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
                 >
-                  Browse catalogue
+                  {contactHero.secondaryCtaLabel}
                 </ButtonLink>
               </div>
             </div>
           </div>
         </RevealOnScroll>
 
-        {/* Two-column: solid brand cards + green-glass form */}
+        {/* Global reach */}
+        <RevealOnScroll>
+          <div
+            className="relative overflow-hidden rounded-[1.75rem] border border-white/35 px-8 py-10 shadow-[0_16px_42px_-14px_rgba(2,10,99,0.35)] backdrop-blur-md sm:px-10 sm:py-12"
+            style={{
+              background:
+                "linear-gradient(125deg, color-mix(in srgb, var(--light) 88%, var(--primary) 12%) 0%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 52%, #e8f4ef 100%)",
+            }}
+          >
+            <div
+              className="pointer-events-none absolute -left-24 top-0 h-52 w-52 rounded-full opacity-40 blur-3xl"
+              style={{
+                background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 72%)",
+              }}
+              aria-hidden
+            />
+            <div className="relative max-w-3xl">
+              <h2 className="font-display text-2xl font-bold tracking-tight text-[#0d2137] md:text-3xl">{contactGlobalLogistics.title}</h2>
+              <p className="mt-4 text-base leading-relaxed text-[#234a62] md:text-lg">{contactGlobalLogistics.body}</p>
+            </div>
+          </div>
+        </RevealOnScroll>
+
+        {/* Start your project */}
+        <RevealOnScroll>
+          <section aria-labelledby="start-project-heading" className="scroll-mt-28">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Process</p>
+            <h2 id="start-project-heading" className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+              {contactStartProject.title}
+            </h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {contactStartProject.steps.map((step, i) => {
+                const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
+                const light = v.surface === "#e8f4ef";
+                return (
+                  <RevealOnScroll key={step.title} delay={i * 70}>
+                    <article
+                      style={{ backgroundColor: v.surface }}
+                      className={cn(
+                        "relative h-full overflow-hidden rounded-[1.5rem] border p-6 transition-all duration-300 hover:-translate-y-0.5 sm:p-7",
+                        v.shell,
+                      )}
+                    >
+                      <div
+                        className={cn(
+                          "mb-4 inline-flex min-w-[2.25rem] items-center justify-center rounded-full px-2.5 py-1 text-xs font-bold tabular-nums",
+                          light ? "bg-primary/14 text-[#1459b8]" : "bg-white/16 text-white",
+                        )}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <h3 className={cn("font-display text-lg font-semibold leading-snug", v.title)}>{step.title}</h3>
+                      <p className={cn("mt-3 text-sm leading-relaxed", v.body)}>{step.body}</p>
+                      {"note" in step && step.note ? (
+                        <p
+                          className={cn(
+                            "mt-4 rounded-xl border px-4 py-3 text-xs leading-relaxed sm:text-[13px]",
+                            light ? "border-[#17324d]/12 bg-white/72 text-[#234a62]" : "border-white/16 bg-black/22 text-white/91",
+                          )}
+                        >
+                          {step.note}
+                        </p>
+                      ) : null}
+                    </article>
+                  </RevealOnScroll>
+                );
+              })}
+            </div>
+          </section>
+        </RevealOnScroll>
+
+        {/* Contact info + quote form */}
         <div className="grid gap-12 lg:grid-cols-5 lg:gap-10">
           <div className="space-y-6 lg:col-span-2">
             <RevealOnScroll>
@@ -125,29 +198,41 @@ export default async function ContactPage({ searchParams }: PageProps) {
                     style={{ background: infoCard.orb }}
                     aria-hidden
                   />
-                  <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", infoCard.eyebrow)}>
-                    Direct contact
-                  </p>
-                  <h2 className={cn("mt-2 font-display text-lg font-semibold", infoCard.title)}>Reach us</h2>
-                  <ul className={cn("mt-4 space-y-3 text-sm", infoCard.body)}>
+                  <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", infoCard.eyebrow)}>{contactDetailsHeading}</p>
+                  <ul className={cn("mt-4 space-y-4 text-sm", infoCard.body)}>
                     <li>
-                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Email</span>
+                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Email us</span>
+                      <div className="mt-1.5 flex flex-col gap-1">
+                        {contactChannels.salesEmails.map((em) => (
+                          <a key={em.href} href={em.href} className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
+                            {em.label}
+                          </a>
+                        ))}
+                      </div>
+                    </li>
+                    <li>
+                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Technical support</span>
                       <br />
-                      <a href="mailto:kishor@hkrbiotechlabs.com" className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
-                        kishor@hkrbiotechlabs.com
+                      <a href={contactChannels.technical.href} className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
+                        {contactChannels.technical.label}
                       </a>
                     </li>
                     <li>
                       <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Phone</span>
                       <br />
-                      <a href="tel:+919212123868" className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
-                        +91 9212123868
+                      <a href={contactChannels.phoneHref} className={cn("font-medium underline-offset-2 hover:underline", infoCard.link)}>
+                        {contactChannels.phoneDisplay}
                       </a>
                     </li>
                     <li>
+                      <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Business hours</span>
+                      <br />
+                      <span className="font-medium text-inherit">{contactChannels.hours}</span>
+                    </li>
+                    <li className={cn("border-t pt-4", lightFooterBorder(infoCard))}>
                       <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Address</span>
                       <br />
-                      <span className="font-medium text-inherit">HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008</span>
+                      <span className="font-medium text-inherit">{contactChannels.address}</span>
                     </li>
                   </ul>
                 </div>
@@ -175,12 +260,11 @@ export default async function ContactPage({ searchParams }: PageProps) {
                     style={{ background: catalogueCard.orb }}
                     aria-hidden
                   />
-                  <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", catalogueCard.eyebrow)}>
-                    Product enquiry
-                  </p>
-                  <h2 className={cn("mt-2 font-display text-lg font-semibold", catalogueCard.title)}>From the catalogue?</h2>
+                  <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", catalogueCard.eyebrow)}>Already know the SKU?</p>
+                  <h2 className={cn("mt-2 font-display text-lg font-semibold", catalogueCard.title)}>From the catalogue</h2>
                   <p className={cn("mt-3 text-sm leading-relaxed", catalogueCard.body)}>
-                    Visiting from a catalogue entry? Your product reference is pre-filled in the form automatically.
+                    Visiting from a product page? Pass <span className="font-semibold">?product=</span> in the URL or browse — your reference can be
+                    pre-filled below.
                   </p>
                   <ButtonLink
                     href="/products"
@@ -228,18 +312,17 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 />
 
                 <div className="relative z-10 px-7 py-8 sm:px-10 sm:py-10">
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">Send a message</p>
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">{quoteFormSection.eyebrow}</p>
                   <h2 id="enquiry-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
-                    Submit your enquiry
+                    {quoteFormSection.title}
                   </h2>
-                  <p className="mt-3 max-w-lg text-sm leading-relaxed text-on-dark/88 md:text-base">
-                    Include your target, quantity, purity requirements, and timeline for the fastest technical response.
-                  </p>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-dark/88 md:text-base">{quoteFormSection.description}</p>
                   <ContactForm
                     className="mt-8"
                     tone="brandGreen"
                     defaultProductRef={productRef}
                     enquirySource="contact-page"
+                    rfqLayout
                   />
                 </div>
               </section>
@@ -247,7 +330,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
           </div>
         </div>
 
-        {/* Location — light panel + map */}
+        {/* Location */}
         <RevealOnScroll>
           <section
             aria-labelledby="location-heading"
@@ -269,9 +352,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
               <h2 id="location-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-[#0d2137] md:text-3xl">
                 Visit our facility
               </h2>
-              <p className="mt-3 max-w-2xl text-sm text-[#234a62] md:text-base">
-                HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008.
-              </p>
+              <p className="mt-3 max-w-2xl text-sm text-[#234a62] md:text-base">{contactChannels.address}</p>
             </div>
 
             <div className="relative mt-6 border-t border-[#17324d]/10 bg-white px-2 pb-2 pt-2 sm:px-3 sm:pb-3">
@@ -288,4 +369,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
       </div>
     </div>
   );
+}
+
+function lightFooterBorder(v: (typeof BRAND_SOLID_CARD_CYCLE)[number]): string {
+  return v.surface === "#e8f4ef" ? "border-[#17324d]/12" : "border-white/15";
 }

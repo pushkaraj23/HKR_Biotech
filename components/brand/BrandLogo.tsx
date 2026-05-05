@@ -26,12 +26,12 @@ const imageMaxW: Record<NonNullable<BrandLogoProps["size"]>, string> = {
   hero: "max-w-[14rem] sm:max-w-[17rem] md:max-w-[19rem] lg:max-w-[21rem]",
 };
 
-/** Tight horizontal inset so the plate hugs the wordmark without a wide empty field */
+/** Horizontal inset between wordmark and white pill edge */
 const platePad: Record<NonNullable<BrandLogoProps["size"]>, string> = {
-  sm: "px-1.5 py-1 sm:px-2 sm:py-1",
-  md: "px-2 py-1 sm:px-2.5 sm:py-1.5",
-  lg: "px-2 py-1 sm:px-3 sm:py-1.5",
-  hero: "px-2.5 py-1.5 sm:px-3.5 sm:py-2 md:px-4 md:py-2.5",
+  sm: "px-2.5 py-1 sm:px-3.5 sm:py-1",
+  md: "px-3.5 py-1 sm:px-5 sm:py-1.5",
+  lg: "px-3.5 py-1 sm:px-5 sm:py-1.5",
+  hero: "px-4 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2.5",
 };
 
 /**
@@ -43,7 +43,7 @@ export function BrandLogo({ className, size = "md", priority = false }: BrandLog
     <span
       className={cn(
         "inline-flex shrink-0 items-center leading-none",
-        "rounded-xl border border-slate-200/90 bg-white",
+        "rounded-full border border-slate-200/90 bg-white",
         "shadow-[inset_0_1px_0_rgba(255,255,255,1),0_10px_32px_-12px_rgba(0,0,0,0.5),0_0_0_1px_rgba(15,23,42,0.04)]",
         platePad[size],
         className,

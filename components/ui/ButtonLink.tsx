@@ -10,6 +10,8 @@ type ButtonLinkProps = {
   variant?: Variant;
   className?: string;
   prefetch?: boolean;
+  target?: "_blank" | "_self";
+  rel?: string;
 };
 
 const variants: Record<Variant, string> = {
@@ -27,11 +29,15 @@ export function ButtonLink({
   variant = "primary",
   className,
   prefetch,
+  target,
+  rel,
 }: ButtonLinkProps) {
   return (
     <Link
       href={href}
       prefetch={prefetch}
+      target={target}
+      rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm transition-all duration-300",
         variants[variant],

@@ -12,6 +12,12 @@ type EnquiryBody = {
   reference?: unknown;
   message?: unknown;
   source?: unknown;
+  /** RFQ form (contact page) */
+  serviceRequired?: unknown;
+  cdaRequired?: unknown;
+  quantity?: unknown;
+  /** Comma-separated filenames when user attached files (names only; binary not stored) */
+  attachments?: unknown;
 };
 
 function clean(value: unknown) {
@@ -33,6 +39,10 @@ export async function POST(req: Request) {
   const reference = clean(body.reference);
   const message = clean(body.message);
   const source = clean(body.source) || "website";
+  const serviceRequired = clean(body.serviceRequired);
+  const cdaRequired = clean(body.cdaRequired);
+  const quantity = clean(body.quantity);
+  const attachments = clean(body.attachments);
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "name, email, and message are required" }, { status: 400 });
@@ -40,7 +50,7 @@ export async function POST(req: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 });
   }
-  if (phone && !/^[\d\s+()\-]{7,20}$/.test(phone)) {
+  if (phone && !/^[\d\s+()\-]{7,28}$/.test(phone)) {
     return NextResponse.json({ error: "Please enter a valid phone number" }, { status: 400 });
   }
 
@@ -59,6 +69,10 @@ export async function POST(req: Request) {
       reference,
       message,
       source,
+      ...(serviceRequired ? { serviceRequired } : {}),
+      ...(cdaRequired ? { cdaRequired } : {}),
+      ...(quantity ? { quantity } : {}),
+      ...(attachments ? { attachments } : {}),
       customerUid: decoded?.uid ?? null,
       customerEmail: decoded?.email ?? null,
       status: "new",

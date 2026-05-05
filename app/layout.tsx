@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { WelcomeAuthModal } from "@/components/auth/WelcomeAuthModal";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -102,6 +103,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <AuthProvider>
+          <ScrollToTop />
           <WelcomeAuthModal />
           <AuraBackdrop />
           <SiteHeader />

@@ -2,6 +2,10 @@
 
 import { type FormEvent, useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
+import {
+  quoteCdaOptions,
+  quoteServiceOptions,
+} from "@/data/contactPageContent";
 import { cn } from "@/lib/cn";
 
 type ContactFormProps = {
@@ -11,9 +15,140 @@ type ContactFormProps = {
   dark?: boolean;
   /** Mint/white panels (e.g. product PDP enquiry band) — high-contrast fields matching site palette. */
   tone?: "default" | "brandLight" | "brandGreen";
+  /** Contact page: full RFQ fields (service, CDA, quantity, file names). */
+  rfqLayout?: boolean;
 };
 
 type SubmitState = "idle" | "submitting" | "sent";
+
+function RfqQuoteFields({
+  fieldBase,
+  labelClass,
+  hintClassName,
+  defaultProductRef,
+}: {
+  fieldBase: string;
+  labelClass: string;
+  hintClassName: string;
+  defaultProductRef: string;
+}) {
+  const selectExtra = cn(
+    fieldBase,
+    "cursor-pointer appearance-none bg-[length:1rem_1rem] bg-[right_0.75rem_center] bg-no-repeat pr-10",
+  );
+
+  return (
+    <>
+      <div className="md:col-span-2">
+        <label htmlFor="cf-service" className={labelClass}>
+          Service required
+        </label>
+        <select
+          id="cf-service"
+          name="serviceRequired"
+          required
+          defaultValue=""
+          className={selectExtra}
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2314519d'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+          }}
+        >
+          <option value="" disabled>
+            Select a service…
+          </option>
+          {quoteServiceOptions.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="md:col-span-2">
+        <label htmlFor="cf-cda" className={labelClass}>
+          CDA required?
+        </label>
+        <select
+          id="cf-cda"
+          name="cdaRequired"
+          required
+          defaultValue=""
+          className={selectExtra}
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2314519d'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+          }}
+        >
+          <option value="" disabled>
+            Select one…
+          </option>
+          {quoteCdaOptions.map((opt) => (
+            <option key={opt.value} value={opt.label}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="md:col-span-2">
+        <label htmlFor="cf-quantity" className={labelClass}>
+          Quantity (unit)
+        </label>
+        <input
+          id="cf-quantity"
+          name="quantity"
+          type="text"
+          className={fieldBase}
+          placeholder="e.g. 250 mg · 5 g · kg-scale enquiry"
+          autoComplete="off"
+        />
+      </div>
+      <div className="md:col-span-2">
+        <label htmlFor="cf-structure" className={labelClass}>
+          Message / structure details{" "}
+          <span className="font-normal lowercase tracking-normal opacity-85">(required)</span>
+        </label>
+        <textarea
+          id="cf-structure"
+          name="message"
+          rows={5}
+          required
+          className={cn(fieldBase, "min-h-[120px] resize-y")}
+          placeholder="CAS, chemical name, image with chemical structure, SMILES, purity target, timeline…"
+        />
+      </div>
+      <div className="md:col-span-2">
+        <label htmlFor="cf-ref-rfq" className={labelClass}>
+          Catalogue reference (optional)
+        </label>
+        <input
+          id="cf-ref-rfq"
+          name="reference"
+          type="text"
+          defaultValue={defaultProductRef}
+          className={fieldBase}
+          placeholder="e.g. HKR catalogue number"
+          autoComplete="off"
+        />
+      </div>
+      <div className="md:col-span-2">
+        <label htmlFor="cf-files" className={labelClass}>
+          File upload <span className="font-normal lowercase tracking-normal opacity-85">(optional)</span>
+        </label>
+        <input
+          id="cf-files"
+          name="attachments"
+          type="file"
+          multiple
+          className={cn(
+            fieldBase,
+            "cursor-pointer py-2.5 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-[linear-gradient(to_right,var(--primary),color-mix(in_srgb,var(--primary)_82%,var(--accent)))] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white",
+          )}
+        />
+        <p className={cn("mt-2 text-xs leading-relaxed", hintClassName)}>
+          Filenames are included with your inquiry. For large attachments, please follow up by email once we reply.
+        </p>
+      </div>
+    </>
+  );
+}
 
 export function ContactForm({
   className,
@@ -21,6 +156,7 @@ export function ContactForm({
   enquirySource = "website",
   dark = false,
   tone = "default",
+  rfqLayout = false,
 }: ContactFormProps) {
   const { user } = useAuth();
   const [status, setStatus] = useState<SubmitState>("idle");
@@ -59,6 +195,14 @@ export function ContactForm({
 
     const form = e.currentTarget;
     const data = new FormData(form);
+    const attachmentsInput = form.querySelector<HTMLInputElement>('input[name="attachments"]');
+    const fileNames =
+      attachmentsInput?.files?.length && attachmentsInput.files.length > 0
+        ? Array.from(attachmentsInput.files)
+            .map((f) => f.name)
+            .join(", ")
+        : "";
+
     const payload = {
       name: String(data.get("name") ?? "").trim(),
       email: String(data.get("email") ?? "").trim(),
@@ -67,6 +211,14 @@ export function ContactForm({
       reference: String(data.get("reference") ?? "").trim(),
       message: String(data.get("message") ?? "").trim(),
       source: String(data.get("source") ?? "").trim() || enquirySource,
+      ...(rfqLayout
+        ? {
+            serviceRequired: String(data.get("serviceRequired") ?? "").trim(),
+            cdaRequired: String(data.get("cdaRequired") ?? "").trim(),
+            quantity: String(data.get("quantity") ?? "").trim(),
+            ...(fileNames ? { attachments: fileNames } : {}),
+          }
+        : {}),
     };
 
     try {
@@ -162,36 +314,72 @@ export function ContactForm({
       <input type="hidden" name="source" value={enquirySource} />
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className={labelClass}>Name</label>
-          <input id="cf-name" name="name" type="text" required className={fieldBase} autoComplete="name" placeholder="Jane Smith" />
+          <label htmlFor="cf-name" className={labelClass}>
+            Name
+          </label>
+          <input id="cf-name" name="name" type="text" required className={fieldBase} autoComplete="name" placeholder="Your name" />
         </div>
         <div>
-          <label htmlFor="cf-email" className={labelClass}>Work email</label>
-          <input id="cf-email" name="email" type="email" required className={fieldBase} autoComplete="email" placeholder="jane@company.com" />
+          <label htmlFor="cf-email" className={labelClass}>
+            Email address
+          </label>
+          <input id="cf-email" name="email" type="email" required className={fieldBase} autoComplete="email" placeholder="you@organization.com" />
         </div>
         <div>
-          <label htmlFor="cf-org" className={labelClass}>Organization</label>
-          <input id="cf-org" name="organization" type="text" className={fieldBase} placeholder="Pharma Corp" />
-        </div>
-        <div>
-          <label htmlFor="cf-phone" className={labelClass}>Phone</label>
-          <input id="cf-phone" name="phone" type="tel" className={fieldBase} autoComplete="tel" placeholder="+1 555 010 4420" />
-        </div>
-        <div>
-          <label htmlFor="cf-reference" className={labelClass}>Reference</label>
-          <input id="cf-reference" name="reference" type="text" defaultValue={defaultProductRef} className={fieldBase} placeholder="e.g. HKR-CB-001 or service name" />
-        </div>
-        <div className="md:col-span-2">
-          <label htmlFor="cf-message" className={labelClass}>Message</label>
-          <textarea
-            id="cf-message"
-            name="message"
-            rows={4}
-            required
-            className={cn(fieldBase, "min-h-[100px] resize-y")}
-            placeholder="Describe purity, quantity band, and timeline."
+          <label htmlFor="cf-org" className={labelClass}>
+            {rfqLayout ? "Organization / university" : "Organization"}
+          </label>
+          <input
+            id="cf-org"
+            name="organization"
+            type="text"
+            className={fieldBase}
+            placeholder={rfqLayout ? "Company or institution name" : "Pharma Corp"}
           />
         </div>
+        <div>
+          <label htmlFor="cf-phone" className={labelClass}>
+            Phone <span className="font-normal tracking-normal opacity-80">(optional)</span>
+          </label>
+          <input id="cf-phone" name="phone" type="tel" className={fieldBase} autoComplete="tel" placeholder="+91 8446660179" />
+        </div>
+        {rfqLayout ? (
+          <RfqQuoteFields
+            fieldBase={fieldBase}
+            labelClass={labelClass}
+            hintClassName={brandGreen ? "text-emerald-50/85" : "text-[#4f6478]"}
+            defaultProductRef={defaultProductRef}
+          />
+        ) : (
+          <>
+            <div>
+              <label htmlFor="cf-reference" className={labelClass}>
+                Reference
+              </label>
+              <input
+                id="cf-reference"
+                name="reference"
+                type="text"
+                defaultValue={defaultProductRef}
+                className={fieldBase}
+                placeholder="e.g. HKR-CB-001 or service name"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label htmlFor="cf-message" className={labelClass}>
+                Message
+              </label>
+              <textarea
+                id="cf-message"
+                name="message"
+                rows={4}
+                required
+                className={cn(fieldBase, "min-h-[100px] resize-y")}
+                placeholder="Describe purity, quantity band, and timeline."
+              />
+            </div>
+          </>
+        )}
       </div>
       {error ? (
         <p
@@ -217,7 +405,11 @@ export function ContactForm({
             : "bg-white text-light-foreground shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]",
         )}
       >
-        {status === "submitting" ? "Sending..." : "Send enquiry"}
+        {status === "submitting"
+          ? "Sending..."
+          : rfqLayout
+            ? "Submit inquiry"
+            : "Send enquiry"}
       </button>
     </form>
   );

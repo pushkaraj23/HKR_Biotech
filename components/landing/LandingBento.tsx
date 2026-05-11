@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { capabilitySections } from "@/data/capabilities";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
@@ -81,14 +80,6 @@ const CARD_THEMES = [
   },
 ] as const;
 
-const CARD_IMAGES: (string | null)[] = [
-  "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=800&h=450&fit=crop&q=80&auto=format",
-  "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=800&h=450&fit=crop&q=80&auto=format",
-  "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=450&fit=crop&q=80&auto=format",
-  "https://images.unsplash.com/photo-1694230155228-cdde50083573?w=800&h=450&fit=crop&q=80&auto=format",
-  "https://plus.unsplash.com/premium_photo-1681426676206-0f2c02b48aff?w=800&h=450&fit=crop&q=80&auto=format",
-];
-
 export function LandingBento() {
   return (
     <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
@@ -101,22 +92,11 @@ export function LandingBento() {
                 "linear-gradient(135deg, color-mix(in srgb, var(--light) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--light) 74%, var(--primary-mid) 26%) 45%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 100%)",
             }}
           >
-            <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-on-dark/25 bg-on-dark/[0.08] px-4 py-1.5">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-              </span>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-foreground/85">
-                02 / Infrastructure
-              </span>
-            </div>
-            <h2 className="max-w-3xl font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              A Lattice of <span className="text-accent">Controlled</span> Environments
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/70">Lab</p>
+            <h2 className="max-w-3xl font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Controlled <span className="text-accent">environments</span>
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground/82 sm:text-lg">
-              Segregated synthesis suites, digital batch records, and redundant characterization
-              — the foundation for process reproducibility at every scale.
-            </p>
+            <p className="mt-3 max-w-2xl text-base text-foreground/75">Suites, records, and characterization built for reproducibility.</p>
           </div>
         </RevealOnScroll>
 
@@ -131,7 +111,6 @@ export function LandingBento() {
             ][i] ?? "md:col-span-2";
 
             const theme = CARD_THEMES[i % CARD_THEMES.length];
-            const image = CARD_IMAGES[i] ?? null;
             return (
               <RevealOnScroll
                 key={`${block.title}-${i}`}
@@ -145,35 +124,16 @@ export function LandingBento() {
                   {/* Accent stripe */}
                   <div className={`h-1 w-full bg-gradient-to-r ${theme.stripe}`} />
 
-                  {image && (
-                    <div className="relative h-40 w-full overflow-hidden sm:h-44">
-                      <Image
-                        src={image}
-                        alt={block.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(to top, rgba(27,38,50,0.78) 0%, rgba(27,38,50,0.2) 55%, transparent 100%)",
-                        }}
-                      />
-                    </div>
-                  )}
-
                   <div className="flex flex-1 flex-col p-7">
                     {/* Top row with section + number */}
                     <div className="flex items-center">
                       <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
                     </div>
 
-                    <h3 className={`mt-3 font-display text-lg font-bold tracking-tight ${theme.title} sm:text-xl`}>
+                    <h3 className={`mt-3 font-display text-xl font-extrabold tracking-tight ${theme.title} sm:text-2xl`}>
                       {block.title}
                     </h3>
-                    <p className={`mt-2.5 text-sm leading-relaxed ${theme.body}`}>
+                    <p className={`mt-2 text-sm leading-relaxed ${theme.body}`}>
                       {block.description}
                     </p>
 
@@ -201,10 +161,10 @@ export function LandingBento() {
 
         <RevealOnScroll className="mt-12 flex justify-center">
           <Link
-            href="/capabilities"
+            href="/services"
             className="group inline-flex items-center gap-2 rounded-full border border-white/30 bg-[color-mix(in_srgb,var(--light)_78%,var(--primary)_22%)] px-8 py-3 text-sm font-semibold text-foreground shadow-[0_10px_28px_-14px_rgba(18,50,90,0.5)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/45 hover:shadow-[0_16px_30px_-14px_rgba(18,50,90,0.6)]"
           >
-            All capabilities
+            View services
             <span
               aria-hidden
               className="grid h-5 w-5 place-items-center rounded-full bg-primary/18 text-primary transition-transform group-hover:translate-x-0.5"

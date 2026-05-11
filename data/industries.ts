@@ -4,31 +4,26 @@ export const industries: Industry[] = [
   {
     slug: "pharmaceuticals",
     title: "Pharmaceuticals",
-    description:
-      "Impurity standards, advanced intermediates, and analytical packages aligned to CMC milestones for small-molecule programs.",
+    description: "Impurity standards, intermediates, and CMC-aligned analytics.",
   },
   {
     slug: "biotechnology",
     title: "Biotechnology",
-    description:
-      "Modified building blocks and linkers for oligo and bioconjugate pipelines with traceable purity statements.",
+    description: "Building blocks and linkers for oligo and bioconjugate programs.",
   },
   {
     slug: "cros-research-labs",
     title: "CROs / Research Labs",
-    description:
-      "Fast-turn synthesis and method development with clear handoff documentation for distributed teams.",
+    description: "Fast synthesis and clear handoff documentation.",
   },
   {
     slug: "academia",
     title: "Academia",
-    description:
-      "Route-enabled rare compounds and analytical characterization for publication-grade research outputs.",
+    description: "Rare compounds and characterization for publication-grade work.",
   },
   {
     slug: "chemical-industry",
     title: "Chemical Industry",
-    description:
-      "Process-oriented support, scale-up safety review, and robust QC for specialty and fine chemicals.",
+    description: "Scale-up support and robust QC for fine and specialty chemistry.",
   },
 ];

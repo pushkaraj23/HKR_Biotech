@@ -8,18 +8,18 @@ const LAB_IMAGE =
 
 const FEATURES = [
   {
-    title: "ALCOA+ Alignment",
-    copy: "Phase-appropriate documentation that stands up to regulatory review.",
+    title: "ALCOA+",
+    copy: "Documentation that stands up to review.",
     accent: "primary" as const,
   },
   {
-    title: "Segregated Lines",
-    copy: "Dedicated synthesis suites with inert gas distribution and contamination control.",
+    title: "Segregated suites",
+    copy: "Controlled synthesis lines with inert gas and waste segregation.",
     accent: "secondary" as const,
   },
   {
-    title: "Prep & Traceability",
-    copy: "Prep HPLC and crystallization with barcode-linked batch records.",
+    title: "Prep & traceability",
+    copy: "Prep HPLC and crystallization with barcode-linked records.",
     accent: "danger" as const,
   },
 ] as const;
@@ -98,24 +98,10 @@ export function LandingLabStory() {
               aria-hidden
             />
 
-            {/* Top-left badge */}
-            <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-on-dark/30 bg-[rgba(18,25,35,0.48)] px-3 py-1.5 backdrop-blur-md">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-              </span>
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-on-dark">
-                Live ops
-              </span>
-            </div>
-
-            {/* Caption (kept above stats strip) */}
             <div className="absolute inset-x-0 bottom-28 p-8 sm:bottom-32 sm:p-10">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.35em] text-accent">
-                Operations
-              </p>
-              <p className="mt-3 max-w-md font-display text-xl font-bold leading-snug text-on-dark sm:text-2xl">
-                Controlled environments. Redundant characterization. Traceable release.
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">Operations</p>
+              <p className="mt-3 max-w-md font-display text-2xl font-extrabold leading-snug text-on-dark sm:text-3xl">
+                Traceable release. Redundant characterization.
               </p>
             </div>
 
@@ -128,7 +114,7 @@ export function LandingLabStory() {
                   key={s.label}
                   className={`flex-1 px-5 py-4 ${i !== STATS.length - 1 ? "border-r border-on-dark/20" : ""}`}
                 >
-                  <p className="font-display text-xl font-bold tracking-tight text-on-dark">
+                  <p className="font-display text-xl font-extrabold tracking-tight text-on-dark">
                     {s.value}
                   </p>
                   <p className="mt-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-on-dark/80">
@@ -150,22 +136,11 @@ export function LandingLabStory() {
                   "linear-gradient(135deg, color-mix(in srgb, var(--light) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--light) 74%, var(--primary-mid) 26%) 45%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 100%)",
               }}
             >
-              <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-on-dark/25 bg-on-dark/[0.08] px-4 py-1.5">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-                </span>
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-foreground/85">
-                  04 / Inside HKR
-                </span>
-              </div>
-              <h2 className="max-w-xl font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                Infrastructure Built for <span className="text-primary-deep">Reproducibility</span>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/70">Inside HKR</p>
+              <h2 className="max-w-xl font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                Built for <span className="text-primary-deep">reproducibility</span>
               </h2>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground/82 sm:text-lg">
-                Dedicated project leadership, redundant characterization, and digital batch records
-                — an environment designed for traceable science at any scale.
-              </p>
+              <p className="mt-3 max-w-xl text-base text-foreground/78">Project leadership, redundant characterization, digital batch records.</p>
             </div>
           </RevealOnScroll>
 
@@ -184,7 +159,7 @@ export function LandingLabStory() {
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <h3 className={`font-display text-sm font-bold ${a.title}`}>
+                        <h3 className={`font-display text-base font-extrabold ${a.title}`}>
                           {f.title}
                         </h3>
                       </div>

@@ -280,10 +280,10 @@ export function CategoryBrowseClient({
             </ul>
             <RevealOnScroll delay={240}>
               <Link
-                href="/capabilities"
+                href="/services"
                 className="mt-8 inline-flex text-sm font-semibold text-primary-deep hover:underline"
               >
-                View capabilities →
+                View services →
               </Link>
             </RevealOnScroll>
           </section>

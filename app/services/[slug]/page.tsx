@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, services } from "@/data/services";
@@ -54,23 +53,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         {/* Hero */}
         <RevealOnScroll>
-          <header className="relative overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]">
-            <Image
-              src="https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=1400&h=600&fit=crop&q=80&auto=format"
-              alt="Laboratory research"
-              fill
-              sizes="100vw"
-              priority
-              className="object-cover"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(115deg, rgba(2,10,99,0.88) 0%, rgba(2,10,99,0.72) 42%, color-mix(in srgb, var(--primary) 22%, transparent) 100%)",
-              }}
-            />
-
+          <header
+            className="relative min-h-[240px] overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)] sm:min-h-[280px]"
+            style={{
+              background:
+                "linear-gradient(115deg, #052066 0%, #06124a 42%, color-mix(in srgb, var(--primary) 38%, #030a40) 100%)",
+            }}
+          >
             <div
               className="pointer-events-none absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
               style={{
@@ -96,7 +85,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
                 Service
               </p>
-              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
+              <h1 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-on-dark sm:text-5xl md:text-6xl">
                 {s.title}
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">{s.summary}</p>
@@ -125,8 +114,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             }}
           >
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">Overview</p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-[#0d2137]">What this service delivers</h2>
-            <p className="mt-4 max-w-4xl text-base leading-relaxed text-[#234a62]">{s.overview}</p>
+            <h2 className="mt-1 font-display text-2xl font-extrabold text-[#0d2137] md:text-3xl">Overview</h2>
+            <p className="mt-4 max-w-3xl text-base text-[#234a62]">{s.overview}</p>
           </section>
         </RevealOnScroll>
 
@@ -134,7 +123,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section>
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">Workflow</p>
-            <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
+            <h2 className="mt-1 font-display text-2xl font-extrabold tracking-tight text-on-dark md:text-3xl">
               Typical process
             </h2>
             <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -171,7 +160,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">
                 Advantages
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-white">Key benefits</h2>
+              <h2 className="mt-1 font-display text-2xl font-extrabold text-white md:text-3xl">Benefits</h2>
               <ul className="mt-5 space-y-3">
                 {s.benefits.map((b) => (
                   <li key={b} className="flex gap-3 text-sm leading-relaxed text-white/88">
@@ -196,7 +185,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-50/95">
                 Technical scope
               </p>
-              <h2 className="mt-1 font-display text-xl font-semibold text-white">Capabilities</h2>
+              <h2 className="mt-1 font-display text-2xl font-extrabold text-white md:text-3xl">Capabilities</h2>
               <ul className="mt-5 space-y-3">
                 {s.capabilities.map((c) => (
                   <li key={c} className="flex gap-3 text-sm leading-relaxed text-white/88">
@@ -216,7 +205,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <RevealOnScroll>
           <section>
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Related</p>
-            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
+            <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-on-dark md:text-3xl">
               Other services
             </h2>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -295,7 +284,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/90">
                 Get in touch
               </p>
-              <h2 id="enquiry-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-on-dark md:text-3xl">
+              <h2 id="enquiry-heading" className="mt-2 font-display text-2xl font-extrabold tracking-tight text-on-dark md:text-3xl">
                 Enquire about {s.title}
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-on-dark/88 md:text-base">

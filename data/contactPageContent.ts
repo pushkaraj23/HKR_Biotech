@@ -1,45 +1,41 @@
 /**
- * Client-supplied Contact / RFQ copy.
+ * Contact / RFQ copy.
  */
 
 export const contactHero = {
   eyebrow: "Contact",
-  title: "Get in Touch with Our Experts",
-  intro:
-    "Whether you are looking for a specific protected sugar building block, require a custom glycan synthesis project, or need advanced NMR analysis, our technical team is ready to assist you.",
-  primaryCtaLabel: "Request a quote online",
+  title: "Talk to our team",
+  intro: "Quotes, custom synthesis, NMR services, or catalogue questions — we reply quickly.",
+  primaryCtaLabel: "Request a quote",
   primaryAnchor: "/contact#enquiry-form",
-  secondaryCtaLabel: "Browse catalogue",
+  secondaryCtaLabel: "Catalogue",
   secondaryHref: "/products",
 } as const;
 
 export const contactGlobalLogistics = {
-  title: "Global Reach & Reliable Logistics",
-  body:
-    "We are proud to serve the global scientific community. We ship our materials worldwide, utilizing specialized cold-chain logistics and express couriers to ensure your compounds arrive on time and in perfect condition, regardless of your laboratory’s location.",
+  title: "Global shipping",
+  body: "Cold-chain and express options worldwide with full documentation.",
 } as const;
 
 export const contactStartProject = {
-  title: "Start Your Project",
+  title: "How it works",
   steps: [
     {
-      title: "1. Inquiry & Technical Review",
-      body: "Send us your structures (CAS, SMILES, Chemdraw, or IUPAC names) and required quantity. Our PhD chemists will review the synthetic route and provide a detailed quote within 48 hours.",
+      title: "1. Inquiry",
+      body: "Send structures, quantities, and timeline. Technical review and quote within ~48 hours.",
     },
     {
-      title: "2. Confidentiality & CDA Signing",
-      body: "We understand the sensitivity of your research and intellectual property.",
-      note:
-        "Note on Confidentiality: We are happy to review and sign a Confidential Disclosure Agreement (CDA) or Non-Disclosure Agreement (NDA) before discussing the specific details of your custom synthesis or proprietary structures. Please indicate if you would like us to provide our standard CDA template or if you prefer to use your own.",
+      title: "2. Confidentiality",
+      body: "CDA/NDA available before sharing proprietary details — use our template or yours.",
     },
     {
-      title: "3. Global Fulfillment",
-      body: "Once the synthesis and analytical verification (1D/2D NMR) are complete, we handle all international customs documentation to ensure a seamless delivery to your facility.",
+      title: "3. Delivery",
+      body: "Analytical sign-off (including NMR where applicable), then export-ready documentation.",
     },
   ],
 } as const;
 
-export const contactDetailsHeading = "Contact Information";
+export const contactDetailsHeading = "Details";
 
 export const contactChannels = {
   salesEmails: [
@@ -54,9 +50,9 @@ export const contactChannels = {
 } as const;
 
 export const quoteFormSection = {
-  eyebrow: "Online form",
-  title: "Request a Quote Online",
-  description: "Complete the fields below. Our team will respond with a technical review and quotation as soon as possible.",
+  eyebrow: "Form",
+  title: "Request a quote",
+  description: "Submit the form — we follow up with a technical review.",
 } as const;
 
 export const quoteServiceOptions = [

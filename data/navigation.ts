@@ -8,7 +8,7 @@ export const mainNav: MainNavItem[] = [
   { href: "/about", label: "About" },
   { href: "/products", label: "Products", productDropdown: true },
   { href: "/services", label: "Services" },
-  { href: "/capabilities", label: "Capabilities" },
+  { href: "/leadership", label: "Leadership" },
   { href: "/industries", label: "Industries" },
   { href: "/contact", label: "Contact" },
 ];

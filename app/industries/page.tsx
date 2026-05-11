@@ -72,13 +72,12 @@ export default function IndustriesPage() {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">
-                Sectors we serve
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-primary-mid">
+                Sectors
               </p>
-              <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">Industries</h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">
-                We tune communication, documentation, and risk disclosure to the governance model of each sector —
-                without diluting scientific standards.
+              <h1 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-on-dark md:text-5xl lg:text-6xl">Industries</h1>
+              <p className="mt-5 max-w-xl text-base text-on-dark/82 md:text-lg">
+                Documentation and disclosure tuned to each sector — same scientific bar.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">

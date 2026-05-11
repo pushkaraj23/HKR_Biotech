@@ -54,24 +54,13 @@ export async function LandingCategories() {
                 "linear-gradient(135deg, color-mix(in srgb, var(--light) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--light) 74%, var(--primary-mid) 26%) 45%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 100%)",
             }}
           >
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-on-dark/25 bg-on-dark/[0.08] px-4 py-1.5">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-                  </span>
-                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-foreground/85">
-                    01 / Catalogue
-                  </span>
-                </div>
-                <h2 className="max-w-2xl font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                  Product <span className="text-primary-deep">Families</span>
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/70">Catalogue</p>
+                <h2 className="mt-2 max-w-2xl font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                  Product <span className="text-primary-deep">families</span>
                 </h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/82 sm:text-lg">
-                  Carbohydrates, impurities, linkers, intermediates, and more — each with full
-                  listings and analytical documentation.
-                </p>
+                <p className="mt-3 max-w-xl text-base text-foreground/75">Browse categories with specs and documentation.</p>
               </div>
               <Link
                 href="/products"
@@ -128,10 +117,10 @@ export async function LandingCategories() {
                   </div>
 
                   <div className="p-8 pt-6 sm:p-10 sm:pt-7">
-                    <h3 className={`font-display text-2xl font-bold tracking-tight ${style.title} sm:text-[1.65rem]`}>
+                    <h3 className={`font-display text-2xl font-extrabold tracking-tight ${style.title} sm:text-3xl`}>
                       {cat.name}
                     </h3>
-                    <p className={`mt-2.5 text-sm leading-relaxed ${style.body}`}>
+                    <p className={`mt-2 line-clamp-2 text-sm leading-snug ${style.body}`}>
                       {cat.tagline}
                     </p>
 
@@ -162,8 +151,8 @@ export async function LandingCategories() {
         {rest.length > 0 && (
           <RevealOnScroll delay={250}>
             <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-on-dark/78">
-                Also available
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/65">
+                More
               </span>
               <div className="flex flex-wrap gap-2.5">
                 {rest.map((cat, i) => (

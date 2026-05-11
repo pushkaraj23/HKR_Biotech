@@ -1,74 +1,64 @@
-/** Client-supplied narrative for the About page (hero, expertise, differentiation). */
+/** About page — concise marketing copy. */
 
 export const aboutMarketingHero = {
   eyebrow: "About",
   title: "Global Leaders in Custom Glycan & Sugar Chemistry",
-  /** Title tail matched for gradient accent in the UI — keep in sync with `title`. */
   titleAccentPhrase: "Glycan & Sugar Chemistry",
   intro:
-    "Welcome to HKR Biotech Pvt Ltd, your premier global partner for high-quality, affordable carbohydrate synthesis. We specialize in the complex design and production of custom glycans, modified sugars, carbohydrate impurities, and high-purity protected sugar building blocks essential for modern biotechnology and pharmaceutical research.",
+    "Custom glycans, modified sugars, impurities, and protected building blocks — from design through analytical release, shipped worldwide.",
 } as const;
 
-/** Hero strip metrics — aligns with Industries / Capabilities highlight row. */
 export const aboutHighlightMetrics: readonly { label: string; value: string }[] = [
-  { label: "Chemistry focus", value: "Glycans & sugars" },
+  { label: "Focus", value: "Glycans & sugars" },
   { label: "Scale", value: "Mg to bulk" },
-  { label: "Fulfillment", value: "Worldwide logistics" },
+  { label: "Reach", value: "Worldwide" },
 ];
 
 export const aboutCoreExpertise = {
-  heading: "Our Core Expertise",
-  subheading:
-    "Five capability pillars spanning design, synthesis, analytical release, standards, and how we ship to your lab.",
+  heading: "What we deliver",
+  subheading: "Five pillars — one accountable lab.",
   items: [
     {
-      title: "Custom Glycan Synthesis",
-      description:
-        "Precision-engineered carbohydrates tailored to your specific research requirements.",
+      title: "Custom glycan synthesis",
+      description: "Complex carbohydrates built to your spec.",
     },
     {
-      title: "Modified Sugars",
-      description:
-        "A diverse catalog of functionalized sugars for immunology, vaccines, metabolic labeling, imaging, and drug discovery.",
+      title: "Modified sugars",
+      description: "Functionalized sugars for discovery and development.",
     },
     {
-      title: "Nucleic Acid Chemistry",
-      description:
-        "Specialized protected and modified sugars for DNA and RNA synthesis, providing the foundational building blocks for oligonucleotide production.",
+      title: "Nucleic acid chemistry",
+      description: "Protected and modified units for oligo programs.",
     },
     {
-      title: "Carbohydrate impurities and reference standards",
-      description:
-        "We offer in-stock and custom synthesis of carbohydrate-based impurities, API impurities, formulation impurities, and reference standards.",
+      title: "Impurities & standards",
+      description: "Reference materials and API-related impurities.",
     },
     {
-      title: "Global Logistics",
-      description:
-        "We provide seamless worldwide shipping, ensuring your laboratory receives high-purity compounds wherever you are located.",
+      title: "Global logistics",
+      description: "Documented release and dependable shipping.",
     },
   ],
 } as const;
 
-/** Short aside cards beside “Why choose us” narrative. */
 export const aboutDifferentiators: readonly { title: string; subtitle: string }[] = [
   {
     title: "Synthesis depth",
-    subtitle: "Complex routes executed with reproducible purification and characterization.",
+    subtitle: "Reproducible routes, purification, and characterization.",
   },
   {
-    title: "Economics + quality",
-    subtitle: "High-purity outcomes without losing sight of practical program budgets.",
+    title: "Quality & cost",
+    subtitle: "High purity with realistic program economics.",
   },
   {
-    title: "Bench-to-border",
-    subtitle: "Documentation and logistics tuned for international R&D teams.",
+    title: "Bench to border",
+    subtitle: "Documentation and logistics for global teams.",
   },
 ];
 
 export const aboutWhyChoose = {
-  heading: "Why Choose Us?",
+  heading: "Why HKR?",
   paragraphs: [
-    "At HKR Biotech Pvt Ltd, we bridge the gap between complex chemical synthesis and affordability. By leveraging advanced synthetic methodologies, we provide the research community with the critical sugar building blocks needed to accelerate breakthroughs in glycan synthesis, immunology, vaccines, genomics, and therapeutics.",
-    "From milligram to bulk quantities, our commitment to purity and technical excellence makes us the trusted choice for scientists across the globe.",
+    "We connect advanced carbohydrate synthesis with practical delivery — from milligrams to scale, with analytics you can defend.",
   ],
 } as const;

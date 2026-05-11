@@ -18,21 +18,19 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-12 max-w-3xl",
+        "mb-10 max-w-3xl md:mb-12",
         align === "center" && "mx-auto text-center",
         className,
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-          {eyebrow}
-        </p>
+        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.26em] text-primary/90">{eyebrow}</p>
       ) : null}
-      <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+      <h2 className="font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
         {title}
       </h2>
       {subtitle ? (
-        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{subtitle}</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{subtitle}</p>
       ) : null}
     </div>
   );

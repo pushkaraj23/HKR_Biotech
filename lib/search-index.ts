@@ -15,7 +15,7 @@ const PAGES: SearchResult[] = [
   { kind: "page", title: "About Us", subtitle: "Our story and mission", href: "/about" },
   { kind: "page", title: "Products", subtitle: "Full product catalogue", href: "/products" },
   { kind: "page", title: "Services", subtitle: "Synthesis, analysis, and research", href: "/services" },
-  { kind: "page", title: "Capabilities", subtitle: "Lab infrastructure and instruments", href: "/capabilities" },
+  { kind: "page", title: "Leadership", subtitle: "Scientists and leadership at HKR", href: "/leadership" },
   { kind: "page", title: "Industries", subtitle: "Sectors we serve", href: "/industries" },
   { kind: "page", title: "Contact", subtitle: "Get in touch / enquire", href: "/contact" },
 ];

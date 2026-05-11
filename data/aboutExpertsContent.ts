@@ -12,12 +12,11 @@ export const ABOUT_EXPERTS_LINKS = {
 } as const;
 
 export const meetExpertsSection = {
-  title: "Meet Our Experts: The Scientists Behind the Synthesis",
-  intro:
-    "At HKR Biotech, our team is composed of world-class research scientists in glycan synthesis and analytical specialists dedicated to overcoming the most complex challenges in glycochemistry and nucleic acid chemistry. We don't just supply products; we provide scientific partnership.",
+  title: "Our team",
+  intro: "PhD-led synthesis and analytical specialists for glycochemistry and nucleic-acid programs.",
 };
 
-export const leadershipScientificHeading = "Our Leadership & Scientific Team";
+export const leadershipScientificHeading = "Leadership & science";
 
 export type ExpertDetailRow =
   | { type: "field"; label: string; text: string }
@@ -101,17 +100,16 @@ export const expertProfiles: readonly ExpertProfile[] = [
 ];
 
 export const cultureSection = {
-  title: "A Culture of HKR Biotech",
+  title: "Culture",
   paragraph:
-    'Our laboratory team consists of PhD and Masters-level chemists who share a passion for sugar chemistry. We understand that in DNA/RNA synthesis, even a small impurity content in a protected sugar can ruin an entire sequence. That is why our team operates with a "Quality First" mindset.',
+    "PhD- and Masters-level chemists. We know impurities in protected sugars can ruin a sequence — so we lead with quality.",
   philosophy:
-    'Our Philosophy: "We treat every custom synthesis project as if it were our own research. From the first line of the synthetic route to the final 2D NMR spectrum, precision is our only standard."',
+    "We treat every synthesis like our own research — from route to release spectrum, precision is the standard.",
 };
 
 export const workWithExpertsSection = {
-  title: "Work With Our Experts",
-  intro:
-    "Have a technical question about a specific protected sugar or a complex glycan structure? Our scientists are just an email away.",
+  title: "Talk to science",
+  intro: "Technical questions? Email our team.",
   primaryCtaLabel: "Schedule a Technical Consultation",
   secondaryCtaLabel: "Connect on LinkedIn",
 };

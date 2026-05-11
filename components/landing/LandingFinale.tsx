@@ -2,11 +2,7 @@ import Link from "next/link";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
-const PROMISES = [
-  "Analytical-first reply",
-  "Route-level dialogue",
-  "Phase-aware deliverables",
-];
+const PROMISES = ["Analytical-first replies", "Route-level dialogue"] as const;
 
 export function LandingFinale() {
   return (
@@ -69,17 +65,15 @@ export function LandingFinale() {
             {/* Copy */}
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white/78 px-3 py-1.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/70 px-3 py-1 backdrop-blur-md">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-50" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
                 </span>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-foreground/85">
-                  Next batch
-                </span>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/80">Next</span>
               </div>
 
-              <h2 className="mt-5 font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="mt-4 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
                 Partner on Your Next{" "}
                 <span className="relative inline-block">
                   <span
@@ -98,9 +92,8 @@ export function LandingFinale() {
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/82 sm:text-lg">
-                Share structures, quantity bands, and analytical expectations —
-                we respond with scientific questions, not just pricing.
+              <p className="mt-4 max-w-xl text-base text-foreground/80 sm:text-lg">
+                Share structures, quantities, and analytical expectations — we respond with science, not boilerplate.
               </p>
 
               {/* Promise chips */}

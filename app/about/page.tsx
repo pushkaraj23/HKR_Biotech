@@ -1,12 +1,11 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { AboutWhyChooseSection } from "@/components/about/AboutWhyChooseSection";
 import { ExpertsContent } from "@/components/about/ExpertsContent";
 import {
   aboutCoreExpertise,
-  aboutDifferentiators,
   aboutHighlightMetrics,
   aboutMarketingHero,
-  aboutWhyChoose,
 } from "@/data/aboutMarketingContent";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -21,10 +20,9 @@ export const metadata: Metadata = {
 };
 
 const facilityLines = [
-  "Synthesis support for complex carbohydrates, oligosaccharides, and glycoprotein-linked projects",
-  "API impurity, nitrosamine impurity (NDSRI), and API standard development support",
-  "Advanced analytical characterization using NMR, MS, UV, and IR techniques",
-  "Route design, route scouting, and technical consultation for process development",
+  "Carbohydrate & glycoprotein-linked synthesis support",
+  "API / nitrosamine impurities and reference standards",
+  "NMR, MS, UV, IR characterization and route consultation",
 ];
 
 const complianceItems = [
@@ -94,7 +92,7 @@ export default function AboutPage() {
           <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[88%] xl:max-w-4xl">
             <RevealOnScroll>
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">{aboutMarketingHero.eyebrow}</p>
-              <h1 className="mt-4 text-balance font-display text-3xl font-bold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
+              <h1 className="mt-4 text-balance font-display text-4xl font-extrabold tracking-tight text-on-dark sm:text-5xl md:text-6xl">
                 {titleLead ? (
                   <>
                     {titleLead}{" "}
@@ -162,10 +160,10 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll>
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">What we deliver</p>
-            <h2 id="core-expertise-heading" className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+            <h2 id="core-expertise-heading" className="mt-2 font-display text-4xl font-extrabold tracking-tight text-on-dark md:text-5xl">
               {aboutCoreExpertise.heading}
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-on-dark/78 md:text-lg">{aboutCoreExpertise.subheading}</p>
+            <p className="mt-4 max-w-3xl text-base text-on-dark/78 md:text-lg">{aboutCoreExpertise.subheading}</p>
           </RevealOnScroll>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-12 lg:gap-6">
@@ -179,7 +177,7 @@ export default function AboutPage() {
                   <article
                     style={{ backgroundColor: v.surface }}
                     className={cn(
-                      "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[1.75rem] border p-7 shadow-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-18px_rgba(2,10,99,0.35)] sm:p-8",
+                      "relative flex h-full min-h-0 flex-col overflow-hidden rounded-[1.75rem] border p-8 shadow-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-18px_rgba(2,10,99,0.35)] sm:p-9",
                       i === 0 && "lg:min-h-[220px]",
                       v.shell,
                     )}
@@ -206,14 +204,21 @@ export default function AboutPage() {
                     <span className={cn("relative mb-4 block h-10 w-10 rounded-full", v.orbShell)} style={{ background: v.orb }} aria-hidden />
                     <h3
                       className={cn(
-                        "relative pr-12 font-display font-semibold leading-snug",
-                        i === 0 ? "text-xl md:text-[1.35rem]" : "text-lg",
+                        "relative pr-12 font-display font-extrabold leading-snug tracking-tight",
+                        i === 0 ? "text-2xl md:text-3xl lg:text-[1.85rem] lg:leading-tight" : "text-xl md:text-2xl lg:text-[1.4rem]",
                         v.title,
                       )}
                     >
                       {item.title}
                     </h3>
-                    <p className={cn("relative mt-3 flex-1 text-sm leading-relaxed", v.body)}>{item.description}</p>
+                    <p
+                      className={cn(
+                        "relative mt-4 flex-1 text-base leading-relaxed text-balance md:text-lg md:leading-relaxed",
+                        v.body,
+                      )}
+                    >
+                      {item.description}
+                    </p>
                   </article>
                 </RevealOnScroll>
               );
@@ -222,54 +227,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8" aria-labelledby="why-choose-heading">
-        <div className="mx-auto max-w-6xl">
-          <RevealOnScroll>
-            <div
-              className="relative overflow-hidden rounded-[1.75rem] border border-white/35 px-8 py-10 shadow-[0_16px_42px_-14px_rgba(2,10,99,0.35)] backdrop-blur-md sm:px-10 sm:py-12"
-              style={{
-                background:
-                  "linear-gradient(125deg, color-mix(in srgb, var(--light) 88%, var(--primary) 12%) 0%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 52%, #e8f4ef 100%)",
-              }}
-            >
-              <div
-                className="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full opacity-45 blur-3xl"
-                style={{
-                  background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 72%)",
-                }}
-                aria-hidden
-              />
-              <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-12 lg:items-start">
-                <div className="lg:col-span-7">
-                  <h2 id="why-choose-heading" className="font-display text-2xl font-bold tracking-tight text-[#0d2137] md:text-3xl">
-                    {aboutWhyChoose.heading}
-                  </h2>
-                  <div className="mt-5 space-y-4 text-base leading-relaxed text-[#234a62] sm:text-lg">
-                    {aboutWhyChoose.paragraphs.map((p, i) => (
-                      <p key={i}>{p}</p>
-                    ))}
-                  </div>
-                </div>
-                <aside className="space-y-4 lg:col-span-5">
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1459b8]">What stands out</p>
-                  <ul className="space-y-3">
-                    {aboutDifferentiators.map((d) => (
-                      <li
-                        key={d.title}
-                        className="rounded-2xl border border-[#17324d]/12 bg-white/55 p-5 shadow-sm backdrop-blur-sm transition hover:border-[#1459b8]/25 hover:bg-white/75"
-                      >
-                        <p className="font-display text-base font-semibold text-[#0d2137]">{d.title}</p>
-                        <p className="mt-2 text-sm leading-relaxed text-[#234a62]">{d.subtitle}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </aside>
-              </div>
-            </div>
-          </RevealOnScroll>
-        </div>
-      </section>
+      <AboutWhyChooseSection />
 
       {/* Client content: experts, culture, work-with CTA */}
       <ExpertsContent />
@@ -310,11 +268,8 @@ export default function AboutPage() {
           <div className="relative px-8 py-14 sm:px-12 md:py-16">
             <RevealOnScroll>
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">Infrastructure</p>
-              <h2 className="mt-2 font-display text-3xl font-bold text-on-dark md:text-4xl">Laboratory Facilities</h2>
-              <p className="mt-3 max-w-2xl text-on-dark/82">
-                Segregated synthesis suites, controlled storage, and redundant characterization — engineered for batch
-                continuity.
-              </p>
+              <h2 className="mt-2 font-display text-4xl font-extrabold text-on-dark md:text-5xl">Laboratory Facilities</h2>
+              <p className="mt-3 max-w-2xl text-on-dark/80">Segregated suites, controlled storage, redundant characterization.</p>
             </RevealOnScroll>
 
             <ul className="relative mt-10 grid gap-4 sm:grid-cols-2">
@@ -342,12 +297,10 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll>
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Compliance</p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+            <h2 className="mt-2 font-display text-4xl font-extrabold tracking-tight text-on-dark md:text-5xl">
               Certifications &amp; Posture
             </h2>
-            <p className="mt-4 max-w-2xl text-lg text-on-dark/82">
-              Phase-appropriate controls with a roadmap to formal audits where programs demand them.
-            </p>
+            <p className="mt-4 max-w-2xl text-base text-on-dark/80">Controls that scale with your program and audit needs.</p>
           </RevealOnScroll>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -375,15 +328,14 @@ export default function AboutPage() {
             })}
           </div>
           <RevealOnScroll delay={180}>
-            <p className="mt-10 text-center text-xs leading-relaxed text-on-dark/65">
-              Formal GMP certification can be pursued via qualified partner sites — HKR orchestrates tech transfer when
-              programs require audited batches.
+            <p className="mt-8 text-center text-xs text-on-dark/55">
+              GMP batches can be orchestrated with partner sites when your program requires audited manufacturing.
             </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      {/* Bottom CTA — matches capabilities / services band */}
+      {/* Bottom CTA — matches services band */}
       <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <RevealOnScroll>
@@ -410,24 +362,23 @@ export default function AboutPage() {
               />
 
               <div className="relative">
-                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">Next step</p>
-                <h2 className="mx-auto mt-3 max-w-xl font-display text-2xl font-bold text-[#0d2137] md:text-3xl">
-                  Translate this backbone into your program
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1459b8]/90">Contact</p>
+                <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-extrabold text-[#0d2137] md:text-4xl">
+                  Start your program
                 </h2>
-                <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#234a62] md:text-base">
-                  Share your target scaffold, purity bar, and timeline — we reply with synthesis feasibility, analytical
-                  release expectations, and a practical path forward.
+                <p className="mx-auto mt-4 max-w-md text-sm text-[#234a62] md:text-base">
+                  Share structure, purity target, and timeline — we reply with feasibility and a clear path.
                 </p>
                 <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">
                     Start a conversation
                   </ButtonLink>
                   <ButtonLink
-                    href="/capabilities"
+                    href="/leadership"
                     variant="secondary"
                     className="rounded-full border-[#17324d]/18 bg-white/90 px-10 text-[#0d2137] hover:border-primary/35 hover:bg-white"
                   >
-                    Capabilities overview
+                    Leadership &amp; team
                   </ButtonLink>
                 </div>
               </div>

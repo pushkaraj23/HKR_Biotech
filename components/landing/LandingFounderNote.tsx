@@ -36,22 +36,14 @@ export function LandingFounderNote() {
           </div>
 
           <div className="relative">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-foreground/80">
-              Founder's note
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/75">
+              Founder
             </p>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Science with clarity, speed, and accountability.
+            <h2 className="mt-2 font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Clarity, speed, accountability.
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/84 sm:text-lg">
-              At HKR Biotech, our focus is simple: solve complex chemistry problems with
-              practical scientific execution. We work closely with every client to
-              deliver reliable synthesis, transparent communication, and analytical depth
-              that supports confident decisions.
-            </p>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground/84 sm:text-lg">
-              Our commitment is to build long-term partnerships through technical
-              integrity and responsive support across carbohydrates, API impurities, and
-              advanced custom synthesis programs.
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              Complex chemistry with transparent execution — synthesis, communication, and analytics you can rely on.
             </p>
             <div className="mt-6">
               <p className="font-display text-lg font-semibold text-foreground">

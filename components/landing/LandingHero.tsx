@@ -9,11 +9,7 @@ const STATS = [
   { value: "15+", label: "Years" },
 ] as const;
 
-const TRUST_CHIPS = [
-  "ISO-aligned QC",
-  "ALCOA+ records",
-  "GMP-ready documentation",
-] as const;
+const TRUST_CHIPS = ["ALCOA+ records", "QC you can cite"] as const;
 
 export function LandingHero() {
   return (
@@ -76,14 +72,14 @@ export function LandingHero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-mid opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-on-dark">
-                Synthesis Intake Open
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-on-dark">
+                Open for projects
               </span>
             </div>
 
             {/* Main heading */}
             <h1
-              className="mx-auto max-w-4xl text-center font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-on-dark sm:text-[3.2rem] lg:text-[4rem]"
+              className="mx-auto max-w-4xl text-center font-display text-[2.85rem] font-extrabold leading-[1.02] tracking-tight text-on-dark sm:text-[3.5rem] lg:text-[4.35rem]"
               style={{ textShadow: "0 2px 18px rgba(18,25,35,0.45)" }}
             >
               Precision{" "}
@@ -102,14 +98,11 @@ export function LandingHero() {
 
             {/* Subtitle */}
             <p
-              className="mx-auto mt-7 max-w-2xl text-center text-lg leading-relaxed text-on-dark sm:text-xl"
+              className="mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed text-on-dark sm:text-xl"
               style={{ textShadow: "0 1px 12px rgba(18,25,35,0.4)" }}
             >
-              Rare building blocks, API-related impurities, and nucleotide chemistry —{" "}
-              <span className="font-semibold text-accent">
-                with analytics that hold up to scrutiny
-              </span>{" "}
-              and timelines that respect your milestone.
+              Rare building blocks, impurities, and nucleotide chemistry — with{" "}
+              <span className="font-semibold text-accent">analytics that hold up</span> and timelines that match your milestones.
             </p>
 
             {/* CTAs */}
@@ -181,7 +174,7 @@ export function LandingHero() {
                       key={s.label}
                       className="flex flex-col items-center gap-1 px-2 sm:px-4"
                     >
-                      <dt className="font-display text-3xl font-bold tracking-tight text-on-dark sm:text-4xl">
+                      <dt className="font-display text-3xl font-extrabold tracking-tight text-on-dark sm:text-4xl">
                         {s.value}
                       </dt>
                       <dd className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-on-dark/85">

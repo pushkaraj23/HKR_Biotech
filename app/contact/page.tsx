@@ -82,11 +82,11 @@ export default async function ContactPage({ searchParams }: PageProps) {
             />
 
             <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[90%]">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-primary-mid">{contactHero.eyebrow}</p>
-              <h1 className="mt-4 max-w-4xl text-balance font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-primary-mid">{contactHero.eyebrow}</p>
+              <h1 className="mt-4 max-w-4xl text-balance font-display text-4xl font-extrabold tracking-tight text-on-dark md:text-5xl lg:text-6xl">
                 {contactHero.title}
               </h1>
-              <p className="mt-5 max-w-3xl text-lg leading-relaxed text-on-dark/84">{contactHero.intro}</p>
+              <p className="mt-5 max-w-2xl text-base text-on-dark/82 md:text-lg">{contactHero.intro}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={contactHero.primaryAnchor} className="rounded-full px-10 shadow-primary-glow">
                   {contactHero.primaryCtaLabel}
@@ -120,8 +120,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
               aria-hidden
             />
             <div className="relative max-w-3xl">
-              <h2 className="font-display text-2xl font-bold tracking-tight text-[#0d2137] md:text-3xl">{contactGlobalLogistics.title}</h2>
-              <p className="mt-4 text-base leading-relaxed text-[#234a62] md:text-lg">{contactGlobalLogistics.body}</p>
+              <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#0d2137] md:text-4xl">{contactGlobalLogistics.title}</h2>
+              <p className="mt-3 text-base text-[#234a62] md:text-lg">{contactGlobalLogistics.body}</p>
             </div>
           </div>
         </RevealOnScroll>
@@ -129,8 +129,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
         {/* Start your project */}
         <RevealOnScroll>
           <section aria-labelledby="start-project-heading" className="scroll-mt-28">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Process</p>
-            <h2 id="start-project-heading" className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-accent/90">Process</p>
+            <h2 id="start-project-heading" className="mt-2 font-display text-4xl font-extrabold tracking-tight text-on-dark md:text-5xl">
               {contactStartProject.title}
             </h2>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -154,18 +154,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
                       >
                         {String(i + 1).padStart(2, "0")}
                       </div>
-                      <h3 className={cn("font-display text-lg font-semibold leading-snug", v.title)}>{step.title}</h3>
+                      <h3 className={cn("font-display text-xl font-extrabold leading-snug", v.title)}>{step.title}</h3>
                       <p className={cn("mt-3 text-sm leading-relaxed", v.body)}>{step.body}</p>
-                      {"note" in step && step.note ? (
-                        <p
-                          className={cn(
-                            "mt-4 rounded-xl border px-4 py-3 text-xs leading-relaxed sm:text-[13px]",
-                            light ? "border-[#17324d]/12 bg-white/72 text-[#234a62]" : "border-white/16 bg-black/22 text-white/91",
-                          )}
-                        >
-                          {step.note}
-                        </p>
-                      ) : null}
                     </article>
                   </RevealOnScroll>
                 );

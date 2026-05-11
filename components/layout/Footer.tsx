@@ -3,9 +3,12 @@ import { BrandLogo } from "@/components/brand/BrandLogo";
 import { getAllCategories } from "@/data/catalog";
 import { mainNav } from "@/data/navigation";
 
-const exploreLinks = mainNav
-  .filter((item) => item.href !== "/")
-  .map((item) => ({ href: item.href, label: item.label }));
+const exploreLinks = [
+  ...mainNav
+    .filter((item) => item.href !== "/")
+    .map((item) => ({ href: item.href, label: item.label })),
+  { href: "/contact", label: "Contact" },
+];
 
 function FooterListLink({ href, label }: { href: string; label: string }) {
   return (

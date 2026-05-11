@@ -233,7 +233,7 @@ export function Header() {
             href="/contact"
             className="inline-flex items-center justify-center rounded-full bg-cta-gradient px-6 py-2 text-xs font-semibold text-primary-foreground shadow-primary-glow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
           >
-            Enquire
+            Contact
           </EnquireGateLink>
         </div>
 
@@ -343,7 +343,7 @@ export function Header() {
               className="flex w-full items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-xs font-semibold text-primary-foreground shadow-primary-glow hover:brightness-[1.04] hover:shadow-primary-glow-lg"
               onClick={() => setOpen(false)}
             >
-              Enquire
+              Contact
             </EnquireGateLink>
           </li>
         </ul>

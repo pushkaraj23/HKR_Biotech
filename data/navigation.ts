@@ -2,7 +2,7 @@ export type MainNavItem =
   | { href: string; label: string }
   | { href: string; label: string; productDropdown: true };
 
-/** Top-level routes; product family links are loaded from Firestore via `/api/catalog/nav`. */
+/** Top-level routes; product family links are loaded from Firestore via `/api/catalog/nav`. Contact is the header CTA, not a text nav item. */
 export const mainNav: MainNavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -10,5 +10,4 @@ export const mainNav: MainNavItem[] = [
   { href: "/services", label: "Services" },
   { href: "/leadership", label: "Leadership" },
   { href: "/industries", label: "Industries" },
-  { href: "/contact", label: "Contact" },
 ];

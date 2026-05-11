@@ -26,7 +26,7 @@ export function LandingFounderNote() {
           <div className="relative mx-auto w-full max-w-[280px]">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/45 shadow-[0_16px_34px_-14px_rgba(18,50,90,0.55)]">
               <Image
-                src="/team/founder.jpg"
+                src="/team/Kishor Harale.jpg"
                 alt="Kishor R. Harale, PhD"
                 fill
                 sizes="(max-width: 1024px) 280px, 320px"

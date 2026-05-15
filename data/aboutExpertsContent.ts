@@ -26,8 +26,10 @@ export type ExpertDetailRow =
     };
 
 export type ExpertProfile = {
-  name: string;
-  roleDescriptor: string;
+  displayName: string;
+  roleAtHkr: string;
+  credentials?: string;
+  affiliation?: string;
   /** Path under `public/` (e.g. `/team/Kishor Harale.jpg`) */
   photoSrc?: string;
   rows: readonly ExpertDetailRow[];
@@ -35,9 +37,11 @@ export type ExpertProfile = {
 
 export const expertProfiles: readonly ExpertProfile[] = [
   {
-    name: "Dr. Kishor Harale, Director",
-    roleDescriptor:
-      "(Postdoc: University of Michigan, with Prof. John Montgomery, Ex-Scientist MSD-Wellcode Trust Hilleman Labs) Ph.D. Director",
+    displayName: "Dr. Kishor Harale",
+    roleAtHkr: "Director",
+    credentials: "Ph.D.",
+    affiliation:
+      "Postdoctoral research, University of Michigan (Prof. John Montgomery) · Former Scientist, MSD-Wellcome Trust Hilleman Laboratories",
     photoSrc: "/team/Kishor Harale.jpg",
     rows: [
       {
@@ -75,9 +79,11 @@ export const expertProfiles: readonly ExpertProfile[] = [
     ],
   },
   {
-    name:
-      "Prof. Dilip Dhavale, Ph.D. (FASc., FNASc., FMASc, Ex-Head and Distinguished Professor, Department of Chemistry, Savitribai Phule Pune University):",
-    roleDescriptor: "Scientific Advisor and Head of Analytical Chemistry",
+    displayName: "Prof. Dilip Dhavale",
+    roleAtHkr: "Scientific Advisor and Head of Analytical Chemistry",
+    credentials: "Ph.D. · FASc., FNASc., FMASc",
+    affiliation:
+      "Ex-Head and Distinguished Professor, Department of Chemistry, Savitribai Phule Pune University",
     photoSrc: "/team/Dilip Dhavale.jpeg",
     rows: [
       {

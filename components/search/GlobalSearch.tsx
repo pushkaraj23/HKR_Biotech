@@ -47,6 +47,12 @@ const KIND_ICONS: Record<SearchResultKind, ReactElement> = {
       <rect x="11" y="11" width="7" height="7" rx="1.5" />
     </svg>
   ),
+  subcategory: (
+    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 6h14M3 10h10M3 14h6" />
+      <rect x="14" y="9" width="3" height="10" rx="1" />
+    </svg>
+  ),
   service: (
     <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="10" cy="10" r="7" />
@@ -69,12 +75,20 @@ const KIND_ICONS: Record<SearchResultKind, ReactElement> = {
 const KIND_LABELS: Record<SearchResultKind, string> = {
   product: "Products",
   category: "Categories",
+  subcategory: "Sub-groups",
   service: "Services",
   industry: "Industries",
   page: "Pages",
 };
 
-const KIND_ORDER: SearchResultKind[] = ["category", "product", "service", "industry", "page"];
+const KIND_ORDER: SearchResultKind[] = [
+  "category",
+  "subcategory",
+  "product",
+  "service",
+  "industry",
+  "page",
+];
 
 /* ─── overlay (always rendered as "open" — parent controls mount) ─── */
 
@@ -192,7 +206,7 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search products, services, pages…"
+            placeholder="Search products, categories, sub-groups…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -215,7 +229,7 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
 
           {!query.trim() && (
             <p className="px-3 py-8 text-center text-sm text-on-dark/65">
-              Start typing to search the catalogue, services, and pages.
+              Start typing to search products, categories, sub-groups, and pages.
             </p>
           )}
 
@@ -230,7 +244,7 @@ export function GlobalSearch({ onClose }: { onClose: () => void }) {
                 const isActive = idx === activeIdx;
                 return (
                   <Link
-                    key={item.href}
+                    key={`${item.kind}-${item.href}`}
                     href={item.href}
                     data-idx={idx}
                     onClick={(e) => {

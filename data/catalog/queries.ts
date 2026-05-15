@@ -1,4 +1,10 @@
-import type { CatalogProduct, ProductCategory, ProductCategorySlug } from "@/lib/types/catalog";
+import type {
+  CatalogProduct,
+  ProductCategory,
+  ProductCategorySlug,
+  ProductSubcategory,
+  ProductSubcategorySlug,
+} from "@/lib/types/catalog";
 import { loadCatalog } from "@/lib/catalog/load-catalog";
 
 export async function isValidCategorySlug(slug: string): Promise<boolean> {
@@ -12,6 +18,25 @@ export async function getAllCategories(): Promise<ProductCategory[]> {
 
 export async function getAllProducts(): Promise<CatalogProduct[]> {
   return (await loadCatalog()).products;
+}
+
+export async function getAllSubcategories(): Promise<ProductSubcategory[]> {
+  return (await loadCatalog()).subcategories;
+}
+
+export async function getSubcategoriesByCategorySlug(
+  categorySlug: ProductCategorySlug,
+): Promise<ProductSubcategory[]> {
+  const { subcategories } = await loadCatalog();
+  return subcategories.filter((s) => s.categorySlug === categorySlug);
+}
+
+export async function getSubcategoryBySlug(
+  categorySlug: ProductCategorySlug,
+  subcategorySlug: ProductSubcategorySlug,
+): Promise<ProductSubcategory | undefined> {
+  const rows = await getSubcategoriesByCategorySlug(categorySlug);
+  return rows.find((s) => s.slug === subcategorySlug);
 }
 
 export async function getCategoryBySlug(slug: string): Promise<ProductCategory | undefined> {

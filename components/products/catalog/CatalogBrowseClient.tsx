@@ -32,6 +32,7 @@ type CatalogBrowseClientProps = {
 const initialState: CatalogFilterState = {
   search: "",
   category: "all",
+  subcategory: "all",
 };
 const PAGE_SIZE = 16;
 

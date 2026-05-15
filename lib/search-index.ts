@@ -1,7 +1,13 @@
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 
-export type SearchResultKind = "product" | "category" | "service" | "industry" | "page";
+export type SearchResultKind =
+  | "product"
+  | "category"
+  | "subcategory"
+  | "service"
+  | "industry"
+  | "page";
 
 export type SearchResult = {
   kind: SearchResultKind;
@@ -48,6 +54,12 @@ export function getStaticSiteSearchResults(): SearchResult[] {
 
 export function buildCatalogSearchResults(
   categories: { slug: string; name: string; tagline: string }[],
+  subcategories: {
+    slug: string;
+    name: string;
+    description?: string;
+    categorySlug: string;
+  }[],
   products: {
     chemicalName: string;
     catalogNumber: string;
@@ -57,6 +69,7 @@ export function buildCatalogSearchResults(
   }[],
 ): SearchResult[] {
   const results: SearchResult[] = [];
+  const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
 
   for (const cat of categories) {
     results.push({
@@ -64,6 +77,18 @@ export function buildCatalogSearchResults(
       title: cat.name,
       subtitle: cat.tagline,
       href: `/products/${cat.slug}`,
+    });
+  }
+
+  for (const sub of subcategories) {
+    const parent = categoryBySlug.get(sub.categorySlug);
+    const parentLabel = parent?.name ?? sub.categorySlug;
+    const detail = sub.description?.trim();
+    results.push({
+      kind: "subcategory",
+      title: sub.name,
+      subtitle: detail ? `${parentLabel} · ${detail}` : parentLabel,
+      href: `/products/${sub.categorySlug}?subcategory=${encodeURIComponent(sub.slug)}`,
     });
   }
 
@@ -114,6 +139,7 @@ export function search(query: string, limit = 20, index: SearchResult[]): Search
       const kindBonus: Record<SearchResultKind, number> = {
         product: 5,
         category: 10,
+        subcategory: 8,
         service: 4,
         industry: 3,
         page: 2,

@@ -1,8 +1,14 @@
-import type { CatalogProduct, ProductAvailability, ProductCategorySlug } from "@/lib/types/catalog";
+import type {
+  CatalogProduct,
+  ProductAvailability,
+  ProductCategorySlug,
+  ProductSubcategorySlug,
+} from "@/lib/types/catalog";
 
 export type CatalogFilterState = {
   search: string;
   category: ProductCategorySlug | "all";
+  subcategory: ProductSubcategorySlug | "all";
 };
 
 const AVAILABILITY_VALUES: ProductAvailability[] = [
@@ -44,6 +50,10 @@ export function filterCatalogProducts(
 
   if (!categoryScope && state.category !== "all") {
     out = out.filter((p) => p.categorySlug === state.category);
+  }
+
+  if (state.subcategory !== "all") {
+    out = out.filter((p) => p.subcategorySlug === state.subcategory);
   }
 
   return out;

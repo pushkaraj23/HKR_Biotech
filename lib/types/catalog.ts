@@ -22,6 +22,17 @@ export type ProductCategory = {
   highlights: string[];
 };
 
+export type ProductSubcategorySlug = string;
+
+/** Child grouping under a category — loaded from Firestore `subcategories`. */
+export type ProductSubcategory = {
+  slug: ProductSubcategorySlug;
+  categorySlug: ProductCategorySlug;
+  name: string;
+  description?: string;
+  order?: number;
+};
+
 export type CatalogProduct = {
   id: string;
   /** Unique globally — used in /products/[category]/[slug] */
@@ -29,6 +40,8 @@ export type CatalogProduct = {
   imageUrl?: string;
   catalogNumber: string;
   categorySlug: ProductCategorySlug;
+  /** Optional sub-family within the category */
+  subcategorySlug?: ProductSubcategorySlug;
   chemicalName: string;
   casNumber: string;
   molecularFormula: string;

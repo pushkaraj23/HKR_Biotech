@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { HeaderAccountMenu } from "@/components/auth/HeaderAccountMenu";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { GlobalSearch, SearchTrigger } from "@/components/search/GlobalSearch";
+import { ProductsNavFlyout } from "@/components/layout/ProductsNavFlyout";
 import { mainNav } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 
@@ -39,16 +40,22 @@ const SCROLL_DOWN_THRESHOLD = 6;
 const SCROLL_UP_THRESHOLD = 4;
 const TOP_REVEAL_PX = 24;
 
+import type { ProductNavCategory } from "@/components/layout/ProductsNavFlyout";
+
 export function Header() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { user, signOut, configured } = useAuth();
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [productNavItems, setProductNavItems] = useState<{ href: string; label: string }[]>([]);
+  const [productNavItems, setProductNavItems] = useState<ProductNavCategory[]>([]);
+  const [hoveredCategorySlug, setHoveredCategorySlug] = useState<string | null>(null);
   const lastScrollY = useRef(0);
+
+  const activeSubcategorySlug = searchParams.get("subcategory");
 
   const openSearch = useCallback(() => setSearchOpen(true), []);
 
@@ -56,9 +63,22 @@ export function Header() {
     let cancelled = false;
     fetch("/api/catalog/nav")
       .then((r) => r.json())
-      .then((d: { items?: { href: string; label: string }[] }) => {
+      .then((d: { items?: ProductNavCategory[] }) => {
         if (!cancelled && Array.isArray(d.items)) {
-          setProductNavItems(d.items);
+          setProductNavItems(
+            d.items.map((c) => ({
+              href: String(c.href ?? ""),
+              label: String(c.label ?? ""),
+              slug: String(c.slug ?? ""),
+              subcategories: Array.isArray(c.subcategories)
+                ? c.subcategories.map((s) => ({
+                    href: String(s.href ?? ""),
+                    label: String(s.label ?? ""),
+                    slug: String(s.slug ?? ""),
+                  }))
+                : [],
+            })),
+          );
         }
       })
       .catch(() => {});
@@ -91,6 +111,7 @@ export function Header() {
       } else if (currentY > prevY + SCROLL_DOWN_THRESHOLD) {
         setIsHidden(true);
         setProductsOpen(false);
+        setHoveredCategorySlug(null);
       } else if (currentY < prevY - SCROLL_UP_THRESHOLD) {
         setIsHidden(false);
       }
@@ -163,7 +184,10 @@ export function Header() {
                   key={item.href}
                   className="relative"
                   onMouseEnter={() => setProductsOpen(true)}
-                  onMouseLeave={() => setProductsOpen(false)}
+                  onMouseLeave={() => {
+                    setProductsOpen(false);
+                    setHoveredCategorySlug(null);
+                  }}
                 >
                   <div className="flex shrink-0 items-center rounded-full px-0.5">
                     <Link
@@ -182,37 +206,14 @@ export function Header() {
                     </span>
                   </div>
 
-                  {/* Dropdown */}
-                  <div
-                    className={cn(
-                      "absolute left-1/2 top-full z-50 mt-3 w-[17rem] -translate-x-1/2 rounded-2xl border border-white/20 bg-surface/98 p-2 text-on-dark shadow-elevated-lg backdrop-blur-2xl transition-all duration-200",
-                      productsOpen
-                        ? "visible translate-y-0 opacity-100"
-                        : "invisible -translate-y-1 opacity-0",
-                    )}
-                  >
-                    <p className="px-3 pb-2 pt-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-on-dark/70">
-                      Browse
-                    </p>
-                    <ul className="space-y-0.5">
-                      {productNavItems.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            className="block rounded-xl px-3 py-2.5 text-sm text-on-dark/90 transition-colors hover:bg-white/10 hover:text-on-dark"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href="/products"
-                      className="mt-1 block rounded-xl px-3 py-2 text-xs font-semibold text-primary-mid hover:bg-white/10"
-                    >
-                      Full catalogue →
-                    </Link>
-                  </div>
+                  <ProductsNavFlyout
+                    open={productsOpen}
+                    categories={productNavItems}
+                    pathname={pathname}
+                    activeSubcategorySlug={activeSubcategorySlug}
+                    hoveredCategorySlug={hoveredCategorySlug}
+                    onHoverCategory={setHoveredCategorySlug}
+                  />
                 </div>
               );
             }
@@ -320,16 +321,31 @@ export function Header() {
                   </Link>
                 )}
                 {isProducts && productNavItems.length > 0 && mobileProductsOpen ? (
-                  <ul className="pb-2 pl-6">
-                    {productNavItems.map((child) => (
-                      <li key={child.href}>
+                  <ul className="space-y-1 pb-2 pl-4">
+                    {productNavItems.map((cat) => (
+                      <li key={cat.slug}>
                         <Link
-                          href={child.href}
-                          className="block py-2 text-sm text-on-dark/80 transition-colors hover:text-on-dark"
+                          href={cat.href}
+                          className="block py-2 text-sm font-medium text-on-dark/90 transition-colors hover:text-on-dark"
                           onClick={() => setOpen(false)}
                         >
-                          {child.label}
+                          {cat.label}
                         </Link>
+                        {cat.subcategories.length > 0 ? (
+                          <ul className="space-y-0.5 border-l border-white/15 pl-3">
+                            {cat.subcategories.map((sub) => (
+                              <li key={sub.slug}>
+                                <Link
+                                  href={sub.href}
+                                  className="block py-1.5 text-sm text-on-dark/75 transition-colors hover:text-on-dark"
+                                  onClick={() => setOpen(false)}
+                                >
+                                  {sub.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
                       </li>
                     ))}
                   </ul>

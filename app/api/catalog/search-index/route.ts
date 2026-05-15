@@ -10,8 +10,8 @@ import {
 export const revalidate = 60;
 
 export async function GET() {
-  const { categories, products } = await loadCatalog();
-  const catalogPart = buildCatalogSearchResults(categories, products);
+  const { categories, subcategories, products } = await loadCatalog();
+  const catalogPart = buildCatalogSearchResults(categories, subcategories, products);
   const staticPart = getStaticSiteSearchResults();
   const results: SearchResult[] = mergeSearchIndex(catalogPart, staticPart);
   return NextResponse.json({ results });

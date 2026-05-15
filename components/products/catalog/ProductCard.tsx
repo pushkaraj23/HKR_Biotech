@@ -32,7 +32,6 @@ const CARD_VARIANTS = [
     specValue: "text-white",
     purity: "text-[#9ee7ff]",
     formulaPill: "border-white/22 bg-black/30 text-white/92",
-    desc: "text-white/84",
     footerBar: "border-white/18 bg-black/30",
     actionsRow: "border-white/14",
     linkDetails: "text-[#8fd0ff] hover:text-white",
@@ -58,7 +57,6 @@ const CARD_VARIANTS = [
     specValue: "text-white",
     purity: "text-[#b8ffe8]",
     formulaPill: "border-white/22 bg-black/30 text-white/92",
-    desc: "text-white/84",
     footerBar: "border-white/18 bg-black/30",
     actionsRow: "border-white/14",
     linkDetails: "text-[#8cf5d0] hover:text-white",
@@ -84,7 +82,6 @@ const CARD_VARIANTS = [
     specValue: "text-[#0d2137]",
     purity: "text-primary font-semibold",
     formulaPill: "border-[#17324d]/12 bg-white/82 text-[#17324d]",
-    desc: "text-[#234a62]",
     footerBar: "border-[#17324d]/10 bg-white/58",
     actionsRow: "border-[#17324d]/10",
     linkDetails: "text-primary hover:text-primary-deep",
@@ -117,12 +114,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
         aria-hidden
       />
 
-      <div className="relative flex flex-1 flex-col gap-5 p-6">
-        <p className={cn("font-mono text-[11px] font-semibold tracking-[0.18em]", v.catalog)}>{product.catalogNumber}</p>
+      <div className="relative flex flex-1 flex-col gap-4 p-6">
+        <p className={cn("font-mono text-[10px] font-medium tracking-[0.12em] text-white/70", v.catalog)}>
+          {product.catalogNumber}
+        </p>
 
         <div className="flex items-start gap-4">
           <div
-            className={cn("mt-0.5 h-9 w-9 shrink-0 rounded-full ring-2", v.orbRing)}
+            className={cn("mt-1 h-8 w-8 shrink-0 rounded-full ring-2", v.orbRing)}
             style={{
               background: v.orb,
               boxShadow: v.orbShadow,
@@ -130,12 +129,17 @@ export function ProductCard({ product, className }: ProductCardProps) {
             aria-hidden
           />
           <div className="min-w-0">
-            <h3 className={cn("font-display text-base font-semibold leading-snug md:text-[1.05rem]", v.title)}>
+            <h3
+              className={cn(
+                "font-display text-xl font-bold leading-snug tracking-tight md:text-2xl md:leading-snug",
+                v.title,
+              )}
+            >
               <Link href={detailHref} className={cn("transition-colors duration-200", v.titleLink)}>
                 {product.chemicalName}
               </Link>
             </h3>
-            <p className={cn("mt-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em]", v.category)}>
+            <p className={cn("mt-1.5 text-xs font-medium capitalize tracking-wide", v.category)}>
               {product.categorySlug.replace(/-/g, " ")}
             </p>
           </div>
@@ -149,7 +153,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             )}
           >
             <dt className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>CAS</dt>
-            <dd className={cn("mt-0.5 truncate font-mono text-[11px] font-medium", v.specValue)}>{product.casNumber}</dd>
+            <dd className={cn("mt-0.5 truncate font-mono text-xs font-medium", v.specValue)}>{product.casNumber}</dd>
           </div>
           <div
             className={cn(
@@ -158,7 +162,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             )}
           >
             <dt className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>MW</dt>
-            <dd className={cn("mt-0.5 truncate font-mono text-[11px] font-medium", v.specValue)}>
+            <dd className={cn("mt-0.5 truncate font-mono text-xs font-medium", v.specValue)}>
               {product.molecularWeight}
             </dd>
           </div>
@@ -169,12 +173,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
             )}
           >
             <dt className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>Purity</dt>
-            <dd className={cn("mt-0.5 truncate font-mono text-[11px]", v.purity)}>{product.purity}</dd>
+            <dd className={cn("mt-0.5 truncate font-mono text-xs", v.purity)}>{product.purity}</dd>
           </div>
         </dl>
 
         <div className="flex items-center gap-2">
-          <span className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>Formula</span>
+          <span className={cn("text-[10px] font-semibold uppercase tracking-[0.14em]", v.specLabel)}>Formula</span>
           <span
             className={cn(
               "rounded-full px-3 py-0.5 font-mono text-[12px] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
@@ -184,8 +188,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
             {product.molecularFormula}
           </span>
         </div>
-
-        <p className={cn("line-clamp-2 text-sm leading-relaxed", v.desc)}>{product.shortDescription}</p>
       </div>
 
       <div
@@ -209,7 +211,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             v.linkDetails,
           )}
         >
-          View details
+          Details
           <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden>
             →
           </span>

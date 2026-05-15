@@ -35,23 +35,23 @@ export function ProductFilters({
     >
       <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end md:gap-4">
         <div className="min-w-0">
-          <label htmlFor={searchId} className="text-[11px] font-semibold uppercase tracking-wider text-foreground/65">
-            Search catalogue
+          <label htmlFor={searchId} className="text-xs font-semibold text-foreground/55">
+            Search
           </label>
           <input
             id={searchId}
             type="search"
             value={state.search}
             onChange={(e) => setPartial({ search: e.target.value })}
-            placeholder="Name, CAS, formula, catalogue #…"
-            className="mt-1 w-full rounded-lg border border-primary/18 bg-white px-3 py-2 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary/45 focus:ring-2 focus:ring-primary/15"
+            placeholder="Name, CAS, formula…"
+            className="mt-1.5 w-full rounded-lg border border-primary/18 bg-white px-3 py-2.5 text-base text-foreground outline-none transition placeholder:text-muted-foreground/80 focus:border-primary/45 focus:ring-2 focus:ring-primary/15"
             autoComplete="off"
           />
         </div>
         {showCategoryFilter ? (
           <div className="min-w-[12rem]">
-            <label htmlFor="catalog-category" className="text-[11px] font-semibold uppercase tracking-wider text-foreground/65">
-              Category
+            <label htmlFor="catalog-category" className="text-xs font-semibold text-foreground/55">
+              Family
             </label>
             <select
               id="catalog-category"
@@ -61,7 +61,7 @@ export function ProductFilters({
                   category: e.target.value as CatalogFilterState["category"],
                 })
               }
-              className="mt-1 w-full rounded-lg border border-primary/18 bg-white px-3 py-2 text-sm text-foreground outline-none focus:border-primary/45 focus:ring-2 focus:ring-primary/15"
+              className="mt-1.5 w-full rounded-lg border border-primary/18 bg-white px-3 py-2.5 text-base text-foreground outline-none focus:border-primary/45 focus:ring-2 focus:ring-primary/15"
             >
               <option value="all">All categories</option>
               {categoryOptions.map((c) => (

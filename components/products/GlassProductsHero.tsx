@@ -10,7 +10,8 @@ type CtaItem = {
 
 type GlassProductsHeroProps = {
   title: string;
-  description: string;
+  /** Optional; omit for a cleaner hero with only the title and tagline. */
+  description?: string;
   eyebrow?: string;
   tagline?: string;
   ctas?: CtaItem[];
@@ -139,39 +140,46 @@ export function GlassProductsHero({
           aria-hidden
         />
 
-        <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[60%]")}>
+        <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[62%]")}>
           {eyebrow ? (
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-mid">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/55">
               {eyebrow}
             </p>
           ) : null}
 
           <h1
             className={cn(
-              "font-display text-4xl font-bold tracking-tight text-on-dark md:text-5xl lg:text-[3.25rem]",
-              eyebrow ? "mt-3" : "",
+              "font-display text-5xl font-extrabold tracking-tight text-on-dark md:text-6xl lg:text-7xl lg:leading-[1.05]",
+              eyebrow ? "mt-4" : "",
             )}
           >
             <span className="gradient-text-shimmer">{title}</span>
           </h1>
 
           {tagline ? (
-            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-on-dark/88 md:text-lg">
+            <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-on-dark/80 md:text-xl">
               {tagline}
             </p>
           ) : null}
 
-          <p
-            className={cn(
-              "max-w-2xl text-base leading-relaxed text-on-dark/82 md:text-lg",
-              tagline ? "mt-4" : "mt-5",
-            )}
-          >
-            {description}
-          </p>
+          {description ? (
+            <p
+              className={cn(
+                "max-w-2xl text-base leading-relaxed text-on-dark/75 md:text-lg",
+                tagline ? "mt-4" : "mt-6",
+              )}
+            >
+              {description}
+            </p>
+          ) : null}
 
           {ctas && ctas.length > 0 ? (
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div
+              className={cn(
+                "flex flex-col gap-3 sm:flex-row",
+                description ? "mt-8" : tagline ? "mt-8" : "mt-10",
+              )}
+            >
               {ctas.map((cta) =>
                 cta.primary ? (
                   <Link

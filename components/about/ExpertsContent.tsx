@@ -7,14 +7,6 @@ import {
   workWithExpertsSection,
 } from "@/data/aboutExpertsContent";
 
-function IconQuote({ className }: { className?: string }) {
-  return (
-    <span className={cn("font-serif text-[4.5rem] leading-[0.85] text-primary/18 select-none", className)} aria-hidden>
-      &ldquo;
-    </span>
-  );
-}
-
 function IconMail({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
@@ -34,75 +26,57 @@ function IconLinkedIn({ className }: { className?: string }) {
 
 export function ExpertsContent() {
   return (
-    <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8" aria-labelledby="culture-heading">
-      <div className="mx-auto max-w-6xl space-y-14 md:space-y-16">
-        {/* Culture — split editorial + quote */}
+    <section className="relative z-10 mt-24 px-4 sm:px-6 lg:px-8" aria-labelledby="culture-heading">
+      <div className="mx-auto max-w-6xl space-y-10 md:space-y-12">
+        {/* Culture */}
         <RevealOnScroll>
-          <div className="group/culture relative overflow-hidden rounded-[1.75rem] border border-white/45 shadow-[0_28px_60px_-24px_rgba(2,10,99,0.5)]">
+          <article
+            className={cn(
+              "relative overflow-hidden rounded-[2rem] border border-white/40 shadow-[0_24px_56px_-20px_rgba(2,10,99,0.45)]",
+              "bg-[#f0faf6]",
+            )}
+          >
             <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(118deg, #f6fcff 0%, color-mix(in srgb, var(--light) 90%, var(--primary) 10%) 38%, #e4f6ee 72%, color-mix(in srgb, #dff5eb 88%, var(--accent) 12%) 100%)",
-              }}
-            />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.12]"
-              style={{
-                backgroundImage: `radial-gradient(circle at 1px 1px, rgba(8,60,120,0.11) 1px, transparent 0)`,
-                backgroundSize: "32px 32px",
-              }}
+              className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-primary via-accent to-primary-mid"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute -right-32 top-1/2 h-[120%] w-[55%] -translate-y-1/2 rounded-full opacity-30 blur-3xl transition-opacity duration-700 group-hover/culture:opacity-45"
+              className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full opacity-40 blur-3xl"
               style={{
-                background: "radial-gradient(ellipse at center, color-mix(in srgb, var(--accent) 40%, transparent), transparent 68%)",
+                background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%)",
               }}
               aria-hidden
             />
 
-            <div className="relative grid gap-10 p-8 sm:p-10 lg:grid-cols-12 lg:gap-12 lg:p-12">
-              <div className="lg:col-span-5 lg:pt-1">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1459b8]/90">Culture</p>
-                <h2
-                  id="culture-heading"
-                  className="mt-3 font-display text-4xl font-extrabold tracking-tight text-[#051018] md:text-5xl"
-                >
-                  {cultureSection.title}
-                </h2>
-                <p className="mt-4 max-w-md text-base text-[#1f4558] md:text-lg">{cultureSection.paragraph}</p>
-              </div>
+            <div className="relative px-8 py-12 sm:px-12 sm:py-14 md:px-14 md:py-16">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#1459b8]">Culture</p>
+              <h2
+                id="culture-heading"
+                className="mt-3 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-[#051018] sm:text-4xl md:text-5xl md:leading-[1.05]"
+              >
+                {cultureSection.title}
+              </h2>
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-[#1f4558] sm:text-lg md:text-xl md:leading-[1.65]">
+                {cultureSection.paragraph}
+              </p>
 
-              <div className="relative lg:col-span-7">
-                <div className="relative overflow-hidden rounded-2xl border border-[#1459b8]/22 bg-white/88 p-8 shadow-[0_24px_56px_-28px_rgba(5,24,40,0.4)] backdrop-blur-md sm:p-10">
-                  <div
-                    className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-accent to-primary-mid"
-                    aria-hidden
-                  />
-                  <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-accent/10 blur-2xl" aria-hidden />
-                  <div className="relative">
-                    <IconQuote className="block -mb-2" />
-                    <blockquote className="mt-3 text-lg font-semibold leading-snug tracking-tight text-[#0a2233] sm:text-xl">
-                      {cultureSection.philosophy}
-                    </blockquote>
-                    <div className="mt-6 flex items-center gap-3">
-                      <span className="h-px flex-1 max-w-[5rem] bg-gradient-to-r from-primary/45 to-transparent" aria-hidden />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <blockquote className="relative mt-10 overflow-hidden rounded-2xl border border-[#1459b8]/18 bg-white/90 p-8 shadow-[0_16px_40px_-24px_rgba(5,24,40,0.35)] sm:p-10">
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-primary via-accent to-primary-mid"
+                  aria-hidden
+                />
+                <p className="relative pl-4 font-display text-lg font-semibold leading-relaxed tracking-tight text-[#0a2233] sm:text-xl md:text-2xl md:leading-snug">
+                  &ldquo;{cultureSection.philosophy}&rdquo;
+                </p>
+              </blockquote>
             </div>
-          </div>
+          </article>
         </RevealOnScroll>
 
-        {/* Work with experts — dark contrast band */}
+        {/* Talk to science */}
         <RevealOnScroll>
-          <div className="group/cta relative overflow-hidden rounded-[1.75rem] border border-white/12 shadow-[0_28px_64px_-18px_rgba(0,0,0,0.55)]">
-            <div
-              className="absolute inset-0 bg-gradient-to-br from-[#06153a] via-[#041032] to-[#020A63]"
-              aria-hidden
-            />
+          <div className="group/cta relative overflow-hidden rounded-[2rem] border border-white/12 shadow-[0_28px_64px_-18px_rgba(0,0,0,0.55)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#06153a] via-[#041032] to-[#020A63]" aria-hidden />
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.12]"
               style={{
@@ -111,10 +85,7 @@ export function ExpertsContent() {
               }}
               aria-hidden
             />
-            <div
-              className="pointer-events-none absolute -left-20 top-0 h-56 w-56 rounded-full bg-primary/25 blur-3xl"
-              aria-hidden
-            />
+            <div className="pointer-events-none absolute -left-20 top-0 h-56 w-56 rounded-full bg-primary/25 blur-3xl" aria-hidden />
             <div
               className="pointer-events-none absolute -right-16 bottom-0 h-48 w-48 rounded-full bg-accent/20 blur-3xl transition-all duration-700 group-hover/cta:scale-110"
               aria-hidden
@@ -124,18 +95,16 @@ export function ExpertsContent() {
               aria-hidden
             />
 
-            <div className="relative px-6 py-12 text-center sm:px-12 sm:py-14">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-primary-mid">Contact</p>
-              <h3 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-on-dark sm:text-4xl">
+            <div className="relative px-6 py-12 text-center sm:px-12 sm:py-14 md:py-16">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-mid">Contact</p>
+              <h3 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
                 {workWithExpertsSection.title}
               </h3>
-              <p className="mx-auto mt-4 max-w-md text-sm text-on-dark/75 sm:text-base">
-                {workWithExpertsSection.intro}
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <p className="mx-auto mt-4 max-w-md text-base text-on-dark/80 sm:text-lg">{workWithExpertsSection.intro}</p>
+              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <ButtonLink
                   href="/contact"
-                  className="rounded-full px-8 py-3.5 shadow-[0_12px_36px_-8px_rgba(43,196,138,0.45)] sm:px-10"
+                  className="rounded-full px-8 py-3.5 text-sm shadow-[0_12px_36px_-8px_rgba(43,196,138,0.45)] sm:px-10"
                 >
                   <IconMail className="h-[1.1rem] w-[1.1rem] opacity-95" />
                   {workWithExpertsSection.primaryCtaLabel}
@@ -143,7 +112,7 @@ export function ExpertsContent() {
                 <ButtonLink
                   href={ABOUT_EXPERTS_LINKS.workWithLinkedIn}
                   variant="secondary"
-                  className="rounded-full border-white/22 bg-white/[0.12] px-8 py-3.5 font-semibold text-on-dark shadow-none backdrop-blur-sm hover:border-white/35 hover:bg-white/[0.2] hover:text-white sm:px-10"
+                  className="rounded-full border-white/22 bg-white/[0.12] px-8 py-3.5 text-sm font-semibold text-on-dark shadow-none backdrop-blur-sm hover:border-white/35 hover:bg-white/[0.2] hover:text-white sm:px-10"
                   prefetch={false}
                   target="_blank"
                 >

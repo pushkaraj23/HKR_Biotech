@@ -4,6 +4,12 @@ import { useId } from "react";
 import type { ProductCategorySlug } from "@/lib/types/catalog";
 import type { CatalogFilterState } from "@/lib/catalog/filters";
 import { cn } from "@/lib/cn";
+import {
+  catalogFieldClass,
+  catalogFieldLabelClass,
+  CatalogFieldChevron,
+  CatalogFieldGlow,
+} from "./catalog-filter-fields";
 
 type ProductFiltersProps = {
   state: CatalogFilterState;
@@ -21,55 +27,59 @@ export function ProductFilters({
   className,
 }: ProductFiltersProps) {
   const searchId = useId();
+  const categoryId = useId();
 
   function setPartial(partial: Partial<CatalogFilterState>) {
     onChange({ ...state, ...partial });
   }
 
   return (
-    <div
-      className={cn(
-        "rounded-xl border border-white/40 bg-white/90 p-3 shadow-sm backdrop-blur-sm md:p-4",
-        className,
-      )}
-    >
-      <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end md:gap-4">
+    <div className={cn("w-full", className)}>
+      <div className="grid gap-4 sm:grid-cols-[1fr_minmax(12rem,16rem)] sm:items-end sm:gap-5">
         <div className="min-w-0">
-          <label htmlFor={searchId} className="text-xs font-semibold text-foreground/55">
+          <label htmlFor={searchId} className={catalogFieldLabelClass}>
             Search
           </label>
-          <input
-            id={searchId}
-            type="search"
-            value={state.search}
-            onChange={(e) => setPartial({ search: e.target.value })}
-            placeholder="Name, CAS, formula…"
-            className="mt-1.5 w-full rounded-lg border border-primary/18 bg-white px-3 py-2.5 text-base text-foreground outline-none transition placeholder:text-muted-foreground/80 focus:border-primary/45 focus:ring-2 focus:ring-primary/15"
-            autoComplete="off"
-          />
+          <CatalogFieldGlow>
+            <input
+              id={searchId}
+              type="search"
+              value={state.search}
+              onChange={(e) => setPartial({ search: e.target.value })}
+              placeholder="Name, CAS, formula…"
+              className={catalogFieldClass}
+              autoComplete="off"
+            />
+          </CatalogFieldGlow>
         </div>
+
         {showCategoryFilter ? (
-          <div className="min-w-[12rem]">
-            <label htmlFor="catalog-category" className="text-xs font-semibold text-foreground/55">
+          <div className="min-w-0 sm:min-w-[14rem]">
+            <label htmlFor={categoryId} className={catalogFieldLabelClass}>
               Family
             </label>
-            <select
-              id="catalog-category"
-              value={state.category}
-              onChange={(e) =>
-                setPartial({
-                  category: e.target.value as CatalogFilterState["category"],
-                })
-              }
-              className="mt-1.5 w-full rounded-lg border border-primary/18 bg-white px-3 py-2.5 text-base text-foreground outline-none focus:border-primary/45 focus:ring-2 focus:ring-primary/15"
-            >
-              <option value="all">All categories</option>
-              {categoryOptions.map((c) => (
-                <option key={c.slug} value={c.slug}>
-                  {c.name}
+            <CatalogFieldGlow>
+              <select
+                id={categoryId}
+                value={state.category}
+                onChange={(e) =>
+                  setPartial({
+                    category: e.target.value as CatalogFilterState["category"],
+                  })
+                }
+                className={cn(catalogFieldClass, "cursor-pointer appearance-none pr-12")}
+              >
+                <option value="all" className="bg-[#0d2137] text-on-dark">
+                  All categories
                 </option>
-              ))}
-            </select>
+                {categoryOptions.map((c) => (
+                  <option key={c.slug} value={c.slug} className="bg-[#0d2137] text-on-dark">
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+              <CatalogFieldChevron className="pointer-events-none absolute right-4 top-1/2 z-20 h-5 w-5 -translate-y-1/2 text-on-dark/70" />
+            </CatalogFieldGlow>
           </div>
         ) : null}
       </div>

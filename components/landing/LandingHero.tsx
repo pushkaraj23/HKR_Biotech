@@ -117,7 +117,7 @@ export function LandingHero() {
               <ButtonLink
                 href="/contact"
                 variant="secondary"
-                className="rounded-full border-on-dark/40 bg-[rgba(18,25,35,0.5)] px-10 py-3.5 text-base font-semibold text-on-dark backdrop-blur-md hover:border-primary/60 hover:bg-[rgba(18,25,35,0.7)] hover:text-on-dark"
+                className="rounded-full border-on-dark/40 bg-[rgba(18,25,35,0.5)] px-10 py-3.5 text-base font-semibold text-on-dark backdrop-blur-md hover:border-primary/60 hover:bg-[rgba(18,25,35,0.7)] hover:!text-on-dark"
               >
                 Start an Enquiry
               </ButtonLink>

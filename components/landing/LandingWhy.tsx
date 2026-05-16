@@ -1,22 +1,23 @@
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landingSection";
 
 const PILLARS = [
   {
     num: "01",
-    title: "Analytical first",
-    copy: "NMR, HRMS, and HPLC-PDA — documented for reviewers.",
+    title: "NMR-backed quality",
+    copy: "1D and 2D NMR, HRMS, and HPLC — with CoA and technical reports you can cite.",
     accent: "primary" as const,
   },
   {
     num: "02",
-    title: "Traceable batches",
-    copy: "Digital records from route to vial.",
+    title: "Custom synthesis",
+    copy: "Glycans, protected sugars, phosphoramidites, and impurities from milligram to scale-up.",
     accent: "secondary" as const,
   },
   {
     num: "03",
     title: "Scientific partnership",
-    copy: "PhD-level dialogue — not a black-box vendor.",
+    copy: "PhD-led teams for academia, biotech, and pharma — clear timelines and route-level dialogue.",
     accent: "danger" as const,
   },
 ] as const;
@@ -62,8 +63,8 @@ const ACCENT_STYLES = {
 
 export function LandingWhy() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className={LANDING_SECTION}>
+      <div className={LANDING_CONTAINER}>
         <RevealOnScroll>
           <div
             className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-white/45 px-6 py-10 text-center shadow-[0_16px_42px_-14px_rgba(18,50,90,0.3)] backdrop-blur-md sm:px-10 sm:py-12"
@@ -73,14 +74,17 @@ export function LandingWhy() {
             }}
           >
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/70">Why HKR</p>
-            <h2 className="mx-auto mt-3 max-w-3xl font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground md:text-5xl">
-              Rigor you can cite.{" "}
-              <span className="text-primary">Partnership</span> you can feel.
+            <h2 className="mx-auto mt-3 max-w-3xl font-display text-3xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+              Chemistry you can{" "}
+              <span className="text-primary">document</span>. Support you can reach.
             </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80 md:text-xl">
+              We combine custom carbohydrate and nucleoside synthesis with characterization that stands up to regulatory and publication review.
+            </p>
           </div>
         </RevealOnScroll>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
+        <div className="mt-10 grid gap-6 md:mt-12 md:grid-cols-3 md:gap-7">
           {PILLARS.map((p, i) => {
             const a = ACCENT_STYLES[p.accent];
             return (
@@ -90,18 +94,14 @@ export function LandingWhy() {
                   style={{ background: a.cardBg }}
                 >
                   <div className={`h-1.5 w-full bg-gradient-to-r ${a.stripe}`} />
-
                   <div className="flex flex-1 flex-col p-7">
-                    <div className="flex items-center justify-between gap-3">
-                      <span
-                        className={`flex h-14 w-14 items-center justify-center rounded-2xl font-display text-xl font-extrabold tabular-nums ring-2 ${a.ring} ${a.numBg} ${a.numColor}`}
-                      >
-                        {p.num}
-                      </span>
-                    </div>
-
+                    <span
+                      className={`flex h-14 w-14 items-center justify-center rounded-2xl font-display text-xl font-extrabold tabular-nums ring-2 ${a.ring} ${a.numBg} ${a.numColor}`}
+                    >
+                      {p.num}
+                    </span>
                     <h3 className={`mt-6 font-display text-xl font-extrabold tracking-tight md:text-2xl ${a.title}`}>{p.title}</h3>
-                    <p className={`mt-3 text-base leading-relaxed ${a.copy}`}>{p.copy}</p>
+                    <p className={`mt-3 text-base leading-relaxed sm:text-lg ${a.copy}`}>{p.copy}</p>
                   </div>
                 </article>
               </RevealOnScroll>

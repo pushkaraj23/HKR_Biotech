@@ -12,68 +12,72 @@ export const metadata: Metadata = {
 
 export default function LeadershipPage() {
   return (
-    <div className="relative overflow-x-hidden bg-[#020A63] pb-28">
+    <div className="relative overflow-x-hidden bg-[#020A63]">
       <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
 
-      <section className="relative z-10 px-4 pt-6 sm:px-6 lg:px-8">
-        <div
-          className="relative mx-auto max-w-6xl min-h-[280px] overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)] sm:min-h-[300px]"
-          style={{
-            background:
-              "linear-gradient(115deg, #052066 0%, #06124a 42%, color-mix(in srgb, var(--primary) 38%, #030a40) 100%)",
-          }}
-        >
-          <div
-            className="pointer-events-none absolute right-[8%] top-8 h-12 w-12 animate-orbit-slow rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
-              boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute bottom-10 right-[18%] h-7 w-7 animate-orbit-slow rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 40%, transparent) 55%, transparent)",
-              boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35), inset 0 -1px 4px rgba(0,0,0,0.1)",
-              animationDelay: "-4s",
-              animationDuration: "14s",
-            }}
-            aria-hidden
-          />
-          <div className="relative px-8 py-14 sm:px-12 md:py-20 lg:max-w-[60%]">
-            <RevealOnScroll>
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-primary-mid">Leadership</p>
-              <h1 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-on-dark md:text-5xl lg:text-6xl">Our team</h1>
-              <p className="mt-5 max-w-xl text-base text-on-dark/82 md:text-lg">
-                PhD-led synthesis and analytics for carbohydrates and nucleic-acid programs.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">
-                  Partner with HKR
-                </ButtonLink>
-                <ButtonLink
-                  href="#meet-experts-heading"
-                  variant="secondary"
-                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
-                >
-                  Meet the team
-                </ButtonLink>
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-28 pt-6 sm:px-6 lg:px-8">
+        <RevealOnScroll>
+          <header className="py-10 md:py-12">
+            <div
+              className="relative overflow-hidden rounded-[1.75rem] border border-white/25 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.5)]"
+              style={{
+                background:
+                  "linear-gradient(115deg, #052066 0%, #06124a 42%, color-mix(in srgb, var(--primary) 38%, #030a40) 100%)",
+              }}
+            >
+              <div
+                className="pointer-events-none absolute right-[8%] top-6 h-10 w-10 animate-orbit-slow rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--accent) 35%, transparent) 55%, transparent)",
+                  boxShadow: "0 6px 20px -4px rgba(43,196,138,0.35), inset 0 -2px 5px rgba(0,0,0,0.1)",
+                }}
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute bottom-8 right-[18%] h-6 w-6 animate-orbit-slow rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), color-mix(in srgb, var(--primary) 40%, transparent) 55%, transparent)",
+                  boxShadow: "0 4px 14px -3px rgba(26,115,232,0.35), inset 0 -1px 4px rgba(0,0,0,0.1)",
+                  animationDelay: "-4s",
+                  animationDuration: "14s",
+                }}
+                aria-hidden
+              />
+              <div className="relative px-8 py-10 sm:px-10 sm:py-11 md:px-12 md:py-12 lg:max-w-[62%]">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-primary-mid sm:text-[11px]">
+                  Leadership
+                </p>
+                <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-on-dark sm:text-4xl md:text-5xl">
+                  Our team
+                </h1>
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/88 md:text-xl md:leading-relaxed">
+                  PhD-led synthesis and analytics for carbohydrates and nucleic-acid programs.
+                </p>
+                <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+                  <ButtonLink href="/contact" className="rounded-full px-10 py-3.5 text-base shadow-primary-glow">
+                    Partner with HKR
+                  </ButtonLink>
+                  <ButtonLink
+                    href="#meet-experts-heading"
+                    variant="secondary"
+                    className="rounded-full border-white/30 bg-white/10 px-10 py-3.5 text-base text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16 hover:!text-on-dark"
+                  >
+                    Meet the team
+                  </ButtonLink>
+                </div>
               </div>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </section>
+            </div>
+          </header>
+        </RevealOnScroll>
 
-      <LeadershipTeamSection />
+        <div className="space-y-10 md:space-y-12">
+          <LeadershipTeamSection />
 
-      <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
           <RevealOnScroll>
             <div
-              className="relative overflow-hidden rounded-[1.75rem] border border-white/45 px-8 py-12 text-center shadow-[0_16px_42px_-14px_rgba(18,50,90,0.28)] backdrop-blur-md sm:px-12 sm:py-14"
+              className="relative overflow-hidden rounded-[1.75rem] border border-white/45 px-8 py-10 text-center shadow-[0_16px_42px_-14px_rgba(18,50,90,0.28)] backdrop-blur-md sm:px-12 sm:py-12 md:py-14"
               style={{
                 background:
                   "linear-gradient(125deg, color-mix(in srgb, var(--light) 90%, var(--primary) 10%) 0%, color-mix(in srgb, var(--light) 82%, var(--accent) 18%) 55%, #e8f4ef 100%)",
@@ -87,21 +91,23 @@ export default function LeadershipPage() {
                 aria-hidden
               />
               <div className="relative">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1459b8]/90">Contact</p>
-                <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-extrabold text-[#0d2137] md:text-4xl">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#1459b8]/90 sm:text-[11px]">
+                  Contact
+                </p>
+                <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-extrabold text-[#0d2137] sm:text-4xl md:text-4xl">
                   Work with this team
                 </h2>
-                <p className="mx-auto mt-4 max-w-md text-sm text-[#234a62] md:text-base">
+                <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-[#234a62] sm:mt-5 sm:text-xl sm:leading-relaxed">
                   Structure, purity bar, timeline — feasibility and next steps in one reply.
                 </p>
-                <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow">
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row">
+                  <ButtonLink href="/contact" className="rounded-full px-10 py-3.5 text-base shadow-primary-glow">
                     Start a conversation
                   </ButtonLink>
                   <ButtonLink
                     href="/services"
                     variant="secondary"
-                    className="rounded-full border-[#17324d]/18 bg-white/90 px-10 text-[#0d2137] hover:border-primary/35 hover:bg-white"
+                    className="rounded-full border-[#17324d]/18 bg-white/90 px-10 py-3.5 text-base text-[#0d2137] hover:border-primary/35 hover:bg-white"
                   >
                     View services
                   </ButtonLink>
@@ -110,7 +116,7 @@ export default function LeadershipPage() {
             </div>
           </RevealOnScroll>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

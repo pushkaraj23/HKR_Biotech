@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllCategories } from "@/data/catalog";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landingSection";
 
 const FEATURED_STYLES = [
   {
@@ -44,8 +45,8 @@ export async function LandingCategories() {
   const rest = productCategories.slice(2);
 
   return (
-    <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className={LANDING_SECTION}>
+      <div className={LANDING_CONTAINER}>
         <RevealOnScroll>
           <div
             className="relative overflow-hidden rounded-[2rem] border border-white/45 bg-[color-mix(in_srgb,var(--light)_82%,var(--primary)_18%)] px-6 py-8 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.3)] backdrop-blur-md sm:px-10"
@@ -57,10 +58,12 @@ export async function LandingCategories() {
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/70">Catalogue</p>
-                <h2 className="mt-2 max-w-2xl font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                <h2 className="mt-2 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl">
                   Product <span className="text-primary-deep">families</span>
                 </h2>
-                <p className="mt-3 max-w-xl text-base text-foreground/75">Browse categories with specs and documentation.</p>
+                <p className="mt-3 max-w-xl text-lg leading-relaxed text-foreground/80 md:text-xl">
+                  Browse in-stock and custom compounds by family — with specs, CAS, and enquiry-ready documentation.
+                </p>
               </div>
               <Link
                 href="/products"
@@ -79,7 +82,7 @@ export async function LandingCategories() {
         </RevealOnScroll>
 
         {/* Featured categories */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 sm:gap-7">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 md:mt-12 sm:gap-7">
           {featured.map((cat, i) => {
             const style = FEATURED_STYLES[i];
             return (

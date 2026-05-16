@@ -1,15 +1,18 @@
 import Link from "next/link";
+import { servicesPartnerCta } from "@/data/servicesPageContent";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landingSection";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
-const PROMISES = ["Analytical-first replies", "Route-level dialogue"] as const;
+const PROMISES = ["CoA + NMR on release", "NDA/CDA available", "Route-level dialogue"] as const;
 
 export function LandingFinale() {
   return (
-    <section className="relative px-4 pb-28 pt-12 sm:px-6 lg:px-8">
-      <RevealOnScroll>
-        <div
-          className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-white/50 p-10 shadow-[var(--elev-card-stack)] sm:p-16"
+    <section className={LANDING_SECTION} aria-labelledby="landing-partner-heading">
+      <div className={LANDING_CONTAINER}>
+        <RevealOnScroll>
+          <div
+            className="relative overflow-hidden rounded-[2.5rem] border border-white/50 p-10 shadow-[var(--elev-card-stack)] sm:p-14 md:p-16"
           style={{
             background:
               "linear-gradient(135deg, color-mix(in srgb, var(--light) 84%, var(--primary) 16%) 0%, color-mix(in srgb, var(--light) 70%, var(--primary-mid) 30%) 48%, color-mix(in srgb, var(--light) 72%, var(--accent) 28%) 100%)",
@@ -70,30 +73,20 @@ export function LandingFinale() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-50" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
                 </span>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/80">Next</span>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/80">
+                  Get started
+                </span>
               </div>
 
-              <h2 className="mt-4 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]">
-                Partner on Your Next{" "}
-                <span className="relative inline-block">
-                  <span
-                    className="relative z-10 bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(90deg, color-mix(in srgb, var(--primary) 85%, var(--surface) 15%) 0%, var(--primary-mid) 52%, var(--accent) 100%)",
-                    }}
-                  >
-                    Critical Route
-                  </span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-0 -bottom-1 h-2.5 rounded-full bg-primary/35 blur-[10px]"
-                  />
-                </span>
+              <h2
+                id="landing-partner-heading"
+                className="mt-4 font-display text-3xl font-extrabold leading-[1.06] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.25rem]"
+              >
+                {servicesPartnerCta.title}
               </h2>
 
-              <p className="mt-4 max-w-xl text-base text-foreground/80 sm:text-lg">
-                Share structures, quantities, and analytical expectations — we respond with science, not boilerplate.
+              <p className="mt-4 max-w-xl text-lg leading-relaxed text-foreground/80 md:text-xl">
+                {servicesPartnerCta.body}
               </p>
 
               {/* Promise chips */}
@@ -125,11 +118,8 @@ export function LandingFinale() {
 
               {/* CTAs */}
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <ButtonLink
-                  href="/contact"
-                  className="rounded-full px-9 shadow-primary-glow-lg"
-                >
-                  Request RFQ
+                <ButtonLink href={servicesPartnerCta.buttonHref} className="rounded-full px-9 shadow-primary-glow-lg">
+                  {servicesPartnerCta.buttonLabel}
                 </ButtonLink>
                 <Link
                   href="/products"
@@ -194,8 +184,9 @@ export function LandingFinale() {
               />
             </div>
           </div>
-        </div>
-      </RevealOnScroll>
+          </div>
+        </RevealOnScroll>
+      </div>
     </section>
   );
 }

@@ -1,174 +1,79 @@
 import Link from "next/link";
-import { capabilitySections } from "@/data/capabilities";
+import { serviceSections } from "@/data/servicesPageContent";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-
-const bentoBlocks = capabilitySections
-  .flatMap((s) => s.blocks.map((b) => ({ ...b, section: s.heading })))
-  .slice(0, 5);
-
-/** Per-card theming (stripe, border, stats dot, chip bg/color). */
-const CARD_THEMES = [
-  {
-    stripe: "from-primary via-primary-mid to-tint-primary",
-    border: "border-primary/25 hover:border-primary/50",
-    chipBg: "bg-primary/26",
-    chipText: "text-on-dark",
-    dot: "bg-primary",
-    cardBg:
-      "linear-gradient(155deg, color-mix(in srgb, var(--surface) 84%, var(--primary) 16%) 0%, color-mix(in srgb, var(--primary) 76%, var(--surface) 24%) 52%, color-mix(in srgb, var(--primary-mid) 68%, var(--surface) 32%) 100%)",
-    title: "text-on-dark",
-    body: "text-on-dark/78",
-    metricWrap: "border-on-dark/20 bg-on-dark/[0.08]",
-    metricLabel: "text-on-dark/72",
-    metricValue: "text-on-dark",
-  },
-  {
-    stripe: "from-accent via-[#7AE38D] to-tint-accent",
-    border: "border-accent/28 hover:border-accent/52",
-    chipBg: "bg-white/72",
-    chipText: "text-foreground",
-    dot: "bg-accent",
-    cardBg:
-      "linear-gradient(155deg, color-mix(in srgb, var(--accent) 76%, white 24%) 0%, color-mix(in srgb, var(--accent) 64%, var(--primary-mid) 36%) 52%, color-mix(in srgb, var(--accent) 72%, var(--light) 28%) 100%)",
-    title: "text-foreground",
-    body: "text-foreground/82",
-    metricWrap: "border-foreground/15 bg-white/45",
-    metricLabel: "text-foreground/72",
-    metricValue: "text-foreground",
-  },
-  {
-    stripe: "from-light via-[#F3F7FA] to-tint-accent",
-    border: "border-white/55 hover:border-primary/35",
-    chipBg: "bg-primary/12",
-    chipText: "text-foreground",
-    dot: "bg-primary-mid",
-    cardBg:
-      "linear-gradient(155deg, color-mix(in srgb, var(--light) 88%, var(--secondary) 12%) 0%, color-mix(in srgb, var(--light) 74%, var(--accent) 26%) 58%, color-mix(in srgb, var(--light) 82%, var(--primary-mid) 18%) 100%)",
-    title: "text-foreground",
-    body: "text-foreground/80",
-    metricWrap: "border-foreground/15 bg-white/52",
-    metricLabel: "text-foreground/72",
-    metricValue: "text-foreground",
-  },
-  {
-    stripe: "from-primary-deep via-primary to-primary-mid",
-    border: "border-primary-deep/22 hover:border-primary-deep/40",
-    chipBg: "bg-primary-deep/34",
-    chipText: "text-on-dark",
-    dot: "bg-primary-deep",
-    cardBg:
-      "linear-gradient(155deg, color-mix(in srgb, var(--surface) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--primary) 78%, var(--surface) 22%) 52%, color-mix(in srgb, var(--primary-mid) 70%, var(--surface) 30%) 100%)",
-    title: "text-on-dark",
-    body: "text-on-dark/78",
-    metricWrap: "border-on-dark/20 bg-on-dark/[0.08]",
-    metricLabel: "text-on-dark/72",
-    metricValue: "text-on-dark",
-  },
-  {
-    stripe: "from-light via-tint-accent to-accent",
-    border: "border-accent/26 hover:border-accent/50",
-    chipBg: "bg-white/75",
-    chipText: "text-foreground",
-    dot: "bg-accent",
-    cardBg:
-      "linear-gradient(155deg, color-mix(in srgb, var(--light) 82%, var(--accent) 18%) 0%, color-mix(in srgb, var(--light) 68%, var(--accent) 32%) 55%, color-mix(in srgb, var(--accent) 58%, var(--primary-mid) 42%) 100%)",
-    title: "text-foreground",
-    body: "text-foreground/82",
-    metricWrap: "border-foreground/15 bg-white/45",
-    metricLabel: "text-foreground/72",
-    metricValue: "text-foreground",
-  },
-] as const;
+import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landingSection";
+import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
+import { cn } from "@/lib/cn";
 
 export function LandingBento() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className={LANDING_SECTION} aria-labelledby="landing-services-heading">
+      <div className={LANDING_CONTAINER}>
         <RevealOnScroll>
           <div
-            className="relative overflow-hidden rounded-[2rem] border border-white/45 bg-[color-mix(in_srgb,var(--light)_82%,var(--primary)_18%)] px-6 py-8 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.3)] backdrop-blur-md sm:px-10"
+            className="relative overflow-hidden rounded-[2rem] border border-white/45 px-6 py-8 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.3)] backdrop-blur-md sm:px-10"
             style={{
               background:
                 "linear-gradient(135deg, color-mix(in srgb, var(--light) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--light) 74%, var(--primary-mid) 26%) 45%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 100%)",
             }}
           >
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/70">Lab</p>
-            <h2 className="max-w-3xl font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
-              Controlled <span className="text-accent">environments</span>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground/70">Services</p>
+            <h2
+              id="landing-services-heading"
+              className="mt-2 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl"
+            >
+              Precision carbohydrate &{" "}
+              <span className="text-primary-deep">nucleoside chemistry</span>
             </h2>
-            <p className="mt-3 max-w-2xl text-base text-foreground/75">Suites, records, and characterization built for reproducibility.</p>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80 md:text-xl">
+              Custom synthesis, DNA/RNA building blocks, NMR analysis, and glycoconjugation — from R&D to documented release.
+            </p>
           </div>
         </RevealOnScroll>
 
-        <div className="mt-14 grid auto-rows-fr gap-5 md:grid-cols-6">
-          {bentoBlocks.map((block, i) => {
-            const spans = [
-              "md:col-span-3",
-              "md:col-span-3",
-              "md:col-span-2",
-              "md:col-span-2",
-              "md:col-span-2",
-            ][i] ?? "md:col-span-2";
-
-            const theme = CARD_THEMES[i % CARD_THEMES.length];
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 md:mt-12 lg:gap-6">
+          {serviceSections.map((section, i) => {
+            const v = BRAND_SOLID_CARD_CYCLE[i % BRAND_SOLID_CARD_CYCLE.length];
+            const light = v.surface === "#e8f4ef";
             return (
-              <RevealOnScroll
-                key={`${block.title}-${i}`}
-                delay={i * 80}
-                className={spans}
-              >
-                <article
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border shadow-[0_14px_36px_-14px_rgba(18,50,90,0.58)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_-14px_rgba(18,50,90,0.7)] ${theme.border}`}
-                  style={{ background: theme.cardBg }}
+              <RevealOnScroll key={section.number} delay={i * 70}>
+                <Link
+                  href="/services"
+                  className={cn(
+                    "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border p-6 transition-all duration-300 sm:p-7",
+                    "hover:-translate-y-1 hover:shadow-[0_20px_44px_-18px_rgba(2,10,99,0.45)]",
+                    v.shell,
+                  )}
+                  style={{ backgroundColor: v.surface }}
                 >
-                  {/* Accent stripe */}
-                  <div className={`h-1 w-full bg-gradient-to-r ${theme.stripe}`} />
-
-                  <div className="flex flex-1 flex-col p-7">
-                    {/* Top row with section + number */}
-                    <div className="flex items-center">
-                      <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
-                    </div>
-
-                    <h3 className={`mt-3 font-display text-xl font-extrabold tracking-tight ${theme.title} sm:text-2xl`}>
-                      {block.title}
-                    </h3>
-                    <p className={`mt-2 text-sm leading-relaxed ${theme.body}`}>
-                      {block.description}
-                    </p>
-
-                    {block.metrics && block.metrics.length > 0 && (
-                      <dl className="mt-5 flex flex-wrap gap-2">
-                        {block.metrics.map((m) => (
-                          <div key={m.label} className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 ${theme.metricWrap}`}>
-                            <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
-                            <dt className={`font-mono text-[9px] font-semibold uppercase tracking-[0.18em] ${theme.metricLabel}`}>
-                              {m.label}
-                            </dt>
-                            <dd className={`text-xs font-bold ${theme.metricValue}`}>
-                              {m.value}
-                            </dd>
-                          </div>
-                        ))}
-                      </dl>
+                  <span
+                    className={cn(
+                      "inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold tabular-nums",
+                      light ? "bg-primary/14 text-[#1459b8]" : "bg-white/16 text-white ring-1 ring-white/22",
                     )}
-                  </div>
-                </article>
+                  >
+                    {section.number}
+                  </span>
+                  <h3 className={cn("mt-4 font-display text-xl font-extrabold leading-snug sm:text-2xl", v.title)}>
+                    {section.heading}
+                  </h3>
+                  <p className={cn("mt-3 flex-1 text-base leading-relaxed sm:text-lg", v.body)}>{section.intro}</p>
+                  <p className={cn("mt-5 text-sm font-semibold", light ? "text-[#1459b8]" : "text-white/90")}>
+                    View on services page →
+                  </p>
+                </Link>
               </RevealOnScroll>
             );
           })}
         </div>
 
-        <RevealOnScroll className="mt-12 flex justify-center">
+        <RevealOnScroll className="mt-10 flex justify-center md:mt-12">
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 rounded-full border border-white/30 bg-[color-mix(in_srgb,var(--light)_78%,var(--primary)_22%)] px-8 py-3 text-sm font-semibold text-foreground shadow-[0_10px_28px_-14px_rgba(18,50,90,0.5)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/45 hover:shadow-[0_16px_30px_-14px_rgba(18,50,90,0.6)]"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/30 bg-[color-mix(in_srgb,var(--light)_78%,var(--primary)_22%)] px-8 py-3.5 text-base font-semibold text-foreground shadow-[0_10px_28px_-14px_rgba(18,50,90,0.5)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/45"
           >
-            View services
-            <span
-              aria-hidden
-              className="grid h-5 w-5 place-items-center rounded-full bg-primary/18 text-primary transition-transform group-hover:translate-x-0.5"
-            >
+            Explore all services
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
               →
             </span>
           </Link>

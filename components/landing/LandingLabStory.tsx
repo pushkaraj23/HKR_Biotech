@@ -1,28 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  servicesCommitmentColumns,
+  servicesCommitmentHeading,
+} from "@/data/servicesPageContent";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landingSection";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
 const LAB_IMAGE =
   "https://images.unsplash.com/photo-1582560486415-e67bced0ca2d?w=1200&h=900&fit=crop&q=80&auto=format";
 
-const FEATURES = [
-  {
-    title: "ALCOA+",
-    copy: "Documentation that stands up to review.",
-    accent: "primary" as const,
-  },
-  {
-    title: "Segregated suites",
-    copy: "Controlled synthesis lines with inert gas and waste segregation.",
-    accent: "secondary" as const,
-  },
-  {
-    title: "Prep & traceability",
-    copy: "Prep HPLC and crystallization with barcode-linked records.",
-    accent: "danger" as const,
-  },
-] as const;
+const ACCENT_ORDER = ["primary", "secondary", "danger"] as const;
 
 const ACCENT_CLASSES = {
   primary: {
@@ -48,24 +37,24 @@ const ACCENT_CLASSES = {
 const STATS = [
   { value: "99.7%", label: "QC Pass" },
   { value: "< 48h", label: "RFQ Response" },
-  { value: "14+", label: "Route Steps Avg." },
+  { value: "CoA + NMR", label: "Every shipment" },
 ];
 
 export function LandingLabStory() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-        {/* Image side */}
+    <section className={LANDING_SECTION} aria-labelledby="landing-commitment-heading">
+      <div
+        className={`${LANDING_CONTAINER} grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-14`}
+      >
         <RevealOnScroll className="relative order-2 lg:order-1">
-          <div className="relative h-full min-h-[520px] overflow-hidden rounded-[2rem] border border-border-strong/50 shadow-[var(--elev-card-stack)] sm:min-h-[580px] lg:min-h-[700px]">
+          <div className="relative h-full min-h-[480px] overflow-hidden rounded-[2rem] border border-border-strong/50 shadow-[var(--elev-card-stack)] sm:min-h-[540px] lg:min-h-[640px]">
             <Image
               src={LAB_IMAGE}
-              alt="Laboratory research work"
+              alt="Laboratory quality and documentation"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
-            {/* Richer gradient scrim */}
             <div
               className="absolute inset-0"
               style={{
@@ -74,49 +63,22 @@ export function LandingLabStory() {
               }}
             />
 
-            {/* Floating orbs */}
-            <div
-              className="absolute right-6 top-6 h-14 w-14 rounded-full animate-orbit-slow"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), rgba(255,177,98,0.38) 55%, rgba(163,81,57,0.1))",
-                boxShadow:
-                  "0 8px 24px -4px rgba(255,177,98,0.34), inset 0 -2px 6px rgba(27,38,50,0.1)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="absolute left-8 top-1/3 h-8 w-8 rounded-full animate-orbit-slow"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), rgba(74,93,114,0.4) 55%, rgba(44,59,77,0.1))",
-                boxShadow:
-                  "0 4px 14px -3px rgba(44,59,77,0.3), inset 0 -1px 4px rgba(27,38,50,0.1)",
-                animationDelay: "-4s",
-                animationDuration: "14s",
-              }}
-              aria-hidden
-            />
-
             <div className="absolute inset-x-0 bottom-28 p-8 sm:bottom-32 sm:p-10">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">Operations</p>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">
+                Delivery you can plan on
+              </p>
               <p className="mt-3 max-w-md font-display text-2xl font-extrabold leading-snug text-on-dark sm:text-3xl">
-                Traceable release. Redundant characterization.
+                Documented release, worldwide logistics, protected IP.
               </p>
             </div>
 
-            {/* Stats strip overlay */}
-            <div
-              className="absolute inset-x-5 bottom-5 hidden gap-0 rounded-2xl border border-on-dark/25 bg-[rgba(18,25,35,0.62)] shadow-[0_14px_32px_-10px_rgba(18,25,35,0.62)] backdrop-blur-md sm:flex"
-            >
+            <div className="absolute inset-x-5 bottom-5 hidden gap-0 rounded-2xl border border-on-dark/25 bg-[rgba(18,25,35,0.62)] shadow-[0_14px_32px_-10px_rgba(18,25,35,0.62)] backdrop-blur-md sm:flex">
               {STATS.map((s, i) => (
                 <div
                   key={s.label}
                   className={`flex-1 px-5 py-4 ${i !== STATS.length - 1 ? "border-r border-on-dark/20" : ""}`}
                 >
-                  <p className="font-display text-xl font-extrabold tracking-tight text-on-dark">
-                    {s.value}
-                  </p>
+                  <p className="font-display text-xl font-extrabold tracking-tight text-on-dark">{s.value}</p>
                   <p className="mt-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-on-dark/80">
                     {s.label}
                   </p>
@@ -126,31 +88,39 @@ export function LandingLabStory() {
           </div>
         </RevealOnScroll>
 
-        {/* Copy side */}
         <div className="order-1 lg:order-2">
           <RevealOnScroll>
             <div
-              className="relative overflow-hidden rounded-[2rem] border border-white/45 bg-[color-mix(in_srgb,var(--light)_82%,var(--accent)_18%)] px-6 py-8 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.3)] backdrop-blur-md sm:px-10"
+              className="relative overflow-hidden rounded-[2rem] border border-white/45 px-6 py-8 shadow-[0_16px_42px_-14px_rgba(18,50,90,0.3)] backdrop-blur-md sm:px-10"
               style={{
                 background:
                   "linear-gradient(135deg, color-mix(in srgb, var(--light) 86%, var(--primary) 14%) 0%, color-mix(in srgb, var(--light) 74%, var(--primary-mid) 26%) 45%, color-mix(in srgb, var(--light) 78%, var(--accent) 22%) 100%)",
               }}
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/70">Inside HKR</p>
-              <h2 className="max-w-xl font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
-                Built for <span className="text-primary-deep">reproducibility</span>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/70">
+                {servicesCommitmentHeading}
+              </p>
+              <h2
+                id="landing-commitment-heading"
+                className="max-w-xl font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl"
+              >
+                What you can <span className="text-primary-deep">expect</span> on every order
               </h2>
-              <p className="mt-3 max-w-xl text-base text-foreground/78">Project leadership, redundant characterization, digital batch records.</p>
+              <p className="mt-3 max-w-xl text-lg leading-relaxed text-foreground/80 md:text-xl">
+                The same commitments we outline on our services page — shipping, analytics, and confidentiality handled
+                as part of the project, not an afterthought.
+              </p>
             </div>
           </RevealOnScroll>
 
           <RevealOnScroll delay={120}>
             <ul className="mt-8 space-y-4">
-              {FEATURES.map((f) => {
-                const a = ACCENT_CLASSES[f.accent];
+              {servicesCommitmentColumns.map((col, i) => {
+                const accent = ACCENT_ORDER[i % ACCENT_ORDER.length];
+                const a = ACCENT_CLASSES[accent];
                 return (
                   <li
-                    key={f.title}
+                    key={col.title}
                     className={`group flex gap-4 rounded-2xl border p-4 shadow-[0_10px_24px_-12px_rgba(18,50,90,0.45)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(18,50,90,0.55)] ${a.itemBg}`}
                   >
                     <span
@@ -158,14 +128,8 @@ export function LandingLabStory() {
                       className={`mt-1 h-10 w-1 shrink-0 rounded-full bg-gradient-to-b ${a.bar}`}
                     />
                     <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className={`font-display text-base font-extrabold ${a.title}`}>
-                          {f.title}
-                        </h3>
-                      </div>
-                      <p className={`mt-1 text-sm leading-relaxed ${a.copy}`}>
-                        {f.copy}
-                      </p>
+                      <h3 className={`font-display text-base font-extrabold sm:text-lg ${a.title}`}>{col.title}</h3>
+                      <p className={`mt-1 text-sm leading-relaxed sm:text-base ${a.copy}`}>{col.body}</p>
                     </div>
                   </li>
                 );
@@ -175,22 +139,15 @@ export function LandingLabStory() {
 
           <RevealOnScroll delay={180}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <ButtonLink
-                href="/about"
-                variant="secondary"
-                className="rounded-full border-primary/30 bg-white/80 text-foreground hover:border-primary/55 hover:bg-white"
-              >
-                Company story
+              <ButtonLink href="/services" className="rounded-full px-8">
+                View all services
               </ButtonLink>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition hover:text-on-dark"
+                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition hover:text-primary-deep"
               >
-                Talk to us
-                <span
-                  aria-hidden
-                  className="transition-transform group-hover:translate-x-1"
-                >
+                Request a quote
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">
                   →
                 </span>
               </Link>

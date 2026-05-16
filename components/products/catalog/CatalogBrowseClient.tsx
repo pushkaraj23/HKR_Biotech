@@ -1,32 +1,20 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { CatalogProduct } from "@/lib/types/catalog";
-import type { ProductCategory } from "@/lib/types/catalog";
+import type { CatalogProduct, ProductCategory, ProductSubcategory } from "@/lib/types/catalog";
 import { filterCatalogProducts, type CatalogFilterState } from "@/lib/catalog/filters";
+import { subcategoriesWithCounts } from "@/lib/catalog/subcategory-stats";
 import { GlassProductsHero } from "@/components/products/GlassProductsHero";
-import { CategoryCard } from "@/components/cards/CategoryCard";
+import { ProductFamilyCard } from "@/components/products/catalog/ProductFamilyCard";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ProductCard } from "./ProductCard";
 import { ProductFilters } from "./ProductFilters";
-import { cn } from "@/lib/cn";
-
-/** One row of spans sums to 12 — wide / split / pair rhythm for any category count. */
-const CATEGORY_BENTO_XL_SPANS = [
-  "xl:col-span-7",
-  "xl:col-span-5",
-  "xl:col-span-4",
-  "xl:col-span-4",
-  "xl:col-span-4",
-  "xl:col-span-6",
-  "xl:col-span-6",
-] as const;
-
 type CatalogBrowseClientProps = {
   allProducts: CatalogProduct[];
   categories: ProductCategory[];
+  subcategories: ProductSubcategory[];
 };
 
 const initialState: CatalogFilterState = {
@@ -36,7 +24,7 @@ const initialState: CatalogFilterState = {
 };
 const PAGE_SIZE = 16;
 
-export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseClientProps) {
+export function CatalogBrowseClient({ allProducts, categories, subcategories }: CatalogBrowseClientProps) {
   const [state, setState] = useState<CatalogFilterState>(initialState);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -72,11 +60,25 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
 
   const categoryOptions = categories.map((c) => ({ slug: c.slug, name: c.name }));
 
+  const families = useMemo(() => {
+    return categories.map((cat) => {
+      const categoryProducts = allProducts.filter((p) => p.categorySlug === cat.slug);
+      const subs = subcategories
+        .filter((s) => s.categorySlug === cat.slug)
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0) || a.name.localeCompare(b.name));
+      return {
+        category: cat,
+        subcategories: subcategoriesWithCounts(subs, categoryProducts),
+      };
+    });
+  }, [categories, subcategories, allProducts]);
+
   return (
-    <div className="relative overflow-x-hidden bg-[#020A63] px-4 pb-28 pt-6 sm:px-6 lg:px-8">
+    <div className="relative overflow-x-hidden bg-[#020A63] px-4 pb-28 sm:px-6 lg:px-8">
       <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
-      <div className="relative z-10 mx-auto max-w-6xl space-y-10 md:space-y-12">
-        <GlassProductsHero
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <section className="py-10 md:py-12">
+          <GlassProductsHero
           title="Products"
           tagline="Speciality chemicals for discovery and scale-up."
           backgroundImage="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=1400&h=600&fit=crop&q=80&auto=format"
@@ -84,33 +86,45 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
             { href: "#catalog-grid-heading", label: "Browse", primary: true },
             { href: "/contact", label: "Enquire" },
           ]}
-        />
+          />
+        </section>
 
+        <div className="space-y-10 md:space-y-12">
         <RevealOnScroll>
           <section aria-labelledby="category-cards-heading">
             <h2
               id="category-cards-heading"
-              className="font-display text-3xl font-extrabold tracking-tight text-on-dark md:text-4xl"
+              className="text-center font-display text-3xl font-extrabold tracking-tight text-on-dark md:text-4xl"
             >
               Families
             </h2>
-            <div
-              className={cn(
-                "mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5",
-                "xl:grid-cols-12 xl:gap-x-5 xl:gap-y-6",
-              )}
-            >
-              {categories.map((cat, i) => {
-                const cycle = i % CATEGORY_BENTO_XL_SPANS.length;
-                const spanClass = CATEGORY_BENTO_XL_SPANS[cycle];
-                const emphasis = cycle === 0;
+            <p className="mx-auto mt-3 max-w-2xl text-center text-base text-on-dark/75 md:text-lg">
+              Choose a product family, or open a sub-group to narrow the catalogue.
+            </p>
+            <ul className="mt-8 grid w-full list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 md:items-stretch md:gap-6">
+              {families.map((family, i) => {
+                const isLastAlone = families.length % 2 === 1 && i === families.length - 1;
                 return (
-                  <RevealOnScroll key={cat.slug} delay={i * 55} className={cn("min-h-0", spanClass)}>
-                    <CategoryCard category={cat} minimal emphasis={emphasis} />
-                  </RevealOnScroll>
+                  <li
+                    key={family.category.slug}
+                    className={
+                      isLastAlone
+                        ? "h-full md:col-span-2 md:mx-auto md:max-w-[calc(50%-0.75rem)]"
+                        : "h-full min-h-0"
+                    }
+                  >
+                    <RevealOnScroll delay={i * 50} className="h-full w-full">
+                      <ProductFamilyCard
+                        category={family.category}
+                        subcategories={family.subcategories}
+                        styleIndex={i}
+                        className="h-full w-full"
+                      />
+                    </RevealOnScroll>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </section>
         </RevealOnScroll>
 
@@ -222,6 +236,7 @@ export function CatalogBrowseClient({ allProducts, categories }: CatalogBrowseCl
             </div>
           </div>
         </RevealOnScroll>
+        </div>
       </div>
     </div>
   );

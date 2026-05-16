@@ -189,24 +189,22 @@ export function CategoryBrowseClient({
     <div className="space-y-10 px-4 pb-28 pt-10 sm:px-6 lg:px-8 md:space-y-12">
       <div className="mx-auto max-w-6xl space-y-10 md:space-y-12">
         <RevealOnScroll>
-          <CategoryBrowseToolbar
-            allCategories={allCategories}
-            activeCategory={category}
-            search={state.search}
-            onSearchChange={(value) => setState((s) => ({ ...s, search: value }))}
-          />
-        </RevealOnScroll>
-
-        {showHub ? (
-          <RevealOnScroll>
-            <CategorySubcategoryHub
-              categorySlug={category.slug as ProductCategorySlug}
-              categoryName={category.name}
-              subcategories={subcategoriesCounted}
-              directProductCount={directProducts.length}
+          <div className={showHub ? "space-y-6 md:space-y-8" : undefined}>
+            <CategoryBrowseToolbar
+              allCategories={allCategories}
+              activeCategory={category}
+              search={state.search}
+              onSearchChange={(value) => setState((s) => ({ ...s, search: value }))}
             />
-          </RevealOnScroll>
-        ) : null}
+            {showHub ? (
+              <CategorySubcategoryHub
+                categorySlug={category.slug as ProductCategorySlug}
+                subcategories={subcategoriesCounted}
+                directProductCount={directProducts.length}
+              />
+            ) : null}
+          </div>
+        </RevealOnScroll>
 
         {hasSubcategories && !showHub ? (
           <RevealOnScroll>

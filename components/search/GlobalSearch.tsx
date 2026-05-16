@@ -59,11 +59,6 @@ const KIND_ICONS: Record<SearchResultKind, ReactElement> = {
       <path d="M10 6v4l2.5 2.5" />
     </svg>
   ),
-  industry: (
-    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 17V8l4-4v5l4-4v5l4-4v11H3z" />
-    </svg>
-  ),
   page: (
     <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 2h8l4 4v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" />
@@ -77,7 +72,6 @@ const KIND_LABELS: Record<SearchResultKind, string> = {
   category: "Categories",
   subcategory: "Sub-groups",
   service: "Services",
-  industry: "Industries",
   page: "Pages",
 };
 
@@ -86,7 +80,6 @@ const KIND_ORDER: SearchResultKind[] = [
   "subcategory",
   "product",
   "service",
-  "industry",
   "page",
 ];
 

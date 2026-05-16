@@ -1,12 +1,10 @@
 import { services } from "@/data/services";
-import { industries } from "@/data/industries";
 
 export type SearchResultKind =
   | "product"
   | "category"
   | "subcategory"
   | "service"
-  | "industry"
   | "page";
 
 export type SearchResult = {
@@ -22,11 +20,10 @@ const PAGES: SearchResult[] = [
   { kind: "page", title: "Products", subtitle: "Full product catalogue", href: "/products" },
   { kind: "page", title: "Services", subtitle: "Synthesis, analysis, and research", href: "/services" },
   { kind: "page", title: "Leadership", subtitle: "Scientists and leadership at HKR", href: "/leadership" },
-  { kind: "page", title: "Industries", subtitle: "Sectors we serve", href: "/industries" },
   { kind: "page", title: "Contact", subtitle: "Get in touch / enquire", href: "/contact" },
 ];
 
-/** Services, industries, and top-level pages — used with catalogue results from the API. */
+/** Services and top-level pages — used with catalogue results from the API. */
 export function getStaticSiteSearchResults(): SearchResult[] {
   const results: SearchResult[] = [];
 
@@ -36,15 +33,6 @@ export function getStaticSiteSearchResults(): SearchResult[] {
       title: s.title,
       subtitle: s.summary,
       href: `/services/${s.slug}`,
-    });
-  }
-
-  for (const ind of industries) {
-    results.push({
-      kind: "industry",
-      title: ind.title,
-      subtitle: ind.description,
-      href: `/industries#${ind.slug}`,
     });
   }
 
@@ -141,7 +129,6 @@ export function search(query: string, limit = 20, index: SearchResult[]): Search
         category: 10,
         subcategory: 8,
         service: 4,
-        industry: 3,
         page: 2,
       };
       score += kindBonus[result.kind];

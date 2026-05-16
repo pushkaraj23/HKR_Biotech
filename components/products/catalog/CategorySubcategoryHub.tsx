@@ -8,7 +8,6 @@ type SubcategoryWithCount = ProductSubcategory & { productCount: number };
 
 type CategorySubcategoryHubProps = {
   categorySlug: ProductCategorySlug;
-  categoryName: string;
   subcategories: SubcategoryWithCount[];
   directProductCount: number;
   className?: string;
@@ -37,43 +36,15 @@ const CARD_STYLES = [
 
 export function CategorySubcategoryHub({
   categorySlug,
-  categoryName,
   subcategories,
   directProductCount,
   className,
 }: CategorySubcategoryHubProps) {
   const baseHref = `/products/${categorySlug}`;
-  const totalInSubs = subcategories.reduce((n, s) => n + s.productCount, 0);
-  const totalAll = totalInSubs + directProductCount;
 
   return (
-    <section aria-labelledby="subcategory-hub-heading" className={className}>
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-primary-mid">
-            {categoryName}
-          </p>
-          <h2
-            id="subcategory-hub-heading"
-            className="mt-1.5 font-display text-xl font-bold tracking-tight text-on-dark md:text-2xl"
-          >
-            Browse by <span className="text-accent">group</span>
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm text-on-dark/78">
-            Pick a group to focus the list, or browse all entries below.
-          </p>
-        </div>
-        {totalAll > 0 ? (
-          <Link
-            href={`${baseHref}?view=all`}
-            className="shrink-0 text-sm font-semibold text-on-dark underline-offset-2 hover:text-accent hover:underline"
-          >
-            View entire family ({totalAll})
-          </Link>
-        ) : null}
-      </div>
-
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section aria-label="Product groups" className={className}>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {subcategories.map((s, i) => {
           const style = CARD_STYLES[i % CARD_STYLES.length];
           return (

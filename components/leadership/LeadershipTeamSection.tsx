@@ -19,17 +19,17 @@ function ProfileIdentity({
 }) {
   return (
     <div className="min-w-0 flex-1 text-center sm:text-left">
-      <h3 className={cn("font-display text-2xl font-extrabold tracking-tight sm:text-3xl", variant.title)}>
+      <h3 className={cn("font-display text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl", variant.title)}>
         {profile.displayName}
       </h3>
-      <p className={cn("mt-2.5 text-base font-semibold leading-snug sm:text-lg", variant.title)}>{profile.roleAtHkr}</p>
+      <p className={cn("mt-2.5 text-lg font-semibold leading-snug sm:text-xl", variant.title)}>{profile.roleAtHkr}</p>
       {profile.credentials ? (
-        <p className={cn("mt-2 text-sm font-medium leading-relaxed sm:text-[0.9375rem]", variant.secondary)}>
+        <p className={cn("mt-2 text-base font-medium leading-relaxed sm:text-lg", variant.secondary)}>
           {profile.credentials}
         </p>
       ) : null}
       {profile.affiliation ? (
-        <p className={cn("mt-1.5 max-w-2xl text-sm leading-relaxed opacity-90 sm:text-[0.9375rem]", variant.body)}>
+        <p className={cn("mt-1.5 max-w-2xl text-base leading-relaxed opacity-90 sm:text-lg", variant.body)}>
           {profile.affiliation}
         </p>
       ) : null}
@@ -41,7 +41,7 @@ function DetailRows({ rows, variant }: { rows: readonly ExpertDetailRow[]; varia
   const linkClass = cn("font-semibold underline-offset-2 hover:underline", variant.link);
 
   return (
-    <ul className="mt-5 space-y-4 text-sm leading-relaxed">
+    <ul className="mt-5 space-y-4 text-base leading-relaxed sm:text-lg sm:leading-relaxed">
       {rows.map((row, i) => {
         if (row.type === "links") {
           return (
@@ -80,19 +80,18 @@ export function LeadershipTeamSection() {
   let cycle = 0;
 
   return (
-    <section className="relative z-10 mt-20 px-4 sm:px-6 lg:px-8" aria-labelledby="meet-experts-heading">
-      <div className="mx-auto max-w-6xl">
-        <RevealOnScroll>
-          <h2
-            id="meet-experts-heading"
-            className="font-display text-2xl font-extrabold tracking-tight text-on-dark md:text-3xl"
-          >
-            {leadershipScientificHeading}
-          </h2>
-        </RevealOnScroll>
+    <section aria-labelledby="meet-experts-heading">
+      <RevealOnScroll>
+        <h2
+          id="meet-experts-heading"
+          className="font-display text-3xl font-extrabold tracking-tight text-on-dark sm:text-4xl md:text-5xl"
+        >
+          {leadershipScientificHeading}
+        </h2>
+      </RevealOnScroll>
 
-        <div className="mt-10 grid gap-8 lg:gap-10">
-            {expertProfiles.map((profile, i) => {
+      <div className="mt-10 grid gap-8 md:mt-12 lg:gap-10">
+        {expertProfiles.map((profile, i) => {
               const v = BRAND_SOLID_CARD_CYCLE[cycle % BRAND_SOLID_CARD_CYCLE.length];
               cycle += 1;
               const light = v.surface === "#e8f4ef";
@@ -145,8 +144,7 @@ export function LeadershipTeamSection() {
                   </article>
                 </RevealOnScroll>
               );
-            })}
-        </div>
+        })}
       </div>
     </section>
   );

@@ -1,145 +1,134 @@
 /**
- * Client copy for the primary /services marketing page.
+ * Client copy for the primary /services marketing page (verbatim).
  */
 
 export const servicesPageHero = {
-  eyebrow: "Services",
-  title: "Carbohydrate & nucleoside chemistry",
-  intro: "Custom synthesis, building blocks, and NMR-backed characterization — for pharma, biotech, and research.",
+  title: "Our Services: Precision Carbohydrate & Nucleoside Chemistry",
+  intro:
+    "At HKR Biotech Pvt. Ltd, we combine deep synthetic expertise with state-of-the-art analytical characterization. We support global research institutions, academia, and pharmaceutical companies with scalable, high-purity chemical solutions.",
   primaryCtaLabel: "Request a quote",
   primaryCtaHref: "/contact",
-  secondaryCtaLabel: "Service areas",
-  secondaryAnchor: "/services#service-areas",
 } as const;
 
-export type ServiceAreaBullet = {
-  title: string;
+export type ServiceBullet = {
+  label: string;
   body: string;
   subpoints?: readonly string[];
 };
 
-export type ServiceAreaCTA = {
-  label: string;
-  href: string;
-};
-
-export type ServiceArea = {
+export type ServiceSection = {
+  number: number;
   heading: string;
-  tagline: string;
   intro: string;
-  bullets: readonly ServiceAreaBullet[];
-  ctas: {
-    primary: ServiceAreaCTA;
-    secondary: ServiceAreaCTA;
-  };
+  bullets: readonly ServiceBullet[];
 };
 
-export const serviceAreas: readonly ServiceArea[] = [
+export const serviceSections: readonly ServiceSection[] = [
   {
-    heading: "Custom glycan synthesis",
-    tagline: "Synthesis · standards · blocks",
-    intro: "Complex carbohydrates from design to documented release.",
-    ctas: {
-      primary: { label: "Request a quote", href: "/contact" },
-      secondary: { label: "Products", href: "/products" },
-    },
+    number: 1,
+    heading: "Custom Glycan Synthesis",
+    intro:
+      "We tackle the most challenging branched and linear carbohydrate structures. Our team provides:",
     bullets: [
       {
-        title: "Oligosaccharides",
-        body: "mg–g scale: TACAs, vaccine antigens, HMOs, glycolipids.",
+        label: "Oligosaccharide Synthesis",
+        body: "Milligram to gram scale synthesis of complex oligosaccharides related to tumor-associated carbohydrate antigens (TACAS), carbohydrate-based antigens for vaccine development, antigens needed in immunology, glycolipids, and Human milk oligosaccharides (HMOs).",
       },
       {
-        title: "Impurities & standards",
-        body: "In-stock and custom carbohydrate impurities and reference materials.",
+        label: "Carbohydrate-based Impurities and Reference Standards",
+        body: "In-stock impurities and custom synthesis of carbohydrate-based impurities.",
       },
       {
-        title: "Protected sugars",
-        body: "Catalog and custom monosaccharides, disaccharides, and blocks.",
+        label: "Protected Sugar Building Blocks",
+        body: "In-stock protected sugar building blocks and custom synthesis of protected sugars, monosaccharides, and disaccharides as per customer need.",
       },
     ],
   },
   {
-    heading: "DNA & RNA building blocks",
-    tagline: "Phosphoramidites · protections · scale-up",
-    intro: "High-purity intermediates for solid-phase oligo synthesis.",
-    ctas: {
-      primary: { label: "Request a quote", href: "/contact" },
-      secondary: { label: "Catalogue", href: "/products" },
-    },
+    number: 2,
+    heading: "Specialized Sugars for DNA & RNA Synthesis",
+    intro: "We provide the foundational building blocks for next-generation oligonucleotide therapeutics.",
     bullets: [
       {
-        title: "Phosphoramidites & nucleosides",
-        body: "Modified ribose and deoxyribose units, custom as needed.",
+        label: "Phosphoramidites & Nucleosides",
+        body: "Custom synthesis of modified ribose and deoxyribose units.",
       },
       {
-        title: "Protected intermediates",
-        body: "LNA, BNA, 2′-modifications, and related blocks.",
+        label: "Protected Building Blocks",
+        body: "High-purity intermediates for solid-phase synthesis, including LNA, BNA, and 2'-modified derivatives.",
       },
       {
-        title: "Scale-up",
-        body: "R&D through pilot batches with engineering review.",
+        label: "Scale-up Production",
+        body: "Seamless transition from R&D batches to pilot-scale manufacturing.",
       },
     ],
   },
   {
-    heading: "Glycan analysis (NMR)",
-    tagline: "1D/2D · reports",
-    intro: "Structural ID and purity with clear documentation.",
-    ctas: {
-      primary: { label: "Book consulting", href: "/contact" },
-      secondary: { label: "All services", href: "/services" },
-    },
+    number: 3,
+    heading: "Advanced Glycan Analysis (NMR Services)",
+    intro:
+      "We provide comprehensive structural characterization to guarantee the identity and purity of your compounds.",
     bullets: [
       {
-        title: "1D NMR",
-        body: "¹H, ¹³C, ¹⁹F for routine purity and structure checks.",
+        label: "1D NMR Analysis",
+        body: "Standard 1H, 13C, and 19F NMR for routine purity and structural characterisation.",
       },
       {
-        title: "2D NMR",
-        body: "COSY, HSQC, HMBC, NOESY/ROESY for linkage and branching.",
+        label: "2D NMR Structural Elucidation",
+        body: "Detailed mapping of complex branched glycans using advanced NMR techniques like COSY, HSQC, HMBC, and NOESY/ROESY to determine:",
+        subpoints: [
+          "Anomeric configurations (alpha vs. beta linkages).",
+          "Sequence and branching patterns.",
+        ],
       },
       {
-        title: "Reports",
-        body: "Interpreted spectra and technical write-ups.",
+        label: "Full Technical Reports",
+        body: "Every analysis includes a detailed spectrum interpretation.",
       },
     ],
   },
   {
-    heading: "Glycoconjugation",
-    tagline: "Conjugates · labels · clicks",
-    intro: "Functional handles for tracking, vaccines, and delivery.",
-    ctas: {
-      primary: { label: "Discuss a project", href: "/contact" },
-      secondary: { label: "Team", href: "/leadership#meet-experts-heading" },
-    },
+    number: 4,
+    heading: "GLycoconjugatation Synthesis Services",
+    intro:
+      "Enhance your glycans with functional handles for biological tracking, bioorthogonal applications, synthetic conjugate vaccines and drug delivery. We use proven chemistries for glycocujugation and develop new chemistries.",
     bullets: [
       {
-        title: "Conjugates",
-        body: "Glycans linked to proteins, peptides, or lipids.",
+        label: "Glycoconjugates",
+        body: "Linking glycans to proteins, peptides, or lipids (Glycoproteins/Glycolipids).",
       },
       {
-        title: "Labels",
-        body: "Fluorophores, biotin, stable isotopes.",
+        label: "Labeling",
+        body: "Incorporation of fluorophores, biotin, or isotopic labels (Deuterium, 13C, 15N).",
       },
       {
-        title: "Click chemistry",
-        body: "Azide/alkyne sugars for bioorthogonal assembly.",
+        label: "Click Chemistry",
+        body: "Synthesis of azido and alkyne-functionalized sugars for rapid bioorthogonal assembly.",
       },
     ],
   },
 ];
 
-export const servicesCommitmentHeading = "How we ship";
+export const servicesCommitmentHeading = "Our Service Commitment";
 
 export const servicesCommitmentColumns: readonly { title: string; body: string }[] = [
-  { title: "Shipping", body: "Worldwide express with customs paperwork." },
-  { title: "Quality", body: "CoA with NMR/MS traceability." },
-  { title: "Confidentiality", body: "NDA/CDA where programs require it." },
+  {
+    title: "Global Shipping",
+    body: "Express worldwide delivery with full customs documentation.",
+  },
+  {
+    title: "Quality Assured",
+    body: "Every product is shipped with a comprehensive CoA and NMR/MS data.",
+  },
+  {
+    title: "Confidentiality",
+    body: "We operate under strict NDA/CDA protocols to protect customer IP.",
+  },
 ];
 
 export const servicesPartnerCta = {
-  title: "Start a project",
-  body: "Share structures, quantities, and timelines — we respond with a technical path.",
-  buttonLabel: "Contact",
+  title: "Partner With Us Today",
+  body: "Ready to start your project? Our technical team is available for consultations to discuss your specific synthetic routes or analytical needs.",
+  buttonLabel: "Request a Service Quote",
   buttonHref: "/contact",
 } as const;

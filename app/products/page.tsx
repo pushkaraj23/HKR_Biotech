@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllCategories, getAllProducts } from "@/data/catalog";
+import { getAllCategories, getAllProducts, getAllSubcategories } from "@/data/catalog";
 import { CatalogBrowseClient } from "@/components/products/catalog/CatalogBrowseClient";
 
 export const revalidate = 60;
@@ -11,7 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPage() {
-  const [categories, allProducts] = await Promise.all([getAllCategories(), getAllProducts()]);
+  const [categories, allProducts, subcategories] = await Promise.all([
+    getAllCategories(),
+    getAllProducts(),
+    getAllSubcategories(),
+  ]);
 
-  return <CatalogBrowseClient allProducts={allProducts} categories={categories} />;
+  return <CatalogBrowseClient allProducts={allProducts} categories={categories} subcategories={subcategories} />;
 }

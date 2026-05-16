@@ -78,7 +78,7 @@ export function GlassProductsHero({
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.75) 45%, rgba(7,14,27,0.5) 100%)",
+                  "linear-gradient(to bottom, rgba(7,14,27,0.78) 0%, rgba(7,14,27,0.68) 50%, rgba(7,14,27,0.82) 100%)",
               }}
             />
           </>
@@ -140,7 +140,7 @@ export function GlassProductsHero({
           aria-hidden
         />
 
-        <div className={cn("relative px-8 py-12 md:px-14 md:py-16", backgroundImage && "lg:max-w-[62%]")}>
+        <div className="relative mx-auto max-w-4xl px-8 py-8 text-center md:px-12 md:py-11">
           {eyebrow ? (
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/55">
               {eyebrow}
@@ -157,7 +157,7 @@ export function GlassProductsHero({
           </h1>
 
           {tagline ? (
-            <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-on-dark/80 md:text-xl">
+            <p className="mx-auto mt-4 max-w-xl text-lg font-medium leading-snug text-on-dark/80 md:text-xl">
               {tagline}
             </p>
           ) : null}
@@ -165,7 +165,7 @@ export function GlassProductsHero({
           {description ? (
             <p
               className={cn(
-                "max-w-2xl text-base leading-relaxed text-on-dark/75 md:text-lg",
+                "mx-auto max-w-2xl text-base leading-relaxed text-on-dark/75 md:text-lg",
                 tagline ? "mt-4" : "mt-6",
               )}
             >
@@ -176,8 +176,8 @@ export function GlassProductsHero({
           {ctas && ctas.length > 0 ? (
             <div
               className={cn(
-                "flex flex-col gap-3 sm:flex-row",
-                description ? "mt-8" : tagline ? "mt-8" : "mt-10",
+                "flex flex-col items-center justify-center gap-3 sm:flex-row",
+                description ? "mt-6" : tagline ? "mt-6" : "mt-8",
               )}
             >
               {ctas.map((cta) =>

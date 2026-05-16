@@ -104,15 +104,18 @@ export function ExpertsContent() {
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <ButtonLink
                   href="/contact"
-                  className="rounded-full px-8 py-3.5 text-sm shadow-[0_12px_36px_-8px_rgba(43,196,138,0.45)] sm:px-10"
+                  color="green"
+                  surface="dark"
+                  className="rounded-full px-8 py-3.5 text-sm sm:px-10"
                 >
                   <IconMail className="h-[1.1rem] w-[1.1rem] opacity-95" />
                   {workWithExpertsSection.primaryCtaLabel}
                 </ButtonLink>
                 <ButtonLink
                   href={ABOUT_EXPERTS_LINKS.workWithLinkedIn}
-                  variant="secondary"
-                  className="rounded-full border-white/22 bg-white/[0.12] px-8 py-3.5 text-sm font-semibold text-on-dark shadow-none backdrop-blur-sm hover:border-white/35 hover:bg-white/[0.2] hover:text-white sm:px-10"
+                  color="white"
+                  surface="dark"
+                  className="rounded-full px-8 py-3.5 text-sm sm:px-10"
                   prefetch={false}
                   target="_blank"
                 >

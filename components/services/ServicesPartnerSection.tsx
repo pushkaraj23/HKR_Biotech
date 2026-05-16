@@ -60,7 +60,9 @@ export function ServicesPartnerSection({ className }: { className?: string }) {
         <div className="mt-8 flex justify-center sm:mt-9">
           <ButtonLink
             href={servicesPartnerCta.buttonHref}
-            className="rounded-full bg-white px-10 py-3.5 text-base font-semibold text-[#0d2137] shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-lg"
+            color="white"
+            surface="light"
+            className="rounded-full px-10 py-3.5 text-base"
           >
             {servicesPartnerCta.buttonLabel}
           </ButtonLink>

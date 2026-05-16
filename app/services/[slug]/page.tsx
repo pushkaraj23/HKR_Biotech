@@ -90,14 +90,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-on-dark/84">{s.summary}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="#enquiry-form" className="rounded-full px-10 shadow-primary-glow">
+                <ButtonLink href="#enquiry-form" color="blue" surface="dark" className="rounded-full px-10">
                   Enquire about this service
                 </ButtonLink>
-                <ButtonLink
-                  href="/services"
-                  variant="secondary"
-                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
-                >
+                <ButtonLink href="/services" color="green" surface="dark" className="rounded-full px-10">
                   All services
                 </ButtonLink>
               </div>

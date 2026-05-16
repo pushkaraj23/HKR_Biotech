@@ -232,7 +232,7 @@ export function Header() {
           <SearchTrigger onClick={openSearch} />
           <EnquireGateLink
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-cta-gradient px-6 py-2 text-xs font-semibold text-primary-foreground shadow-primary-glow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
+            className="inline-flex items-center justify-center btn-glass btn-glass-green-dark rounded-full px-6 py-2 text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5"
           >
             Contact
           </EnquireGateLink>
@@ -356,7 +356,7 @@ export function Header() {
           <li className="px-2 pt-2">
             <EnquireGateLink
               href="/contact"
-              className="flex w-full items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-xs font-semibold text-primary-foreground shadow-primary-glow hover:brightness-[1.04] hover:shadow-primary-glow-lg"
+              className="flex w-full items-center justify-center btn-glass btn-glass-green-dark rounded-full px-6 py-2.5 text-xs font-semibold"
               onClick={() => setOpen(false)}
             >
               Contact

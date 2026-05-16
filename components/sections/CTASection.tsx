@@ -26,8 +26,10 @@ export function CTASection({ title, description, className }: CTASectionProps) {
             ) : null}
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ButtonLink href="/contact">Request RFQ</ButtonLink>
-            <ButtonLink href="/products" variant="secondary">
+            <ButtonLink href="/contact" color="blue" surface="light">
+              Request RFQ
+            </ButtonLink>
+            <ButtonLink href="/products" color="green" surface="light">
               Explore products
             </ButtonLink>
           </div>

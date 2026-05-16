@@ -20,8 +20,10 @@ export function HomeHero() {
             release.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <ButtonLink href="/products">Explore products</ButtonLink>
-            <EnquireGateButtonLink href="/contact" variant="secondary">
+            <ButtonLink href="/products" color="blue" surface="light">
+              Explore products
+            </ButtonLink>
+            <EnquireGateButtonLink href="/contact" color="green" surface="light">
               Enquire now
             </EnquireGateButtonLink>
           </div>

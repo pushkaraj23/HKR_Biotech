@@ -15,16 +15,6 @@ export function LandingFounderNote() {
                 "linear-gradient(140deg, color-mix(in srgb, var(--light) 82%, var(--primary) 18%) 0%, color-mix(in srgb, var(--light) 72%, var(--primary-mid) 28%) 52%, color-mix(in srgb, var(--light) 76%, var(--accent) 24%) 100%)",
             }}
           >
-            <div
-              className="pointer-events-none absolute -left-14 -top-20 h-52 w-52 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), rgba(125,255,219,0.24) 55%, transparent 75%)",
-                filter: "blur(6px)",
-              }}
-              aria-hidden
-            />
-
             <div className="relative mx-auto w-full max-w-[280px]">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/45 shadow-[0_16px_34px_-14px_rgba(18,50,90,0.55)]">
                 <Image
@@ -56,14 +46,10 @@ export function LandingFounderNote() {
                 <p className="text-sm font-medium text-foreground/75">Director, HKR Biotech Pvt. Ltd.</p>
               </div>
               <div className="mt-7 flex flex-wrap gap-3">
-                <ButtonLink href="/leadership" className="rounded-full px-8">
+                <ButtonLink href="/leadership" color="blue" surface="light" className="rounded-full px-8">
                   Meet the team
                 </ButtonLink>
-                <ButtonLink
-                  href="/contact"
-                  variant="secondary"
-                  className="rounded-full border-primary/30 bg-white/80 px-8 text-foreground hover:border-primary/55 hover:bg-white hover:!text-foreground"
-                >
+                <ButtonLink href="/contact" color="green" surface="light" className="rounded-full px-8">
                   Contact us
                 </ButtonLink>
               </div>

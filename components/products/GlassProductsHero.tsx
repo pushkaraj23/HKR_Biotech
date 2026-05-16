@@ -185,7 +185,7 @@ export function GlassProductsHero({
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className="inline-flex items-center justify-center rounded-full bg-cta-gradient px-8 py-3 text-sm font-semibold text-primary-foreground shadow-primary-glow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
+                    className="inline-flex items-center justify-center btn-glass btn-glass-blue-dark rounded-full px-8 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
                   >
                     {cta.label}
                   </Link>

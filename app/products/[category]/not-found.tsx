@@ -10,7 +10,7 @@ export default function CategoryNotFound() {
         This product family is not in our catalogue. Check the URL or return to the full listing.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <ButtonLink href="/products" variant="primary">
+        <ButtonLink href="/products" color="blue" surface="light">
           All products
         </ButtonLink>
         <Link href="/contact" className="text-sm font-semibold text-teal-800 hover:underline">

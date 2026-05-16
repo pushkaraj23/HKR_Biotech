@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
+import { glassButtonCn } from "@/lib/ui/glassButton";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
 
@@ -113,13 +114,13 @@ export function ProductHero({ product, categoryLabel, className }: ProductHeroPr
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <EnquireGateLink
             href={enquirySectionHref}
-            className="inline-flex items-center justify-center rounded-full bg-cta-gradient px-8 py-3.5 text-sm font-semibold text-primary-foreground shadow-primary-glow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
+            className={glassButtonCn("blue", "dark", "rounded-full px-8 py-3.5 text-sm")}
           >
             Request quotation
           </EnquireGateLink>
           <EnquireGateLink
             href={enquirySectionHref}
-            className="inline-flex items-center justify-center rounded-full border border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-8 py-3.5 text-sm font-semibold text-on-dark backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-on-dark/55 hover:bg-[rgba(18,25,35,0.66)]"
+            className={glassButtonCn("white", "dark", "rounded-full px-8 py-3.5 text-sm")}
           >
             Enquire now
           </EnquireGateLink>

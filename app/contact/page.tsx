@@ -88,13 +88,14 @@ export default async function ContactPage({ searchParams }: PageProps) {
               </h1>
               <p className="mt-5 max-w-2xl text-base text-on-dark/82 md:text-lg">{contactHero.intro}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href={contactHero.primaryAnchor} className="rounded-full px-10 shadow-primary-glow">
+                <ButtonLink href={contactHero.primaryAnchor} color="blue" surface="dark" className="rounded-full px-10">
                   {contactHero.primaryCtaLabel}
                 </ButtonLink>
                 <ButtonLink
                   href={contactHero.secondaryHref}
-                  variant="secondary"
-                  className="rounded-full border-white/30 bg-white/10 px-10 text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
+                  color="green"
+                  surface="dark"
+                  className="rounded-full px-10"
                 >
                   {contactHero.secondaryCtaLabel}
                 </ButtonLink>
@@ -258,8 +259,9 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   </p>
                   <ButtonLink
                     href="/products"
-                    variant="secondary"
-                    className="mt-5 rounded-full border-white/35 bg-white/10 px-6 text-xs text-on-dark backdrop-blur-sm hover:border-white/50 hover:bg-white/16"
+                    color="white"
+                    surface="dark"
+                    className="mt-5 rounded-full px-6 text-xs"
                   >
                     Browse catalogue
                   </ButtonLink>

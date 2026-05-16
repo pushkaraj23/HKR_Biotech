@@ -10,7 +10,7 @@ export default function ProductNotFound() {
         This catalogue entry does not exist or the link may be outdated.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <ButtonLink href="/products" variant="primary">
+        <ButtonLink href="/products" color="blue" surface="light">
           Browse catalogue
         </ButtonLink>
         <Link href="/contact" className="text-sm font-semibold text-teal-800 hover:underline">

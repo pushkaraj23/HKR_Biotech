@@ -71,13 +71,14 @@ export default function AboutPage() {
                     {aboutMarketingHero.intro}
                   </p>
                   <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-                    <ButtonLink href="/contact" className="rounded-full px-10 py-3.5 text-sm shadow-primary-glow">
+                    <ButtonLink href="/contact" color="blue" surface="dark" className="rounded-full px-10 py-3.5 text-sm">
                       Partner with HKR
                     </ButtonLink>
                     <ButtonLink
                       href="#core-expertise-heading"
-                      variant="secondary"
-                      className="rounded-full border-white/30 bg-white/10 px-10 py-3.5 text-sm text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16"
+                      color="green"
+                      surface="dark"
+                      className="rounded-full px-10 py-3.5 text-sm"
                     >
                       Our Core Expertise
                     </ButtonLink>

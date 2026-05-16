@@ -262,7 +262,7 @@ export function ContactForm({
           className={cn(
             "mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full shadow-[0_6px_20px_-4px_rgba(26,115,232,0.35)]",
             brandLight || brandGreen
-              ? "bg-cta-gradient text-primary-foreground"
+              ? "btn-glass btn-glass-blue-light"
               : "bg-primary-deep shadow-[0_6px_20px_-4px_rgba(20,184,166,0.4)]",
           )}
         >
@@ -401,8 +401,8 @@ export function ContactForm({
         className={cn(
           "mt-6 w-full rounded-full py-3.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-65 sm:w-auto sm:px-12",
           dark || brandPanel
-            ? "bg-cta-gradient text-primary-foreground shadow-primary-glow hover:shadow-primary-glow-lg"
-            : "bg-white text-light-foreground shadow-[0_8px_24px_-6px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.4)]",
+            ? "btn-glass btn-glass-blue-dark w-full sm:w-auto"
+            : "btn-glass btn-glass-blue-light w-full sm:w-auto",
         )}
       >
         {status === "submitting"

@@ -29,7 +29,7 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         </Link>
         <EnquireGateLink
           href={href}
-          className="flex flex-[1.2] items-center justify-center rounded-xl bg-cta-gradient px-3 py-3 text-center text-xs font-semibold text-primary-foreground shadow-primary-glow"
+          className="flex flex-[1.2] items-center justify-center rounded-xl btn-glass btn-glass-green-light px-3 py-3 text-center text-xs font-semibold"
         >
           Request quote
         </EnquireGateLink>

@@ -17,8 +17,10 @@ export default function NotFound() {
         team for assistance.
       </p>
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <ButtonLink href="/">Home</ButtonLink>
-        <ButtonLink href="/products" variant="secondary">
+        <ButtonLink href="/" color="blue" surface="dark">
+          Home
+        </ButtonLink>
+        <ButtonLink href="/products" color="green" surface="dark">
           Products
         </ButtonLink>
       </div>

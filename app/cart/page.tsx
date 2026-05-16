@@ -96,7 +96,7 @@ export default function CartPage() {
         {!user ? (
           <section className="rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.5)] p-6">
             <p className="text-sm text-on-dark/84">Sign in to access your cart.</p>
-            <Link href="/login?callbackUrl=%2Fcart" className="mt-4 inline-flex rounded-full bg-cta-gradient px-6 py-2.5 text-sm font-semibold text-primary-foreground">
+            <Link href="/login?callbackUrl=%2Fcart" className="mt-4 inline-flex btn-glass btn-glass-blue-dark rounded-full px-6 py-2.5 text-sm font-semibold">
               Sign in
             </Link>
           </section>

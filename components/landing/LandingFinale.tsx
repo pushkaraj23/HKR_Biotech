@@ -18,52 +18,6 @@ export function LandingFinale() {
               "linear-gradient(135deg, color-mix(in srgb, var(--light) 84%, var(--primary) 16%) 0%, color-mix(in srgb, var(--light) 70%, var(--primary-mid) 30%) 48%, color-mix(in srgb, var(--light) 72%, var(--accent) 28%) 100%)",
           }}
         >
-          {/* Decorative glowing orbs */}
-          <div
-            className="pointer-events-none absolute -left-16 -top-20 h-56 w-56 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,177,98,0.55), rgba(255,177,98,0.12) 55%, transparent 75%)",
-              filter: "blur(4px)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute -bottom-20 -right-16 h-60 w-60 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(163,81,57,0.45), rgba(163,81,57,0.08) 55%, transparent 75%)",
-              filter: "blur(6px)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute right-1/3 top-8 h-24 w-24 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.35), rgba(74,93,114,0.2) 55%, transparent 75%)",
-              filter: "blur(2px)",
-            }}
-            aria-hidden
-          />
-
-          {/* Fine dot grid */}
-          <div
-            className="pointer-events-none absolute inset-0 rounded-[2.5rem] opacity-[0.12]"
-            style={{
-              backgroundImage:
-                "radial-gradient(rgba(255,255,255,0.55) 1px, transparent 1px)",
-              backgroundSize: "22px 22px",
-            }}
-            aria-hidden
-          />
-
-          {/* Faint hairline ring */}
-          <div
-            className="pointer-events-none absolute inset-4 rounded-[2.2rem] border border-on-dark/10"
-            aria-hidden
-          />
-
           <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             {/* Copy */}
             <div>
@@ -118,7 +72,7 @@ export function LandingFinale() {
 
               {/* CTAs */}
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <ButtonLink href={servicesPartnerCta.buttonHref} className="rounded-full px-9 shadow-primary-glow-lg">
+                <ButtonLink href={servicesPartnerCta.buttonHref} color="blue" surface="light" className="rounded-full px-9">
                   {servicesPartnerCta.buttonLabel}
                 </ButtonLink>
                 <Link
@@ -171,17 +125,6 @@ export function LandingFinale() {
                 </dl>
               </div>
 
-              {/* Floating glow */}
-              <div
-                className="pointer-events-none absolute -right-4 -top-4 h-12 w-12 rounded-full animate-orbit-slow"
-                style={{
-                  background:
-                    "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.55), rgba(255,177,98,0.38) 55%, rgba(163,81,57,0.1))",
-                  boxShadow:
-                    "0 6px 20px -4px rgba(255,177,98,0.35), inset 0 -2px 5px rgba(27,38,50,0.1)",
-                }}
-                aria-hidden
-              />
             </div>
           </div>
           </div>

@@ -115,7 +115,7 @@ export default function WishlistPage() {
             <p className="text-sm text-on-dark/84">
               Sign in to view your wishlist.
             </p>
-            <Link href="/login?callbackUrl=%2Fwishlist" className="mt-4 inline-flex rounded-full bg-cta-gradient px-6 py-2.5 text-sm font-semibold text-primary-foreground">
+            <Link href="/login?callbackUrl=%2Fwishlist" className="mt-4 inline-flex btn-glass btn-glass-blue-dark rounded-full px-6 py-2.5 text-sm font-semibold">
               Sign in
             </Link>
           </section>
@@ -174,7 +174,7 @@ export default function WishlistPage() {
                     >
                       {busySlug === item.slug ? "Moving..." : "Move to cart"}
                     </button>
-                    <Link href={`/contact?product=${encodeURIComponent(item.catalogNumber)}`} className="rounded-full bg-cta-gradient px-4 py-1.5 text-xs font-semibold text-primary-foreground">
+                    <Link href={`/contact?product=${encodeURIComponent(item.catalogNumber)}`} className="btn-glass btn-glass-green-light rounded-full px-4 py-1.5 text-xs font-semibold">
                       Enquire
                     </Link>
                   </div>

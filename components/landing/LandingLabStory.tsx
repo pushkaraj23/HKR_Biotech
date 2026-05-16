@@ -139,7 +139,7 @@ export function LandingLabStory() {
 
           <RevealOnScroll delay={180}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <ButtonLink href="/services" className="rounded-full px-8">
+              <ButtonLink href="/services" color="green" surface="light" className="rounded-full px-8">
                 View all services
               </ButtonLink>
               <Link

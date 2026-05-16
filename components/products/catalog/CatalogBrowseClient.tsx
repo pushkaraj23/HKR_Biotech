@@ -162,7 +162,7 @@ export function CatalogBrowseClient({ allProducts, categories, subcategories }: 
                 <button
                   type="button"
                   onClick={() => setState(initialState)}
-                  className="mt-6 rounded-full border border-primary/35 bg-cta-gradient px-5 py-2 text-sm font-semibold text-primary-foreground shadow-primary-glow transition hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
+                  className="mt-6 rounded-full btn-glass btn-glass-white-light px-5 py-2 text-sm font-semibold transition hover:-translate-y-0.5"
                 >
                   Reset filters
                 </button>
@@ -222,14 +222,10 @@ export function CatalogBrowseClient({ allProducts, categories, subcategories }: 
                 Custom synthesis <span className="text-primary-deep">&amp; services</span>
               </h2>
               <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <ButtonLink href="/contact" className="rounded-full px-10 shadow-primary-glow-lg">
+                <ButtonLink href="/contact" color="blue" surface="light" className="rounded-full px-10">
                   Contact
                 </ButtonLink>
-                <ButtonLink
-                  href="/services"
-                  variant="secondary"
-                  className="rounded-full border-primary/30 bg-white/85 px-10 text-foreground shadow-sm backdrop-blur-md hover:border-primary/50 hover:bg-white"
-                >
+                <ButtonLink href="/services" color="green" surface="light" className="rounded-full px-10">
                   Services
                 </ButtonLink>
               </div>

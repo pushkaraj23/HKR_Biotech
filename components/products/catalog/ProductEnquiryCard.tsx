@@ -42,7 +42,7 @@ export function ProductEnquiryCard({ product, categoryLabel, className }: Produc
       </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <EnquireGateButtonLink href={href} variant="primary" className="justify-center px-6 py-3 text-sm">
+        <EnquireGateButtonLink href={href} color="green" surface="light" className="justify-center px-6 py-3 text-sm">
           Open contact form
         </EnquireGateButtonLink>
         <Link

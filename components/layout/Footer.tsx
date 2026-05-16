@@ -56,7 +56,7 @@ export async function Footer() {
             </p>
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center rounded-full bg-cta-gradient px-5 py-2 text-xs font-semibold text-primary-foreground shadow-primary-glow transition hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
+              className="mt-6 inline-flex items-center btn-glass btn-glass-green-dark rounded-full px-5 py-2 text-xs font-semibold transition hover:-translate-y-0.5"
             >
               Request an RFQ
             </Link>

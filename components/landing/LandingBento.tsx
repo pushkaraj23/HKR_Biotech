@@ -4,6 +4,7 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landingSection";
 import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
 import { cn } from "@/lib/cn";
+import { glassButtonCn } from "@/lib/ui/glassButton";
 
 export function LandingBento() {
   return (
@@ -70,7 +71,7 @@ export function LandingBento() {
         <RevealOnScroll className="mt-10 flex justify-center md:mt-12">
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 rounded-full border border-white/30 bg-[color-mix(in_srgb,var(--light)_78%,var(--primary)_22%)] px-8 py-3.5 text-base font-semibold text-foreground shadow-[0_10px_28px_-14px_rgba(18,50,90,0.5)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/45"
+            className={glassButtonCn("green", "dark", "group rounded-full px-8 py-3.5 text-base")}
           >
             Explore all services
             <span aria-hidden className="transition-transform group-hover:translate-x-0.5">

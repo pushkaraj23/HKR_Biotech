@@ -29,7 +29,7 @@ export default function ServicesPage() {
               {servicesPageHero.intro}
             </p>
             <div className="mt-8 md:mt-10">
-              <ButtonLink href={servicesPageHero.primaryCtaHref} className="rounded-full px-10 py-3.5 text-base shadow-primary-glow">
+              <ButtonLink href={servicesPageHero.primaryCtaHref} color="green" surface="dark" className="rounded-full px-10 py-3.5 text-base">
                 {servicesPageHero.primaryCtaLabel}
               </ButtonLink>
             </div>

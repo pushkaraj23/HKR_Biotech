@@ -101,7 +101,7 @@ export function WelcomeAuthModal() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-stretch">
           <Link
             href={`/login?callbackUrl=${encodeURIComponent("/")}`}
-            className="inline-flex flex-1 items-center justify-center rounded-full bg-cta-gradient px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-primary-glow transition-transform hover:-translate-y-0.5"
+            className="inline-flex flex-1 items-center justify-center btn-glass btn-glass-blue-light rounded-full px-6 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5"
           >
             Sign in
           </Link>

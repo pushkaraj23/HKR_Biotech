@@ -94,7 +94,7 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
       >
         <UserAvatar user={user} size="lg" />
         {totalSavedCount > 0 ? (
-          <span className="absolute -right-1 -top-1.5 inline-flex min-w-5 items-center justify-center rounded-full border border-primary/45 bg-cta-gradient p-1 text-[10px] font-bold leading-none text-primary-foreground shadow-primary-glow">
+          <span className="absolute -right-1 -top-1.5 inline-flex min-w-5 items-center justify-center rounded-full btn-glass btn-glass-green-dark border border-white/35 p-1 text-[10px] font-bold leading-none text-white">
             {totalSavedCount}
           </span>
         ) : null}

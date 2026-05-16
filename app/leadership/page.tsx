@@ -56,13 +56,14 @@ export default function LeadershipPage() {
                   PhD-led synthesis and analytics for carbohydrates and nucleic-acid programs.
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
-                  <ButtonLink href="/contact" className="rounded-full px-10 py-3.5 text-base shadow-primary-glow">
+                  <ButtonLink href="/contact" color="blue" surface="dark" className="rounded-full px-10 py-3.5 text-base">
                     Partner with HKR
                   </ButtonLink>
                   <ButtonLink
                     href="#meet-experts-heading"
-                    variant="secondary"
-                    className="rounded-full border-white/30 bg-white/10 px-10 py-3.5 text-base text-on-dark backdrop-blur-sm hover:border-white/45 hover:bg-white/16 hover:!text-on-dark"
+                    color="green"
+                    surface="dark"
+                    className="rounded-full px-10 py-3.5 text-base"
                   >
                     Meet the team
                   </ButtonLink>
@@ -101,14 +102,10 @@ export default function LeadershipPage() {
                   Structure, purity bar, timeline — feasibility and next steps in one reply.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row">
-                  <ButtonLink href="/contact" className="rounded-full px-10 py-3.5 text-base shadow-primary-glow">
+                  <ButtonLink href="/contact" color="blue" surface="light" className="rounded-full px-10 py-3.5 text-base">
                     Start a conversation
                   </ButtonLink>
-                  <ButtonLink
-                    href="/services"
-                    variant="secondary"
-                    className="rounded-full border-[#17324d]/18 bg-white/90 px-10 py-3.5 text-base text-[#0d2137] hover:border-primary/35 hover:bg-white"
-                  >
+                  <ButtonLink href="/services" color="green" surface="light" className="rounded-full px-10 py-3.5 text-base">
                     View services
                   </ButtonLink>
                 </div>

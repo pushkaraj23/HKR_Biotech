@@ -163,8 +163,8 @@ export function ServiceSectionCard({ section, variant, styleIndex }: ServiceSect
             className={cn(
               "inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-semibold transition-all duration-200 sm:text-base",
               light
-                ? "bg-cta-gradient text-primary-foreground shadow-primary-glow hover:-translate-y-0.5 hover:shadow-primary-glow-lg"
-                : "bg-white text-[#0d2137] shadow-md hover:-translate-y-0.5 hover:bg-white/95",
+                ? "btn-glass btn-glass-green-light hover:-translate-y-0.5"
+                : "btn-glass btn-glass-green-dark hover:-translate-y-0.5",
             )}
           >
             Request a quote

@@ -42,7 +42,7 @@ export function HomeAboutPreview() {
                 </li>
               </ul>
               <div className="mt-8">
-                <ButtonLink href="/about" variant="secondary">
+                <ButtonLink href="/about" color="white" surface="light">
                   About HKR
                 </ButtonLink>
               </div>

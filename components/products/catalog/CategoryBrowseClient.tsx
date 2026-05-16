@@ -324,8 +324,9 @@ export function CategoryBrowseClient({
               </p>
               <ButtonLink
                 href={`/contact?product=${encodeURIComponent(category.name + " — custom")}`}
-                variant="primary"
-                className="mt-6 rounded-full px-8 shadow-[0_14px_40px_-10px_rgba(15,118,110,0.4)]"
+                color="green"
+                surface="light"
+                className="mt-6 rounded-full px-8"
               >
                 Enquire about {category.name}
               </ButtonLink>

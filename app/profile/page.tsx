@@ -85,7 +85,7 @@ export default function ProfilePage() {
           ) : null}
           {!user ? (
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/login" className="rounded-full bg-cta-gradient px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-primary-glow">
+              <Link href="/login" className="btn-glass btn-glass-blue-light rounded-full px-6 py-2.5 text-sm font-semibold">
                 Sign in
               </Link>
               <Link href="/signup" className="rounded-full border border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-6 py-2.5 text-sm font-semibold text-on-dark">

@@ -1,4 +1,4 @@
-import { HeroFloatingGraphics } from "@/components/landing/HeroFloatingGraphics";
+import { LandingHeroBackground } from "@/components/landing/LandingHeroBackground";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
@@ -14,54 +14,7 @@ const TRUST_CHIPS = ["ALCOA+ records", "QC you can cite"] as const;
 export function LandingHero() {
   return (
     <section className="relative isolate flex min-h-svh flex-col overflow-hidden">
-      <HeroFloatingGraphics />
-
-      {/* Floating decorative glass orbs */}
-      <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden" aria-hidden>
-        <div
-          className="absolute left-[7%] top-[20%] h-20 w-20 rounded-full animate-orbit-slow sm:h-24 sm:w-24"
-          style={{
-            background:
-              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.85), rgba(255,177,98,0.48) 50%, rgba(163,81,57,0.18))",
-            boxShadow:
-              "0 12px 40px -6px rgba(255,177,98,0.45), inset 0 -3px 10px rgba(27,38,50,0.1), inset 0 3px 6px rgba(255,255,255,0.6)",
-          }}
-        />
-        <div
-          className="absolute right-[9%] top-[26%] h-14 w-14 rounded-full animate-orbit-slow"
-          style={{
-            background:
-              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.85), rgba(155,168,183,0.55) 50%, rgba(44,59,77,0.22))",
-            boxShadow:
-              "0 10px 28px -5px rgba(44,59,77,0.4), inset 0 -2px 6px rgba(27,38,50,0.1), inset 0 2px 4px rgba(255,255,255,0.55)",
-            animationDelay: "-3s",
-            animationDuration: "12s",
-          }}
-        />
-        <div
-          className="absolute bottom-[22%] left-[12%] h-9 w-9 rounded-full animate-orbit-slow sm:h-11 sm:w-11"
-          style={{
-            background:
-              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.8), rgba(163,81,57,0.42) 55%, rgba(163,81,57,0.14))",
-            boxShadow:
-              "0 8px 22px -3px rgba(163,81,57,0.35), inset 0 -2px 5px rgba(27,38,50,0.08), inset 0 1px 3px rgba(255,255,255,0.55)",
-            animationDelay: "-7s",
-            animationDuration: "14s",
-          }}
-        />
-        <div
-          className="absolute bottom-[28%] right-[10%] h-7 w-7 rounded-full animate-orbit-slow"
-          style={{
-            background:
-              "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.8), rgba(255,177,98,0.32) 50%, rgba(44,59,77,0.12))",
-            boxShadow:
-              "0 6px 18px -3px rgba(255,177,98,0.28), inset 0 -1px 4px rgba(27,38,50,0.08), inset 0 1px 2px rgba(255,255,255,0.55)",
-            animationDelay: "-5s",
-            animationDuration: "16s",
-          }}
-        />
-      </div>
-
+      <LandingHeroBackground />
       {/* Main content */}
       <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-center px-4 pb-14 pt-[calc(var(--site-header-offset,6rem)+1.5rem)] sm:px-6 sm:pb-20 lg:px-8">
         <div className="mx-auto w-full max-w-5xl">
@@ -107,17 +60,15 @@ export function LandingHero() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-              <ButtonLink
-                href="/products"
-                className="rounded-full px-10 py-3.5 text-base shadow-primary-glow-lg hover:-translate-y-0.5"
-              >
+              <ButtonLink href="/products" color="blue" surface="dark" className="rounded-full px-10 py-3.5 text-base">
                 Explore Catalogue
                 <span aria-hidden className="text-base">→</span>
               </ButtonLink>
               <ButtonLink
                 href="/contact"
-                variant="secondary"
-                className="rounded-full border-on-dark/40 bg-[rgba(18,25,35,0.5)] px-10 py-3.5 text-base font-semibold text-on-dark backdrop-blur-md hover:border-primary/60 hover:bg-[rgba(18,25,35,0.7)] hover:!text-on-dark"
+                color="green"
+                surface="dark"
+                className="rounded-full px-10 py-3.5 text-base"
               >
                 Start an Enquiry
               </ButtonLink>

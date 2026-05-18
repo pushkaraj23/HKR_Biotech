@@ -72,29 +72,14 @@ export async function getProductByCatalogRef(ref: string): Promise<CatalogProduc
   );
 }
 
-export async function getRelatedProducts(product: CatalogProduct): Promise<CatalogProduct[]> {
-  const { products } = await loadCatalog();
-  const related: CatalogProduct[] = [];
-  for (const slug of product.relatedSlugs) {
-    const p = products.find((x) => x.slug === slug);
-    if (p) related.push(p);
-  }
-  return related;
-}
-
 export async function getRelatedProductsOrFallback(
   product: CatalogProduct,
   limit = 3,
 ): Promise<CatalogProduct[]> {
-  const direct = await getRelatedProducts(product);
-  if (direct.length >= Math.min(1, limit)) {
-    return direct.slice(0, limit);
-  }
   const { products } = await loadCatalog();
-  const sameCat = products
+  return products
     .filter((p) => p.categorySlug === product.categorySlug && p.slug !== product.slug)
     .slice(0, limit);
-  return [...direct, ...sameCat.filter((p) => !direct.some((d) => d.slug === p.slug))].slice(0, limit);
 }
 
 export async function getCategoriesExcept(slug: ProductCategorySlug): Promise<ProductCategory[]> {

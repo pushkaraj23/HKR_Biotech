@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
+import { UserProductActions } from "@/components/commerce/UserProductActions";
 import { StructurePlaceholder } from "@/components/products/catalog/StructurePlaceholder";
 import { glassButtonCn } from "@/lib/ui/glassButton";
 import type { CatalogProduct } from "@/lib/types/catalog";
@@ -100,7 +101,20 @@ export function ProductDetailHeader({
             </dl>
           ) : null}
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <UserProductActions
+              showCart={false}
+              product={{
+                slug: product.slug,
+                catalogNumber: product.catalogNumber,
+                categorySlug: product.categorySlug,
+                chemicalName: product.chemicalName,
+                shortDescription: product.shortDescription,
+                purity: product.purity,
+                availability: product.availability,
+                imageUrl: product.imageUrl,
+              }}
+            />
             <EnquireGateLink
               href={enquiryHref}
               className={glassButtonCn("blue", "dark", "rounded-full px-9 py-3.5 text-base")}

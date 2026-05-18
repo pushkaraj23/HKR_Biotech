@@ -68,7 +68,6 @@ export type CatalogProduct = {
   /** Priced SKUs with availability — preferred for PDP ordering table */
   variants?: ProductVariant[];
   availability: ProductAvailability;
-  datasheetUrl?: string;
   coaAvailable: boolean;
   sdsAvailable: boolean;
   /** Direct link to SDS PDF */
@@ -85,8 +84,6 @@ export type CatalogProduct = {
   /** GHS / safety statement for full-width safety card */
   safetyStatement?: string;
   showSingleLotAvailability?: boolean;
-  /** Other product slugs (global) for related section */
-  relatedSlugs: string[];
 };
 
 /** Breadcrumb item for product pages */

@@ -15,7 +15,7 @@ type ProductTechnicalCardsProps = {
 const SPEC_CARD_INDEX = { properties: 0, regulatory: 1, storage: 2, safety: 1 } as const;
 
 export function ProductTechnicalCards({ product, enquiryHref }: ProductTechnicalCardsProps) {
-  const sdsHref = product.sdsUrl || (product.sdsAvailable ? product.datasheetUrl : undefined);
+  const sdsHref = product.sdsUrl;
 
   return (
     <div className="space-y-5">

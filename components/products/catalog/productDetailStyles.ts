@@ -4,6 +4,15 @@ import { cn } from "@/lib/cn";
 /** Shared layout and typography for product detail subpages. */
 export const PRODUCT_DETAIL_CONTAINER = "mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8";
 
+/** Catalog-style navy pages: horizontal padding on shell only (avoids double inset). */
+export const COMMERCE_PAGE_SHELL =
+  "relative min-h-screen bg-[#020A63] px-4 pb-28 sm:px-6 lg:px-8";
+export const COMMERCE_PAGE_INNER = "relative z-10 mx-auto max-w-6xl";
+
+/** Sticky offset below fixed site header */
+export const COMMERCE_STICKY_TOP =
+  "lg:top-[calc(var(--site-header-offset,6rem)+1rem)]";
+
 export const PRODUCT_DETAIL_STACK = "space-y-10 md:space-y-12";
 
 export const PRODUCT_DETAIL_SOLID_PANEL =

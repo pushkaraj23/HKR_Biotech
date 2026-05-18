@@ -118,7 +118,6 @@ function docToProduct(id: string, data: DocumentData): CatalogProduct | null {
     packSizes: asStringArray(data.packSizes),
     variants: asVariants(data.variants),
     availability: coerceAvailability(data.availability),
-    datasheetUrl: data.datasheetUrl ? asString(data.datasheetUrl) : undefined,
     coaAvailable: Boolean(data.coaAvailable),
     sdsAvailable: Boolean(data.sdsAvailable),
     sdsUrl: data.sdsUrl ? asString(data.sdsUrl) : undefined,
@@ -130,7 +129,6 @@ function docToProduct(id: string, data: DocumentData): CatalogProduct | null {
     tariffCode: data.tariffCode ? asString(data.tariffCode) : undefined,
     safetyStatement: data.safetyStatement ? asString(data.safetyStatement) : undefined,
     showSingleLotAvailability: Boolean(data.showSingleLotAvailability),
-    relatedSlugs: asStringArray(data.relatedSlugs),
   };
 }
 

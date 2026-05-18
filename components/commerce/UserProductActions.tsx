@@ -23,12 +23,15 @@ export function UserProductActions({
   className,
   compact,
   surface = "dark",
+  showCart = true,
 }: {
   product: ProductLite;
   className?: string;
   compact?: boolean;
   /** Wishlist row: match product card glass (catalogue) or default dark glass (PDP). */
   surface?: "dark" | "light";
+  /** Hide cart control (e.g. product detail page uses the ordering panel for cart). */
+  showCart?: boolean;
 }) {
   const { user } = useAuth();
   const router = useRouter();
@@ -78,6 +81,11 @@ export function UserProductActions({
   }, [product.slug, user]);
 
   useEffect(() => {
+    if (!showCart) {
+      setInCart(false);
+      setCartLoaded(true);
+      return;
+    }
     let cancelled = false;
     void (async () => {
       if (!user) {
@@ -110,7 +118,7 @@ export function UserProductActions({
     return () => {
       cancelled = true;
     };
-  }, [product.slug, user]);
+  }, [product.slug, showCart, user]);
 
   async function withAuth(action: () => Promise<void>) {
     if (!user) {
@@ -236,20 +244,22 @@ export function UserProductActions({
             <HeartIcon filled={wishlisted} />
           )}
         </button>
-        <button
-          type="button"
-          onClick={() => void addCart()}
-          disabled={savingCart || inCart}
-          className={cn(
-            "btn-glass btn-glass-green-light rounded-full px-4 py-2 text-xs font-semibold transition hover:-translate-y-0.5 disabled:opacity-60",
-            inCart && "cursor-default opacity-75",
-            compact && "px-3 py-1.5 text-[11px]",
-          )}
-        >
-          {savingCart ? "Adding..." : inCart ? "Added" : "Add to cart"}
-        </button>
+        {showCart ? (
+          <button
+            type="button"
+            onClick={() => void addCart()}
+            disabled={savingCart || inCart}
+            className={cn(
+              "btn-glass btn-glass-green-light rounded-full px-4 py-2 text-xs font-semibold transition hover:-translate-y-0.5 disabled:opacity-60",
+              inCart && "cursor-default opacity-75",
+              compact && "px-3 py-1.5 text-[11px]",
+            )}
+          >
+            {savingCart ? "Adding..." : inCart ? "Added" : "Add to cart"}
+          </button>
+        ) : null}
       </div>
-      {!wishLoaded || !cartLoaded ? (
+      {!wishLoaded || (showCart && !cartLoaded) ? (
         <p
           className={cn(
             "text-[11px]",

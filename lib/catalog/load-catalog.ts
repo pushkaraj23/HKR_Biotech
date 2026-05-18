@@ -7,6 +7,7 @@ import type {
   ProductAvailability,
   ProductCategory,
   ProductSubcategory,
+  ProductVariant,
 } from "@/lib/types/catalog";
 import { isAvailabilityValue } from "@/lib/catalog/filters";
 import { unstable_cache } from "next/cache";
@@ -28,6 +29,34 @@ function coerceAvailability(v: unknown): ProductAvailability {
   const s = asString(v);
   if (isAvailabilityValue(s)) return s;
   return "Quote required";
+}
+
+function variantPrice(row: Record<string, unknown>): string {
+  for (const key of ["price", "listPrice", "unitPrice", "priceUsd", "amount"] as const) {
+    const value = asString(row[key]).trim();
+    if (value) return value;
+  }
+  return "";
+}
+
+function asVariants(v: unknown): ProductVariant[] | undefined {
+  if (!Array.isArray(v)) return undefined;
+  const rows: ProductVariant[] = [];
+  for (const item of v) {
+    if (!item || typeof item !== "object") continue;
+    const row = item as Record<string, unknown>;
+    const size = asString(row.size).trim();
+    if (!size) continue;
+    rows.push({
+      size,
+      price: variantPrice(row),
+      availabilityLabel: asString(
+        row.availabilityLabel ?? row.availability,
+        "Quote required",
+      ),
+    });
+  }
+  return rows.length ? rows : undefined;
 }
 
 function docToCategory(id: string, data: DocumentData): ProductCategory | null {
@@ -75,20 +104,32 @@ function docToProduct(id: string, data: DocumentData): CatalogProduct | null {
     categorySlug,
     subcategorySlug: subcategorySlug || undefined,
     chemicalName,
+    alternativeName: data.alternativeName ? asString(data.alternativeName) : undefined,
     casNumber: asString(data.casNumber),
     molecularFormula: asString(data.molecularFormula),
     molecularWeight: asString(data.molecularWeight),
     purity: asString(data.purity),
     appearance: asString(data.appearance),
+    solubility: data.solubility ? asString(data.solubility) : undefined,
     shortDescription: asString(data.shortDescription),
     detailedDescription: asString(data.detailedDescription),
     applications: asStringArray(data.applications),
     storageConditions: asString(data.storageConditions),
     packSizes: asStringArray(data.packSizes),
+    variants: asVariants(data.variants),
     availability: coerceAvailability(data.availability),
     datasheetUrl: data.datasheetUrl ? asString(data.datasheetUrl) : undefined,
     coaAvailable: Boolean(data.coaAvailable),
     sdsAvailable: Boolean(data.sdsAvailable),
+    sdsUrl: data.sdsUrl ? asString(data.sdsUrl) : undefined,
+    dslStatus: data.dslStatus ? asString(data.dslStatus) : undefined,
+    tscaCertification: data.tscaCertification ? asString(data.tscaCertification) : undefined,
+    rtecsNumber: data.rtecsNumber ? asString(data.rtecsNumber) : undefined,
+    coaLotFormat: data.coaLotFormat ? asString(data.coaLotFormat) : undefined,
+    shippingConditions: data.shippingConditions ? asString(data.shippingConditions) : undefined,
+    tariffCode: data.tariffCode ? asString(data.tariffCode) : undefined,
+    safetyStatement: data.safetyStatement ? asString(data.safetyStatement) : undefined,
+    showSingleLotAvailability: Boolean(data.showSingleLotAvailability),
     relatedSlugs: asStringArray(data.relatedSlugs),
   };
 }

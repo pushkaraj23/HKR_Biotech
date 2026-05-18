@@ -31,49 +31,34 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
     return () => document.removeEventListener("mousedown", onDoc);
   }, [menuOpen]);
 
+  const refreshCounts = useCallback(async () => {
+    try {
+      const token = await user.getIdToken();
+      const [wishlistRes, cartRes] = await Promise.all([
+        fetch("/api/user/wishlist", { headers: { Authorization: `Bearer ${token}` } }),
+        fetch("/api/user/cart", { headers: { Authorization: `Bearer ${token}` } }),
+      ]);
+      const wishlistBody = (await wishlistRes.json().catch(() => null)) as { items?: unknown[] } | null;
+      const cartBody = (await cartRes.json().catch(() => null)) as
+        | { items?: Array<{ quantity?: unknown }> }
+        | null;
+
+      setWishlistCount(Array.isArray(wishlistBody?.items) ? wishlistBody.items.length : 0);
+      const cartItems = Array.isArray(cartBody?.items) ? cartBody.items : [];
+      const totalQty = cartItems.reduce(
+        (sum, item) => sum + Math.max(1, Number(item?.quantity ?? 1)),
+        0,
+      );
+      setCartCount(totalQty);
+    } catch {
+      setWishlistCount(0);
+      setCartCount(0);
+    }
+  }, [user]);
+
   useEffect(() => {
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const token = await user.getIdToken();
-        const [wishlistRes, cartRes] = await Promise.all([
-          fetch("/api/user/wishlist", { headers: { Authorization: `Bearer ${token}` } }),
-          fetch("/api/user/cart", { headers: { Authorization: `Bearer ${token}` } }),
-        ]);
-        const wishlistBody = (await wishlistRes.json().catch(() => null)) as
-          | { items?: unknown[] }
-          | null;
-        const cartBody = (await cartRes.json().catch(() => null)) as
-          | { items?: Array<{ quantity?: unknown }> }
-          | null;
-
-        if (!cancelled) {
-          setWishlistCount(Array.isArray(wishlistBody?.items) ? wishlistBody!.items.length : 0);
-          const cartItems = Array.isArray(cartBody?.items) ? cartBody.items : [];
-          const totalQty = cartItems.reduce(
-            (sum, item) => sum + Math.max(1, Number(item?.quantity ?? 1)),
-            0,
-          );
-          setCartCount(totalQty);
-        }
-      } catch {
-        if (!cancelled) {
-          setWishlistCount(0);
-          setCartCount(0);
-        }
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [menuOpen, user]);
-
-  const totalSavedCount = useMemo(
-    () => (wishlistCount ?? 0) + (cartCount ?? 0),
-    [wishlistCount, cartCount],
-  );
+    void refreshCounts();
+  }, [refreshCounts]);
 
   const onSignOut = useCallback(() => {
     setMenuOpen(false);
@@ -81,6 +66,10 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
   }, [signOut]);
 
   const firstName = user.displayName?.split(" ")[0] || user.email?.split("@")[0] || "there";
+  const savedCount = useMemo(
+    () => (wishlistCount ?? 0) + (cartCount ?? 0),
+    [wishlistCount, cartCount],
+  );
 
   return (
     <div className={cn("relative", className)} ref={ref}>
@@ -89,13 +78,16 @@ export function HeaderAccountMenu({ user, signOut, className }: HeaderAccountMen
         className="relative rounded-full shadow-[0_8px_28px_-8px_rgba(8,26,120,0.35)] ring-2 ring-white/25 transition-transform hover:scale-[1.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
         aria-expanded={menuOpen}
         aria-haspopup="true"
-        aria-label="Account menu"
+        aria-label={savedCount > 0 ? `Account menu, ${savedCount} saved items` : "Account menu"}
         onClick={() => setMenuOpen((v) => !v)}
       >
         <UserAvatar user={user} size="lg" />
-        {totalSavedCount > 0 ? (
-          <span className="absolute -right-1 -top-1.5 inline-flex min-w-5 items-center justify-center rounded-full btn-glass btn-glass-green-dark border border-white/35 p-1 text-[10px] font-bold leading-none text-white">
-            {totalSavedCount}
+        {savedCount > 0 ? (
+          <span
+            className="pointer-events-none absolute -right-1 -top-1 z-10 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-[#020A63] bg-[#22a884] px-1 text-[10px] font-bold leading-none text-white shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
+            aria-hidden
+          >
+            {savedCount > 99 ? "99+" : savedCount}
           </span>
         ) : null}
       </button>

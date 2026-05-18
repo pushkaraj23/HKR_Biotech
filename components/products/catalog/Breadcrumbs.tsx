@@ -9,7 +9,7 @@ type BreadcrumbsProps = {
 
 export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className={cn("text-sm", className)}>
+    <nav aria-label="Breadcrumb" className={cn("text-base", className)}>
       <ol className="flex flex-wrap items-center gap-1.5 text-on-dark/72">
         {items.map((item, i) => {
           const last = i === items.length - 1;

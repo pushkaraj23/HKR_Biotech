@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
+import { glassButtonCn } from "@/lib/ui/glassButton";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
 
@@ -20,16 +21,28 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         className,
       )}
     >
-      <div className="pointer-events-auto flex w-full max-w-lg gap-2 rounded-2xl border border-on-dark/25 bg-[rgba(18,25,35,0.78)] p-2 shadow-[0_-8px_32px_-8px_rgba(18,25,35,0.4)] backdrop-blur-md">
+      <div className="pointer-events-auto flex w-full max-w-lg gap-2.5 rounded-2xl border border-white/20 bg-[rgba(2,10,99,0.88)] p-2.5 shadow-[0_-12px_40px_-8px_rgba(2,10,99,0.55)] backdrop-blur-lg">
         <Link
-          href="#enquiry"
-          className="flex flex-1 items-center justify-center rounded-xl border border-on-dark/30 bg-[rgba(18,25,35,0.55)] px-3 py-3 text-center text-xs font-semibold text-on-dark"
+          href="#ordering"
+          className={cn(
+            glassButtonCn("white", "dark", "flex flex-1 items-center justify-center rounded-xl px-3 py-3.5 text-sm"),
+          )}
+        >
+          Pack sizes
+        </Link>
+        <Link
+          href="#enquiry-form"
+          className={cn(
+            glassButtonCn("blue", "dark", "flex flex-1 items-center justify-center rounded-xl px-3 py-3.5 text-sm"),
+          )}
         >
           Details
         </Link>
         <EnquireGateLink
           href={href}
-          className="flex flex-[1.2] items-center justify-center rounded-xl btn-glass btn-glass-green-light px-3 py-3 text-center text-xs font-semibold"
+          className={cn(
+            glassButtonCn("green", "dark", "flex flex-[1.15] items-center justify-center rounded-xl px-3 py-3.5 text-sm"),
+          )}
         >
           Request quote
         </EnquireGateLink>

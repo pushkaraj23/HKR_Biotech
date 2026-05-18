@@ -13,6 +13,9 @@ import { getServerFirestoreDb } from "@/lib/firebase/server-firestore";
 
 type CartPayload = {
   slug?: unknown;
+  productSlug?: unknown;
+  variantSize?: unknown;
+  variantPrice?: unknown;
   catalogNumber?: unknown;
   categorySlug?: unknown;
   chemicalName?: unknown;
@@ -21,6 +24,7 @@ type CartPayload = {
   availability?: unknown;
   imageUrl?: unknown;
   quantity?: unknown;
+  singleLot?: unknown;
 };
 
 type CartItem = {
@@ -70,6 +74,9 @@ export async function POST(req: Request) {
       ref,
       {
         slug,
+        productSlug: String(body.productSlug ?? slug),
+        variantSize: body.variantSize ? String(body.variantSize) : "",
+        variantPrice: body.variantPrice ? String(body.variantPrice) : "",
         catalogNumber: String(body.catalogNumber ?? ""),
         categorySlug: String(body.categorySlug ?? ""),
         chemicalName: String(body.chemicalName ?? ""),
@@ -77,6 +84,7 @@ export async function POST(req: Request) {
         purity: String(body.purity ?? ""),
         availability: String(body.availability ?? "Quote required"),
         imageUrl: String(body.imageUrl ?? ""),
+        singleLot: Boolean(body.singleLot),
         quantity: nextQty,
         updatedAt: serverTimestamp(),
         updatedAtIso: nowIso,

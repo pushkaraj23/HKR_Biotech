@@ -7,6 +7,9 @@ import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 
 type CartItem = {
   slug: string;
+  productSlug?: string;
+  variantSize?: string;
+  variantPrice?: string;
   chemicalName: string;
   catalogNumber: string;
   categorySlug: string;
@@ -113,16 +116,24 @@ export default function CartPage() {
           </section>
         ) : (
           <ul className="space-y-3">
-            {items.map((item) => (
+            {items.map((item) => {
+              const productSlug = item.productSlug || item.slug.split("__")[0] || item.slug;
+              return (
               <li key={item.slug} className="rounded-2xl border border-on-dark/20 bg-[rgba(18,25,35,0.5)] p-5">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="font-mono text-[10px] text-on-dark/65">{item.catalogNumber}</p>
                     <h2 className="mt-1 font-display text-lg font-semibold text-on-dark">
-                      <Link href={`/products/${item.categorySlug}/${item.slug}`} className="hover:text-primary">
+                      <Link href={`/products/${item.categorySlug}/${productSlug}`} className="hover:text-primary">
                         {item.chemicalName}
                       </Link>
                     </h2>
+                    {item.variantSize ? (
+                      <p className="mt-1 text-sm text-on-dark/80">
+                        Size: {item.variantSize}
+                        {item.variantPrice ? ` · ${item.variantPrice}` : ""}
+                      </p>
+                    ) : null}
                     <p className="mt-1 text-xs text-on-dark/70">{item.availability}</p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -166,7 +177,8 @@ export default function CartPage() {
                   </div>
                 </div>
               </li>
-            ))}
+            );
+            })}
           </ul>
         )}
       </div>

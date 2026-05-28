@@ -68,7 +68,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="relative overflow-x-hidden bg-[#020A63] pb-28">
+    <div className="relative bg-[#020A63] pb-28">
       <PageAmbientGraphics variant="right" opacity="opacity-[0.12]" />
       <ProductInterestTracker
         slug={product.slug}
@@ -79,7 +79,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       <ProductStickyEnquiry product={product} />
 
       <div className={`relative z-10 ${PRODUCT_DETAIL_CONTAINER} ${PRODUCT_DETAIL_STACK} pb-4`}>
-        <Breadcrumbs items={crumbs} />
+        <Breadcrumbs items={crumbs} className="hidden md:block" />
 
         <RevealOnScroll>
           <ProductDetailHeader

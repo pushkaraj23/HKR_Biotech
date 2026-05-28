@@ -25,7 +25,11 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         <Link
           href="#ordering"
           className={cn(
-            glassButtonCn("white", "dark", "flex flex-1 items-center justify-center rounded-xl px-3 py-3.5 text-sm"),
+            glassButtonCn(
+              "white",
+              "dark",
+              "flex w-full min-w-0 flex-1 items-center justify-center rounded-xl px-3 py-3.5 text-center text-sm leading-snug",
+            ),
           )}
         >
           Pack sizes
@@ -33,7 +37,11 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         <Link
           href="#enquiry-form"
           className={cn(
-            glassButtonCn("blue", "dark", "flex flex-1 items-center justify-center rounded-xl px-3 py-3.5 text-sm"),
+            glassButtonCn(
+              "blue",
+              "dark",
+              "flex w-full min-w-0 flex-1 items-center justify-center rounded-xl px-3 py-3.5 text-center text-sm leading-snug",
+            ),
           )}
         >
           Details
@@ -41,7 +49,11 @@ export function ProductStickyEnquiry({ product, className }: ProductStickyEnquir
         <EnquireGateLink
           href={href}
           className={cn(
-            glassButtonCn("green", "dark", "flex flex-[1.15] items-center justify-center rounded-xl px-3 py-3.5 text-sm"),
+            glassButtonCn(
+              "green",
+              "dark",
+              "flex w-full min-w-0 flex-[1.15] items-center justify-center rounded-xl px-3 py-3.5 text-center text-sm leading-snug",
+            ),
           )}
         >
           Request quote

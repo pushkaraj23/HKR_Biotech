@@ -183,6 +183,8 @@ export function UserProductActions({
     });
   }
 
+  const stateLoading = !wishLoaded || (showCart && !cartLoaded);
+
   async function addCart() {
     await withAuth(async () => {
       if (inCart) return;
@@ -223,7 +225,7 @@ export function UserProductActions({
         <button
           type="button"
           onClick={() => void (wishlisted ? removeWishlist() : addWishlist())}
-          disabled={savingWish}
+          disabled={savingWish || stateLoading}
           className={cn(
             "inline-flex h-9 w-9 items-center justify-center rounded-full border transition disabled:opacity-60",
             surface === "light"
@@ -248,7 +250,7 @@ export function UserProductActions({
           <button
             type="button"
             onClick={() => void addCart()}
-            disabled={savingCart || inCart}
+            disabled={savingCart || inCart || stateLoading}
             className={cn(
               "btn-glass btn-glass-green-light rounded-full px-4 py-2 text-xs font-semibold transition hover:-translate-y-0.5 disabled:opacity-60",
               inCart && "cursor-default opacity-75",
@@ -259,16 +261,6 @@ export function UserProductActions({
           </button>
         ) : null}
       </div>
-      {!wishLoaded || (showCart && !cartLoaded) ? (
-        <p
-          className={cn(
-            "text-[11px]",
-            surface === "light" ? "text-[#234a62]/75" : "text-on-dark/65",
-          )}
-        >
-          Checking saved state...
-        </p>
-      ) : null}
       {msg ? (
         <p className={cn("text-[11px]", surface === "light" ? "text-[#234a62]/85" : "text-on-dark/75")}>{msg}</p>
       ) : null}

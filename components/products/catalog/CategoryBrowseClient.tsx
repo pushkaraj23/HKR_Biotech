@@ -265,7 +265,7 @@ export function CategoryBrowseClient({
                   )}
                 </div>
               ) : (
-                <ul className="mt-8 grid gap-6 md:grid-cols-2">
+                <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {visibleProducts.map((p, i) => (
                     <RevealOnScroll key={p.slug} delay={(i % 4) * 55}>
                       <li>

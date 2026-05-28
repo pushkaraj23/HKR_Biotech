@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { CoaLotSearch } from "@/components/products/catalog/CoaLotSearch";
 import { MolecularFormulaDisplay } from "@/components/products/catalog/MolecularFormulaDisplay";

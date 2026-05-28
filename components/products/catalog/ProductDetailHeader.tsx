@@ -2,6 +2,7 @@ import Link from "next/link";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import { UserProductActions } from "@/components/commerce/UserProductActions";
 import { StructurePlaceholder } from "@/components/products/catalog/StructurePlaceholder";
+import { COMMERCE_STICKY_TOP } from "@/components/products/catalog/productDetailStyles";
 import { glassButtonCn } from "@/lib/ui/glassButton";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
@@ -13,141 +14,156 @@ type ProductDetailHeaderProps = {
   enquiryHref: string;
 };
 
+const PANEL_GRADIENT =
+  "linear-gradient(115deg, #052066 0%, #06124a 42%, color-mix(in srgb, var(--primary) 36%, #030a40) 100%)";
+
+function isDistinctLabel(primary: string, secondary: string | undefined): boolean {
+  if (!secondary?.trim()) return false;
+  return secondary.trim().toLowerCase() !== primary.trim().toLowerCase();
+}
+
+function ProductStructureImage({ product }: { product: CatalogProduct }) {
+  const alt = `${product.chemicalName} structure`;
+
+  return (
+    <div className="aspect-square w-full overflow-hidden rounded-xl border-2 border-white/40 bg-white shadow-[0_12px_40px_-16px_rgba(0,0,0,0.45)] ring-1 ring-white/15">
+      {product.imageUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={product.imageUrl}
+          alt={alt}
+          className="h-full w-full object-cover object-center"
+          loading="eager"
+        />
+      ) : (
+        <StructurePlaceholder
+          detail
+          imageAlt={alt}
+          className="h-full min-h-0 rounded-none border-0 bg-white shadow-none"
+        />
+      )}
+    </div>
+  );
+}
+
 export function ProductDetailHeader({
   product,
   categoryLabel,
   categoryHref,
   enquiryHref,
 }: ProductDetailHeaderProps) {
-  const chips = [
-    { label: "Catalog", value: product.catalogNumber },
-    { label: "CAS", value: product.casNumber },
+  const specRows = [
+    { label: "Catalog No.", value: product.catalogNumber },
+    { label: "CAS No.", value: product.casNumber },
+    { label: "Mol. formula", value: product.molecularFormula },
+    { label: "Mol. weight", value: product.molecularWeight },
     { label: "Purity", value: product.purity },
     { label: "Availability", value: product.availability },
-  ].filter((c) => c.value && c.value !== "—");
+    ...(product.solubility ? [{ label: "Solubility", value: product.solubility }] : []),
+    ...(isDistinctLabel(product.chemicalName, product.alternativeName)
+      ? [{ label: "Alt. name", value: product.alternativeName! }]
+      : []),
+  ].filter((row) => row.value && row.value !== "—");
 
   return (
-    <header
-      className="relative min-h-[260px] overflow-hidden rounded-[1.75rem] border border-white/28 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.55)] sm:min-h-[300px]"
-      style={{
-        background:
-          "linear-gradient(115deg, #052066 0%, #06124a 42%, color-mix(in srgb, var(--primary) 36%, #030a40) 100%)",
-      }}
-    >
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-1.5 w-full"
-        style={{
-          background: "linear-gradient(90deg, #1a73e8 0%, #1459b8 40%, #2bc48a 100%)",
-        }}
-        aria-hidden
-      />
+    <header className="space-y-5 sm:space-y-6">
+      <div className="hidden flex-wrap items-center gap-2 md:flex">
+        <Link
+          href={categoryHref}
+          className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark backdrop-blur-sm transition hover:border-white/40 hover:bg-white/16"
+        >
+          {categoryLabel}
+        </Link>
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/70">
+          Catalogue · {product.catalogNumber}
+        </span>
+      </div>
 
-      <div
-        className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full opacity-50 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(43,196,138,0.22), transparent 70%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -bottom-28 -left-28 h-72 w-72 rounded-full opacity-40 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(26,115,232,0.25), transparent 70%)",
-        }}
-        aria-hidden
-      />
-
-      <div className="relative grid gap-8 px-7 py-10 sm:px-10 sm:py-12 md:grid-cols-[minmax(0,1fr)_minmax(200px,280px)] md:items-center md:gap-10 lg:px-12 lg:py-14">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <Link
-              href={categoryHref}
-              className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark backdrop-blur-sm transition hover:border-white/40 hover:bg-white/16"
-            >
-              {categoryLabel}
-            </Link>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/70">
-              Catalogue · {product.catalogNumber}
-            </span>
-          </div>
-
-          <h1 className="mt-5 font-display text-3xl font-extrabold leading-[1.08] tracking-tight text-on-dark sm:text-4xl md:text-5xl">
+      <div className="space-y-3 border-b border-white/12 pb-5 sm:pb-6">
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="min-w-0 flex-1 font-display text-3xl font-extrabold leading-[1.08] tracking-tight text-on-dark sm:text-4xl md:text-[2.65rem]">
             {product.chemicalName}
           </h1>
+          <UserProductActions
+            showCart={false}
+            product={{
+              slug: product.slug,
+              catalogNumber: product.catalogNumber,
+              categorySlug: product.categorySlug,
+              chemicalName: product.chemicalName,
+              shortDescription: product.shortDescription,
+              purity: product.purity,
+              availability: product.availability,
+              imageUrl: product.imageUrl,
+            }}
+          />
+        </div>
 
-          {product.alternativeName ? (
-            <p className="mt-3 text-lg font-medium text-on-dark/88 md:text-xl">{product.alternativeName}</p>
-          ) : null}
+        {isDistinctLabel(product.chemicalName, product.alternativeName) ? (
+          <p className="text-lg font-medium text-on-dark/88 md:text-xl">{product.alternativeName}</p>
+        ) : null}
 
-          {product.shortDescription ? (
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-on-dark/82 md:text-lg">
-              {product.shortDescription}
-            </p>
-          ) : null}
+        {product.shortDescription ? (
+          <p className="max-w-4xl text-base leading-relaxed text-on-dark/82 md:text-lg">
+            {product.shortDescription}
+          </p>
+        ) : null}
+      </div>
 
-          {chips.length > 0 ? (
-            <dl className="mt-7 flex flex-wrap gap-2.5">
-              {chips.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-2 rounded-full border border-white/18 bg-white/10 px-4 py-2 backdrop-blur-md"
-                >
-                  <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-on-dark/72">
-                    {item.label}
-                  </dt>
-                  <dd className="font-mono text-base font-medium text-on-dark">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          ) : null}
+      <div className="grid gap-5 lg:grid-cols-2 lg:items-start lg:gap-6 xl:gap-8">
+        <div className={cn("w-full lg:sticky lg:z-10 lg:self-start", COMMERCE_STICKY_TOP)}>
+          <ProductStructureImage product={product} />
+        </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <UserProductActions
-              showCart={false}
-              product={{
-                slug: product.slug,
-                catalogNumber: product.catalogNumber,
-                categorySlug: product.categorySlug,
-                chemicalName: product.chemicalName,
-                shortDescription: product.shortDescription,
-                purity: product.purity,
-                availability: product.availability,
-                imageUrl: product.imageUrl,
-              }}
-            />
+        <div
+          className="relative flex min-h-0 flex-col overflow-hidden rounded-[1.75rem] border border-white/28 py-5 shadow-[0_18px_48px_-14px_rgba(2,10,99,0.55)] sm:py-6"
+          style={{ background: PANEL_GRADIENT }}
+        >
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-1.5 w-full"
+            style={{
+              background: "linear-gradient(90deg, #1a73e8 0%, #1459b8 40%, #2bc48a 100%)",
+            }}
+            aria-hidden
+          />
+
+          <dl className="relative flex-1 divide-y divide-white/12">
+            {specRows.map((row) => (
+              <div
+                key={row.label}
+                className="grid grid-cols-[minmax(0,38%)_1fr] items-baseline gap-3 px-5 py-3.5 sm:px-6 sm:py-4"
+              >
+                <dt className="text-sm font-semibold text-[#8fd0ff]">{row.label}</dt>
+                <dd className="font-mono text-sm font-medium leading-snug text-on-dark sm:text-base">
+                  {row.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="relative flex flex-col gap-3 border-t border-white/12 bg-black/12 px-5 py-4 sm:flex-row sm:flex-wrap sm:items-center sm:px-6 sm:py-5">
             <EnquireGateLink
               href={enquiryHref}
-              className={glassButtonCn("blue", "dark", "rounded-full px-9 py-3.5 text-base")}
+              className={glassButtonCn("blue", "dark", "rounded-full px-7 py-3 text-sm sm:text-base")}
             >
               Request quotation
             </EnquireGateLink>
             <EnquireGateLink
               href={enquiryHref}
-              className={glassButtonCn("green", "dark", "rounded-full px-9 py-3.5 text-base")}
+              className={glassButtonCn("green", "dark", "rounded-full px-7 py-3 text-sm sm:text-base")}
             >
               Enquire now
             </EnquireGateLink>
             <a
               href="#ordering"
-              className={cn(glassButtonCn("white", "dark", "rounded-full px-9 py-3.5 text-base"), "text-center")}
+              className={cn(
+                glassButtonCn("white", "dark", "rounded-full px-7 py-3 text-sm sm:text-center sm:text-base"),
+              )}
             >
               Pack sizes
             </a>
           </div>
         </div>
-
-        <aside className="mx-auto w-full max-w-[280px] md:mx-0 md:max-w-none md:justify-self-end">
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-md">
-            <StructurePlaceholder
-              imageUrl={product.imageUrl}
-              imageAlt={`${product.chemicalName} structure`}
-              className="aspect-square max-w-none rounded-xl border-0 bg-transparent"
-            />
-          </div>
-          <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.2em] text-on-dark/65">
-            Representative structure
-          </p>
-        </aside>
       </div>
     </header>
   );

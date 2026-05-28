@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { RazorpayCheckoutButton } from "@/components/commerce/RazorpayCheckoutButton";
 import {
   formatMoney,
   summarizeCart,
@@ -108,13 +109,7 @@ export function CartOrderSummary({ items, mode = "cart", className }: CartOrderS
               Proceed to checkout
             </Link>
           ) : (
-            <button
-              type="button"
-              disabled
-              className="mt-6 flex w-full cursor-not-allowed items-center justify-center rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white/55"
-            >
-              Pay with Razorpay (coming soon)
-            </button>
+            <RazorpayCheckoutButton items={items} className="mt-6" />
           )}
 
           {mode === "checkout" ? (
@@ -133,11 +128,6 @@ export function CartOrderSummary({ items, mode = "cart", className }: CartOrderS
             </Link>
           )}
 
-          {mode === "checkout" ? (
-            <p className="mt-4 text-center text-[11px] leading-relaxed text-white/55">
-              Razorpay payment integration will be enabled here.
-            </p>
-          ) : null}
         </div>
     </aside>
   );

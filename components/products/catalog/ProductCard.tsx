@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { UserProductActions } from "@/components/commerce/UserProductActions";
 import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
+import { StructurePlaceholder } from "@/components/products/catalog/StructurePlaceholder";
 import { trackProductInterestClient } from "@/lib/analytics/track-product-interest";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
@@ -20,22 +21,16 @@ const CARD_VARIANTS = [
     glow: "rgba(26, 115, 232, 0.42)",
     shadowTw:
       "shadow-[0_12px_36px_-14px_rgba(13,71,161,0.42)] hover:shadow-[0_22px_48px_-14px_rgba(13,71,161,0.5)]",
-    orb: "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.9), color-mix(in srgb, var(--primary) 48%, transparent) 54%, transparent)",
-    orbRing: "ring-white/38",
-    orbShadow: "0 4px 16px rgba(0,40,90,0.25), inset 0 1px 0 rgba(255,255,255,0.45)",
     catalog: "text-white/88",
     title: "text-white",
     titleLink: "hover:text-[#c8e6ff]",
-    category: "text-white/74",
-    specBox: "border-white/22 bg-black/32",
-    specLabel: "text-white/68",
-    specValue: "text-white",
+    meta: "text-white/72",
     purity: "text-[#9ee7ff]",
-    formulaPill: "border-white/22 bg-black/30 text-white/92",
     footerBar: "border-white/18 bg-black/30",
     actionsRow: "border-white/14",
     linkDetails: "text-[#8fd0ff] hover:text-white",
     actionsSurface: "dark" as const,
+    imageRing: "ring-white/20",
   },
   {
     id: "green" as const,
@@ -45,22 +40,16 @@ const CARD_VARIANTS = [
     glow: "rgba(43, 196, 138, 0.38)",
     shadowTw:
       "shadow-[0_12px_36px_-14px_rgba(8,105,78,0.4)] hover:shadow-[0_22px_48px_-14px_rgba(8,105,78,0.48)]",
-    orb: "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.92), color-mix(in srgb, var(--accent) 52%, transparent) 56%, transparent)",
-    orbRing: "ring-white/40",
-    orbShadow: "0 4px 16px rgba(0,60,45,0.28), inset 0 1px 0 rgba(255,255,255,0.42)",
     catalog: "text-white/88",
     title: "text-white",
     titleLink: "hover:text-[#d4fff0]",
-    category: "text-white/74",
-    specBox: "border-white/22 bg-black/32",
-    specLabel: "text-white/68",
-    specValue: "text-white",
+    meta: "text-white/72",
     purity: "text-[#b8ffe8]",
-    formulaPill: "border-white/22 bg-black/30 text-white/92",
     footerBar: "border-white/18 bg-black/30",
     actionsRow: "border-white/14",
     linkDetails: "text-[#8cf5d0] hover:text-white",
     actionsSurface: "dark" as const,
+    imageRing: "ring-white/20",
   },
   {
     id: "light" as const,
@@ -70,22 +59,16 @@ const CARD_VARIANTS = [
     glow: "rgba(26, 115, 232, 0.16)",
     shadowTw:
       "shadow-[0_12px_36px_-14px_rgba(23,50,77,0.2)] hover:shadow-[0_22px_48px_-16px_rgba(23,50,77,0.26)]",
-    orb: "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.98), color-mix(in srgb, var(--accent) 38%, white) 52%, color-mix(in srgb, var(--primary) 22%, white) 100%)",
-    orbRing: "ring-[#17324d]/14",
-    orbShadow: "0 4px 14px rgba(23,50,77,0.12), inset 0 1px 0 rgba(255,255,255,0.85)",
     catalog: "text-[#1459b8]",
     title: "text-[#0d2137]",
     titleLink: "hover:text-primary",
-    category: "text-[#234a62]",
-    specBox: "border-[#17324d]/12 bg-white/72",
-    specLabel: "text-[#4f6478]",
-    specValue: "text-[#0d2137]",
+    meta: "text-[#456178]",
     purity: "text-primary font-semibold",
-    formulaPill: "border-[#17324d]/12 bg-white/82 text-[#17324d]",
     footerBar: "border-[#17324d]/10 bg-white/58",
     actionsRow: "border-[#17324d]/10",
     linkDetails: "text-primary hover:text-primary-deep",
     actionsSurface: "light" as const,
+    imageRing: "ring-[#17324d]/12",
   },
 ] as const;
 
@@ -101,7 +84,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1",
+        "group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5",
         v.border,
         v.shadowTw,
         className,
@@ -114,85 +97,46 @@ export function ProductCard({ product, className }: ProductCardProps) {
         aria-hidden
       />
 
-      <div className="relative flex flex-1 flex-col gap-4 p-6">
-        <p className={cn("font-mono text-[10px] font-medium tracking-[0.12em] text-white/70", v.catalog)}>
+      <Link
+        href={detailHref}
+        className={cn("relative block shrink-0 overflow-hidden ring-1 ring-inset", v.imageRing)}
+        onClick={() =>
+          void trackProductInterestClient("view_from_list", {
+            slug: product.slug,
+            categorySlug: product.categorySlug,
+            chemicalName: product.chemicalName,
+            catalogNumber: product.catalogNumber,
+          })
+        }
+      >
+        <StructurePlaceholder
+          card
+          imageUrl={product.imageUrl}
+          imageAlt={`Structure of ${product.chemicalName}`}
+        />
+      </Link>
+
+      <div className="relative flex flex-1 flex-col gap-2 p-3.5 sm:p-4">
+        <p className={cn("font-mono text-[9px] font-medium tracking-[0.1em]", v.catalog)}>
           {product.catalogNumber}
         </p>
 
-        <div className="flex items-start gap-4">
-          <div
-            className={cn("mt-1 h-8 w-8 shrink-0 rounded-full ring-2", v.orbRing)}
-            style={{
-              background: v.orb,
-              boxShadow: v.orbShadow,
-            }}
-            aria-hidden
-          />
-          <div className="min-w-0">
-            <h3
-              className={cn(
-                "font-display text-xl font-bold leading-snug tracking-tight md:text-2xl md:leading-snug",
-                v.title,
-              )}
-            >
-              <Link href={detailHref} className={cn("transition-colors duration-200", v.titleLink)}>
-                {product.chemicalName}
-              </Link>
-            </h3>
-            <p className={cn("mt-1.5 text-xs font-medium capitalize tracking-wide", v.category)}>
-              {product.categorySlug.replace(/-/g, " ")}
-            </p>
-          </div>
-        </div>
+        <h3 className={cn("font-display text-base font-bold leading-snug tracking-tight", v.title)}>
+          <Link href={detailHref} className={cn("line-clamp-2 transition-colors duration-200", v.titleLink)}>
+            {product.chemicalName}
+          </Link>
+        </h3>
 
-        <dl className="grid grid-cols-3 gap-2">
-          <div
-            className={cn(
-              "col-span-1 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-              v.specBox,
-            )}
-          >
-            <dt className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>CAS</dt>
-            <dd className={cn("mt-0.5 truncate font-mono text-xs font-medium", v.specValue)}>{product.casNumber}</dd>
-          </div>
-          <div
-            className={cn(
-              "col-span-1 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-              v.specBox,
-            )}
-          >
-            <dt className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>MW</dt>
-            <dd className={cn("mt-0.5 truncate font-mono text-xs font-medium", v.specValue)}>
-              {product.molecularWeight}
-            </dd>
-          </div>
-          <div
-            className={cn(
-              "col-span-1 rounded-xl px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-              v.specBox,
-            )}
-          >
-            <dt className={cn("text-[10px] font-semibold uppercase tracking-[0.16em]", v.specLabel)}>Purity</dt>
-            <dd className={cn("mt-0.5 truncate font-mono text-xs", v.purity)}>{product.purity}</dd>
-          </div>
-        </dl>
-
-        <div className="flex items-center gap-2">
-          <span className={cn("text-[10px] font-semibold uppercase tracking-[0.14em]", v.specLabel)}>Formula</span>
-          <span
-            className={cn(
-              "rounded-full px-3 py-0.5 font-mono text-[12px] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
-              v.formulaPill,
-            )}
-          >
-            {product.molecularFormula}
-          </span>
-        </div>
+        <p className={cn("font-mono text-[11px]", v.meta)}>
+          <span className={v.purity}>{product.purity}</span>
+          <span className="mx-2 opacity-50">·</span>
+          <span>{product.casNumber}</span>
+        </p>
       </div>
 
       <div
         className={cn(
-          "relative flex items-center justify-between gap-3 border-t px-6 py-4 backdrop-blur-sm",
+          "relative flex items-center justify-between gap-2 border-t px-3.5 py-2.5 backdrop-blur-sm sm:px-4",
           v.footerBar,
         )}
       >
@@ -207,7 +151,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             })
           }
           className={cn(
-            "inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 hover:gap-2.5",
+            "inline-flex items-center gap-1 text-xs font-semibold transition-all duration-200 hover:gap-1.5",
             v.linkDetails,
           )}
         >
@@ -218,12 +162,19 @@ export function ProductCard({ product, className }: ProductCardProps) {
         </Link>
         <EnquireGateLink
           href={enquiryHref}
-          className="inline-flex items-center justify-center btn-glass btn-glass-green-light rounded-full px-5 py-2 text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5"
+          className="inline-flex items-center justify-center btn-glass btn-glass-green-light rounded-full px-3.5 py-1.5 text-[11px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
         >
           Enquire
         </EnquireGateLink>
       </div>
-      <div className={cn("relative border-t px-6 py-3 backdrop-blur-sm", v.actionsRow, v.id === "light" ? "bg-white/40" : "bg-black/18")}>
+
+      <div
+        className={cn(
+          "relative border-t px-3.5 py-2 backdrop-blur-sm sm:px-4",
+          v.actionsRow,
+          v.id === "light" ? "bg-white/40" : "bg-black/18",
+        )}
+      >
         <UserProductActions
           compact
           surface={v.actionsSurface}

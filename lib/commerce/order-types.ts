@@ -1,6 +1,16 @@
 import type { CartItem } from "@/lib/commerce/cart-types";
 
-export type OrderStatus = "pending" | "paid" | "failed" | "cancelled";
+export const ORDER_STATUSES = ["pending", "paid", "delivered", "failed", "cancelled"] as const;
+
+export type OrderStatus = (typeof ORDER_STATUSES)[number];
+
+export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
+  pending: "Pending",
+  paid: "Paid",
+  delivered: "Delivered",
+  failed: "Failed",
+  cancelled: "Cancelled",
+};
 
 export type OrderLineItem = {
   slug: string;
@@ -18,6 +28,7 @@ export type OrderRecord = {
   id: string;
   userId: string;
   userEmail: string;
+  userName?: string;
   status: OrderStatus;
   items: OrderLineItem[];
   lineCount: number;
@@ -29,6 +40,7 @@ export type OrderRecord = {
   razorpayPaymentId?: string;
   createdAtIso: string;
   paidAtIso?: string;
+  deliveredAtIso?: string;
   adminNotes?: string;
 };
 

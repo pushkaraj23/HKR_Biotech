@@ -61,7 +61,13 @@ export function RazorpayCheckoutButton({ items, className }: RazorpayCheckoutBut
       const token = await user.getIdToken();
       const createRes = await fetch("/api/orders/create", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: user.displayName?.trim() || undefined,
+        }),
       });
       const created = (await createRes.json()) as CreateOrderResponse;
       if (!createRes.ok) throw new Error(created.error || "Could not start payment");

@@ -18,6 +18,9 @@ export async function POST(req: Request) {
   }
 
   try {
+    const body = (await req.json().catch(() => ({}))) as { customerName?: unknown };
+    const customerName = String(body.customerName ?? auth.name ?? "").trim();
+
     const items = await loadUserCartItems(auth.uid);
     const orderId = newOrderId();
     const built = buildOrderFromCart(items);
@@ -36,6 +39,7 @@ export async function POST(req: Request) {
       orderId,
       userId: auth.uid,
       userEmail: auth.email ?? "",
+      userName: customerName,
       items,
       razorpayOrderId: rzOrder.id,
     });

@@ -4,13 +4,21 @@ import {
   doc,
   getDoc,
   getDocs,
+  query,
   serverTimestamp,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import type { CartItem } from "@/lib/commerce/cart-types";
 import { parsePriceAmount, summarizeCart } from "@/lib/commerce/cart-pricing";
-import { cartItemToOrderLine, type OrderLineItem, type OrderStatus } from "@/lib/commerce/order-types";
+import {
+  cartItemToOrderLine,
+  ORDER_STATUSES,
+  type OrderLineItem,
+  type OrderRecord,
+  type OrderStatus,
+} from "@/lib/commerce/order-types";
 import { getServerFirestoreDb } from "@/lib/firebase/server-firestore";
 
 export async function loadUserCartItems(uid: string): Promise<CartItem[]> {
@@ -74,6 +82,7 @@ export async function createPendingOrder(params: {
   orderId: string;
   userId: string;
   userEmail: string;
+  userName?: string;
   items: CartItem[];
   razorpayOrderId: string;
 }): Promise<void> {
@@ -84,6 +93,7 @@ export async function createPendingOrder(params: {
   await setDoc(doc(db, "orders", params.orderId), {
     userId: params.userId,
     userEmail: params.userEmail,
+    userName: String(params.userName ?? "").trim(),
     status: "pending" satisfies OrderStatus,
     items: built.orderLines,
     lineCount: built.lineCount,
@@ -146,4 +156,59 @@ export function newOrderId(): string {
   const ts = Date.now().toString(36);
   const rand = Math.random().toString(36).slice(2, 8);
   return `ord_${ts}_${rand}`;
+}
+
+function parseOrderLineItem(raw: unknown): OrderLineItem | null {
+  if (!raw || typeof raw !== "object") return null;
+  const row = raw as Record<string, unknown>;
+  const slug = String(row.slug ?? "").trim();
+  if (!slug) return null;
+  return {
+    slug,
+    productSlug: String(row.productSlug ?? slug),
+    chemicalName: String(row.chemicalName ?? ""),
+    catalogNumber: String(row.catalogNumber ?? ""),
+    categorySlug: String(row.categorySlug ?? ""),
+    variantSize: String(row.variantSize ?? ""),
+    variantPrice: String(row.variantPrice ?? ""),
+    quantity: Math.max(1, Number(row.quantity ?? 1)),
+    lineTotal: typeof row.lineTotal === "number" ? row.lineTotal : null,
+  };
+}
+
+export function parseOrderDocument(id: string, data: Record<string, unknown>): OrderRecord {
+  const createdAt = data.createdAt as { toDate?: () => Date } | undefined;
+  const itemsRaw = Array.isArray(data.items) ? data.items : [];
+  const status = String(data.status ?? "pending") as OrderStatus;
+
+  return {
+    id,
+    userId: String(data.userId ?? ""),
+    userEmail: String(data.userEmail ?? ""),
+    userName: String(data.userName ?? "").trim() || undefined,
+    status: ORDER_STATUSES.includes(status) ? status : "pending",
+    items: itemsRaw.map(parseOrderLineItem).filter((x): x is OrderLineItem => x !== null),
+    lineCount: Number(data.lineCount ?? itemsRaw.length),
+    totalUnits: Number(data.totalUnits ?? 0),
+    subtotal: Number(data.subtotal ?? 0),
+    currency: String(data.currency ?? "INR"),
+    amountPaise: Number(data.amountPaise ?? 0),
+    razorpayOrderId: data.razorpayOrderId ? String(data.razorpayOrderId) : undefined,
+    razorpayPaymentId: data.razorpayPaymentId ? String(data.razorpayPaymentId) : undefined,
+    createdAtIso: createdAt?.toDate
+      ? createdAt.toDate().toISOString()
+      : String(data.createdAtIso ?? ""),
+    paidAtIso: data.paidAtIso ? String(data.paidAtIso) : undefined,
+    deliveredAtIso: data.deliveredAtIso ? String(data.deliveredAtIso) : undefined,
+    adminNotes: data.adminNotes ? String(data.adminNotes) : undefined,
+  };
+}
+
+export async function loadUserOrders(userId: string, limit = 50): Promise<OrderRecord[]> {
+  const db = getServerFirestoreDb();
+  const snap = await getDocs(query(collection(db, "orders"), where("userId", "==", userId)));
+  return snap.docs
+    .map((d) => parseOrderDocument(d.id, d.data() as Record<string, unknown>))
+    .sort((a, b) => b.createdAtIso.localeCompare(a.createdAtIso))
+    .slice(0, limit);
 }

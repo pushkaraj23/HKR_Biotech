@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { verifyFirebaseIdTokenPublic } from "@/lib/firebase/verify-id-token";
 
-export async function requireUserAuth(req: Request): Promise<{ uid: string; email?: string } | NextResponse> {
+export async function requireUserAuth(
+  req: Request,
+): Promise<{ uid: string; email?: string; name?: string } | NextResponse> {
   const authHeader = req.headers.get("authorization");
   const token = authHeader?.replace(/^Bearer\s+/i, "");
   if (!token) {

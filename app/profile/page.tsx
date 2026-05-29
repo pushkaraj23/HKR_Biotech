@@ -12,7 +12,7 @@ export default function ProfilePage() {
   return (
     <div className="relative overflow-x-hidden pb-24">
       <PageAmbientGraphics variant="left" opacity="opacity-[0.12]" />
-      <div className="relative z-10 mx-auto max-w-6xl space-y-8 px-4 pt-6 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-6xl space-y-8 px-4 pt-6 sm:px-6 lg:px-8">
         <section className="rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.58)] p-7 shadow-[0_10px_36px_-14px_rgba(18,25,35,0.7)] backdrop-blur-xl md:p-9">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-mid">Account</p>
           <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-on-dark md:text-4xl">My profile</h1>
@@ -47,9 +47,13 @@ export default function ProfilePage() {
           ) : null}
         </section>
 
-        <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
-          <ProfileOrdersSection />
-          <ProfileEnquiriesSection />
+        <div className="grid min-w-0 gap-6 lg:grid-cols-2 lg:items-stretch">
+          <div className="min-w-0">
+            <ProfileOrdersSection />
+          </div>
+          <div className="min-w-0">
+            <ProfileEnquiriesSection />
+          </div>
         </div>
       </div>
     </div>
@@ -65,9 +69,9 @@ function formatDate(value: string) {
 
 function InfoRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
-    <div>
+    <div className="min-w-0">
       <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-on-dark/60">{label}</p>
-      <p className={`mt-1 text-on-dark/88 ${mono ? "font-mono text-xs" : ""}`}>{value}</p>
+      <p className={`mt-1 break-words text-on-dark/88 ${mono ? "font-mono text-xs break-all" : ""}`}>{value}</p>
     </div>
   );
 }

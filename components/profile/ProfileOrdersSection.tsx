@@ -16,7 +16,7 @@ import { resolveOrderCustomerName } from "@/lib/commerce/order-customer";
 import { cn } from "@/lib/cn";
 
 const SECTION_SHELL =
-  "flex h-full min-h-[280px] flex-col rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] p-6 shadow-[0_8px_30px_-14px_rgba(18,25,35,0.7)] backdrop-blur-xl md:p-8";
+  "flex h-full min-h-[280px] w-full min-w-0 max-w-full flex-col overflow-hidden rounded-[1.75rem] border border-on-dark/20 bg-[rgba(18,25,35,0.56)] p-4 shadow-[0_8px_30px_-14px_rgba(18,25,35,0.7)] backdrop-blur-xl sm:p-6 md:p-8";
 
 export function ProfileOrdersSection() {
   const { user, configured } = useAuth();
@@ -60,16 +60,16 @@ export function ProfileOrdersSection() {
   return (
     <>
       <section className={SECTION_SHELL}>
-        <div className="flex shrink-0 flex-wrap items-center justify-between gap-3">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-primary-mid">
+        <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-mid sm:tracking-[0.28em]">
               Commerce
             </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-on-dark">Your orders</h2>
+            <h2 className="mt-1 font-display text-lg font-semibold text-on-dark sm:text-xl">Your orders</h2>
           </div>
           <Link
             href="/products"
-            className="rounded-full border border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-4 py-2 text-xs font-semibold text-on-dark transition hover:border-primary/40 hover:text-primary-mid"
+            className="inline-flex shrink-0 self-start rounded-full border border-on-dark/35 bg-[rgba(18,25,35,0.5)] px-4 py-2 text-xs font-semibold text-on-dark transition hover:border-primary/40 hover:text-primary-mid"
           >
             Browse
           </Link>
@@ -81,7 +81,7 @@ export function ProfileOrdersSection() {
           </p>
         ) : null}
 
-        <div className="mt-5 min-h-0 flex-1">
+        <div className="mt-5 min-h-0 min-w-0 flex-1">
           {loading ? (
             <p className="text-sm text-on-dark/75">Loading your orders…</p>
           ) : !user ? (
@@ -97,9 +97,9 @@ export function ProfileOrdersSection() {
               </Link>
             </div>
           ) : (
-            <ul className="max-h-[min(28rem,60vh)] space-y-2 overflow-y-auto pr-1 commerce-summary-scroll">
+            <ul className="max-h-[min(28rem,60vh)] space-y-2 overflow-x-hidden overflow-y-auto commerce-summary-scroll">
               {orders.map((order) => (
-                <li key={order.id}>
+                <li key={order.id} className="min-w-0">
                   <OrderCompactCard order={order} onOpen={() => setSelectedOrder(order)} />
                 </li>
               ))}
@@ -122,28 +122,32 @@ export function ProfileOrdersSection() {
 function OrderCompactCard({ order, onOpen }: { order: OrderRecord; onOpen: () => void }) {
   const currency = order.currency === "USD" ? "USD" : order.currency === "EUR" ? "EUR" : "INR";
   const totalLabel = formatMoney(order.subtotal, currency);
-  const shortId = order.id.length > 18 ? `${order.id.slice(0, 16)}…` : order.id;
-
   return (
     <button
       type="button"
       onClick={onOpen}
-      className="group flex w-full items-center gap-3 rounded-xl border border-on-dark/20 bg-[rgba(18,25,35,0.45)] px-3 py-2.5 text-left transition hover:border-primary/35 hover:bg-[rgba(18,25,35,0.62)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/50"
+      className="group flex w-full min-w-0 max-w-full items-center gap-2 overflow-hidden rounded-xl border border-on-dark/20 bg-[rgba(18,25,35,0.45)] px-2.5 py-2.5 text-left transition hover:border-primary/35 hover:bg-[rgba(18,25,35,0.62)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/50 sm:gap-3 sm:px-3"
     >
       <OrderStatusBadge status={order.status} compact />
-      <div className="min-w-0 flex-1">
-        <p className="truncate font-mono text-xs font-medium text-on-dark group-hover:text-primary-mid">
-          {shortId}
+      <div className="min-w-0 flex-1 overflow-hidden">
+        <p
+          className="truncate font-mono text-[11px] font-medium text-on-dark group-hover:text-primary-mid sm:text-xs"
+          title={order.id}
+        >
+          {order.id}
         </p>
-        <p className="mt-0.5 text-[10px] text-on-dark/65">{formatDateShort(order.createdAtIso)}</p>
+        <p className="mt-0.5 truncate text-[10px] text-on-dark/65">{formatDateShort(order.createdAtIso)}</p>
       </div>
-      <div className="shrink-0 text-right">
-        <p className="font-mono text-sm font-bold text-on-dark">{totalLabel}</p>
+      <div className="min-w-0 shrink-0 text-right">
+        <p className="truncate font-mono text-xs font-bold text-on-dark sm:text-sm">{totalLabel}</p>
         <p className="text-[10px] text-on-dark/60">
           {order.lineCount} line{order.lineCount === 1 ? "" : "s"}
         </p>
       </div>
-      <span className="shrink-0 text-on-dark/40 transition group-hover:text-primary-mid" aria-hidden>
+      <span
+        className="hidden shrink-0 text-on-dark/40 transition group-hover:text-primary-mid sm:inline"
+        aria-hidden
+      >
         <ChevronIcon />
       </span>
     </button>
@@ -188,7 +192,7 @@ function OrderDetailModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[200] flex items-end justify-center p-4 sm:items-center sm:p-6"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-labelledby="order-detail-title"

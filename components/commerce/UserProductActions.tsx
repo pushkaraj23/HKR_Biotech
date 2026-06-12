@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { trackProductInterestClient } from "@/lib/analytics/track-product-interest";
 import { loginPathWithCallback } from "@/lib/auth/return-url";
@@ -24,6 +25,7 @@ export function UserProductActions({
   compact,
   surface = "dark",
   showCart = true,
+  enquireHref,
 }: {
   product: ProductLite;
   className?: string;
@@ -32,6 +34,8 @@ export function UserProductActions({
   surface?: "dark" | "light";
   /** Hide cart control (e.g. product detail page uses the ordering panel for cart). */
   showCart?: boolean;
+  /** When set, renders an Enquire button in the same row (catalogue cards). */
+  enquireHref?: string;
 }) {
   const { user } = useAuth();
   const router = useRouter();
@@ -221,44 +225,62 @@ export function UserProductActions({
 
   return (
     <div className={cn("space-y-2", className)}>
-      <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => void (wishlisted ? removeWishlist() : addWishlist())}
-          disabled={savingWish || stateLoading}
-          className={cn(
-            "inline-flex h-9 w-9 items-center justify-center rounded-full border transition disabled:opacity-60",
-            surface === "light"
-              ? "border-[#17324d]/20 bg-white/88 text-[#17324d] hover:border-primary/45 hover:text-[#0d2137]"
-              : "border-on-dark/30 bg-[rgba(18,25,35,0.48)] text-on-dark/90 hover:border-primary/40 hover:text-on-dark",
-            compact && "h-8 w-8",
-            wishlisted &&
-              (surface === "light"
-                ? "border-primary/50 bg-primary/12 text-primary"
-                : "border-primary/55 bg-primary/20 text-primary-mid"),
-          )}
-          aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
-          title={wishlisted ? "Wishlisted" : "Add to wishlist"}
-        >
-          {savingWish ? (
-            <span className="text-[10px]">...</span>
-          ) : (
-            <HeartIcon filled={wishlisted} />
-          )}
-        </button>
-        {showCart ? (
+      <div
+        className={cn(
+          "flex gap-2",
+          enquireHref ? "items-center justify-between" : "flex-wrap items-center",
+        )}
+      >
+        <div className={cn("flex items-center gap-2", enquireHref && "min-w-0 shrink")}>
           <button
             type="button"
-            onClick={() => void addCart()}
-            disabled={savingCart || inCart || stateLoading}
+            onClick={() => void (wishlisted ? removeWishlist() : addWishlist())}
+            disabled={savingWish || stateLoading}
             className={cn(
-              "btn-glass btn-glass-green-light rounded-full px-4 py-2 text-xs font-semibold transition hover:-translate-y-0.5 disabled:opacity-60",
-              inCart && "cursor-default opacity-75",
-              compact && "px-3 py-1.5 text-[11px]",
+              "inline-flex shrink-0 items-center justify-center rounded-full border transition disabled:opacity-60",
+              surface === "light"
+                ? "border-[#17324d]/20 bg-white/88 text-[#17324d] hover:border-primary/45 hover:text-[#0d2137]"
+                : "border-on-dark/30 bg-[rgba(18,25,35,0.48)] text-on-dark/90 hover:border-primary/40 hover:text-on-dark",
+              compact ? "h-8 w-8" : "h-9 w-9",
+              wishlisted &&
+                (surface === "light"
+                  ? "border-primary/50 bg-primary/12 text-primary"
+                  : "border-primary/55 bg-primary/20 text-primary-mid"),
+            )}
+            aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+            title={wishlisted ? "Wishlisted" : "Add to wishlist"}
+          >
+            {savingWish ? (
+              <span className="text-[10px]">...</span>
+            ) : (
+              <HeartIcon filled={wishlisted} />
+            )}
+          </button>
+          {showCart ? (
+            <button
+              type="button"
+              onClick={() => void addCart()}
+              disabled={savingCart || inCart || stateLoading}
+              className={cn(
+                "btn-glass btn-glass-green-light inline-flex shrink-0 items-center justify-center rounded-full px-4 py-2 text-xs font-semibold whitespace-nowrap transition hover:-translate-y-0.5 disabled:opacity-60",
+                inCart && "cursor-default opacity-75",
+                compact && "px-3 py-1.5 text-[11px]",
+              )}
+            >
+              {savingCart ? "Adding..." : inCart ? "Added" : "Add to cart"}
+            </button>
+          ) : null}
+        </div>
+        {enquireHref ? (
+          <EnquireGateLink
+            href={enquireHref}
+            className={cn(
+              "inline-flex shrink-0 items-center justify-center btn-glass btn-glass-green-light rounded-full font-semibold whitespace-nowrap transition hover:-translate-y-0.5",
+              compact ? "px-3 py-1.5 text-[11px]" : "px-4 py-2 text-xs",
             )}
           >
-            {savingCart ? "Adding..." : inCart ? "Added" : "Add to cart"}
-          </button>
+            Enquire
+          </EnquireGateLink>
         ) : null}
       </div>
       {msg ? (

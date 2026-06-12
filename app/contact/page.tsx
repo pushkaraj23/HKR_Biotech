@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactChannelIcons } from "@/components/contact/ContactChannelIcons";
 import {
   contactChannels,
   contactDetailsHeading,
@@ -87,6 +88,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 {contactHero.title}
               </h1>
               <p className="mt-5 max-w-2xl text-base text-on-dark/82 md:text-lg">{contactHero.intro}</p>
+              <ContactChannelIcons className="mt-6" variant="dark" />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={contactHero.primaryAnchor} color="blue" surface="dark" className="rounded-full px-10">
                   {contactHero.primaryCtaLabel}
@@ -190,7 +192,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
                     aria-hidden
                   />
                   <p className={cn("font-mono text-[10px] font-semibold uppercase tracking-[0.22em]", infoCard.eyebrow)}>{contactDetailsHeading}</p>
-                  <ul className={cn("mt-4 space-y-4 text-sm", infoCard.body)}>
+                  <ContactChannelIcons className="mt-4" variant="dark" />
+                  <ul className={cn("mt-5 space-y-4 text-sm", infoCard.body)}>
                     <li>
                       <span className={cn("font-mono text-[10px] uppercase tracking-wider", infoCard.secondary)}>Email us</span>
                       <div className="mt-1.5 flex flex-col gap-1">

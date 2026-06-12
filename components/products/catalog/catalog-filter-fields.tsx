@@ -7,12 +7,23 @@ export const catalogFieldClass =
 export const catalogFieldLabelClass =
   "font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-on-dark/65";
 
-export function CatalogFieldGlow({ children, className }: { children: ReactNode; className?: string }) {
+export function CatalogFieldGlow({
+  children,
+  className,
+  compact,
+}: {
+  children: ReactNode;
+  className?: string;
+  compact?: boolean;
+}) {
   return (
     <div className={cn("relative mt-2", className)}>
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-2 rounded-full opacity-75 blur-xl"
+        className={cn(
+          "pointer-events-none absolute rounded-full opacity-75 blur-xl",
+          compact ? "-inset-1" : "-inset-2",
+        )}
         style={{
           background:
             "radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--accent) 38%, transparent) 0%, color-mix(in srgb, var(--primary) 26%, transparent) 50%, transparent 75%)",

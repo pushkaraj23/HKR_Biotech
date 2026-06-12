@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { CatalogProduct, ProductCategory, ProductSubcategory } from "@/lib/types/catalog";
+import { useSearchParams } from "next/navigation";
+import type { CatalogProduct, ProductCategory, ProductSubcategory, ProductCategorySlug } from "@/lib/types/catalog";
 import { filterCatalogProducts, type CatalogFilterState } from "@/lib/catalog/filters";
 import { subcategoriesWithCounts } from "@/lib/catalog/subcategory-stats";
 import { GlassProductsHero } from "@/components/products/GlassProductsHero";
@@ -24,8 +25,25 @@ const initialState: CatalogFilterState = {
 };
 const PAGE_SIZE = 16;
 
+function filterStateFromParams(
+  searchParams: URLSearchParams,
+  categorySlugs: Set<string>,
+): CatalogFilterState {
+  const search = searchParams.get("search") ?? "";
+  const categoryParam = searchParams.get("category") ?? "all";
+  const category =
+    categoryParam !== "all" && categorySlugs.has(categoryParam)
+      ? (categoryParam as ProductCategorySlug)
+      : "all";
+  return { search, category, subcategory: "all" };
+}
+
 export function CatalogBrowseClient({ allProducts, categories, subcategories }: CatalogBrowseClientProps) {
-  const [state, setState] = useState<CatalogFilterState>(initialState);
+  const searchParams = useSearchParams();
+  const categorySlugs = useMemo(() => new Set(categories.map((c) => c.slug)), [categories]);
+  const [state, setState] = useState<CatalogFilterState>(() =>
+    filterStateFromParams(searchParams, categorySlugs),
+  );
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
@@ -38,6 +56,21 @@ export function CatalogBrowseClient({ allProducts, categories, subcategories }: 
     [filtered, visibleCount],
   );
   const hasMore = visibleCount < filtered.length;
+
+  useEffect(() => {
+    setState(filterStateFromParams(searchParams, categorySlugs));
+  }, [categorySlugs, searchParams]);
+
+  useEffect(() => {
+    const hasFilters = Boolean(searchParams.get("search") || searchParams.get("category"));
+    if (!hasFilters && !window.location.hash.includes("catalog-grid-heading")) return;
+    const el = document.getElementById("catalog-grid-heading");
+    if (!el) return;
+    const raf = requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [searchParams]);
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);

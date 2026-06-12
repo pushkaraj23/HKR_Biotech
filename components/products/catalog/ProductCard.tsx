@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { UserProductActions } from "@/components/commerce/UserProductActions";
-import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import { StructurePlaceholder } from "@/components/products/catalog/StructurePlaceholder";
 import { trackProductInterestClient } from "@/lib/analytics/track-product-interest";
 import type { CatalogProduct } from "@/lib/types/catalog";
@@ -26,9 +25,6 @@ const CARD_VARIANTS = [
     titleLink: "hover:text-[#c8e6ff]",
     meta: "text-white/72",
     purity: "text-[#9ee7ff]",
-    footerBar: "border-white/18 bg-black/30",
-    actionsRow: "border-white/14",
-    linkDetails: "text-[#8fd0ff] hover:text-white",
     actionsSurface: "dark" as const,
     imageRing: "ring-white/20",
   },
@@ -45,9 +41,6 @@ const CARD_VARIANTS = [
     titleLink: "hover:text-[#d4fff0]",
     meta: "text-white/72",
     purity: "text-[#b8ffe8]",
-    footerBar: "border-white/18 bg-black/30",
-    actionsRow: "border-white/14",
-    linkDetails: "text-[#8cf5d0] hover:text-white",
     actionsSurface: "dark" as const,
     imageRing: "ring-white/20",
   },
@@ -64,9 +57,6 @@ const CARD_VARIANTS = [
     titleLink: "hover:text-primary",
     meta: "text-[#456178]",
     purity: "text-primary font-semibold",
-    footerBar: "border-[#17324d]/10 bg-white/58",
-    actionsRow: "border-[#17324d]/10",
-    linkDetails: "text-primary hover:text-primary-deep",
     actionsSurface: "light" as const,
     imageRing: "ring-[#17324d]/12",
   },
@@ -97,51 +87,28 @@ export function ProductCard({ product, className }: ProductCardProps) {
         aria-hidden
       />
 
-      <Link
-        href={detailHref}
-        className={cn("relative block shrink-0 overflow-hidden ring-1 ring-inset", v.imageRing)}
-        onClick={() =>
-          void trackProductInterestClient("view_from_list", {
-            slug: product.slug,
-            categorySlug: product.categorySlug,
-            chemicalName: product.chemicalName,
-            catalogNumber: product.catalogNumber,
-          })
-        }
-      >
-        <StructurePlaceholder
-          card
-          imageUrl={product.imageUrl}
-          imageAlt={`Structure of ${product.chemicalName}`}
-        />
-      </Link>
+      <div className="relative flex flex-1 flex-col gap-3 p-4">
+        <div className="flex flex-col gap-1.5">
+          <p className={cn("font-mono text-[9px] font-medium tracking-[0.1em]", v.catalog)}>
+            {product.catalogNumber}
+          </p>
 
-      <div className="relative flex flex-1 flex-col gap-2 p-3.5 sm:p-4">
-        <p className={cn("font-mono text-[9px] font-medium tracking-[0.1em]", v.catalog)}>
-          {product.catalogNumber}
-        </p>
+          <h3 className={cn("font-display text-base font-bold leading-snug tracking-tight", v.title)}>
+            <Link href={detailHref} className={cn("line-clamp-2 transition-colors duration-200", v.titleLink)}>
+              {product.chemicalName}
+            </Link>
+          </h3>
 
-        <h3 className={cn("font-display text-base font-bold leading-snug tracking-tight", v.title)}>
-          <Link href={detailHref} className={cn("line-clamp-2 transition-colors duration-200", v.titleLink)}>
-            {product.chemicalName}
-          </Link>
-        </h3>
+          <p className={cn("font-mono text-[11px]", v.meta)}>
+            <span className={v.purity}>{product.purity}</span>
+            <span className="mx-2 opacity-50">·</span>
+            <span>{product.casNumber}</span>
+          </p>
+        </div>
 
-        <p className={cn("font-mono text-[11px]", v.meta)}>
-          <span className={v.purity}>{product.purity}</span>
-          <span className="mx-2 opacity-50">·</span>
-          <span>{product.casNumber}</span>
-        </p>
-      </div>
-
-      <div
-        className={cn(
-          "relative flex items-center justify-between gap-2 border-t px-3.5 py-2.5 backdrop-blur-sm sm:px-4",
-          v.footerBar,
-        )}
-      >
         <Link
           href={detailHref}
+          className={cn("block shrink-0 overflow-hidden rounded-xl ring-1 ring-inset", v.imageRing)}
           onClick={() =>
             void trackProductInterestClient("view_from_list", {
               slug: product.slug,
@@ -150,45 +117,31 @@ export function ProductCard({ product, className }: ProductCardProps) {
               catalogNumber: product.catalogNumber,
             })
           }
-          className={cn(
-            "inline-flex items-center gap-1 text-xs font-semibold transition-all duration-200 hover:gap-1.5",
-            v.linkDetails,
-          )}
         >
-          Details
-          <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden>
-            →
-          </span>
+          <StructurePlaceholder
+            card
+            imageUrl={product.imageUrl}
+            imageAlt={`Structure of ${product.chemicalName}`}
+          />
         </Link>
-        <EnquireGateLink
-          href={enquiryHref}
-          className="inline-flex items-center justify-center btn-glass btn-glass-green-light rounded-full px-3.5 py-1.5 text-[11px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
-        >
-          Enquire
-        </EnquireGateLink>
-      </div>
 
-      <div
-        className={cn(
-          "relative border-t px-3.5 py-2 backdrop-blur-sm sm:px-4",
-          v.actionsRow,
-          v.id === "light" ? "bg-white/40" : "bg-black/18",
-        )}
-      >
-        <UserProductActions
-          compact
-          surface={v.actionsSurface}
-          product={{
-            slug: product.slug,
-            catalogNumber: product.catalogNumber,
-            categorySlug: product.categorySlug,
-            chemicalName: product.chemicalName,
-            shortDescription: product.shortDescription,
-            purity: product.purity,
-            availability: product.availability,
-            imageUrl: product.imageUrl,
-          }}
-        />
+        <div className="mt-auto">
+          <UserProductActions
+            compact
+            surface={v.actionsSurface}
+            enquireHref={enquiryHref}
+            product={{
+              slug: product.slug,
+              catalogNumber: product.catalogNumber,
+              categorySlug: product.categorySlug,
+              chemicalName: product.chemicalName,
+              shortDescription: product.shortDescription,
+              purity: product.purity,
+              availability: product.availability,
+              imageUrl: product.imageUrl,
+            }}
+          />
+        </div>
       </div>
     </article>
   );

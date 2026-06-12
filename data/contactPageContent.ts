@@ -45,6 +45,7 @@ export const contactChannels = {
   technical: { label: "kishor@hkrbiotechlabs.com", href: "mailto:kishor@hkrbiotechlabs.com" },
   phoneDisplay: "+91 8446660179",
   phoneHref: "tel:+918446660179",
+  whatsappHref: "https://wa.me/918446660179",
   hours: "Monday – Saturday, 9:00 AM – 6:00 PM GMT",
   address: "HKR Biotech Pvt. Ltd., NCL Innovation Park, Pashan Road, Pune - 411008",
 } as const;

@@ -4,20 +4,20 @@ import { LANDING_CONTAINER, LANDING_SECTION } from "@/components/landing/landing
 const PILLARS = [
   {
     num: "01",
-    title: "NMR-backed quality",
-    copy: "1D and 2D NMR, HRMS, and HPLC — with CoA and technical reports you can cite.",
+    title: "Custom synthesis",
+    copy: "Glycans, protected sugars, phosphoramidites, and impurities from milligram to scale-up.",
     accent: "primary" as const,
   },
   {
     num: "02",
-    title: "Custom synthesis",
-    copy: "Glycans, protected sugars, phosphoramidites, and impurities from milligram to scale-up.",
+    title: "NMR-backed quality",
+    copy: "1D and 2D NMR, HRMS, and HPLC — with CoA and technical reports you can cite.",
     accent: "secondary" as const,
   },
   {
     num: "03",
-    title: "Scientific partnership",
-    copy: "PhD-led teams for academia, biotech, and pharma — clear timelines and route-level dialogue.",
+    title: "Scientific Partnership",
+    copy: "Need constant and reliable support for your glycan synthesis and protected sugar synthesis.",
     accent: "danger" as const,
   },
 ] as const;

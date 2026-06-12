@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getAllCategories, getAllProducts, getAllSubcategories } from "@/data/catalog";
 import { CatalogBrowseClient } from "@/components/products/catalog/CatalogBrowseClient";
@@ -17,5 +18,9 @@ export default async function ProductsPage() {
     getAllSubcategories(),
   ]);
 
-  return <CatalogBrowseClient allProducts={allProducts} categories={categories} subcategories={subcategories} />;
+  return (
+    <Suspense fallback={null}>
+      <CatalogBrowseClient allProducts={allProducts} categories={categories} subcategories={subcategories} />
+    </Suspense>
+  );
 }

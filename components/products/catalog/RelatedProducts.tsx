@@ -53,29 +53,27 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
                     v.shell,
                   )}
                 >
-                  <div className="flex gap-4">
-                    <div className={cn("shrink-0 overflow-hidden rounded-xl", v.thumbRing)}>
-                      <StructurePlaceholder
-                        compact
-                        imageUrl={p.imageUrl}
-                        imageAlt={`Structure of ${p.chemicalName}`}
-                        className="h-28 w-28 rounded-xl border-0"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className={cn("font-display text-lg font-semibold leading-snug", v.title)}>
-                        <Link
-                          href={`/products/${p.categorySlug}/${p.slug}`}
-                          className={cn("transition", v.titleHover)}
-                        >
-                          {p.chemicalName}
-                        </Link>
-                      </h3>
-                      <p className={cn("mt-1.5 font-mono text-xs", v.secondary)}>{p.catalogNumber}</p>
-                      <p className={cn("mt-2 line-clamp-2 text-sm leading-relaxed md:text-base", v.body)}>
-                        {p.shortDescription}
-                      </p>
-                    </div>
+                  <div className="min-w-0">
+                    <h3 className={cn("font-display text-lg font-semibold leading-snug", v.title)}>
+                      <Link
+                        href={`/products/${p.categorySlug}/${p.slug}`}
+                        className={cn("transition", v.titleHover)}
+                      >
+                        {p.chemicalName}
+                      </Link>
+                    </h3>
+                    <p className={cn("mt-1.5 font-mono text-xs", v.secondary)}>{p.catalogNumber}</p>
+                    <p className={cn("mt-2 line-clamp-2 text-sm leading-relaxed md:text-base", v.body)}>
+                      {p.shortDescription}
+                    </p>
+                  </div>
+                  <div className={cn("mt-5 overflow-hidden rounded-xl", v.thumbRing)}>
+                    <StructurePlaceholder
+                      card
+                      imageUrl={p.imageUrl}
+                      imageAlt={`Structure of ${p.chemicalName}`}
+                      className="rounded-xl border-0"
+                    />
                   </div>
                   <Link
                     href={`/products/${p.categorySlug}/${p.slug}`}

@@ -1,4 +1,5 @@
 import { LandingHeroBackground } from "@/components/landing/LandingHeroBackground";
+import { HeroCatalogSearch } from "@/components/landing/HeroCatalogSearch";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
@@ -16,37 +17,20 @@ export function LandingHero() {
     <section className="relative isolate flex min-h-svh flex-col overflow-hidden">
       <LandingHeroBackground />
       {/* Main content */}
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-center px-4 pb-14 pt-[calc(var(--site-header-offset,6rem)+1.5rem)] sm:px-6 sm:pb-20 lg:px-8">
-        <div className="mx-auto w-full max-w-5xl">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pt-[calc(4.5rem+max(0.75rem,env(safe-area-inset-top))+0.75rem)] sm:px-6 sm:pt-[calc(var(--site-header-offset,6rem)+1.5rem)] lg:px-8">
+        <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-start pb-8 sm:justify-center sm:pb-10">
           <RevealOnScroll>
-            {/* Live status badge */}
-            <div className="mx-auto mb-8 flex w-fit items-center gap-2.5 rounded-full border border-on-dark/30 bg-[rgba(18,25,35,0.45)] px-4 py-1.5 backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-mid opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-on-dark">
-                Open for projects
-              </span>
-            </div>
+            <div className="flex flex-col gap-5 sm:gap-10">
+              <HeroCatalogSearch />
 
+              <div>
             {/* Main heading */}
             <h1
-              className="mx-auto max-w-4xl text-center font-display text-[2.85rem] font-extrabold leading-[1.02] tracking-tight text-on-dark sm:text-[3.5rem] lg:text-[4.35rem]"
+              className="mx-auto max-w-5xl text-center font-display text-[2.15rem] font-extrabold leading-[1.08] tracking-tight text-on-dark sm:text-[2.85rem] lg:text-[3.5rem]"
               style={{ textShadow: "0 2px 18px rgba(18,25,35,0.45)" }}
             >
-              Precision{" "}
-              <span className="gradient-text-shimmer">Chemistry</span>,
-              <br />
-              Traceable from{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">Route</span>
-                <span
-                  aria-hidden
-                  className="absolute -bottom-1 left-0 right-0 h-2 rounded-full bg-primary/45 blur-[6px]"
-                />
-              </span>{" "}
-              to Release.
+              Global Leaders in Affordable Custom{" "}
+              <span className="gradient-text-shimmer">Glycan Synthesis</span> & Sugar Building Blocks
             </h1>
 
             {/* Subtitle */}
@@ -54,8 +38,8 @@ export function LandingHero() {
               className="mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed text-on-dark sm:text-xl"
               style={{ textShadow: "0 1px 12px rgba(18,25,35,0.4)" }}
             >
-              Rare building blocks, impurities, and nucleotide chemistry — with{" "}
-              <span className="font-semibold text-accent">analytics that hold up</span> and timelines that match your milestones.
+              High-purity protected monosaccharides and modified nucleotide sugars;
+              <span className="font-semibold text-accent">  engineered for precision, priced for research</span>, and shipped worldwide.
             </p>
 
             {/* CTAs */}
@@ -97,6 +81,8 @@ export function LandingHero() {
                 </li>
               ))}
             </ul>
+              </div>
+            </div>
           </RevealOnScroll>
 
           {/* Stats row with elegant dividers */}
@@ -138,18 +124,18 @@ export function LandingHero() {
             </div>
           </RevealOnScroll>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden flex-col items-center gap-2 -translate-x-1/2 sm:flex"
-        aria-hidden
-      >
-        <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.35em] text-on-dark-muted">
-          Scroll
-        </span>
-        <div className="flex h-9 w-5 justify-center rounded-full border border-on-dark/30 bg-on-dark/[0.06] backdrop-blur-md">
-          <span className="mt-1.5 h-1.5 w-0.5 animate-bounce rounded-full bg-primary-mid" />
+        {/* Scroll indicator — in document flow below hero content */}
+        <div
+          className="mx-auto mt-6 hidden flex-col items-center gap-2.5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-2 sm:mt-10 sm:flex sm:gap-3 sm:pb-8"
+          aria-hidden
+        >
+          <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.35em] text-on-dark-muted">
+            Scroll
+          </span>
+          <div className="flex h-9 w-5 justify-center rounded-full border border-on-dark/30 bg-on-dark/[0.06] backdrop-blur-md">
+            <span className="mt-1.5 h-1.5 w-0.5 animate-bounce rounded-full bg-primary-mid" />
+          </div>
         </div>
       </div>
     </section>

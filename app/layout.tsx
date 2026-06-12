@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingWhatsAppButton } from "@/components/layout/FloatingWhatsAppButton";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { WelcomeAuthModal } from "@/components/auth/WelcomeAuthModal";
@@ -109,6 +110,7 @@ export default function RootLayout({
           <SiteHeader />
           <main className="relative flex-1 pt-[var(--site-header-offset)]">{children}</main>
           <Footer />
+          <FloatingWhatsAppButton />
         </AuthProvider>
       </body>
     </html>

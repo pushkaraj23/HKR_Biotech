@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { ContactChannelIcons } from "@/components/contact/ContactChannelIcons";
 import { getAllCategories } from "@/data/catalog";
+import { contactChannels } from "@/data/contactPageContent";
 import { mainNav } from "@/data/navigation";
 
 const exploreLinks = [
@@ -94,20 +96,21 @@ export async function Footer() {
 
           <div className="rounded-2xl border border-on-dark/20 bg-white p-6 text-foreground shadow-[0_12px_30px_-16px_rgba(18,50,90,0.6)] lg:col-span-3">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">Contact</p>
-            <address className="mt-4 not-italic text-sm leading-relaxed">
+            <ContactChannelIcons className="mt-4" variant="light" />
+            <address className="mt-5 not-italic text-sm leading-relaxed">
               <p className="text-muted-foreground">Email</p>
               <a
-                href="mailto:kishor@hkrbiotechlabs.com"
+                href={contactChannels.salesEmails[0]?.href ?? "mailto:sales@hkrbiotechlabs.com"}
                 className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary"
               >
-                kishor@hkrbiotechlabs.com
+                {contactChannels.salesEmails[0]?.label ?? "sales@hkrbiotechlabs.com"}
               </a>
               <p className="mt-4 text-muted-foreground">Phone</p>
               <a
-                href="tel:+919212123868"
+                href={contactChannels.phoneHref}
                 className="font-medium text-foreground underline decoration-border-strong underline-offset-2 transition hover:text-primary"
               >
-                +91 9212123868
+                {contactChannels.phoneDisplay}
               </a>
               <p className="mt-4 text-muted-foreground">Address</p>
               <p className="font-medium text-foreground">

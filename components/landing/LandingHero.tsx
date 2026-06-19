@@ -29,7 +29,7 @@ export function LandingHero() {
               className="mx-auto max-w-5xl text-center font-display text-[2.15rem] font-extrabold leading-[1.08] tracking-tight text-on-dark sm:text-[2.85rem] lg:text-[3.5rem]"
               style={{ textShadow: "0 2px 18px rgba(18,25,35,0.45)" }}
             >
-              Global Leaders in Affordable Custom{" "}
+              Global Suppliers in Affordable Custom{" "}
               <span className="gradient-text-shimmer">Glycan Synthesis</span> & Sugar Building Blocks
             </h1>
 

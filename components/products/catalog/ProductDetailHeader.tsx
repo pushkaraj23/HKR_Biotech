@@ -32,7 +32,7 @@ function ProductStructureImage({ product }: { product: CatalogProduct }) {
         <img
           src={product.imageUrl}
           alt={alt}
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-contain object-center p-4 sm:p-6"
           loading="eager"
         />
       ) : (

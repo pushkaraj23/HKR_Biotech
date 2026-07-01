@@ -31,7 +31,7 @@ export function StructurePlaceholder({
   imageAlt = "Compound structure",
 }: StructurePlaceholderProps) {
   const frameClass = cn(
-    "relative overflow-hidden bg-white/96 shadow-inner",
+    "relative overflow-hidden bg-white shadow-inner",
     card || detail ? "rounded-none border-0" : "rounded-2xl border border-teal-200/60",
     sizeClasses(compact, card, detail),
     className,
@@ -46,8 +46,8 @@ export function StructurePlaceholder({
             src={imageUrl}
             alt={imageAlt}
             className={cn(
-              "absolute inset-0 h-full w-full object-center",
-              detail ? "object-contain p-4 sm:p-6" : "object-cover",
+              "absolute inset-0 h-full w-full object-center object-contain p-3 sm:p-4",
+              detail && "p-4 sm:p-6",
             )}
             loading="lazy"
           />
@@ -62,7 +62,7 @@ export function StructurePlaceholder({
           alt={imageAlt}
           fill
           sizes="(max-width: 768px) 90vw, 480px"
-          className="object-contain p-3"
+          className="object-contain p-4"
         />
       </div>
     );

@@ -58,9 +58,7 @@ export function WelcomeAuthModal() {
     };
   }, [canPrompt]);
 
-  const open =
-    canPrompt &&
-    delayElapsed;
+  const open = false;
 
   useEffect(() => {
     if (!open) {

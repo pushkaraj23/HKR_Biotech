@@ -13,7 +13,7 @@ import { getSiteUrl } from "@/lib/seo/site";
 const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "HKR Biotech Labs | Precision Chemistry for Pharma",
+  title: "HKR Biotech Labs | Accelerating Glycan Research",
   description:
     "Partner with HKR Biotech Labs for custom synthesis, API impurity standards, carbohydrates, and nucleotide chemistry supported by traceable analytics.",
   alternates: { canonical: "/" },

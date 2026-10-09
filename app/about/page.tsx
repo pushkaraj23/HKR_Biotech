@@ -13,6 +13,14 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "HKR Biotech Pvt Ltd — global leaders in custom glycan and sugar chemistry. Custom glycans, modified sugars, nucleic acid chemistry, impurities, reference standards, and worldwide logistics.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    type: "website",
+    url: "/about",
+    title: "About Us | HKR Biotech Labs",
+    description:
+      "HKR Biotech Pvt Ltd — custom glycan and sugar chemistry, nucleic acid chemistry, impurities, and worldwide logistics.",
+  },
 };
 
 const HERO_IMAGE =

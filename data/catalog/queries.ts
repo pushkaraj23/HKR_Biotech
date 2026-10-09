@@ -6,6 +6,8 @@ import type {
   ProductSubcategorySlug,
 } from "@/lib/types/catalog";
 import { loadCatalog } from "@/lib/catalog/load-catalog";
+import { extractCasFromSlug, isMeaningfulCas } from "@/lib/seo/cas";
+import { productSeoSegment } from "@/lib/seo/product-url";
 
 export async function isValidCategorySlug(slug: string): Promise<boolean> {
   const { categories } = await loadCatalog();
@@ -51,15 +53,32 @@ export async function getProductsByCategorySlug(
   return products.filter((p) => p.categorySlug === categorySlug);
 }
 
+/**
+ * Resolve a PDP by catalog slug, CAS-prefixed SEO segment, or CAS alone.
+ * Supports both legacy `/…/hkr-gas-001` and `/…/3006-60-8-chemical-name` URLs.
+ */
 export async function getProductBySlug(
   categorySlug: string,
   productSlug: string,
 ): Promise<CatalogProduct | undefined> {
   if (!(await isValidCategorySlug(categorySlug))) return undefined;
   const { products } = await loadCatalog();
-  const p = products.find((x) => x.slug === productSlug);
-  if (!p || p.categorySlug !== categorySlug) return undefined;
-  return p;
+  const inCategory = products.filter((x) => x.categorySlug === categorySlug);
+  const decoded = decodeURIComponent(productSlug);
+
+  const byCatalogSlug = inCategory.find((x) => x.slug === decoded);
+  if (byCatalogSlug) return byCatalogSlug;
+
+  const bySeoSegment = inCategory.find((x) => productSeoSegment(x) === decoded);
+  if (bySeoSegment) return bySeoSegment;
+
+  const cas = extractCasFromSlug(decoded);
+  if (cas && isMeaningfulCas(cas)) {
+    const byCas = inCategory.find((x) => x.casNumber.trim() === cas);
+    if (byCas) return byCas;
+  }
+
+  return undefined;
 }
 
 export async function getProductByCatalogRef(ref: string): Promise<CatalogProduct | undefined> {
@@ -70,6 +89,14 @@ export async function getProductByCatalogRef(ref: string): Promise<CatalogProduc
       p.catalogNumber.toUpperCase() === normalized ||
       p.slug.toLowerCase() === ref.trim().toLowerCase(),
   );
+}
+
+/** Lookup by CAS Registry Number (exact match after trim). */
+export async function getProductByCasNumber(cas: string): Promise<CatalogProduct | undefined> {
+  const normalized = cas.trim();
+  if (!normalized) return undefined;
+  const { products } = await loadCatalog();
+  return products.find((p) => p.casNumber.trim() === normalized);
 }
 
 export async function getRelatedProductsOrFallback(

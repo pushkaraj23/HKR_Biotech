@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllCategories, getAllProducts } from "@/data/catalog/queries";
 import { services } from "@/data/services";
+import { productPath } from "@/lib/seo/product-url";
 import { getSiteUrl } from "@/lib/seo/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -29,10 +30,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const productRoutes: MetadataRoute.Sitemap = products.map((product) => ({
-    url: `${siteUrl}/products/${product.categorySlug}/${product.slug}`,
+    url: `${siteUrl}${productPath(product)}`,
     lastModified: now,
     changeFrequency: "weekly",
-    priority: 0.7,
+    // Product PDPs are the primary organic discovery surface (name / CAS).
+    priority: 0.85,
   }));
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({

@@ -1,4 +1,5 @@
 import { services } from "@/data/services";
+import { productPath } from "@/lib/seo/product-url";
 
 export type SearchResultKind =
   | "product"
@@ -85,7 +86,7 @@ export function buildCatalogSearchResults(
       kind: "product",
       title: p.chemicalName,
       subtitle: `${p.catalogNumber} · CAS ${p.casNumber}`,
-      href: `/products/${p.categorySlug}/${p.slug}`,
+      href: productPath(p),
     });
   }
 

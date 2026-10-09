@@ -5,6 +5,8 @@ import { SignupForm } from "@/components/auth/SignupForm";
 export const metadata: Metadata = {
   title: "Sign up",
   description: "Create an HKR Biotech Labs account.",
+  robots: { index: false, follow: false },
+  alternates: { canonical: "/signup" },
 };
 
 export default function SignupPage() {

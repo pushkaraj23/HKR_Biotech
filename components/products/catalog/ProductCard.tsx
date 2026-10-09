@@ -4,6 +4,7 @@ import { StructurePlaceholder } from "@/components/products/catalog/StructurePla
 import { trackProductInterestClient } from "@/lib/analytics/track-product-interest";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
+import { productPath } from "@/lib/seo/product-url";
 
 type ProductCardProps = {
   product: CatalogProduct;
@@ -67,7 +68,7 @@ function variantIndexForSlug(slug: string): number {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const detailHref = `/products/${product.categorySlug}/${product.slug}`;
+  const detailHref = productPath(product);
   const enquiryHref = `/contact?product=${encodeURIComponent(product.catalogNumber)}`;
   const v = CARD_VARIANTS[variantIndexForSlug(product.slug)];
 

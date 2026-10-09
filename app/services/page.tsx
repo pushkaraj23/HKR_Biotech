@@ -7,11 +7,21 @@ import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { BRAND_SOLID_CARD_CYCLE } from "@/lib/ui/brandSolidCardCycle";
+import { SERVICES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Custom Glycan Synthesis & Glycan NMR Services",
   description:
-    "Precision carbohydrate and nucleoside chemistry at HKR Biotech Pvt. Ltd: custom glycan synthesis, DNA/RNA building blocks, NMR analysis, and glycoconjugation services.",
+    "HKR Biotech services: custom glycan synthesis, sugar building blocks, modified nucleotide sugars, glycan NMR analysis, and glycoconjugation for O-glycans, N-glycans, and carbohydrate antigens.",
+  keywords: SERVICES_SEO_KEYWORDS,
+  alternates: { canonical: "/services" },
+  openGraph: {
+    type: "website",
+    url: "/services",
+    title: "Custom Glycan Synthesis & Glycan NMR Services | HKR Biotech Labs",
+    description:
+      "Custom glycan synthesis, sugar building blocks, glycan NMR analysis, and glycoconjugation services.",
+  },
 };
 
 export default function ServicesPage() {

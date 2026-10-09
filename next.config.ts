@@ -12,7 +12,31 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "plus.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
     ],
+  },
+  async redirects() {
+    return [
+      // Common legacy catalogue entry points → modern products index.
+      {
+        source: "/catalogue",
+        destination: "/products",
+        permanent: true,
+      },
+      {
+        source: "/catalog",
+        destination: "/products",
+        permanent: true,
+      },
+      {
+        source: "/shop",
+        destination: "/products",
+        permanent: true,
+      },
+    ];
   },
 };
 

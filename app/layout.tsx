@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { WelcomeAuthModal } from "@/components/auth/WelcomeAuthModal";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { AuraBackdrop } from "@/components/ui/AuraBackdrop";
+import { HOME_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { getSiteUrl } from "@/lib/seo/site";
 import "./globals.css";
 
@@ -34,24 +35,13 @@ export const metadata: Metadata = {
     template: "%s | HKR Biotech Labs",
   },
   description:
-    "HKR Biotech Labs delivers high-purity carbohydrates, API impurities, and nucleotide building blocks with analytical rigor and custom synthesis partnership.",
-  keywords: [
-    "custom chemical synthesis",
-    "API impurities",
-    "nucleotide building blocks",
-    "carbohydrate chemistry",
-    "analytical services",
-    "impurity profiling",
-    "GMP-ready documentation",
-    "contract research",
-  ],
-  alternates: {
-    canonical: "/",
-  },
+    "HKR Biotech Labs delivers custom glycan synthesis, sugar building blocks, protected monosaccharides, bacterial oligosaccharides, and glycan NMR analysis with analytical rigor.",
+  keywords: HOME_SEO_KEYWORDS,
+  // Do not set a site-wide canonical/og:url — every page must declare its own
+  // absolute path so product pages are not collapsed to the homepage.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
     siteName: "HKR Biotech Labs",
     title: "HKR Biotech Labs | Advanced Chemical Synthesis",
     description:

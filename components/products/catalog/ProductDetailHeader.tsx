@@ -6,6 +6,7 @@ import { COMMERCE_STICKY_TOP } from "@/components/products/catalog/productDetail
 import { glassButtonCn } from "@/lib/ui/glassButton";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
+import { isMeaningfulCas } from "@/lib/seo/cas";
 
 type ProductDetailHeaderProps = {
   product: CatalogProduct;
@@ -101,6 +102,28 @@ export function ProductDetailHeader({
 
         {isDistinctLabel(product.chemicalName, product.alternativeName) ? (
           <p className="text-lg font-medium text-on-dark/88 md:text-xl">{product.alternativeName}</p>
+        ) : null}
+
+        {isMeaningfulCas(product.casNumber) || product.catalogNumber ? (
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-on-dark/80 md:text-base">
+            {isMeaningfulCas(product.casNumber) ? (
+              <span>
+                CAS No.{" "}
+                <span className="font-semibold text-on-dark">{product.casNumber.trim()}</span>
+              </span>
+            ) : null}
+            {isMeaningfulCas(product.casNumber) && product.catalogNumber ? (
+              <span className="text-on-dark/40" aria-hidden>
+                ·
+              </span>
+            ) : null}
+            {product.catalogNumber ? (
+              <span>
+                Catalog No.{" "}
+                <span className="font-semibold text-on-dark">{product.catalogNumber}</span>
+              </span>
+            ) : null}
+          </p>
         ) : null}
 
         {product.shortDescription ? (

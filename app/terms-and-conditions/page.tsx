@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms and Conditions",
   description:
     "Terms and Conditions for use of HKR Biotech Pvt. Ltd. website and enquiry services.",
+  alternates: { canonical: "/terms-and-conditions" },
 };
 
 export default function TermsAndConditionsPage() {

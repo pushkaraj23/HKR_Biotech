@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with HKR Biotech for protected sugars, custom glycan synthesis, NMR analysis, quotes, shipping worldwide, CDAs/NDAs, and technical support.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    type: "website",
+    url: "/contact",
+    title: "Contact | HKR Biotech Labs",
+    description:
+      "Request a quote for custom glycan synthesis, NMR analysis, and specialty carbohydrates.",
+  },
 };
 
 const HERO_IMAGE =

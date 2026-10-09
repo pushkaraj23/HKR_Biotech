@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import {
   getAllProducts,
   getCategoryBySlug,
@@ -23,6 +23,14 @@ import { ProductInterestTracker } from "@/components/analytics/ProductInterestTr
 import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { PRODUCT_DETAIL_CONTAINER, PRODUCT_DETAIL_STACK } from "@/components/products/catalog/productDetailStyles";
+import { JsonLd } from "@/lib/seo/json-ld";
+import {
+  buildBreadcrumbJsonLd,
+  buildProductJsonLd,
+  buildProductMetadata,
+  productPath,
+} from "@/lib/seo/product-metadata";
+import { isPreferredProductSegment, productSeoSegment } from "@/lib/seo/product-url";
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -34,18 +42,25 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const products = await getAllProducts();
-  return products.map((p) => ({
-    category: p.categorySlug,
-    slug: p.slug,
-  }));
+  // Prefer CAS–name SEO segments; keep catalog slugs too so legacy URLs resolve at build.
+  const params: { category: string; slug: string }[] = [];
+  for (const p of products) {
+    const seo = productSeoSegment(p);
+    params.push({ category: p.categorySlug, slug: seo });
+    if (seo !== p.slug) {
+      params.push({ category: p.categorySlug, slug: p.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: categoryParam, slug } = await params;
   const p =
     (await isValidCategorySlug(categoryParam)) ? await getProductBySlug(categoryParam, slug) : undefined;
-  if (!p) return { title: "Product" };
-  return { title: p.chemicalName, description: p.shortDescription };
+  if (!p) return { title: "Product", robots: { index: false, follow: true } };
+  const category = await getCategoryBySlug(categoryParam);
+  return buildProductMetadata(p, category);
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
@@ -55,11 +70,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const product = await getProductBySlug(categoryParam, slug);
   if (!product) notFound();
 
+  // Canonicalize to CAS–name URL when available (client SEO report recommendation).
+  if (!isPreferredProductSegment(product, decodeURIComponent(slug))) {
+    permanentRedirect(`${productPath(product)}`);
+  }
+
   const categoryMeta = await getCategoryBySlug(categoryParam);
   if (!categoryMeta) notFound();
 
   const related = await getRelatedProductsOrFallback(product, 3);
-  const enquiryHref = `/products/${categoryParam}/${slug}#enquiry-form`;
+  const detailPath = productPath(product);
+  const enquiryHref = `${detailPath}#enquiry-form`;
 
   const crumbs = [
     { label: "Products", href: "/products" },
@@ -67,8 +88,22 @@ export default async function ProductDetailPage({ params }: PageProps) {
     { label: product.chemicalName },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildProductJsonLd(product, categoryMeta),
+      buildBreadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Products", path: "/products" },
+        { name: categoryMeta.name, path: `/products/${categoryParam}` },
+        { name: product.chemicalName, path: detailPath },
+      ]),
+    ],
+  };
+
   return (
     <div className="relative bg-[#020A63] pb-28">
+      <JsonLd data={structuredData} />
       <PageAmbientGraphics variant="right" opacity="opacity-[0.12]" />
       <ProductInterestTracker
         slug={product.slug}

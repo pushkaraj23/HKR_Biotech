@@ -89,9 +89,9 @@ export const serviceSections: readonly ServiceSection[] = [
   },
   {
     number: 4,
-    heading: "GLycoconjugatation Synthesis Services",
+    heading: "Glycoconjugation Synthesis Services",
     intro:
-      "Enhance your glycans with functional handles for biological tracking, bioorthogonal applications, synthetic conjugate vaccines and drug delivery. We use proven chemistries for glycocujugation and develop new chemistries.",
+      "Enhance your glycans with functional handles for biological tracking, bioorthogonal applications, synthetic conjugate vaccines and drug delivery. We use proven chemistries for glycoconjugation and develop new chemistries.",
     bullets: [
       {
         label: "Glycoconjugates",

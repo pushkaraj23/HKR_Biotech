@@ -25,8 +25,24 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const s = getServiceBySlug(slug);
-  if (!s) return { title: "Service" };
-  return { title: s.title, description: s.summary };
+  if (!s) return { title: "Service", robots: { index: false, follow: true } };
+  const path = `/services/${slug}`;
+  return {
+    title: s.title,
+    description: s.summary,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: path,
+      title: `${s.title} | HKR Biotech Labs`,
+      description: s.summary,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${s.title} | HKR Biotech Labs`,
+      description: s.summary,
+    },
+  };
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {

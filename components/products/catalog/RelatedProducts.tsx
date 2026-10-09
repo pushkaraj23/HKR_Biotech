@@ -8,6 +8,7 @@ import {
   productDetailSolidPanelClass,
 } from "@/components/products/catalog/productDetailStyles";
 import { StructurePlaceholder } from "./StructurePlaceholder";
+import { productPath } from "@/lib/seo/product-url";
 
 type RelatedProductsProps = {
   products: CatalogProduct[];
@@ -56,7 +57,7 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
                   <div className="min-w-0">
                     <h3 className={cn("font-display text-lg font-semibold leading-snug", v.title)}>
                       <Link
-                        href={`/products/${p.categorySlug}/${p.slug}`}
+                        href={productPath(p)}
                         className={cn("transition", v.titleHover)}
                       >
                         {p.chemicalName}
@@ -76,7 +77,7 @@ export function RelatedProducts({ products, className }: RelatedProductsProps) {
                     />
                   </div>
                   <Link
-                    href={`/products/${p.categorySlug}/${p.slug}`}
+                    href={productPath(p)}
                     className={cn("mt-5 inline-flex text-sm font-semibold transition md:text-base", v.link)}
                   >
                     View specifications →

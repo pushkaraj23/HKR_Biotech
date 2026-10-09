@@ -14,6 +14,9 @@ import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { resolveCategoryCatalogView } from "@/lib/catalog/category-view";
 import type { ProductCategorySlug } from "@/lib/types/catalog";
+import { buildCategoryMetadata } from "@/lib/seo/product-metadata";
+import { JsonLd } from "@/lib/seo/json-ld";
+import { absoluteUrl } from "@/lib/seo/site";
 
 type PageProps = {
   params: Promise<{ category: string }>;
@@ -41,12 +44,12 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     view: viewParam,
   });
   const sub = subcategories.find((s) => s.slug === activeSubcategory);
-  const title =
-    view === "subcategory" && sub ? `${sub.name} · ${cat.name}` : cat.name;
-  return {
-    title,
-    description: view === "subcategory" && sub?.description ? sub.description : cat.description,
-  };
+  return buildCategoryMetadata(cat, {
+    subcategoryName: view === "subcategory" ? sub?.name : undefined,
+    subcategoryDescription: view === "subcategory" ? sub?.description : undefined,
+    // Canonical stays on the clean category URL (avoid indexing every filter combo).
+    path: `/products/${slug}`,
+  });
 }
 
 export default async function ProductCategoryPage({ params, searchParams }: PageProps) {
@@ -66,8 +69,22 @@ export default async function ProductCategoryPage({ params, searchParams }: Page
     view: viewParam,
   });
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: cat.name,
+    description: cat.description || cat.overview,
+    url: absoluteUrl(`/products/${slug}`),
+    isPartOf: {
+      "@type": "WebSite",
+      name: "HKR Biotech Labs",
+      url: absoluteUrl("/"),
+    },
+  };
+
   return (
     <div className="relative overflow-x-hidden bg-[#020A63]">
+      <JsonLd data={collectionJsonLd} />
       <PageAmbientGraphics variant="long" opacity="opacity-[0.12]" />
       <div className="relative z-10 px-4 pt-6 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">

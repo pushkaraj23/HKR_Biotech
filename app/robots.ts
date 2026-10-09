@@ -4,11 +4,22 @@ import { getSiteUrl } from "@/lib/seo/site";
 export default function robots(): MetadataRoute.Robots {
   const siteUrl = getSiteUrl();
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/api/", "/cart", "/checkout", "/wishlist", "/profile"],
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [
+          "/api/",
+          "/cart",
+          "/checkout",
+          "/checkout/",
+          "/wishlist",
+          "/profile",
+          "/login",
+          "/signup",
+        ],
+      },
+    ],
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
   };

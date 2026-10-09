@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: "Leadership",
   description:
     "Meet the scientists and leadership behind HKR Biotech — glycan synthesis, analytical depth, and scientific partnership.",
+  alternates: { canonical: "/leadership" },
+  openGraph: {
+    type: "website",
+    url: "/leadership",
+    title: "Leadership | HKR Biotech Labs",
+    description:
+      "Meet the scientists and leadership behind HKR Biotech — glycan synthesis and scientific partnership.",
+  },
 };
 
 export default function LeadershipPage() {

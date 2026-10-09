@@ -3,6 +3,7 @@ import { PageAmbientGraphics } from "@/components/ui/PageAmbientGraphics";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
+  alternates: { canonical: "/cookie-policy" },
   description:
     "Cookie Policy for HKR Biotech Pvt. Ltd. website explaining cookie categories and usage.",
 };

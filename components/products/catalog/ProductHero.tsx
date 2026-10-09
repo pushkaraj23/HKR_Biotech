@@ -3,6 +3,7 @@ import { EnquireGateLink } from "@/components/auth/EnquireGateLink";
 import { glassButtonCn } from "@/lib/ui/glassButton";
 import type { CatalogProduct } from "@/lib/types/catalog";
 import { cn } from "@/lib/cn";
+import { productPath } from "@/lib/seo/product-url";
 
 type ProductHeroProps = {
   product: CatalogProduct;
@@ -11,7 +12,7 @@ type ProductHeroProps = {
 };
 
 export function ProductHero({ product, categoryLabel, className }: ProductHeroProps) {
-  const enquirySectionHref = `/products/${product.categorySlug}/${product.slug}#enquiry-form`;
+  const enquirySectionHref = `${productPath(product)}#enquiry-form`;
 
   return (
     <header

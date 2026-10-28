@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import type { CartItem } from "@/lib/commerce/cart-types";
 import { parsePriceAmount, summarizeCart } from "@/lib/commerce/cart-pricing";
+import { toRazorpayCharge } from "@/lib/commerce/fx";
 import {
   cartItemToOrderLine,
   ORDER_STATUSES,
@@ -37,9 +38,14 @@ export async function clearUserCart(uid: string): Promise<void> {
 
 export function buildOrderFromCart(items: CartItem[]): {
   orderLines: OrderLineItem[];
+  /** Catalogue subtotal in catalogCurrency (e.g. USD). */
   subtotal: number;
+  /** Razorpay charge currency (matches catalogue unless settle-INR is enabled). */
   currency: string;
   amountPaise: number;
+  catalogCurrency: string;
+  inrSubtotal: number;
+  fxRate: number | null;
   lineCount: number;
   totalUnits: number;
 } {
@@ -54,11 +60,12 @@ export function buildOrderFromCart(items: CartItem[]): {
     throw new Error("Order total must be greater than zero");
   }
 
-  const currency = "INR";
-  const amountPaise = Math.round(summary.subtotal * 100);
+  // Charge Razorpay in the same currency as catalogue prices (e.g. USD → USD).
+  const charge = toRazorpayCharge(summary.subtotal, summary.currencyHint ?? "USD");
 
-  if (amountPaise < 100) {
-    throw new Error("Minimum online payment is ₹1.00");
+  if (charge.amountPaise < 100) {
+    const minLabel = charge.currency === "INR" ? "₹1.00" : `${charge.currency} 1.00`;
+    throw new Error(`Minimum online payment is ${minLabel}`);
   }
 
   const orderLines = items.map((item) => {
@@ -70,9 +77,12 @@ export function buildOrderFromCart(items: CartItem[]): {
 
   return {
     orderLines,
-    subtotal: summary.subtotal,
-    currency,
-    amountPaise,
+    subtotal: charge.catalogSubtotal,
+    currency: charge.currency,
+    amountPaise: charge.amountPaise,
+    catalogCurrency: charge.catalogCurrency,
+    inrSubtotal: charge.inrSubtotal,
+    fxRate: charge.fxRate,
     lineCount: summary.lineCount,
     totalUnits: summary.totalUnits,
   };
@@ -101,6 +111,9 @@ export async function createPendingOrder(params: {
     subtotal: built.subtotal,
     currency: built.currency,
     amountPaise: built.amountPaise,
+    catalogCurrency: built.catalogCurrency,
+    inrSubtotal: built.inrSubtotal,
+    fxRate: built.fxRate,
     razorpayOrderId: params.razorpayOrderId,
     createdAt: serverTimestamp(),
     createdAtIso: nowIso,
@@ -193,6 +206,9 @@ export function parseOrderDocument(id: string, data: Record<string, unknown>): O
     subtotal: Number(data.subtotal ?? 0),
     currency: String(data.currency ?? "INR"),
     amountPaise: Number(data.amountPaise ?? 0),
+    catalogCurrency: data.catalogCurrency ? String(data.catalogCurrency) : undefined,
+    inrSubtotal: typeof data.inrSubtotal === "number" ? data.inrSubtotal : undefined,
+    fxRate: typeof data.fxRate === "number" ? data.fxRate : data.fxRate === null ? null : undefined,
     razorpayOrderId: data.razorpayOrderId ? String(data.razorpayOrderId) : undefined,
     razorpayPaymentId: data.razorpayPaymentId ? String(data.razorpayPaymentId) : undefined,
     createdAtIso: createdAt?.toDate

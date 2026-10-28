@@ -231,9 +231,33 @@ export type OrderInvoiceDocumentProps = {
 };
 
 export function OrderInvoiceDocument({ order, logoSrc }: OrderInvoiceDocumentProps) {
-  const currency = order.currency === "USD" ? "USD" : order.currency === "EUR" ? "EUR" : "INR";
+  // Line items keep catalogue currency; Razorpay charge usually matches unless FX settle-INR is on.
+  const catalogCurrency =
+    order.catalogCurrency === "USD" ||
+    order.catalogCurrency === "EUR" ||
+    order.catalogCurrency === "GBP" ||
+    order.catalogCurrency === "INR"
+      ? order.catalogCurrency
+      : order.currency === "USD" ||
+          order.currency === "EUR" ||
+          order.currency === "GBP" ||
+          order.currency === "INR"
+        ? order.currency
+        : detectLineCurrency(order) ?? "USD";
+  const chargeCurrency =
+    order.currency === "USD" ||
+    order.currency === "EUR" ||
+    order.currency === "GBP" ||
+    order.currency === "INR"
+      ? order.currency
+      : catalogCurrency;
   const invoiceDate = order.paidAtIso || order.createdAtIso;
-  const amountFromPaise = order.amountPaise > 0 ? order.amountPaise / 100 : order.subtotal;
+  const amountFromPaise =
+    order.amountPaise > 0
+      ? order.amountPaise / 100
+      : typeof order.inrSubtotal === "number" && chargeCurrency === "INR"
+        ? order.inrSubtotal
+        : order.subtotal;
   const customerName = resolveOrderCustomerName(order);
 
   return (
@@ -277,7 +301,11 @@ export function OrderInvoiceDocument({ order, logoSrc }: OrderInvoiceDocumentPro
             <MetaLine label="Invoice date" value={formatInvoiceDate(invoiceDate)} />
             <MetaLine label="Order placed" value={formatInvoiceDate(order.createdAtIso)} />
             <MetaLine label="Order status" value={ORDER_STATUS_LABELS[order.status] ?? order.status} />
-            <MetaLine label="Currency" value={currency} />
+            <MetaLine label="Catalogue currency" value={catalogCurrency} />
+            <MetaLine label="Charged currency" value={chargeCurrency} />
+            {order.fxRate ? (
+              <MetaLine label="FX rate used" value={`1 ${catalogCurrency} = ${order.fxRate} INR`} />
+            ) : null}
           </View>
         </View>
 
@@ -300,7 +328,7 @@ export function OrderInvoiceDocument({ order, logoSrc }: OrderInvoiceDocumentPro
             <Text style={[styles.tableHeaderCell, styles.colAmount]}>Amount</Text>
           </View>
           {order.items.map((item, index) => (
-            <LineItemRow key={item.slug} item={item} currency={currency} alt={index % 2 === 1} />
+            <LineItemRow key={item.slug} item={item} currency={catalogCurrency} alt={index % 2 === 1} />
           ))}
         </View>
 
@@ -314,9 +342,19 @@ export function OrderInvoiceDocument({ order, logoSrc }: OrderInvoiceDocumentPro
               <Text style={styles.totalLabel}>Total units</Text>
               <Text style={styles.totalValue}>{order.totalUnits}</Text>
             </View>
+            {catalogCurrency !== chargeCurrency ? (
+              <View style={styles.totalRow}>
+                <Text style={styles.totalLabel}>Catalogue subtotal</Text>
+                <Text style={styles.totalValue}>
+                  {formatInvoiceMoney(order.subtotal, catalogCurrency)}
+                </Text>
+              </View>
+            ) : null}
             <View style={styles.totalRowGrand}>
               <Text style={styles.grandLabel}>Amount paid</Text>
-              <Text style={styles.grandValue}>{formatInvoiceMoney(amountFromPaise, currency)}</Text>
+              <Text style={styles.grandValue}>
+                {formatInvoiceMoney(amountFromPaise, chargeCurrency)}
+              </Text>
             </View>
           </View>
         </View>
@@ -421,6 +459,17 @@ function parsePriceFromLabel(raw: string): number | null {
   if (!match) return null;
   const value = Number(match[0]);
   return Number.isFinite(value) ? value : null;
+}
+
+function detectLineCurrency(order: OrderRecord): string | null {
+  for (const item of order.items) {
+    const sample = String(item.variantPrice ?? "");
+    if (sample.includes("$") || /usd/i.test(sample)) return "USD";
+    if (sample.includes("₹") || /inr/i.test(sample)) return "INR";
+    if (sample.includes("€")) return "EUR";
+    if (sample.includes("£")) return "GBP";
+  }
+  return null;
 }
 
 /** PDF-safe currency labels (Helvetica does not render the ₹ glyph). */

@@ -35,14 +35,15 @@ export function parsePriceAmount(raw: string | undefined): number | null {
   return Number.isFinite(value) ? value : null;
 }
 
-function detectCurrencyHint(samples: string[]): string | null {
+export function detectCurrencyHint(samples: string[]): string | null {
   for (const sample of samples) {
-    if (sample.includes("₹")) return "INR";
-    if (sample.includes("$")) return "USD";
-    if (sample.includes("€")) return "EUR";
-    if (sample.includes("£")) return "GBP";
+    if (sample.includes("₹") || /\binr\b/i.test(sample)) return "INR";
+    if (sample.includes("$") || /\busd\b/i.test(sample)) return "USD";
+    if (sample.includes("€") || /\beur\b/i.test(sample)) return "EUR";
+    if (sample.includes("£") || /\bgbp\b/i.test(sample)) return "GBP";
   }
-  return null;
+  // HKR catalogue prices are dollar-denominated when no symbol is present.
+  return samples.length > 0 ? "USD" : null;
 }
 
 export function formatMoney(amount: number, currencyHint: string | null): string {

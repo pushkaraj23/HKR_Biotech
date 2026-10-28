@@ -165,7 +165,9 @@ export function RazorpayCheckoutButton({ items, className }: RazorpayCheckoutBut
         </p>
       ) : (
         <p className="mt-3 text-center text-[11px] leading-relaxed text-white/55">
-          Secure checkout powered by Razorpay (test mode).
+          {summary.currencyHint
+            ? `Secure Razorpay checkout — charged in ${summary.currencyHint} to match catalogue prices.`
+            : "Secure checkout powered by Razorpay."}
         </p>
       )}
     </div>

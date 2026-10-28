@@ -51,11 +51,18 @@ export async function POST(req: Request) {
       currency: built.currency,
       keyId: getRazorpayKeyId(),
       subtotal: built.subtotal,
+      catalogCurrency: built.catalogCurrency,
+      inrSubtotal: built.inrSubtotal,
+      fxRate: built.fxRate,
       lineCount: built.lineCount,
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Could not create order";
+    const currencyHint =
+      /currency|international|not supported|usd/i.test(message)
+        ? " Razorpay may need USD (international currency) enabled on your account, or set NEXT_PUBLIC_RAZORPAY_SETTLE_INR=true to charge in INR."
+        : "";
     const status = /empty|quote|minimum|greater than zero/i.test(message) ? 400 : 500;
-    return NextResponse.json({ error: message }, { status });
+    return NextResponse.json({ error: `${message}${currencyHint}` }, { status });
   }
 }

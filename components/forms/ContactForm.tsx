@@ -6,6 +6,7 @@ import {
   quoteCdaOptions,
   quoteServiceOptions,
 } from "@/data/contactPageContent";
+import { enquiryAttachmentListError } from "@/lib/enquiries/attachment-rules";
 import { cn } from "@/lib/cn";
 
 type ContactFormProps = {
@@ -15,7 +16,7 @@ type ContactFormProps = {
   dark?: boolean;
   /** Mint/white panels (e.g. product PDP enquiry band) — high-contrast fields matching site palette. */
   tone?: "default" | "brandLight" | "brandGreen";
-  /** Contact page: full RFQ fields (service, CDA, quantity, file names). */
+  /** Contact page: full RFQ fields (service, CDA, quantity, file upload). */
   rfqLayout?: boolean;
 };
 
@@ -32,6 +33,7 @@ function RfqQuoteFields({
   hintClassName: string;
   defaultProductRef: string;
 }) {
+  const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
   const selectExtra = cn(
     fieldBase,
     "cursor-pointer appearance-none bg-[length:1rem_1rem] bg-[right_0.75rem_center] bg-no-repeat pr-10",
@@ -137,13 +139,24 @@ function RfqQuoteFields({
           name="attachments"
           type="file"
           multiple
+          accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.txt,.csv,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.mol,.sdf,.cdxml,.smi,.smiles"
+          onChange={(event) => {
+            setSelectedFiles(Array.from(event.target.files ?? []).map((file) => file.name));
+          }}
           className={cn(
             fieldBase,
             "cursor-pointer py-2.5 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-[linear-gradient(to_right,var(--primary),color-mix(in_srgb,var(--primary)_82%,var(--accent)))] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white",
           )}
         />
+        {selectedFiles.length > 0 ? (
+          <ul className={cn("mt-2 space-y-1 text-xs leading-relaxed", hintClassName)}>
+            {selectedFiles.map((name, index) => (
+              <li key={`${name}-${index}`}>{name}</li>
+            ))}
+          </ul>
+        ) : null}
         <p className={cn("mt-2 text-xs leading-relaxed", hintClassName)}>
-          Filenames are included with your inquiry. For large attachments, please follow up by email once we reply.
+          PDF, images, Office, or structure files (MOL, SDF, CDXML). Up to 5 files, 8 MB each. Files are stored with your inquiry.
         </p>
       </div>
     </>
@@ -194,42 +207,28 @@ export function ContactForm({
     setStatus("submitting");
 
     const form = e.currentTarget;
-    const data = new FormData(form);
     const attachmentsInput = form.querySelector<HTMLInputElement>('input[name="attachments"]');
-    const fileNames =
-      attachmentsInput?.files?.length && attachmentsInput.files.length > 0
-        ? Array.from(attachmentsInput.files)
-            .map((f) => f.name)
-            .join(", ")
-        : "";
+    const files = attachmentsInput?.files?.length ? Array.from(attachmentsInput.files) : [];
+    const fileError = enquiryAttachmentListError(files);
+    if (fileError) {
+      setStatus("idle");
+      setError(fileError);
+      return;
+    }
 
-    const payload = {
-      name: String(data.get("name") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      organization: String(data.get("organization") ?? "").trim(),
-      phone: String(data.get("phone") ?? "").trim(),
-      reference: String(data.get("reference") ?? "").trim(),
-      message: String(data.get("message") ?? "").trim(),
-      source: String(data.get("source") ?? "").trim() || enquirySource,
-      ...(rfqLayout
-        ? {
-            serviceRequired: String(data.get("serviceRequired") ?? "").trim(),
-            cdaRequired: String(data.get("cdaRequired") ?? "").trim(),
-            quantity: String(data.get("quantity") ?? "").trim(),
-            ...(fileNames ? { attachments: fileNames } : {}),
-          }
-        : {}),
-    };
+    const formData = new FormData(form);
+    if (!String(formData.get("source") ?? "").trim()) {
+      formData.set("source", enquirySource);
+    }
 
     try {
       const token = user ? await user.getIdToken() : null;
       const res = await fetch("/api/enquiries", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        body: JSON.stringify(payload),
+        body: formData,
       });
       const body = (await res.json().catch(() => null)) as { error?: string } | null;
       if (!res.ok) {

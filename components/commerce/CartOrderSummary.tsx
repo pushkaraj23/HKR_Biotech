@@ -7,6 +7,7 @@ import {
   summarizeCart,
   type CartPricingLine,
 } from "@/lib/commerce/cart-pricing";
+import { estimateRazorpayCharge, shouldSettleRazorpayInInr } from "@/lib/commerce/fx";
 import { cn } from "@/lib/cn";
 
 type CartOrderSummaryProps = {
@@ -21,6 +22,15 @@ export function CartOrderSummary({ items, mode = "cart", className }: CartOrderS
   const totalLabel = hasPricedTotal
     ? formatMoney(summary.subtotal, summary.currencyHint)
     : "Quote on request";
+  const settleInInr = shouldSettleRazorpayInInr();
+  const razorpayCharge =
+    hasPricedTotal && summary.currencyHint
+      ? estimateRazorpayCharge(summary.subtotal, summary.currencyHint)
+      : null;
+  const showFxNote =
+    Boolean(razorpayCharge?.fxRate) &&
+    settleInInr &&
+    razorpayCharge?.catalogCurrency !== razorpayCharge?.currency;
 
   return (
     <aside
@@ -99,6 +109,29 @@ export function CartOrderSummary({ items, mode = "cart", className }: CartOrderS
               <dt>Estimated total</dt>
               <dd className="font-mono text-lg">{totalLabel}</dd>
             </div>
+            {showFxNote && razorpayCharge ? (
+              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-xs leading-relaxed text-white/85">
+                <div className="flex justify-between gap-3 font-semibold text-white">
+                  <span>Razorpay charge (INR)</span>
+                  <span className="font-mono">
+                    {formatMoney(razorpayCharge.chargeSubtotal, "INR")}
+                  </span>
+                </div>
+                <p className="mt-1 text-white/65">
+                  Catalogue prices are in {razorpayCharge.catalogCurrency}. Checkout converts at{" "}
+                  {razorpayCharge.fxRate?.toFixed(2)} {razorpayCharge.catalogCurrency}/INR for
+                  Razorpay settlement.
+                </p>
+              </div>
+            ) : razorpayCharge ? (
+              <p className="text-xs text-white/65">
+                You will be charged{" "}
+                <span className="font-semibold text-white">
+                  {formatMoney(razorpayCharge.chargeSubtotal, razorpayCharge.currency)}
+                </span>{" "}
+                via Razorpay ({razorpayCharge.currency}).
+              </p>
+            ) : null}
           </dl>
 
           {mode === "cart" ? (

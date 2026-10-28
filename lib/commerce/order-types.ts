@@ -33,9 +33,15 @@ export type OrderRecord = {
   items: OrderLineItem[];
   lineCount: number;
   totalUnits: number;
+  /** Catalogue subtotal (USD when prices are dollar-denominated). */
   subtotal: number;
+  /** Razorpay charge currency (matches catalogue currency by default). */
   currency: string;
+  /** Minor units charged via Razorpay (cents or paise). */
   amountPaise: number;
+  catalogCurrency?: string;
+  inrSubtotal?: number;
+  fxRate?: number | null;
   razorpayOrderId?: string;
   razorpayPaymentId?: string;
   createdAtIso: string;

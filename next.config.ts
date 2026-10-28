@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["firebase"],
+  serverExternalPackages: ["firebase", "firebase-admin"],
+  experimental: {
+    proxyClientMaxBodySize: "32mb",
+  },
   images: {
     remotePatterns: [
       {

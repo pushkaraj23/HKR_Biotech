@@ -120,7 +120,7 @@ export function ProfileOrdersSection() {
 }
 
 function OrderCompactCard({ order, onOpen }: { order: OrderRecord; onOpen: () => void }) {
-  const currency = order.currency === "USD" ? "USD" : order.currency === "EUR" ? "EUR" : "INR";
+  const currency = order.catalogCurrency || order.currency || "USD";
   const totalLabel = formatMoney(order.subtotal, currency);
   return (
     <button
@@ -165,7 +165,7 @@ function OrderDetailModal({
 }) {
   const customerName = resolveOrderCustomerName(order, customerNameFallback);
   const [mounted, setMounted] = useState(false);
-  const currency = order.currency === "USD" ? "USD" : order.currency === "EUR" ? "EUR" : "INR";
+  const currency = order.catalogCurrency || order.currency || "USD";
   const totalLabel = formatMoney(order.subtotal, currency);
 
   useEffect(() => {

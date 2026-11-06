@@ -1,6 +1,9 @@
 import { randomUUID } from "crypto";
 import { enquiryFileExtension } from "@/lib/enquiries/attachment-rules";
+import type { StoredEnquiryAttachment } from "@/lib/enquiries/attachment-types";
 import { getAdminStorageBucket, getStorageBucketName } from "@/lib/firebase/admin-app";
+
+export type { StoredEnquiryAttachment } from "@/lib/enquiries/attachment-types";
 
 const EXTENSION_MIME: Record<string, string> = {
   pdf: "application/pdf",
@@ -22,14 +25,6 @@ const EXTENSION_MIME: Record<string, string> = {
   cdxml: "chemical/x-cdxml",
   smi: "chemical/x-daylight-smiles",
   smiles: "chemical/x-daylight-smiles",
-};
-
-export type StoredEnquiryAttachment = {
-  name: string;
-  url: string;
-  storagePath: string;
-  contentType: string;
-  size: number;
 };
 
 function sanitizeStorageFileName(name: string): string {

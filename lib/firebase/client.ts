@@ -1,6 +1,7 @@
 import { getApps, initializeApp, type FirebaseApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import { firebaseBrowserConfig, isFirebaseConfigured } from "@/lib/firebase/config";
 
 export function getFirebaseApp(): FirebaseApp {
@@ -31,4 +32,8 @@ export function getFirebaseAuth() {
 
 export function getFirebaseDb() {
   return getFirestore(getFirebaseApp());
+}
+
+export function getFirebaseStorage() {
+  return getStorage(getFirebaseApp());
 }

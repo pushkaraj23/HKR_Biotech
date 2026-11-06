@@ -18,10 +18,25 @@ export function isServiceAccountConfigured(): boolean {
   return Boolean(filePath && fs.existsSync(filePath));
 }
 
+function parseServiceAccountJson(raw: string): Record<string, string | undefined> {
+  const trimmed = raw.trim();
+  try {
+    return JSON.parse(trimmed) as Record<string, string | undefined>;
+  } catch {
+    // Vercel/hosting often stores the key as base64 to avoid multiline/env escaping issues.
+    try {
+      const decoded = Buffer.from(trimmed, "base64").toString("utf8");
+      return JSON.parse(decoded) as Record<string, string | undefined>;
+    } catch {
+      throw new Error("FIREBASE_SERVICE_ACCOUNT_JSON is not valid JSON (or base64 JSON).");
+    }
+  }
+}
+
 function loadServiceAccount(): Record<string, string | undefined> {
   const inline = process.env.FIREBASE_SERVICE_ACCOUNT_JSON?.trim();
   if (inline) {
-    return JSON.parse(inline) as Record<string, string | undefined>;
+    return parseServiceAccountJson(inline);
   }
   const filePath = resolveCredentialFilePath();
   if (filePath && fs.existsSync(filePath)) {

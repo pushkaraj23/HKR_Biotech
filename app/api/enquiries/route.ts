@@ -2,7 +2,9 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import { trackProductInterest } from "@/lib/analytics/product-interest";
 import { enquiryAttachmentListError } from "@/lib/enquiries/attachment-rules";
-import { deleteEnquiryStoragePaths, uploadEnquiryAttachment, type StoredEnquiryAttachment } from "@/lib/enquiries/upload-attachments";
+import { parseAttachmentPayload } from "@/lib/enquiries/attachment-payload";
+import type { StoredEnquiryAttachment } from "@/lib/enquiries/attachment-types";
+import { deleteEnquiryStoragePaths, uploadEnquiryAttachment } from "@/lib/enquiries/upload-attachments";
 import { isServiceAccountConfigured } from "@/lib/firebase/admin-app";
 import { getServerFirestoreDb } from "@/lib/firebase/server-firestore";
 import { verifyFirebaseIdTokenPublic } from "@/lib/firebase/verify-id-token";
@@ -20,6 +22,7 @@ type EnquiryFields = {
   serviceRequired: string;
   cdaRequired: string;
   quantity: string;
+  attachmentPayload: string;
 };
 
 function clean(value: unknown) {
@@ -45,6 +48,7 @@ async function readSubmission(req: Request): Promise<{ fields: EnquiryFields; fi
         serviceRequired: clean(form.get("serviceRequired")),
         cdaRequired: clean(form.get("cdaRequired")),
         quantity: clean(form.get("quantity")),
+        attachmentPayload: clean(form.get("attachmentPayload")),
       },
       files,
     };
@@ -63,6 +67,12 @@ async function readSubmission(req: Request): Promise<{ fields: EnquiryFields; fi
       serviceRequired: clean(body.serviceRequired),
       cdaRequired: clean(body.cdaRequired),
       quantity: clean(body.quantity),
+      attachmentPayload:
+        typeof body.attachmentPayload === "string"
+          ? body.attachmentPayload
+          : body.attachments
+            ? JSON.stringify(body.attachments)
+            : "",
     },
     files: [],
   };
@@ -89,20 +99,36 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please enter a valid phone number" }, { status: 400 });
   }
 
+  const clientAttachments = parseAttachmentPayload(fields.attachmentPayload || "[]");
+  if ("error" in clientAttachments) {
+    return NextResponse.json({ error: clientAttachments.error }, { status: 400 });
+  }
+
   const fileError = enquiryAttachmentListError(
     files.map((file) => ({ name: file.name, size: file.size, type: file.type })),
   );
   if (fileError) {
     return NextResponse.json({ error: fileError }, { status: 400 });
   }
+
+  if (files.length > 0 && clientAttachments.length > 0) {
+    return NextResponse.json(
+      { error: "Send either uploaded attachment metadata or raw files, not both." },
+      { status: 400 },
+    );
+  }
+
   if (files.length > 0 && !isServiceAccountConfigured()) {
     return NextResponse.json(
-      { error: "File upload is not configured. Please try again without attachments, or email the files after we reply." },
+      {
+        error:
+          "Server file upload is not configured. The form should upload via Firebase Storage first — refresh and try again, or submit without attachments.",
+      },
       { status: 500 },
     );
   }
 
-  const uploaded: StoredEnquiryAttachment[] = [];
+  const uploaded: StoredEnquiryAttachment[] = [...clientAttachments];
   try {
     for (const file of files) {
       const buffer = Buffer.from(await file.arrayBuffer());
@@ -153,7 +179,12 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ ok: true, id: docRef.id });
   } catch (error) {
-    await deleteEnquiryStoragePaths(uploaded.map((file) => file.storagePath));
+    // Only delete server-uploaded objects we created in this request (not client uploads).
+    if (files.length > 0) {
+      await deleteEnquiryStoragePaths(
+        uploaded.slice(clientAttachments.length).map((file) => file.storagePath),
+      );
+    }
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Could not save enquiry" },
       { status: 500 },

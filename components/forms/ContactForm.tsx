@@ -7,6 +7,10 @@ import {
   quoteServiceOptions,
 } from "@/data/contactPageContent";
 import { enquiryAttachmentListError } from "@/lib/enquiries/attachment-rules";
+import {
+  isClientEnquiryUploadAvailable,
+  uploadEnquiryAttachmentsClient,
+} from "@/lib/enquiries/client-upload";
 import { cn } from "@/lib/cn";
 
 type ContactFormProps = {
@@ -222,6 +226,17 @@ export function ContactForm({
     }
 
     try {
+      if (files.length > 0) {
+        if (!isClientEnquiryUploadAvailable()) {
+          throw new Error(
+            "File upload is not configured (missing Firebase Storage bucket). Submit without attachments, or email files after we reply.",
+          );
+        }
+        const uploaded = await uploadEnquiryAttachmentsClient(files);
+        formData.delete("attachments");
+        formData.set("attachmentPayload", JSON.stringify(uploaded));
+      }
+
       const token = user ? await user.getIdToken() : null;
       const res = await fetch("/api/enquiries", {
         method: "POST",
